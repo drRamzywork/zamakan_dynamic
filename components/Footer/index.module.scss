@@ -1,0 +1,115 @@
+.footer {
+  background-color: #ffffff;
+  padding: 39px 0;
+  margin-top: 61px;
+  .logo {
+    // Add styles for your logo here
+  }
+  .socialLinks {
+    // Center the icons if needed
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    @media screen and (max-width: 450px) {
+      flex-direction: column-reverse;
+    }
+    .MuiIconButton-root {
+      margin: 0 5px;
+      // Add color if needed:
+    }
+    .links_container {
+      button {
+        background-color: #f6f8fc;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+      a {
+        &:not(:last-child) {
+          margin-right: 6px;
+        }
+      }
+      svg {
+        width: 14.12px;
+        height: 10px;
+        color: #454860 !important;
+        path {
+          fill: #454860 !important;
+        }
+      }
+    }
+
+    .contact {
+      display: flex;
+      align-items: center;
+      border-left: 1px solid #e6ddc6;
+      margin-left: 29px;
+      padding-left: 29px;
+      cursor: pointer !important;
+      @media screen and (max-width: 450px) {
+        border-left: unset;
+        margin: 0;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      button {
+        background-color: #e6ddc6;
+        @media screen and (max-width: 450px) {
+          margin-bottom: 10px;
+        }
+      }
+      p {
+        margin-right: 10px;
+        font-size: 16px;
+
+        font-family: var(--effra-font);
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 38px;
+        letter-spacing: 0em;
+        text-align: right;
+        color: #000; // Example color
+
+        margin-top: 4px;
+        @media screen and (max-width: 450px) {
+          margin-right: 0;
+          margin-bottom: 10px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+
+  .footerBottom {
+    margin-top: 20px;
+    color: #000; // Example color
+    border-top: 1px solid #ddd; // Example color
+    padding-top: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .img_container {
+      width: 66.58px;
+      height: 46px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    p {
+      font-family: var(--effra-font);
+      font-size: 12px;
+      font-weight: 400;
+      text-align: left;
+      color: #686c85 !important;
+    }
+  }
+}

@@ -1,0 +1,101 @@
+section.Poets {
+  position: relative;
+  z-index: 1;
+  margin-top: 25px;
+  -webkit-user-select: none !important;
+     -moz-user-select: none !important;
+          user-select: none !important;
+}
+section.Poets .sec_container {
+  margin-bottom: 34px;
+  background-color: rgba(230, 221, 198, 0.2);
+  background-image: url("../../assets/texture.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: left;
+  border-radius: 10px;
+  padding: 24px 40px 24px 40px;
+}
+@media screen and (max-width: 450px) {
+  section.Poets .sec_container {
+    padding: 24px 0px 24px 20px;
+  }
+}
+section.Poets .sec_container .sec_title {
+  margin-bottom: 24px;
+}
+section.Poets .sec_container .tags_slider .box_container {
+  width: 120px;
+  height: 141px;
+  -webkit-user-select: none !important;
+     -moz-user-select: none !important;
+          user-select: none !important;
+}
+section.Poets .sec_container .tags_slider .box_container .box {
+  transition: all 0.3s ease-in-out;
+  -webkit-user-select: none !important;
+     -moz-user-select: none !important;
+          user-select: none !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+}
+@media screen and (max-width: 450px) {
+  section.Poets .sec_container .tags_slider .box_container .box {
+    margin-bottom: 10px;
+    padding: 0;
+  }
+}
+@media screen and (min-width: 992px) {
+  section.Poets .sec_container .tags_slider .box_container .box:hover {
+    border: 1px solid var(--main-beige-color);
+    background-color: var(--main-white-color) !important;
+  }
+}
+section.Poets .sec_container .tags_slider .box_container .box .img_container {
+  width: 65px;
+  height: 65px;
+  display: flex;
+  border: 8px solid white;
+  border-radius: 32px;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(230, 221, 198, 0.2);
+}
+section.Poets .sec_container .tags_slider .box_container .box .img_container img {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+section.Poets .sec_container .tags_slider .box_container .box .name {
+  margin-top: 12px;
+}
+@media screen and (max-width: 650px) {
+  section.Poets .sec_container .tags_slider .box_container .box .name {
+    margin-top: 14px;
+  }
+}
+section.Poets .sec_container .tags_slider .box_container .box .name p {
+  color: var(--main-blue-color);
+  font-family: var(--effra-font);
+  font-size: 16px;
+  font-weight: var(--effra-bold);
+}
+@media screen and (max-width: 650px) {
+  section.Poets .sec_container .tags_slider .box_container .box {
+    width: 87px;
+    height: 110px;
+    padding: 12.98px;
+    font-size: 11.68px;
+  }
+}
+section.Poets .sec_container .tags_slider a.active button {
+  background-color: var(--main-red-color);
+  color: var(--main-white-color);
+  position: relative;
+}/*# sourceMappingURL=index.module.css.map */
