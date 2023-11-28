@@ -90,7 +90,7 @@ const LiteraryEras = () => {
 
 
 
-      <div className={styles.slider_container}>
+      <div className={styles.swiper_container}>
         <Swiper
           dir="rtl"
           // breakpoints={{
@@ -120,7 +120,7 @@ const LiteraryEras = () => {
           spaceBetween={24}
 
 
-          pagination={true} className={styles.swiper_container}>
+          pagination={true} className={"swiper"}>
           <SwiperSlide className={styles.swiper_slide_box}>
             <Link href={'/'} className={styles.box}>
               <div className={styles.img_container}>
