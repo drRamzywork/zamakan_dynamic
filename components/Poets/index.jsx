@@ -39,7 +39,7 @@ const Effra = localFont({
 })
 
 const Poets = () => {
-  const [activePoet, setActivePoet] = useState(0);
+  const [activePoet, setActivePoet] = useState(null);
   const { ra3y1 } = imgs;
 
 
