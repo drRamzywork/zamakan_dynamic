@@ -367,12 +367,16 @@ export default function SliderVerses() {
         </SwiperSlide>
 
       </Swiper>
-      <Box ref={nextRef} className=" swiperButtonPrev" id='swiperButton'>
-        <HiArrowLeft />
-      </Box>
-      <Box ref={prevRef} className=" swiperButtonNext" id='swiperButton'>
-        <HiArrowRight />
-      </Box>
+      {/* <div className={styles.pagination_arrows}>
+        <Box ref={nextRef} className={styles.swiperButtonPrev} id='swiperButton'>
+          <HiArrowLeft />
+        </Box>
+        <Box ref={prevRef} className={styles.swiperButtonNext} id='swiperButton'>
+          <HiArrowRight />
+        </Box>
+      </div> */}
+
+
     </>
   );
 }

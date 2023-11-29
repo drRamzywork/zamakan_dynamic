@@ -802,3 +802,40 @@ svg.saudi-map.safari .city-name > div:hover {
 .MuiTabs-root {
   overflow: unset !important;
 }
+
+// Swiper pagination
+#swiperContainer {
+  padding-bottom: 40px;
+
+  // Define the color of the navigation buttons
+
+  // Define the pagination bullet styles
+  .swiper-pagination-bullet {
+    width: auto;
+    height: auto;
+    background: #372d40;
+    color: #ffffff;
+    text-align: center;
+    line-height: 30px; // Adjust the height to match your design
+    font-size: 10px; // Adjust font size as needed
+    border-radius: 50%;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    transition: all 0.3s ease-in-out;
+    font-family: var(--effra-font);
+    font-weight: 400;
+    opacity: 1;
+
+    &:hover {
+      background: #e6ddc6;
+      color: black;
+    }
+  }
+
+  // Style for the active pagination bullet
+  .swiper-pagination-bullet-active {
+    background: #e6ddc6;
+    color: #372d40;
+  }
+}
