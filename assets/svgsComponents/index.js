@@ -16,3 +16,4 @@ export { default as Check } from "./Check";
 export { default as Checked } from "./Checked";
 export { default as Location } from "./Location";
 export { default as Mountains } from "./Mountains";
+export { default as PalmSvg } from "./PalmSvg";

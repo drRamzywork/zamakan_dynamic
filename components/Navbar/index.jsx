@@ -158,7 +158,7 @@ const Navbar = (props) => {
                       <Link href='/'>مناطق المملكة </Link>
                     </div>
                     <div className={styles.link}>
-                      <Link href='/'>العصور الأدبية</Link>
+                      <Link href='/iterary-eras'>العصور الأدبية</Link>
                     </div>
                     <div className={styles.link}>
                       <Link href='/poets'>الشعراء </Link>

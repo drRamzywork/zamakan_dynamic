@@ -2,13 +2,14 @@ import { Container, Typography, } from '@mui/material'
 import React from 'react'
 import localFont from 'next/font/local'
 import styles from './index.module.scss'
-import PoetryIn from '../PoetryIn';
 import imgs from '../../assets/constants/imgs'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import 'swiper/css/scrollbar';
 import { Mountains } from '@/assets/svgsComponents';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Footer from '@/components/Footer'
+import Navbar from '@/components/Navbar'
 
 
 const Effra = localFont({
@@ -37,6 +38,7 @@ const Effra = localFont({
 })
 
 const LiteraryEras = () => {
+  const router = useRouter();
   const {
     left_branch,
     right_branch,
@@ -57,13 +59,15 @@ const LiteraryEras = () => {
   return (
 
     <>
+      <Navbar />
+
 
 
       < section id='LiteraryEras' className={styles.LiteraryEras} style={...Effra.style}>
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className='disable_container'>
           <div className={styles.sec_container}>
             <div className={styles.sec_title}>
-              <Typography variant='h1'>العصور الأدبية  <br />
+              <Typography variant='h1'>العصور الأدبية  {router.pathname === '/LiteraryEras' && <br />}
                 التاريخية</Typography>
             </div>
 
@@ -122,7 +126,7 @@ const LiteraryEras = () => {
 
           pagination={true} className={"swiper"}>
           <SwiperSlide className={styles.swiper_slide_box}>
-            <Link href={'/'} className={styles.box}>
+            <Link href={'/literary-eras/era'} className={styles.box}>
               <div className={styles.img_container}>
                 <img src={pre_Islamic.src} alt="" />
               </div>
@@ -143,7 +147,7 @@ const LiteraryEras = () => {
             </Link>
           </SwiperSlide>
           <SwiperSlide className={styles.swiper_slide_box}>
-            <Link href={'/'} className={styles.box}>
+            <Link href={'/literary-eras/era'} className={styles.box}>
               <div className={styles.img_container}>
                 <img src={Islamic_era.src} alt="" />
               </div>
@@ -164,7 +168,7 @@ const LiteraryEras = () => {
             </Link>
           </SwiperSlide>
           <SwiperSlide className={styles.swiper_slide_box}>
-            <Link href={'/'} className={styles.box}>
+            <Link href={'/literary-eras/era'} className={styles.box}>
               <div className={styles.img_container}>
                 <img src={Abbasid_era.src} alt="" />
               </div>
@@ -185,7 +189,7 @@ const LiteraryEras = () => {
             </Link>
           </SwiperSlide>
           <SwiperSlide className={styles.swiper_slide_box}>
-            <Link href={'/'} className={styles.box}>
+            <Link href={'/literary-eras/era'} className={styles.box}>
               <div className={styles.img_container}>
                 <img src={Mamluk_era.src} alt="" />
               </div>
@@ -206,7 +210,7 @@ const LiteraryEras = () => {
             </Link>
           </SwiperSlide>
           <SwiperSlide className={styles.swiper_slide_box}>
-            <Link href={'/'} className={styles.box}>
+            <Link href={'/literary-eras/era'} className={styles.box}>
               <div className={styles.img_container}>
                 <img src={Umayyad_era.src} alt="" />
               </div>
@@ -227,7 +231,7 @@ const LiteraryEras = () => {
             </Link>
           </SwiperSlide>
           <SwiperSlide className={styles.swiper_slide_box}>
-            <Link href={'/'} className={styles.box}>
+            <Link href={'/literary-eras/era'} className={styles.box}>
               <div className={styles.img_container}>
                 <img src={modern_era.src} alt="" />
               </div>
@@ -251,6 +255,7 @@ const LiteraryEras = () => {
 
         </Swiper>
       </div>
+      <Footer />
 
     </>
 

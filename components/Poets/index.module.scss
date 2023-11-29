@@ -1,29 +1,43 @@
 section.Poets {
-  position: relative;
-  z-index: 1;
-  margin-top: 25px;
+  margin-top: 40px;
   user-select: none !important;
 
   .sec_container {
     margin-bottom: 34px;
-    background-color: #e6ddc633;
-    background-image: url("../../assets/texture.png");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: left;
-    border-radius: 10px;
-    padding: 24px 40px 24px 40px;
+    border-radius: 40px;
+    background-color: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(229, 230, 242, 1);
+    box-shadow: 0px 16px 80px 0px rgba(70, 99, 120, 0.06);
 
     @media screen and (max-width: 450px) {
       padding: 24px 0px 24px 20px;
     }
+
     .sec_title {
-      margin-bottom: 24px;
+      padding: 32px 40px 0px 40px;
       h3 {
+        font-family: var(--effra-bold);
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 40px;
+        letter-spacing: 0em;
+        text-align: right;
       }
     }
 
     .tags_slider {
+      .swiper_slide_box {
+        .box.active {
+          border: 1px solid rgba(230, 221, 198, 1) !important;
+          box-shadow: 0px 8px 14px 0px rgba(0, 0, 0, 0.05) !important;
+
+          .name {
+            p {
+              color: rgba(187, 113, 101, 1) !important;
+            }
+          }
+        }
+      }
       .box_container {
         width: 120px;
         height: 141px;
@@ -37,29 +51,20 @@ section.Poets {
           flex-direction: column;
           align-items: center;
           padding: 8px;
-          border-radius: 10px;
+          border-radius: 16px;
           border: 1px solid transparent;
-
+          cursor: pointer;
           @media screen and (max-width: 450px) {
             margin-bottom: 10px;
             padding: 0;
           }
-          &:hover {
-            @media screen and (min-width: 992px) {
-              border: 1px solid var(--main-beige-color);
-              background-color: var(--main-white-color) !important;
-            }
-          }
 
           .img_container {
-            width: 65px;
-            height: 65px;
+            width: 82px;
+            height: 82px;
             display: flex;
-            border: 8px solid #ffff;
-            border-radius: 32px;
             position: relative;
             z-index: 1;
-            background-color: #e6ddc633;
             img {
               margin: auto;
               width: 100%;
@@ -74,10 +79,13 @@ section.Poets {
               margin-top: 14px;
             }
             p {
-              color: var(--main-blue-color);
-              font-family: var(--effra-font);
+              font-family: var(--effra-bold);
               font-size: 16px;
-              font-weight: var(--effra-bold);
+              font-weight: 700;
+              line-height: 22px;
+              letter-spacing: 0px;
+              text-align: center;
+              transition: all 0.3s ease-in-out;
             }
           }
 
@@ -98,5 +106,81 @@ section.Poets {
         }
       }
     }
+
+    .poetInfo {
+      padding-right: 40px;
+      padding-left: 59px;
+      margin-top: 16px;
+      .title {
+        display: flex;
+        h4 {
+          font-family: var(--effra-bold);
+          font-size: 32px;
+          font-weight: 700;
+          line-height: 38px;
+          letter-spacing: 0em;
+          color: rgba(17, 41, 47, 1);
+        }
+        .tag {
+          width: 111px;
+          height: 28px;
+          padding: 2px 8px 2px 8px;
+          border-radius: 16px;
+          background-color: rgba(187, 113, 101, 0.1);
+          margin-right: 6px;
+          p {
+            font-family: var(--effra-bold);
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 24px;
+            letter-spacing: 0px;
+            color: rgba(187, 113, 101, 1);
+          }
+        }
+      }
+
+      .desc {
+        margin-top: 16px;
+        p {
+          font-family: var(--effra-bold);
+          font-size: 24px;
+          font-weight: 500;
+          line-height: 34px;
+          letter-spacing: 0em;
+          color: rgba(17, 41, 47, 1);
+          opacity: 80%;
+        }
+
+        .more {
+          display: flex;
+          align-items: flex-end;
+          p {
+            font-family: var(--effra-bold);
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 24px;
+            letter-spacing: 0em;
+            color: rgba(187, 113, 101, 1);
+            opacity: 100%;
+          }
+          .icon_container {
+            margin-right: 10px;
+            svg {
+              width: 6.67px;
+              height: 11.67px;
+              path {
+                stroke: rgba(187, 113, 101, 1);
+              }
+            }
+          }
+        }
+      }
+    }
   }
+}
+.svg_wrap {
+  border-top: 1px solid rgba(229, 230, 242, 1);
+  padding-top: 46px;
+  margin-top: 60px;
+  display: flex;
 }

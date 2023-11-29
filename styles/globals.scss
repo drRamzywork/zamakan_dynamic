@@ -24,7 +24,7 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  // color: rgb(var(--foreground-rgb));
 }
 
 a {
@@ -167,9 +167,13 @@ body::-webkit-scrollbar-track {
 }
 
 #map-boxes {
+  margin: auto;
+  width: 600px;
+  height: 487px;
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center;
+  overflow: hidden;
 
   @media screen and (max-width: 992px) {
     flex-direction: column;
@@ -296,30 +300,15 @@ body::-webkit-scrollbar-track {
   }
 }
 
-// .react-transform-wrapper {
-//   // width: 695.43px !important;
-//   // height: 100% !important;
-//   margin-top: -200px !important;
-
-//   @media screen and (max-width: 450px) {
-//     border: 1px solid var(--main-blue-color);
-//     border-radius: 5px;
-//   }
-
-//   @media screen and (max-width: 992px) {
-//     width: 100% !important;
-//     margin-top: 24px !important;
-//     margin-bottom: 24px !important;
-//   }
-
-//   #svg1 {
-//     width: 100% !important;
-//     height: 100% !important;
-//   }
-// }
-
 .react-transform-wrapper {
-  margin-top: -200px !important;
+  // width: 695.43px !important;
+  // height: 100% !important;
+  // margin-top: -200px !important;
+
+  #svg1 {
+    width: 100% !important;
+    height: 100% !important;
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -686,7 +675,17 @@ foreignObject {
   font-size: 16px;
   padding: 2px 11px;
 }
-
+.city-name.active {
+  p {
+    background: rgba(187, 113, 101, 1);
+    color: rgba(255, 255, 255, 1);
+  }
+  svg {
+    path {
+      fill: rgba(187, 113, 101, 1) !important;
+    }
+  }
+}
 .city-name svg {
   top: 25px;
   // position: absolute;
@@ -705,4 +704,101 @@ svg.saudi-map.safari .city-name > div {
 
 svg.saudi-map.safari .city-name > div:hover {
   margin-bottom: 10px;
+}
+
+// active city box (MAP)
+.city-container {
+  position: relative;
+  .custom-box {
+    position: absolute;
+    top: 264px;
+    left: -238%;
+    width: 602px;
+    height: 399px;
+    padding: 40px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 19px 14px 0px rgba(0, 0, 0, 0.14);
+    margin-top: -700px;
+    border-radius: 24px;
+    .box_container {
+      position: relative;
+      .close-btn {
+        position: absolute;
+        top: -9px;
+        left: -9px;
+        svg {
+          path {
+            stroke: rgba(17, 41, 47, 1) !important;
+          }
+        }
+      }
+
+      .box_header {
+        display: flex;
+        align-items: flex-start;
+
+        .img-container {
+          width: 72px;
+          height: 72px;
+          margin-left: 16px;
+          border-radius: 16px;
+          flex-basis: 28%;
+
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            object-fit: contain;
+          }
+        }
+
+        .title {
+          margin-bottom: 24px;
+          h3 {
+            margin-bottom: 8px !important;
+          }
+          .desc {
+            p {
+              font-family: var(--effra-bold);
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 22px;
+              letter-spacing: 0em;
+              text-align: right;
+            }
+
+            .more {
+              margin-right: 8px;
+              span {
+                color: rgba(187, 113, 101, 1);
+                font-family: var(--effra-bold);
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 24px;
+                letter-spacing: 0em;
+                text-align: right;
+              }
+
+              svg {
+                margin-right: 8px;
+
+                width: 6.67px;
+                height: 11.67px;
+                path {
+                  stroke: rgba(187, 113, 101, 1) !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.MuiTabs-indicator {
+  display: none;
+}
+.MuiTabs-scroller,
+.MuiTabs-root {
+  overflow: unset !important;
 }

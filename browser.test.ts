@@ -1,9 +1,9 @@
-import { test } from '@playwright/test'
+import { test } from "@playwright/test";
 
-test('test browser', async ({ page }) => {
+test("test browser", async ({ page }) => {
   // point this to wherever you want
-  await page.goto('http://127.0.0.1:3000/')
+  await page.goto("http://localhost:3000/literary-eras/era");
 
   // keep browser open
-  await page.pause()
-})
+  await page.pause();
+});

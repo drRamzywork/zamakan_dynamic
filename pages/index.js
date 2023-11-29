@@ -3,12 +3,12 @@ import { Inter, Tajawal } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import mapSVG from "../assets/SaudiMap.svg";
 import Navbar from "@/components/Navbar";
-import LiteraryEras from "@/components/LiteraryEras";
 import Poets from "@/components/Poets";
 import PoetryIn from "@/components/PoetryIn";
 import Svg from "@/components/SVGParts/Svg";
 import { Container } from "@mui/material";
 import Footer from "@/components/Footer";
+import LandingPage from "@/components/LandingPage";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,9 +31,7 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${tajawal.className}`} dir="rtl">
         <Navbar />
-        <LiteraryEras />
-        {/* <Poets /> */}
-        {/* <PoetryIn /> */}
+        <LandingPage />
         <Footer />
       </main>
     </>
