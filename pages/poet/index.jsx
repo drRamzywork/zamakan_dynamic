@@ -1,10 +1,6 @@
 import { Box, Container, Grid, Typography, Avatar, Tab, Tabs, Paper, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { useState } from 'react';
-import styles from './index.module.scss'; // Make sure you have the corresponding SCSS file
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import SliderVerses from "../../components/PoetDetails/SliderVerses";
-import imgs from '../../assets/constants/imgs'
+import styles from './index.module.scss';
 import Feather from '../../assets/svgsComponents/Feather'
 import Profile from '../../assets/svgsComponents/Profile'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -50,11 +46,11 @@ export default function Poet() {
       borderColor: '#E5E6F2',
     },
     '&:hover .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#E5E6F2', // or any other color you want
+      borderColor: '#E5E6F2',
     },
 
     '&:hover .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#E5E6F2', // or any other color you want
+      borderColor: '#E5E6F2',
     },
 
 
@@ -121,8 +117,6 @@ export default function Poet() {
 
   return (
     <>
-      <Navbar />
-
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className={styles.poetDetails}>
         <Box className={styles.headerImage}>
           <div className={styles.text_container}>
@@ -396,9 +390,6 @@ export default function Poet() {
 
         </Paper>
       </Container>
-
-      <Footer />
-
     </>
 
   );

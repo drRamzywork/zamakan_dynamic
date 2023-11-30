@@ -82,9 +82,8 @@ const Poets = () => {
     });
   }, []);
 
-
   const transformComponentRef = useRef(null);
-  console.log(cityNames)
+
   useEffect(() => {
     if (activePoet === null) {
       cityNames.forEach(cityName => {

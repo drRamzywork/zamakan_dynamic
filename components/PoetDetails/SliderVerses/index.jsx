@@ -13,8 +13,10 @@ import { HiArrowRight } from "react-icons/hi2";
 import styles from './index.module.scss'; // Make sure this path is correct
 import { Box, Button, Typography } from '@mui/material';
 import Link from 'next/link'
-export default function SliderVerses() {
+import { imgs } from '@/assets/constants';
 
+export default function SliderVerses() {
+  const { ra3y1 } = imgs;
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -35,9 +37,8 @@ export default function SliderVerses() {
           swiper.navigation.init();
           swiper.navigation.update();
         }}
-
-        spaceBetween={0}
-        slidesPerView={2}
+        spaceBetween={24}
+        slidesPerView={2.2}
         grid={{
           rows: 5,
           fill: 'row',
@@ -65,304 +66,410 @@ export default function SliderVerses() {
 
         <SwiperSlide >
           <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+            <div className={styles.poet_info}>
+              <div className={styles.img_container}>
+                <img src={ra3y1.src} alt="" />
               </div>
-            </Link>
+
+              <div className={styles.text_container}>
+                <Link href='/poet' className={styles.name}>
+                  <Typography>الراعي</Typography>
+                  <div className={styles.date}>
+                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+                  </div>
+                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    العصر الأموي
+                  </Typography>
+
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <div className={styles.desc}>
+              <Typography>
+                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
+              </Typography>
+            </div>
+
+
           </div>
         </SwiperSlide>
         <SwiperSlide >
           <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+            <div className={styles.poet_info}>
+              <div className={styles.img_container}>
+                <img src={ra3y1.src} alt="" />
               </div>
-            </Link>
-          </div>
-        </SwiperSlide>
 
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
+              <div className={styles.text_container}>
+                <Link href='/poet' className={styles.name}>
+                  <Typography>الراعي</Typography>
+                  <div className={styles.date}>
+                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+                  </div>
+                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    العصر الأموي
+                  </Typography>
 
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+                </div>
               </div>
-            </Link>
+            </div>
+
+            <hr />
+
+            <div className={styles.desc}>
+              <Typography>
+                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
+              </Typography>
+            </div>
+
+
           </div>
         </SwiperSlide>
         <SwiperSlide >
           <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+            <div className={styles.poet_info}>
+              <div className={styles.img_container}>
+                <img src={ra3y1.src} alt="" />
               </div>
-            </Link>
-          </div>
-        </SwiperSlide>
 
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
+              <div className={styles.text_container}>
+                <Link href='/poet' className={styles.name}>
+                  <Typography>الراعي</Typography>
+                  <div className={styles.date}>
+                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+                  </div>
+                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    العصر الأموي
+                  </Typography>
 
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+                </div>
               </div>
-            </Link>
+            </div>
+
+            <hr />
+
+            <div className={styles.desc}>
+              <Typography>
+                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
+              </Typography>
+            </div>
+
+
           </div>
         </SwiperSlide>
         <SwiperSlide >
           <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+            <div className={styles.poet_info}>
+              <div className={styles.img_container}>
+                <img src={ra3y1.src} alt="" />
               </div>
-            </Link>
+
+              <div className={styles.text_container}>
+                <Link href='/poet' className={styles.name}>
+                  <Typography>الراعي</Typography>
+                  <div className={styles.date}>
+                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+                  </div>
+                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    العصر الأموي
+                  </Typography>
+
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <div className={styles.desc}>
+              <Typography>
+                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
+              </Typography>
+            </div>
+
+
           </div>
         </SwiperSlide>
         <SwiperSlide >
           <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+            <div className={styles.poet_info}>
+              <div className={styles.img_container}>
+                <img src={ra3y1.src} alt="" />
               </div>
-            </Link>
+
+              <div className={styles.text_container}>
+                <Link href='/poet' className={styles.name}>
+                  <Typography>الراعي</Typography>
+                  <div className={styles.date}>
+                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+                  </div>
+                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    العصر الأموي
+                  </Typography>
+
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <div className={styles.desc}>
+              <Typography>
+                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
+              </Typography>
+            </div>
+
+
           </div>
         </SwiperSlide>
         <SwiperSlide >
           <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+            <div className={styles.poet_info}>
+              <div className={styles.img_container}>
+                <img src={ra3y1.src} alt="" />
               </div>
-            </Link>
+
+              <div className={styles.text_container}>
+                <Link href='/poet' className={styles.name}>
+                  <Typography>الراعي</Typography>
+                  <div className={styles.date}>
+                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+                  </div>
+                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    العصر الأموي
+                  </Typography>
+
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <div className={styles.desc}>
+              <Typography>
+                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
+              </Typography>
+            </div>
+
+
           </div>
         </SwiperSlide>
         <SwiperSlide >
           <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+            <div className={styles.poet_info}>
+              <div className={styles.img_container}>
+                <img src={ra3y1.src} alt="" />
               </div>
-            </Link>
+
+              <div className={styles.text_container}>
+                <Link href='/poet' className={styles.name}>
+                  <Typography>الراعي</Typography>
+                  <div className={styles.date}>
+                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+                  </div>
+                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    العصر الأموي
+                  </Typography>
+
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <div className={styles.desc}>
+              <Typography>
+                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
+              </Typography>
+            </div>
+
+
           </div>
         </SwiperSlide>
         <SwiperSlide >
           <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+            <div className={styles.poet_info}>
+              <div className={styles.img_container}>
+                <img src={ra3y1.src} alt="" />
               </div>
-            </Link>
+
+              <div className={styles.text_container}>
+                <Link href='/poet' className={styles.name}>
+                  <Typography>الراعي</Typography>
+                  <div className={styles.date}>
+                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+                  </div>
+                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    العصر الأموي
+                  </Typography>
+
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <div className={styles.desc}>
+              <Typography>
+                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
+              </Typography>
+            </div>
+
+
           </div>
         </SwiperSlide>
         <SwiperSlide >
           <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+            <div className={styles.poet_info}>
+              <div className={styles.img_container}>
+                <img src={ra3y1.src} alt="" />
               </div>
-            </Link>
+
+              <div className={styles.text_container}>
+                <Link href='/poet' className={styles.name}>
+                  <Typography>الراعي</Typography>
+                  <div className={styles.date}>
+                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+                  </div>
+                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    العصر الأموي
+                  </Typography>
+
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <div className={styles.desc}>
+              <Typography>
+                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
+              </Typography>
+            </div>
+
+
           </div>
         </SwiperSlide>
         <SwiperSlide >
           <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+            <div className={styles.poet_info}>
+              <div className={styles.img_container}>
+                <img src={ra3y1.src} alt="" />
               </div>
-            </Link>
+
+              <div className={styles.text_container}>
+                <Link href='/poet' className={styles.name}>
+                  <Typography>الراعي</Typography>
+                  <div className={styles.date}>
+                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+                  </div>
+                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    العصر الأموي
+                  </Typography>
+
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <div className={styles.desc}>
+              <Typography>
+                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
+              </Typography>
+            </div>
+
+
           </div>
         </SwiperSlide>
         <SwiperSlide >
           <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+            <div className={styles.poet_info}>
+              <div className={styles.img_container}>
+                <img src={ra3y1.src} alt="" />
               </div>
-            </Link>
+
+              <div className={styles.text_container}>
+                <Link href='/poet' className={styles.name}>
+                  <Typography>الراعي</Typography>
+                  <div className={styles.date}>
+                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+                  </div>
+                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    العصر الأموي
+                  </Typography>
+
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <div className={styles.desc}>
+              <Typography>
+                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
+              </Typography>
+            </div>
+
+
           </div>
         </SwiperSlide>
         <SwiperSlide >
           <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+            <div className={styles.poet_info}>
+              <div className={styles.img_container}>
+                <img src={ra3y1.src} alt="" />
               </div>
-            </Link>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
 
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
+              <div className={styles.text_container}>
+                <Link href='/poet' className={styles.name}>
+                  <Typography>الراعي</Typography>
+                  <div className={styles.date}>
+                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+                  </div>
+                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    العصر الأموي
+                  </Typography>
 
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
+                </div>
               </div>
-            </Link>
+            </div>
+
+            <hr />
+
+            <div className={styles.desc}>
+              <Typography>
+                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
+              </Typography>
+            </div>
+
+
           </div>
         </SwiperSlide>
 

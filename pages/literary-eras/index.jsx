@@ -8,8 +8,6 @@ import 'swiper/css';
 import { Mountains } from '@/assets/svgsComponents';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Footer from '@/components/Footer'
-import Navbar from '@/components/Navbar'
 
 
 const Effra = localFont({
@@ -59,7 +57,6 @@ const LiteraryEras = () => {
   return (
 
     <>
-      <Navbar />
 
 
 
@@ -255,7 +252,6 @@ const LiteraryEras = () => {
 
         </Swiper>
       </div>
-      <Footer />
 
     </>
 

@@ -3,49 +3,16 @@ import React, { useEffect } from 'react'
 import styles from './index.module.scss'
 import { imgs } from '@/assets/constants'
 
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import Link from 'next/link';
 const Verses = () => {
   const { ra3y } = imgs;
 
 
 
-  const responsive = {
-    superLargeDesktopp: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 3
-    },
-    desktopp: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3
-    },
-    superLargeDesktop2: {
-      breakpoint: { max: 1400, min: 1000 },
-      items: 2,
-    },
-    superLargeDesktop2: {
-      breakpoint: { max: 1000, min: 900 },
-      items: 2.7,
-    },
-    superLargeDesktop: {
-      breakpoint: { max: 900, min: 548 },
-      items: 2.1,
-    },
-    desktop: {
-      breakpoint: { max: 548, min: 460 },
-      items: 1.8,
-    },
-    tablet: {
-      breakpoint: { max: 460, min: 400 },
-      items: 1.5,
-    },
-    mobile: {
-      breakpoint: { max: 390, min: 0 },
-      items: 1.1,
-      partialVisibilityGutter: 30
-    },
-  };
+
 
 
 
@@ -143,266 +110,154 @@ const Verses = () => {
               </div>
             </Container>
             <div className={styles.slider_sec}>
-              <Carousel
-                draggable
-                responsive={responsive}
-                rtl={true}
-                ssr={true}
-                showDots={true}
-                renderDotsOutside={true}
-                containerClass="carousel-container"
-                minimumTouchDrag={10}
+              <Swiper
+                spaceBetween={24}
+                slidesPerView={3}
+                pagination={{ clickable: true }}
+                className={styles.swiper}
               >
-                <div className={styles.box}>
-                  <div className={styles.box_container}>
-                    <div className={styles.info}>
-                      <div className={styles.img_container}>
-                        <img src={ra3y.src} alt="ra3y" />
-                      </div>
-
-                      <div className={styles.text_container}>
-                        <div className={styles.name}>
-                          <Typography>امرؤ القيس</Typography>
+                <SwiperSlide>
+                  <div className={styles.box}>
+                    <div className={styles.box_container}>
+                      <Link href='/poet' className={styles.info}>
+                        <div className={styles.img_container}>
+                          <img src={ra3y.src} alt="ra3y" />
                         </div>
-                        <div className={styles.type}>
-                          <Typography>العصر الأموي</Typography>
-                        </div>
-                      </div>
-                    </div>
 
-                    <div className={styles.desc}>
-                      <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
-                    </div>
-                    <div className={styles.said}>
-                      <div className={styles.title}>
-                        <Typography>يقول</Typography>
-                      </div>
+                        <div className={styles.text_container}>
+                          <div className={styles.name}>
+                            <Typography>امرؤ القيس</Typography>
+                          </div>
+                          <div className={styles.type}>
+                            <Typography>العصر الأموي</Typography>
+                          </div>
+                        </div>
+                      </Link>
+
                       <div className={styles.desc}>
-                        <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
-                          بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
+                        <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
                       </div>
-                    </div>
-
-                  </div>
-                </div>
-                <div className={styles.box}>
-                  <div className={styles.box_container}>
-                    <div className={styles.info}>
-                      <div className={styles.img_container}>
-                        <img src={ra3y.src} alt="ra3y" />
-                      </div>
-
-                      <div className={styles.text_container}>
-                        <div className={styles.name}>
-                          <Typography>امرؤ القيس</Typography>
+                      <Link href='/poetry' className={styles.said}>
+                        <div className={styles.title}>
+                          <Typography>يقول</Typography>
                         </div>
-                        <div className={styles.type}>
-                          <Typography>العصر الأموي</Typography>
+                        <div className={styles.desc}>
+                          <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
+                            بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
                         </div>
-                      </div>
-                    </div>
+                      </Link>
 
-                    <div className={styles.desc}>
-                      <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
-                    </div>
-                    <div className={styles.said}>
-                      <div className={styles.title}>
-                        <Typography>يقول</Typography>
-                      </div>
-                      <div className={styles.desc}>
-                        <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
-                          بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
-                      </div>
                     </div>
                   </div>
-                </div>
-                <div className={styles.box}>
-                  <div className={styles.box_container}>
-                    <div className={styles.info}>
-                      <div className={styles.img_container}>
-                        <img src={ra3y.src} alt="ra3y" />
-                      </div>
-
-                      <div className={styles.text_container}>
-                        <div className={styles.name}>
-                          <Typography>امرؤ القيس</Typography>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className={styles.box}>
+                    <div className={styles.box_container}>
+                      <Link href='/poet' className={styles.info}>
+                        <div className={styles.img_container}>
+                          <img src={ra3y.src} alt="ra3y" />
                         </div>
-                        <div className={styles.type}>
-                          <Typography>العصر الأموي</Typography>
-                        </div>
-                      </div>
-                    </div>
 
-                    <div className={styles.desc}>
-                      <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
-                    </div>
-                    <div className={styles.said}>
-                      <div className={styles.title}>
-                        <Typography>يقول</Typography>
-                      </div>
+                        <div className={styles.text_container}>
+                          <div className={styles.name}>
+                            <Typography>امرؤ القيس</Typography>
+                          </div>
+                          <div className={styles.type}>
+                            <Typography>العصر الأموي</Typography>
+                          </div>
+                        </div>
+                      </Link>
+
                       <div className={styles.desc}>
-                        <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
-                          بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
+                        <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
                       </div>
+                      <Link href='/poetry' className={styles.said}>
+                        <div className={styles.title}>
+                          <Typography>يقول</Typography>
+                        </div>
+                        <div className={styles.desc}>
+                          <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
+                            بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
+                        </div>
+                      </Link>
+
                     </div>
                   </div>
-                </div>
-                <div className={styles.box}>
-                  <div className={styles.box_container}>
-                    <div className={styles.info}>
-                      <div className={styles.img_container}>
-                        <img src={ra3y.src} alt="ra3y" />
-                      </div>
-
-                      <div className={styles.text_container}>
-                        <div className={styles.name}>
-                          <Typography>امرؤ القيس</Typography>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className={styles.box}>
+                    <div className={styles.box_container}>
+                      <Link href='/poet' className={styles.info}>
+                        <div className={styles.img_container}>
+                          <img src={ra3y.src} alt="ra3y" />
                         </div>
-                        <div className={styles.type}>
-                          <Typography>العصر الأموي</Typography>
-                        </div>
-                      </div>
-                    </div>
 
-                    <div className={styles.desc}>
-                      <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
-                    </div>
-                    <div className={styles.said}>
-                      <div className={styles.title}>
-                        <Typography>يقول</Typography>
-                      </div>
+                        <div className={styles.text_container}>
+                          <div className={styles.name}>
+                            <Typography>امرؤ القيس</Typography>
+                          </div>
+                          <div className={styles.type}>
+                            <Typography>العصر الأموي</Typography>
+                          </div>
+                        </div>
+                      </Link>
+
                       <div className={styles.desc}>
-                        <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
-                          بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
+                        <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
                       </div>
+                      <Link href='/poetry' className={styles.said}>
+                        <div className={styles.title}>
+                          <Typography>يقول</Typography>
+                        </div>
+                        <div className={styles.desc}>
+                          <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
+                            بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
+                        </div>
+                      </Link>
+
                     </div>
                   </div>
-                </div>
-                <div className={styles.box}>
-                  <div className={styles.box_container}>
-                    <div className={styles.info}>
-                      <div className={styles.img_container}>
-                        <img src={ra3y.src} alt="ra3y" />
-                      </div>
-
-                      <div className={styles.text_container}>
-                        <div className={styles.name}>
-                          <Typography>امرؤ القيس</Typography>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className={styles.box}>
+                    <div className={styles.box_container}>
+                      <Link href='/poet' className={styles.info}>
+                        <div className={styles.img_container}>
+                          <img src={ra3y.src} alt="ra3y" />
                         </div>
-                        <div className={styles.type}>
-                          <Typography>العصر الأموي</Typography>
-                        </div>
-                      </div>
-                    </div>
 
-                    <div className={styles.desc}>
-                      <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
-                    </div>
-                    <div className={styles.said}>
-                      <div className={styles.title}>
-                        <Typography>يقول</Typography>
-                      </div>
+                        <div className={styles.text_container}>
+                          <div className={styles.name}>
+                            <Typography>امرؤ القيس</Typography>
+                          </div>
+                          <div className={styles.type}>
+                            <Typography>العصر الأموي</Typography>
+                          </div>
+                        </div>
+                      </Link>
+
                       <div className={styles.desc}>
-                        <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
-                          بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
+                        <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
                       </div>
+                      <Link href='/poetry' className={styles.said}>
+                        <div className={styles.title}>
+                          <Typography>يقول</Typography>
+                        </div>
+                        <div className={styles.desc}>
+                          <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
+                            بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
+                        </div>
+                      </Link>
+
                     </div>
                   </div>
-                </div>
-                <div className={styles.box}>
-                  <div className={styles.box_container}>
-                    <div className={styles.info}>
-                      <div className={styles.img_container}>
-                        <img src={ra3y.src} alt="ra3y" />
-                      </div>
+                </SwiperSlide>
 
-                      <div className={styles.text_container}>
-                        <div className={styles.name}>
-                          <Typography>امرؤ القيس</Typography>
-                        </div>
-                        <div className={styles.type}>
-                          <Typography>العصر الأموي</Typography>
-                        </div>
-                      </div>
-                    </div>
 
-                    <div className={styles.desc}>
-                      <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
-                    </div>
-                    <div className={styles.said}>
-                      <div className={styles.title}>
-                        <Typography>يقول</Typography>
-                      </div>
-                      <div className={styles.desc}>
-                        <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
-                          بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className={styles.box}>
-                  <div className={styles.box_container}>
-                    <div className={styles.info}>
-                      <div className={styles.img_container}>
-                        <img src={ra3y.src} alt="ra3y" />
-                      </div>
 
-                      <div className={styles.text_container}>
-                        <div className={styles.name}>
-                          <Typography>امرؤ القيس</Typography>
-                        </div>
-                        <div className={styles.type}>
-                          <Typography>العصر الأموي</Typography>
-                        </div>
-                      </div>
-                    </div>
 
-                    <div className={styles.desc}>
-                      <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
-                    </div>
-                    <div className={styles.said}>
-                      <div className={styles.title}>
-                        <Typography>يقول</Typography>
-                      </div>
-                      <div className={styles.desc}>
-                        <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
-                          بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className={styles.box}>
-                  <div className={styles.box_container}>
-                    <div className={styles.info}>
-                      <div className={styles.img_container}>
-                        <img src={ra3y.src} alt="ra3y" />
-                      </div>
 
-                      <div className={styles.text_container}>
-                        <div className={styles.name}>
-                          <Typography>امرؤ القيس</Typography>
-                        </div>
-                        <div className={styles.type}>
-                          <Typography>العصر الأموي</Typography>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className={styles.desc}>
-                      <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
-                    </div>
-                    <div className={styles.said}>
-                      <div className={styles.title}>
-                        <Typography>يقول</Typography>
-                      </div>
-                      <div className={styles.desc}>
-                        <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
-                          بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Carousel>
+              </Swiper>
             </div>
 
 

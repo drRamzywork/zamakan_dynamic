@@ -6,7 +6,6 @@ import React from 'react'
 const Cities = () => {
   return (
     <>
-      <Navbar />
       <PageHeader />
       <Verses />
     </>

@@ -1,0 +1,39 @@
+.page_header {
+  border-radius: 139px 0px 40px 40px;
+  height: 441px;
+  overflow: hidden;
+  background-image: url("../../../assets/pre_IslamicBg.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center 39%;
+  background-size: 100%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  margin-top: 28px;
+  padding-top: 77px;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: rgba(17, 41, 47, 1);
+    opacity: 70%;
+    border-radius: 139px 0px 0px 0px;
+  }
+
+  h3 {
+    margin: 0 !important;
+    font-family: var(--effra-font);
+    font-size: 80px;
+    font-weight: 700;
+    line-height: 96px;
+    letter-spacing: 0px;
+    text-align: right;
+    color: rgba(238, 228, 184, 1);
+  }
+}

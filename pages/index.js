@@ -1,22 +1,12 @@
 import Head from "next/head";
-import { Inter, Tajawal } from "next/font/google";
+import { Tajawal } from "next/font/google";
 import styles from "@/styles/Home.module.css";
-import mapSVG from "../assets/SaudiMap.svg";
-import Navbar from "@/components/Navbar";
-import Poets from "@/components/Poets";
-import PoetryIn from "@/components/PoetryIn";
-import Svg from "@/components/SVGParts/Svg";
-import { Container } from "@mui/material";
-import Footer from "@/components/Footer";
 import LandingPage from "@/components/LandingPage";
-
-const inter = Inter({ subsets: ["latin"] });
 
 const tajawal = Tajawal({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
 });
-
 export default function Home() {
   return (
     <>
@@ -30,9 +20,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${tajawal.className}`} dir="rtl">
-        <Navbar />
         <LandingPage />
-        <Footer />
       </main>
     </>
   );

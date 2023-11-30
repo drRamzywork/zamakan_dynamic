@@ -33,9 +33,10 @@ a {
 }
 
 // global styles
-section {
+section,
+header {
   h3 {
-    margin-bottom: 24px;
+    // margin-bottom: 24px;
     font-family: var(--effra-font) !important;
     font-size: 20px !important;
     font-weight: 700 !important;
@@ -803,6 +804,13 @@ svg.saudi-map.safari .city-name > div:hover {
   overflow: unset !important;
 }
 
+// map pages
+#Places {
+  .react-transform-wrapper {
+    overflow: unset !important;
+  }
+}
+
 // Swiper pagination
 #swiperContainer {
   padding-bottom: 40px;
@@ -837,5 +845,11 @@ svg.saudi-map.safari .city-name > div:hover {
   .swiper-pagination-bullet-active {
     background: #e6ddc6;
     color: #372d40;
+  }
+}
+
+#poetry_page {
+  .swiper-button-disabled {
+    opacity: 0.5;
   }
 }

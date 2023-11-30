@@ -112,9 +112,6 @@ const Navbar = (props) => {
           <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
             <div className={styles.sec_container}
             >
-
-
-
               <Button className={styles.burger_icon} onClick={() => setNavMenu(prev => !prev)}>
                 <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   {/* Top line */}
@@ -153,18 +150,18 @@ const Navbar = (props) => {
                   variants={variants}
                   transition={{ duration: 0.5, type: "tween" }}
                   className={styles.nav_menu_container}>
-                  <div className={styles.links}>
+                  <div className={styles.links} onClick={() => setNavMenu(false)}>
                     <div className={styles.link}>
-                      <Link href='/'>مناطق المملكة </Link>
+                      <Link href='/places'>مناطق المملكة </Link>
                     </div>
                     <div className={styles.link}>
-                      <Link href='/iterary-eras'>العصور الأدبية</Link>
+                      <Link href='/literary-eras'>العصور الأدبية</Link>
                     </div>
                     <div className={styles.link}>
                       <Link href='/poets'>الشعراء </Link>
                     </div>
                   </div>
-                  <div className={styles.soical_links}>
+                  <div className={styles.soical_links} onClick={() => setNavMenu(false)}>
                     <Link href='https://www.twitter.com'>
                       <Twitter />
                     </Link>
