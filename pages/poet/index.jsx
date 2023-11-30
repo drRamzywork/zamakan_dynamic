@@ -6,7 +6,7 @@ import Profile from '../../assets/svgsComponents/Profile'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { styled } from '@mui/system';
 import { motion } from 'framer-motion'
-
+import { imgs } from '@/assets/constants';
 
 export default function Poet() {
   const [selectedTab, setSelectedTab] = useState(0);

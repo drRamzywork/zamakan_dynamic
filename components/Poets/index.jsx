@@ -178,7 +178,7 @@ const Poets = () => {
                 <div className={styles.desc}>
                   <Typography>
                     شاعر عظيم من أصحاب المعلقات، كان غزير الشعر، وفد إلى الملوك مادحاً، وكان أول المتكسبين بالشعر ، غنَّى شعرَه، وعمي في آخر حياته، توفي سنة 7ه/629م.
-                    <Link href='/city' className={styles.more}>
+                    <Link href='/poet' className={styles.more}>
                       <Typography>
                         المزيد عن كثير عزة
                         <div className={styles.icon_container}>
