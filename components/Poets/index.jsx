@@ -42,8 +42,6 @@ const Poets = () => {
   const [activePoet, setActivePoet] = useState(null);
   const { ra3y1 } = imgs;
 
-
-
   const slides = [
     { name: "كثير عزة", imageSrc: ra3y1.src },
     { name: "الأخطل", imageSrc: ra3y1.src },
@@ -58,8 +56,6 @@ const Poets = () => {
     { name: "جرير", imageSrc: ra3y1.src },
     { name: "جرير", imageSrc: ra3y1.src },
   ];
-
-
 
 
   const [landElments, setLandElemnts] = useState([])
@@ -100,11 +96,7 @@ const Poets = () => {
 
   const handleBoxClick = (index) => {
     setActivePoet(index);
-    const elementId = `land-${index}`;
-    if (transformComponentRef.current) {
-      const { zoomToElement } = transformComponentRef.current;
-      zoomToElement(elementId);
-    }
+
     setActiveIndex(index); // Set the active index
     seIsPointsActive(false)
   };
@@ -113,22 +105,14 @@ const Poets = () => {
     const dataIndex = document.querySelectorAll(`#land-${activeIndex}`)[0];
     const elementsWithLandClassOnly = document.querySelectorAll('.land:not(.activeLand)');
 
-    if (activeLand) {
-      activeLand.classList.remove('activeLand');
-      seIsPointsActive(false)
 
-
-    }
-
-    if (dataIndex) {
-      setActiveLand(dataIndex);
-      dataIndex.classList.add('activeLand');
-      seIsPointsActive(true)
-    }
 
     if (isPointsActive === true) {
-      elementsWithLandClassOnly.forEach((element) => {
-        element.classList.add('hiddenPoints');
+      elementsWithLandClassOnly.forEach((element, index) => {
+        // Only add 'hiddenPoints' to the first five elements
+        if (index < 5) {
+          element.classList.add('hiddenPoints');
+        }
       });
     } else {
       elementsWithLandClassOnly.forEach((element) => {
@@ -194,46 +178,25 @@ const Poets = () => {
                 <div className={styles.desc}>
                   <Typography>
                     شاعر عظيم من أصحاب المعلقات، كان غزير الشعر، وفد إلى الملوك مادحاً، وكان أول المتكسبين بالشعر ، غنَّى شعرَه، وعمي في آخر حياته، توفي سنة 7ه/629م.
+                    <Link href='/city' className={styles.more}>
+                      <Typography>
+                        المزيد عن كثير عزة
+                        <div className={styles.icon_container}>
+                          <LeftArrow />
+                        </div>
+                      </Typography>
+
+                    </Link>
                   </Typography>
 
-                  <Link href='/city' className={styles.more}>
-                    <Typography>
-                      المزيد عن كثير عزة
-                    </Typography>
-
-                    <div className={styles.icon_container}>
-                      <LeftArrow />
-                    </div>
-                  </Link>
                 </div>
               </div>
             }
             <div className={styles.svg_wrap}>
               <div id='map-boxes'>
-                <TransformWrapper
-                  ref={transformComponentRef}
-                  wheel={{ wheelDisabled: true }}
-                  initialPositionX={0}
-                  initialPositionY={0}
-                  pan={{ disabled: false }}
-                  zoomIn={{ step: 100 }}
-                  zoomOut={{ step: 100 }}
 
-                  minScale={0.5}
-                  maxScale={2}
-                  initialScale={1}
+                <Svg />
 
-                  doubleClick={{ disabled: false, mode: "reset" }}
-                  wrapperStyle={{ maxWidth: "100%", maxHeight: "calc(100vh - 50px)" }}
-
-                >
-                  <>
-                    <TransformComponent>
-                      <Svg />
-                    </TransformComponent>
-                  </>
-
-                </TransformWrapper >
 
 
 

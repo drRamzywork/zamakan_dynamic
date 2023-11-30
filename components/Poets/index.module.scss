@@ -147,29 +147,27 @@ section.Poets {
           font-weight: 500;
           line-height: 34px;
           letter-spacing: 0em;
-          color: rgba(17, 41, 47, 1);
-          opacity: 80%;
-        }
-
-        .more {
-          display: flex;
-          align-items: flex-end;
-          p {
-            font-family: var(--effra-bold);
-            font-size: 20px;
-            font-weight: 700;
-            line-height: 24px;
-            letter-spacing: 0em;
-            color: rgba(187, 113, 101, 1);
-            opacity: 100%;
-          }
-          .icon_container {
-            margin-right: 10px;
-            svg {
-              width: 6.67px;
-              height: 11.67px;
-              path {
-                stroke: rgba(187, 113, 101, 1);
+          color: rgba(17, 41, 47, 0.8);
+          .more {
+            display: inline-block;
+            margin-right: 8px;
+            p {
+              font-family: var(--effra-bold);
+              font-size: 20px;
+              font-weight: 700;
+              line-height: 24px;
+              letter-spacing: 0em;
+              color: rgba(187, 113, 101, 1);
+              display: flex;
+              .icon_container {
+                margin-right: 10px;
+                svg {
+                  width: 6.67px;
+                  height: 11.67px;
+                  path {
+                    stroke: rgba(187, 113, 101, 1);
+                  }
+                }
               }
             }
           }

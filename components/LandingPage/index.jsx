@@ -77,9 +77,6 @@ const LandingPage = () => {
             <img src={land_banner.src} alt="" />
           </div>
 
-
-
-
           <div className={styles.palm}>
             <PalmSvg />
           </div>
@@ -109,7 +106,7 @@ const LandingPage = () => {
               <LeftArrow />
             </div>
           </Link>
-          <Link href='/literary-eras' className={styles.box}>
+          <Link href='/places' className={styles.box}>
             <div className={styles.icon_container}>
               <Feather />
             </div>
