@@ -45,7 +45,7 @@ const GElements = () => {
                 </svg>
               </div>
             </div>
-            <AnimatePresence>
+            <AnimatePresence >
               {activeCity === 'City1' && (
                 <motion.div
                   initial={{ opacity: 0, y: -50 }}
@@ -53,6 +53,7 @@ const GElements = () => {
                   exit={{ opacity: 0, y: -50 }}
                   transition={{ duration: 0.5 }}
                   className="custom-box"
+                  dir='rtl'
                 >
 
                   <div className="box_container">
@@ -65,7 +66,7 @@ const GElements = () => {
 
                         <div className="desc">
                           <p>صحراء واسعةٌ ومستوية، تقع في الطرفِ الشَّمالي من سَهل رُكبة في شمال الطائف، فيها أشجارٌ ومياه وأماكن للرعي.
-                            <a className="more">
+                            <a href='/city' className="more">
                               <span>المزيد عن وَجْرَة</span>
                               <LeftArrow />
                             </a>
@@ -106,7 +107,7 @@ const GElements = () => {
               </div>
             </div>
           </div>
-          <AnimatePresence>
+          <AnimatePresence dir='rtl'>
             {activeCity === 'City2' && (
               <motion.div
                 initial={{ opacity: 0, y: -50 }}
@@ -126,7 +127,7 @@ const GElements = () => {
 
                       <div className="desc">
                         <p>صحراء واسعةٌ ومستوية، تقع في الطرفِ الشَّمالي من سَهل رُكبة في شمال الطائف، فيها أشجارٌ ومياه وأماكن للرعي.
-                          <a className="more">
+                          <a href='/city' className="more">
                             <span>المزيد عن وَجْرَة</span>
                             <LeftArrow />
                           </a>
@@ -476,7 +477,7 @@ const GElements = () => {
               </div>
             </div>
 
-            <AnimatePresence>
+            <AnimatePresence dir='rtl'>
               {activeCity === 'City15' && (
                 <motion.div
                   initial={{ opacity: 0, y: -50 }}
@@ -496,7 +497,7 @@ const GElements = () => {
 
                         <div className="desc">
                           <p>صحراء واسعةٌ ومستوية، تقع في الطرفِ الشَّمالي من سَهل رُكبة في شمال الطائف، فيها أشجارٌ ومياه وأماكن للرعي.
-                            <a className="more">
+                            <a href='/city' className="more">
                               <span>المزيد عن وَجْرَة</span>
                               <LeftArrow />
                             </a>
@@ -804,7 +805,7 @@ const GElements = () => {
                 </div>
               </div>
 
-              <AnimatePresence>
+              <AnimatePresence dir='rtl'>
                 {activeCity === 'City24' && (
                   <motion.div
                     initial={{ opacity: 0, y: -50 }}
@@ -824,7 +825,7 @@ const GElements = () => {
 
                           <div className="desc">
                             <p>صحراء واسعةٌ ومستوية، تقع في الطرفِ الشَّمالي من سَهل رُكبة في شمال الطائف، فيها أشجارٌ ومياه وأماكن للرعي.
-                              <a className="more">
+                              <a href='/city' className="more">
                                 <span>المزيد عن وَجْرَة</span>
                                 <LeftArrow />
                               </a>

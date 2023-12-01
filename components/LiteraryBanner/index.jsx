@@ -101,29 +101,29 @@ const LiteraryBanner = () => {
       <div className={styles.swiper_container}>
         <Swiper
           dir="rtl"
-          // breakpoints={{
-          //   300: {
-          //     slidesPerView: 3,
-          //     spaceBetween: 20,
-          //   },
-          //   400: {
-          //     slidesPerView: 4,
-          //     spaceBetween: 20,
-          //   },
-          //   640: {
-          //     slidesPerView: 5,
-          //     spaceBetween: 20,
-          //   },
-          //   768: {
-          //     slidesPerView: 4,
-          //     spaceBetween: 40,
-          //   },
-          //   1024: {
-          //     slidesPerView: 9.1,
-          //     spaceBetween: 40,
+          breakpoints={{
+            300: {
+              slidesPerView: 2,
+              spaceBetween: 24,
+            },
+            400: {
+              slidesPerView: 2,
+              spaceBetween: 24,
+            },
+            640: {
+              slidesPerView: 3,
+              spaceBetween: 24,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 24,
+            },
+            1024: {
+              slidesPerView: 4.5,
+              spaceBetween: 24,
 
-          //   },
-          // }}
+            },
+          }}
           slidesPerView={4.5}
           spaceBetween={24}
 

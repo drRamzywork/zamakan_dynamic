@@ -35,6 +35,10 @@
     flex-direction: column;
     justify-content: center;
     border-radius: 139px 0px 0px 0px;
+    @media screen and (max-width: 450px) {
+      border-radius: 0;
+      top: 40px;
+    }
     .links {
       .link {
         min-width: 394px;

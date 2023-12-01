@@ -7,6 +7,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { styled } from '@mui/system';
 import { motion } from 'framer-motion'
 import { imgs } from '@/assets/constants';
+import SliderVerses from '@/components/PoetsDetailsComponents/SliderVerses';
 
 export default function Poet() {
   const [selectedTab, setSelectedTab] = useState(0);

@@ -139,9 +139,33 @@ const Poets = () => {
             <div className={styles.tags_slider} id='carosuel'>
 
               <Swiper
+                breakpoints={{
+                  300: {
+                    slidesPerView: 3.5,
+                    spaceBetween: 10,
+                  },
+                  400: {
+                    slidesPerView: 3.5,
+                    spaceBetween: 10,
+                  },
+                  640: {
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                  },
+                  768: {
+                    slidesPerView: 6,
+                    spaceBetween: 10,
+                  },
+                  1024: {
+                    slidesPerView: 8.5,
+                    spaceBetween: 24,
+
+                  },
+                }}
                 spaceBetween={24}
                 slidesPerView={8.5}
                 dir={'rtl'}
+                className={styles.swiper_container}
               >
                 {slides.map((slide, index) => (
                   <SwiperSlide key={index} className={styles.swiper_slide_box}>

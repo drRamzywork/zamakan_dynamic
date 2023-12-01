@@ -33,6 +33,31 @@ const Slider = () => {
                 slidesPerView={3.3}
                 spaceBetween={24}
 
+                breakpoints={{
+                  300: {
+                    slidesPerView: 1.2,
+                    spaceBetween: 16,
+                  },
+                  400: {
+                    slidesPerView: 1.2,
+                    spaceBetween: 16,
+                  },
+                  640: {
+                    slidesPerView: 3,
+                    spaceBetween: 24,
+                  },
+                  768: {
+                    slidesPerView: 4,
+                    spaceBetween: 24,
+                  },
+                  1024: {
+                    slidesPerView: 4.5,
+                    spaceBetween: 24,
+
+                  },
+                }}
+
+
                 dir='rtl'
                 className={styles.swiper_container} >
                 <SwiperSlide>

@@ -300,6 +300,37 @@ body::-webkit-scrollbar-track {
     }
   }
 }
+#Poets {
+  .swiper-wrapper {
+    @media screen and (max-width: 450px) {
+      margin-bottom: 10px;
+    }
+  }
+  #map-boxes {
+    @media screen and (max-width: 450px) {
+      align-items: flex-start !important;
+      justify-content: flex-start;
+      height: auto;
+    }
+  }
+}
+
+#poets {
+  .css-1869usk-MuiFormControl-root {
+    @media screen and (max-width: 450px) {
+      width: 100% !important;
+      margin: 0;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+    .MuiSelect-icon {
+      @media screen and (max-width: 450px) {
+        right: 90% !important;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+}
 
 .react-transform-wrapper {
   // width: 695.43px !important;
@@ -321,8 +352,8 @@ body::-webkit-scrollbar-track {
 }
 @media screen and (max-width: 450px) {
   .react-transform-wrapper {
-    border: 1px solid var(--main-blue-color);
-    border-radius: 5px;
+    // border: 1px solid var(--main-blue-color);
+    // border-radius: 5px;
   }
 }
 
@@ -383,9 +414,9 @@ body::-webkit-scrollbar-track {
 
 .hiddenPoints {
   path {
-    @media screen and (max-width: 450px) {
-      display: none !important;
-    }
+    // @media screen and (max-width: 450px) {
+    //   display: none !important;
+    // }
   }
   .city-name {
     opacity: 0 !important;
@@ -737,7 +768,7 @@ svg.saudi-map.safari .city-name > div:hover {
       .box_header {
         display: flex;
         align-items: flex-start;
-
+        flex-direction: row-reverse;
         .img-container {
           width: 72px;
           height: 72px;
@@ -808,6 +839,10 @@ svg.saudi-map.safari .city-name > div:hover {
 #Places {
   .react-transform-wrapper {
     overflow: unset !important;
+    @media screen and (max-width: 450px) {
+      overflow: hidden !important;
+      margin-bottom: 0 !important;
+    }
   }
 }
 

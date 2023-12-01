@@ -12,10 +12,10 @@ section.landingPage {
   overflow: hidden;
   @media screen and (max-width: 450px) {
     padding-top: 16px;
+    border-radius: 40px 0px 40px 40px;
   }
   position: relative;
   z-index: 1;
-  top: 14px;
 
   &:after {
     content: "";
@@ -34,14 +34,13 @@ section.landingPage {
   .sec_container {
     .sec_title {
       padding-top: 123px;
-      h1 {
-        font-family: var(--effra-font);
-        font-size: 80px;
-        font-weight: 700;
-        line-height: 96px;
-        letter-spacing: 0px;
-        text-align: right;
-        color: rgba(61, 85, 63, 1);
+      @media screen and (max-width: 450px) {
+        padding-top: 50px;
+      }
+      img {
+        @media screen and (max-width: 450px) {
+          width: 359px;
+        }
       }
     }
 
@@ -52,19 +51,53 @@ section.landingPage {
       z-index: -1;
     }
 
+    .palm_left {
+    }
     .palm {
       right: 0px;
       top: 60px;
+
+      @media screen and (max-width: 450px) {
+        right: -165px;
+        top: 43px;
+        svg {
+          width: 578.36px;
+          height: 377.19px;
+        }
+      }
     }
     .img_container {
-      left: 0;
       top: 0;
+      left: 0;
+      @media screen and (max-width: 450px) {
+        top: 40%;
+        left: 10%;
+      }
+      img {
+        @media screen and (max-width: 450px) {
+          width: 400px;
+          height: 280px;
+          object-fit: contain;
+        }
+      }
     }
 
     .palm_left {
       left: 0;
-      top: 0;
+      @media screen and (min-width: 450px) {
+        top: 0;
+      }
+
       z-index: 1;
+      @media screen and (max-width: 450px) {
+        bottom: 0;
+      }
+      img {
+        @media screen and (max-width: 450px) {
+          object-fit: contain;
+          height: 268px;
+        }
+      }
     }
 
     .mountains {
@@ -93,6 +126,11 @@ section.landingPage {
     &:last-child {
       margin-right: 24px;
     }
+    @media screen and (max-width: 450px) {
+      width: 264px;
+      padding: 10px;
+      align-items: flex-start;
+    }
     .title {
       h4 {
         font-family: var(--effra-font);
@@ -102,6 +140,31 @@ section.landingPage {
         letter-spacing: 0px;
         text-align: right;
         color: rgba(187, 113, 101, 1);
+
+        @media screen and (max-width: 450px) {
+          font-size: 18px;
+        }
+      }
+    }
+
+    .icon_container {
+      svg {
+        @media screen and (max-width: 450px) {
+          width: 33px;
+          height: 33px;
+        }
+      }
+    }
+
+    .arrow {
+      @media screen and (max-width: 450px) {
+        align-self: center;
+      }
+      svg {
+        @media screen and (max-width: 450px) {
+          width: 10px;
+          height: 10px;
+        }
       }
     }
   }

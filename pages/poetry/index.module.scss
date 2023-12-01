@@ -7,9 +7,21 @@ section.poetry_page {
     background-color: #ffffff;
     margin-top: 30px;
     padding: 32px 40px 27.5px;
+
+    @media screen and (max-width: 450px) {
+      border-radius: 93px 10px 10px 0px;
+      padding: 8px;
+      padding-bottom: 15.5px;
+    }
     .sec_title {
       text-align: right;
       margin-bottom: 20px;
+      h3 {
+        color: var(--main-blue-color);
+        @media screen and (max-width: 450px) {
+          font-size: 16px !important;
+        }
+      }
     }
 
     .slider {
@@ -41,6 +53,11 @@ section.poetry_page {
           );
 
           border-radius: 61px 10px 10px 10px;
+
+          @media screen and (max-width: 450px) {
+            width: 293.57px !important;
+            min-height: 79px;
+          }
         }
         .img_container {
           position: absolute;
@@ -48,7 +65,14 @@ section.poetry_page {
           top: 0;
           width: 72.71px;
           height: 100%;
+          @media screen and (max-width: 450px) {
+            width: 28.82px;
+            height: 79px;
+            left: 3px;
+            top: -7px;
+          }
           img {
+            object-fit: contain;
             width: 100%;
             height: 100%;
           }
@@ -58,6 +82,9 @@ section.poetry_page {
           display: flex;
           align-items: center;
           justify-content: center;
+          @media screen and (max-width: 450px) {
+            flex-direction: column;
+          }
 
           p,
           span {
@@ -75,13 +102,25 @@ section.poetry_page {
           }
           span {
             font-weight: 700 !important;
+            @media screen and (max-width: 450px) {
+              &:nth-child(2) {
+                display: none;
+              }
+            }
           }
 
           p:first-child {
             margin-left: 99px;
+            @media screen and (max-width: 450px) {
+              margin-left: 0;
+              margin-bottom: 9px;
+            }
           }
           p:last-child {
             margin-right: 99px;
+            @media screen and (max-width: 450px) {
+              margin-right: 0;
+            }
           }
         }
       }
@@ -98,11 +137,19 @@ section.poetry_page {
         cursor: pointer;
         border: 1.5px solid var(--main-blue-color);
         transition: all 0.3s ease-in-out;
+        @media screen and (max-width: 450px) {
+          width: 24px;
+          height: 24px;
+        }
         svg {
           margin: auto;
           color: var(--main-blue-color);
           width: 14.19px;
           height: 16.22px;
+          @media screen and (max-width: 450px) {
+            width: 7.21px;
+            height: 7.21px;
+          }
         }
       }
 
@@ -140,7 +187,10 @@ section.poetry_page {
         background-color: rgba(229, 230, 242, 1);
         box-shadow: 0px 7.232143878936768px 5.303572177886963px 0px
           rgba(0, 0, 0, 0.05);
-
+        @media screen and (max-width: 450px) {
+          width: 43.74px;
+          height: 43.01px;
+        }
         &::after {
           box-shadow: 0px 7.232143878936768px 5.303572177886963px 0px
             rgba(0, 0, 0, 0.05);
@@ -159,6 +209,7 @@ section.poetry_page {
           margin: auto;
           width: 100%;
           height: 100%;
+
           object-fit: contain;
         }
       }
@@ -202,6 +253,10 @@ section.poetry_page {
     align-items: flex-start;
     margin-top: 47px;
     justify-content: space-between;
+    @media screen and (max-width: 450px) {
+      flex-direction: column;
+    }
+
     .poet_info {
       box-shadow: 0px 21px 35px 0px #00000008;
       background-color: #ffffff;
@@ -219,7 +274,8 @@ section.poetry_page {
       }
 
       @media screen and (max-width: 450px) {
-        margin: 10px;
+        margin: 0px;
+        margin-bottom: 24px;
         border-top-right-radius: 10px;
       }
 
@@ -271,7 +327,7 @@ section.poetry_page {
           padding: 24px;
 
           @media screen and (max-width: 992px) {
-            padding: 22px;
+            padding: 11px;
           }
 
           .boxes_container {
@@ -283,6 +339,10 @@ section.poetry_page {
 
             @media screen and (max-width: 992px) {
               overflow: hidden;
+            }
+
+            @media screen and (max-width: 450px) {
+              grid-template-columns: repeat(2, 1fr);
             }
 
             @media screen and (max-width: 992px) {
@@ -415,6 +475,10 @@ section.poetry_page {
       border-radius: 92px 10px 10px 10px;
       border: 1px solid #e5e6f2;
       background-color: #ffffff;
+      @media screen and (max-width: 450px) {
+        width: 100%;
+        border-radius: 51px 10px 10px 10px;
+      }
       .container {
         margin: 24px;
         .sec_title {

@@ -111,6 +111,30 @@ const Verses = () => {
             </Container>
             <div className={styles.slider_sec}>
               <Swiper
+                breakpoints={{
+                  300: {
+                    slidesPerView: 1.7,
+                    spaceBetween: 16,
+                  },
+                  400: {
+                    slidesPerView: 1.7,
+                    spaceBetween: 16,
+                  },
+                  640: {
+                    slidesPerView: 2,
+                    spaceBetween: 24,
+                  },
+                  768: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 24,
+                  },
+                  1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 24,
+
+                  },
+                }}
+
                 spaceBetween={24}
                 slidesPerView={3}
                 pagination={{ clickable: true }}

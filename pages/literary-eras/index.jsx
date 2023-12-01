@@ -61,7 +61,7 @@ const LiteraryEras = () => {
 
 
       < section id='LiteraryEras' className={styles.LiteraryEras} style={...Effra.style}>
-        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className='disable_container'>
+        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
           <div className={styles.sec_container}>
             <div className={styles.sec_title}>
               <Typography variant='h1'>العصور الأدبية  {router.pathname === '/LiteraryEras' && <br />}
@@ -94,32 +94,31 @@ const LiteraryEras = () => {
       <div className={styles.swiper_container}>
         <Swiper
           dir="rtl"
-          // breakpoints={{
-          //   300: {
-          //     slidesPerView: 3,
-          //     spaceBetween: 20,
-          //   },
-          //   400: {
-          //     slidesPerView: 4,
-          //     spaceBetween: 20,
-          //   },
-          //   640: {
-          //     slidesPerView: 5,
-          //     spaceBetween: 20,
-          //   },
-          //   768: {
-          //     slidesPerView: 4,
-          //     spaceBetween: 40,
-          //   },
-          //   1024: {
-          //     slidesPerView: 9.1,
-          //     spaceBetween: 40,
+          breakpoints={{
+            300: {
+              slidesPerView: 1.5,
+              spaceBetween: 24,
+            },
+            400: {
+              slidesPerView: 1.5,
+              spaceBetween: 24,
+            },
+            640: {
+              slidesPerView: 3,
+              spaceBetween: 24,
+            },
+            768: {
+              slidesPerView: 4.5,
+              spaceBetween: 24,
+            },
+            1024: {
+              slidesPerView: 4.5,
+              spaceBetween: 24,
 
-          //   },
-          // }}
+            },
+          }}
           slidesPerView={4.5}
           spaceBetween={24}
-
 
           pagination={true} className={"swiper"}>
           <SwiperSlide className={styles.swiper_slide_box}>

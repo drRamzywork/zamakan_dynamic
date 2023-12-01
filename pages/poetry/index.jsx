@@ -1,17 +1,12 @@
 import { Box, Container, Link, Typography } from '@mui/material'
 import React, { useRef } from 'react'
 import imgs from '../../assets/constants/imgs';
-import { Navigation, Pagination, } from 'swiper/modules';
+import { Navigation, } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { HiArrowLeft } from "react-icons/hi2";
-import { HiArrowRight } from "react-icons/hi2";
 import styles from './index.module.scss'
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import {
   LeftArrow,
   RightArrow,

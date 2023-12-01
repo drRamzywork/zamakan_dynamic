@@ -239,7 +239,7 @@
 
         @media screen and (max-width: 450px) {
           width: 68.82px;
-          right: 10px;
+          right: 7px;
         }
       }
     }
@@ -322,15 +322,15 @@
               overflow: hidden;
             }
 
-            @media screen and (max-width: 992px) {
-              .box:nth-child(-n + 5) {
-                grid-column: span 1;
-                grid-row: span 1;
-              }
-              .box:nth-child(n + 5) {
-                grid-column: span 2;
-              }
-            }
+            // @media screen and (max-width: 992px) {
+            //   .box:nth-child(-n + 5) {
+            //     grid-column: span 1;
+            //     grid-row: span 1;
+            //   }
+            //   .box:nth-child(n + 5) {
+            //     grid-column: span 2;
+            //   }
+            // }
 
             @media screen and (min-width: 992px) {
               &:after {

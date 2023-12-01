@@ -125,7 +125,7 @@ const Places = () => {
 
     <>
       <PageHeader />
-      <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className='disable_container'>
+      <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
 
         < section id='Places' className={styles.Places} dir='rtl'>
           <div className={styles.sec_container}>
@@ -137,12 +137,12 @@ const Places = () => {
                 dir="rtl"
                 breakpoints={{
                   300: {
-                    slidesPerView: 3,
-                    spaceBetween: 20,
+                    slidesPerView: 4,
+                    spaceBetween: 14,
                   },
                   400: {
                     slidesPerView: 4,
-                    spaceBetween: 20,
+                    spaceBetween: 14,
                   },
                   640: {
                     slidesPerView: 5,

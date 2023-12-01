@@ -31,6 +31,10 @@ const Poets = () => {
       padding: '10px',
       paddingRight: '26px',
     },
+    '@media (max-width: 450px)': {
+      width: '100%',
+    },
+
 
     '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
       borderColor: '#E5E6F2',

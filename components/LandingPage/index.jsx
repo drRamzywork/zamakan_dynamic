@@ -67,7 +67,7 @@ const LandingPage = () => {
       </Head>
       < section id='landingPage' className={styles.landingPage} style={...Effra.style}>
         <div className={styles.sec_container}>
-          <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className='disable_container'>
+          <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
             <div className={styles.sec_title}>
               <img src={Landing_Banner_text.src} alt="" />
             </div>

@@ -4,6 +4,10 @@
   margin-top: 61px;
   border-top: 1px solid rgba(229, 230, 242, 1);
   padding-bottom: 0;
+  @media screen and (max-width: 450px) {
+    padding: 26px 0;
+    margin-top: 32px;
+  }
 
   .logo {
     // Add styles for your logo here
@@ -16,6 +20,7 @@
     margin-top: 20px;
     @media screen and (max-width: 450px) {
       flex-direction: column-reverse;
+      margin-top: 0px;
     }
     .MuiIconButton-root {
       margin: 0 5px;
@@ -50,20 +55,15 @@
       margin-left: 29px;
       padding-left: 29px;
       cursor: pointer !important;
+
       @media screen and (max-width: 450px) {
         border-left: unset;
         margin: 0;
         padding: 0;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
       }
 
       button {
         background-color: #e6ddc6;
-        @media screen and (max-width: 450px) {
-          margin-bottom: 10px;
-        }
       }
       p {
         margin-right: 10px;
@@ -79,8 +79,8 @@
 
         margin-top: 4px;
         @media screen and (max-width: 450px) {
-          margin-right: 0;
-          margin-bottom: 10px;
+          margin-right: 10px;
+          // margin-bottom: 10px;
           font-size: 16px;
         }
       }
