@@ -12,7 +12,7 @@ import { IoHomeOutline, IoPersonOutline, IoChatbubbleOutline, IoCameraOutline, I
 
 export default function Poet() {
   const [selectedTab, setSelectedTab] = useState(0);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(1);
 
   const { ra3y, } = imgs;
   const handleTabChange = (event, newValue) => {
