@@ -39,7 +39,7 @@
           align-items: center;
           justify-content: center;
 
-          &:not(:first-child):after {
+          &:not(:-child):after {
             content: "";
             position: absolute;
             top: 50%;
@@ -77,6 +77,13 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    /* background: #ffffff; */
+    padding-bottom: 30px;
+    border-radius: 10px;
+    border: 1px solid rgba(229, 230, 242, 1);
+    border-top: none;
+    box-shadow: 0px 21px 35px 0px rgba(0, 0, 0, 0.03);
+
     .avatar {
       width: 100px;
       height: 100px;
@@ -97,7 +104,6 @@
 
     .tags_container {
       display: flex;
-      flex-direction: row-reverse;
       margin-top: 10px;
       align-items: center;
       justify-content: center;
@@ -128,6 +134,20 @@
           color: var(--main-blue-color);
         }
       }
+    }
+
+    .indicator span {
+      position: absolute;
+      bottom: 3px;
+      left: -1px;
+      width: 60px;
+      height: 60px;
+      border: 4px solid #29fd;
+      background: #fff;
+      border-radius: 50%;
+      transform-origin: bottom;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      transform: scale(0.85);
     }
 
     .desc {
@@ -236,19 +256,39 @@
         z-index: -1;
         transition: all 0.3s ease-in-out;
         border: 1px solid #e5e6f2;
+        transform: scale(0.85);
 
         @media screen and (max-width: 450px) {
           width: 68.82px;
           right: 7px;
+          transform: translateX(calc(68.82 * 1));
         }
       }
+      // &:after {
+      //   content: "";
+      //   position: absolute;
+      //   top: 4px;
+      //   right: -25.75px;
+      //   width: 20px;
+      //   height: 20px;
+      //   border-top-left-radius: 20px;
+      //   box-shadow: -4px -6px 0 2px var(--clr);
+      //   z-index: -1;
+
+      //   @media screen and (max-width: 450px) {
+      //     // width: 68.82px;
+      //     background-color: red;
+      //     // right: 7px;
+      //     background-color: red;
+      //   }
+      // }
     }
 
     .tabContent_container {
       box-shadow: 0px 21px 35px 0px #00000008;
       background-color: #ffffff;
       padding-top: 41px;
-      margin-top: 67px;
+      margin-top: 26px;
       position: relative;
       z-index: 3;
       border: 1px solid #e5e6f2;
@@ -463,4 +503,173 @@
     }
   }
   // Add additional styles as necessary
+}
+
+.navigation {
+  background: #fff;
+  position: relative;
+  display: flex;
+  z-index: 1;
+  border-radius: 10px;
+  margin-top: 40px;
+  ul {
+    display: flex;
+    // width: 350px;
+
+    li {
+      position: relative;
+      list-style: none;
+      // width: 70px;
+      // height: 70px;
+      z-index: 1;
+
+      button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        border-radius: 68px;
+        margin-left: 28px;
+        border: 1px solid #ccd2e7;
+        background: transparent;
+        transition: all 0.3s ease-in-out !important;
+        position: relative;
+        z-index: 1;
+        overflow: unset;
+        font-family: var(--effra-font);
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 30px;
+        letter-spacing: 0em;
+        text-align: right;
+        color: var(--main-blue-color);
+        padding: 15px 23px 16px 31px;
+        @media screen and (max-width: 992px) {
+          padding: 13px;
+          font-size: 14px;
+          margin-left: 0px;
+        }
+        .iconWrapper {
+          background-color: #e6ddc6;
+          color: #bb7165;
+          width: 51px;
+          height: 51px;
+          border-radius: 50%;
+          display: flex;
+          margin-left: 35px;
+
+          @media screen and (max-width: 450px) {
+            width: 30px;
+            height: 30px;
+            margin-left: 24px;
+          }
+
+          svg {
+            margin: auto;
+            width: 24px;
+            height: 24px;
+            @media screen and (max-width: 450px) {
+              width: 18px;
+              height: 18px;
+            }
+
+            path {
+              fill: #bb7165;
+            }
+          }
+        }
+
+        // &:last-child img {
+        //   width: 16.67px;
+        //   height: 16.67px;
+        // }
+      }
+
+      &:last-child {
+        margin-right: 28px;
+      }
+
+      &.active {
+        button {
+          background-color: transparent;
+          border-color: transparent !important;
+          .iconWrapper {
+            background-color: #bb7165;
+            @media screen and (max-width: 450px) {
+              margin-right: 14px;
+            }
+
+            svg {
+              path {
+                fill: #e6ddc6;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .indicator {
+    position: absolute;
+    top: 0px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    border: 6px solid var(--clr);
+    background: var(--clr);
+    cursor: pointer;
+    transition: 0.5s;
+
+    width: 90px;
+    height: 120px;
+    border-radius: 45px 45px 0px 0px;
+    background-color: #ffffff;
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #e5e6f2;
+    transform: scale(0.85);
+
+    @media screen and (max-width: 450px) {
+      width: 68.82px;
+      right: 7px;
+    }
+
+    // &::before {
+    //   content: "";
+    //   position: absolute;
+    //   top: 4px;
+    //   left: -25.75px;
+    //   width: 20px;
+    //   height: 20px;
+    //   border-top-right-radius: 20px;
+    //   box-shadow: 4px -6px 0 2px var(--clr);
+    //   background-color: red;
+    // }
+
+    // &::after {
+    //   content: "";
+    //   position: absolute;
+    //   top: 4px;
+    //   right: -25.75px;
+    //   width: 20px;
+    //   height: 20px;
+    //   border-top-left-radius: 20px;
+    //   box-shadow: -4px -6px 0 2px var(--clr);
+    //   z-index: -1;
+    //   background-color: red;
+    // }
+  }
+
+  .indicator-0 {
+    transform: translateX(-232px);
+    @media screen and (max-width: 450px) {
+      transform: translateX(-136px);
+    }
+  }
+  .indicator-1 {
+    transform: translateX(-1px);
+    @media screen and (max-width: 450px) {
+      transform: translateX(-3px);
+    }
+  }
 }

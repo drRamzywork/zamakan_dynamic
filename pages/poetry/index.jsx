@@ -44,7 +44,6 @@ const Poetry = () => {
                 }}
                 slidesPerView={1}
 
-
                 dir='rtl'
                 className={styles.swiper_container} >
                 <SwiperSlide>

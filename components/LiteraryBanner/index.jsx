@@ -73,8 +73,13 @@ const LiteraryBanner = () => {
           <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
             <div className={styles.sec_title}>
 
-              <Typography variant='h1'>العصور الأدبية  {router.pathname === '/LiteraryEras' && <br />}
-                التاريخية</Typography>
+              <Typography variant='h1'>
+                العصور الأدبية
+                {` `}
+                <br />
+                {` `}
+                التاريخية
+              </Typography>
             </div>
           </Container>
 

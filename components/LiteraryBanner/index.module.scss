@@ -38,6 +38,12 @@ section.LiteraryBanner {
           font-size: 38px;
           line-height: 46px;
         }
+
+        br {
+          @media screen and (min-width: 450px) {
+            display: none;
+          }
+        }
       }
     }
 

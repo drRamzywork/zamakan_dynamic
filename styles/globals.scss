@@ -9,6 +9,7 @@
   --main-sec-color: #ffffff;
   --main-red-color: #bb7165;
   --main-blue-color: #11292f;
+  --clr: #ffffff;
 }
 
 * {
@@ -94,6 +95,12 @@ header {
 #Poets {
   .gbbKCs {
     margin: 10px !important;
+  }
+
+  @media (max-width: 600px) {
+    .swiper-slide {
+      // margin-right: 20px !important;
+    }
   }
 }
 
@@ -768,7 +775,6 @@ svg.saudi-map.safari .city-name > div:hover {
       .box_header {
         display: flex;
         align-items: flex-start;
-        flex-direction: row-reverse;
         .img-container {
           width: 72px;
           height: 72px;

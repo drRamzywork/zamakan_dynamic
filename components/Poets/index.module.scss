@@ -12,16 +12,19 @@ section.Poets {
     background-color: rgba(255, 255, 255, 0.01);
     border: 1px solid rgba(229, 230, 242, 1);
     box-shadow: 0px 16px 80px 0px rgba(70, 99, 120, 0.06);
-
     @media screen and (max-width: 450px) {
       padding: 24px 0px 24px 20px;
       background-color: #ffffff;
       padding-left: 0;
       margin-bottom: 0;
+      padding-right: 20px;
     }
 
     .sec_title {
       padding: 32px 40px 0px 40px;
+      @media screen {
+        padding-right: 20px;
+      }
       h3 {
         font-family: var(--effra-bold);
         font-size: 40px;
@@ -35,8 +38,12 @@ section.Poets {
     .tags_slider {
       .swiper_slide_box {
         .box.active {
-          border: 1px solid rgba(230, 221, 198, 1) !important;
+          border-color: rgba(230, 221, 198, 1) !important;
           box-shadow: 0px 8px 14px 0px rgba(0, 0, 0, 0.05) !important;
+          animation: growBox 0.3s ease-in-out forwards;
+          @media screen and (max-width: 450px) {
+            box-shadow: none;
+          }
 
           .name {
             p {
@@ -44,15 +51,27 @@ section.Poets {
             }
           }
         }
+        .box_container {
+          width: 120px;
+          @media screen and (max-width: 450px) {
+            width: 96px;
+            margin-top: 10px;
+          }
+        }
       }
       .box_container {
-        width: 120px;
-        height: 141px;
+        width: 85px;
+        // height: 141px;
         user-select: none !important;
 
+        .box * {
+          user-select: none !important;
+        }
         .box {
           transition: all 0.3s ease-in-out;
           user-select: none !important;
+          margin-bottom: 10px;
+          margin-top: 10px;
 
           display: flex;
           flex-direction: column;
@@ -61,9 +80,12 @@ section.Poets {
           border-radius: 16px;
           border: 1px solid transparent;
           cursor: pointer;
+          @media screen and (max-width: 650px) {
+            padding: 12.98px;
+          }
           @media screen and (max-width: 450px) {
+            padding: 0px;
             margin-bottom: 10px;
-            padding: 0;
           }
 
           .img_container {
@@ -75,7 +97,8 @@ section.Poets {
             user-select: none !important;
 
             @media screen and (max-width: 450px) {
-              width: 99.36px;
+              width: 69.09px;
+              height: 78.17px;
             }
             img {
               margin: auto;
@@ -99,10 +122,6 @@ section.Poets {
               text-align: center;
               transition: all 0.3s ease-in-out;
             }
-          }
-
-          @media screen and (max-width: 650px) {
-            padding: 12.98px;
           }
         }
       }
@@ -226,5 +245,15 @@ section.Poets {
     padding-top: 0;
     margin-top: 16px;
     border-top: none;
+  }
+}
+
+// Key frames
+@keyframes growBox {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1); /* Adjust scale as needed */
   }
 }

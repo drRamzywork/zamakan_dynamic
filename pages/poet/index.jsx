@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Typography, Avatar, Tab, Tabs, Paper, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import Feather from '../../assets/svgsComponents/Feather'
 import Profile from '../../assets/svgsComponents/Profile'
@@ -8,9 +8,12 @@ import { styled } from '@mui/system';
 import { motion } from 'framer-motion'
 import { imgs } from '@/assets/constants';
 import SliderVerses from '@/components/PoetsDetailsComponents/SliderVerses';
+import { IoHomeOutline, IoPersonOutline, IoChatbubbleOutline, IoCameraOutline, IoSettingsOutline } from 'react-icons/io5';
 
 export default function Poet() {
   const [selectedTab, setSelectedTab] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const { ra3y, } = imgs;
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
@@ -116,10 +119,21 @@ export default function Poet() {
     }
   };
 
+  useEffect(() => {
+    const list = document.querySelectorAll("#list");
+    console.log(list)
+    function activelink() {
+      list.forEach((item) => item.classList.remove("active"));
+      this.classList.add("active");
+    }
+    list.forEach((item) => item.addEventListener("click", activelink));
+
+  }, [])
+
   return (
     <>
-      <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className={styles.poetDetails}>
-        <Box className={styles.headerImage}>
+      <Container sx={{ maxWidth: "1400px" }} dir="rtl" maxWidth={false} className={styles.poetDetails}>
+        <Box className={styles.headerImage} >
           <div className={styles.text_container}>
             <ul>
               <li>
@@ -159,238 +173,280 @@ export default function Poet() {
             </div>
           </Grid>
         </Grid>
-        <Paper square className={styles.tabsSection} dir={'rtl'}>
-          <Tabs
-            value={selectedTab}
-            onChange={handleTabChange}
-            sx={{
-              backgroundColor: 'transparent',
-              boxShadow: 'unset',
-              '.MuiAvatar-root': {
-                marginLeft: '10px'
-              }
-            }}
-          >
-            <Tab
-              disableRipple
-              disableFocusRipple
-              icon={<div className={styles.iconWrapper}>
-                <Profile />
-              </div>} label="عن الشاعر"
-              id='about'
-            />
 
-            <Tab
-              id='poets-btn'
-              disableRipple
-              disableFocusRipple
-              icon={<div className={styles.iconWrapper}>
-                <Feather />
-              </div>} label="أبيات ذكرت فيها المملكة" />
+        {/* <Paper square className={styles.tabsSection} dir={'rtl'}>
+            <Tabs
+              value={selectedTab}
+              onChange={handleTabChange}
+              sx={{
+                backgroundColor: 'transparent',
+                boxShadow: 'unset',
+                '.MuiAvatar-root': {
+                  marginLeft: '10px'
+                }
+              }}
+            >
+              <Tab
+                disableRipple
+                disableFocusRipple
+                icon={<div className={styles.iconWrapper}>
+                  <Profile />
+                </div>} label="عن الشاعر"
+                id='about'
+              />
 
-          </Tabs>
-          {selectedTab === 0 && (
-            <motion.div
-              initial="enter"
-              animate="center"
-              exit="exit"
-              variants={variants}
+
+
+              <Tab
+                id='poets-btn'
+                disableRipple
+                disableFocusRipple
+                icon={<div className={styles.iconWrapper}>
+                  <Feather />
+                </div>} label="أبيات ذكرت فيها المملكة" />
+
+            </Tabs>
+
+
+
+          </Paper> */}
+
+        <div className={styles.navigation}>
+          <ul>
+
+
+            <li className={`${styles.list} ${1 === activeIndex ? styles.active : ''}`} onClick={() => setActiveIndex(1)}>
+              <button >
+                <span className={styles.iconWrapper}>
+                  <Profile />
+                </span>
+                <p>عن الشاعر</p>
+              </button>
+            </li>
+
+
+            <li className={`${styles.list} ${0 === activeIndex ? styles.active : ''}`} onClick={() => setActiveIndex(0)}>
+              <button >
+                <span className={styles.iconWrapper}>
+                  <Feather />
+                </span>
+                <p>أبيات ذكرت فيها المملكة
+                </p>
+              </button>
+            </li>
+            <div className={`${styles.indicator} ${styles[`indicator-${activeIndex}`]}`}><span></span></div>
+          </ul>
+        </div>
+        <div className={styles.tabsSection}>
+          {activeIndex === 1 && (
+            <div
+
               className={styles.tabContent_container} dir='rtl'>
-              <section className={styles.timelineSection}>
-                <div className={styles.sec_title}>
-                  <Typography variant='h3'>معلوماته الشخصية</Typography>
-                </div>
+              <motion.div
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                transition={{ duration: 1, }}
+              >
 
-                <div className={styles.info_sec}>
-
-                  <div className={styles.boxes_container}>
-
-                    <div className={styles.box}>
-                      <div className={styles.title}>
-                        <Typography >الاسم </Typography>
-                      </div>
-                      <div className={styles.name}>
-                        <Typography>ميمون بن قيس </Typography>
-                      </div>
-                    </div>
-                    <div className={styles.box}>
-                      <div className={styles.title}>
-                        <Typography>اللقب</Typography>
-                      </div>
-                      <div className={styles.name}>
-                        <Typography>الأعشى</Typography>
-                      </div>
-                    </div>
-                    <div className={styles.box}>
-                      <div className={styles.title}>
-                        <Typography>سبب اللقب</Typography>
-                      </div>
-                      <div className={styles.name}>
-                        <Typography>لضعف بصره</Typography>
-                      </div>
-                    </div>
-                    <div className={styles.box}>
-                      <div className={styles.title}>
-                        <Typography>تاريخ الميلاد</Typography>
-                      </div>
-                      <div className={styles.name}>
-                        <Typography>23 هـجريًا - 644 ميلاديًا</Typography>
-                      </div>
-                    </div>
-                    <div className={styles.box}>
-                      <div className={styles.title}>
-                        <Typography>محل الميلاد</Typography>
-                      </div>
-                      <div className={styles.name}>
-                        <Typography>المدينة المنورة</Typography>
-                      </div>
-                    </div>
-
-                    <div className={styles.box}>
-                      <div className={styles.title}>
-                        <Typography>تاريخ الوفاة</Typography>
-                      </div>
-                      <div className={styles.name}>
-                        <Typography>105 هـجريًا - 723 ميلاديًا</Typography>
-                      </div>
-                    </div>
-
-                    <div className={styles.box}>
-                      <div className={styles.title}>
-                        <Typography>محل الوفاة</Typography>
-                      </div>
-                      <div className={styles.name}>
-                        <Typography>المدينة المنورة</Typography>
-                      </div>
-                    </div>
-                    <div className={styles.box}>
-                      <div className={styles.title}>
-                        <Typography>عمره عند الوفاة</Typography>
-                      </div>
-                      <div className={styles.name}>
-                        <Typography>79 عام</Typography>
-                      </div>
-                    </div>
-
+                <section className={styles.timelineSection}>
+                  <div className={styles.sec_title}>
+                    <Typography variant='h3'>معلوماته الشخصية</Typography>
                   </div>
-                </div>
-              </section>
 
-              <section className={styles.timelineSection}>
-                <div className={styles.sec_title}>
-                  <Typography variant='h3'>نبذة عن حياته</Typography>
-                </div>
+                  <div className={styles.info_sec}>
 
-                <div className={styles.sec_container}>
-                  <div className={styles.desc}>
-                    <Typography>
-                      ميمون بن قيس، من بني بكر، لُقِّب بالأعشى لضعف بصره، وُلِدَ في نجد بقرية المنفوحة في اليمامة، وعاش فيها، وكان كثير الوفود على ملوك العرب والفرس، وكثُرت في شعره الألفاظ الفارسية، كان من أغزر الشعراء شِعرًا، ولا يُعرف قبله من هو أكثر منه شِعرًا، ولا من تكسب بشعره قبله، يجيد جميع أنواع الشعر، اشتهر بغنائه لشعره، فسموه: صَنَّاجة العرب (والصناجة صفيحتان من النحاس يضرب بهما للطرب) ، أدرك الإسلام ولم يدخل فيه، فقد خرج يريد مدح النبي صلى الله عليه وسلم فاعترضه بعض المشركين وحذروه من أن رسول الله يمنع الخمر وأعطوه مائة ناقة ليرجع فقال أرجع وأرتوي سنة من الخمر ثم أعود فأسلم فمات في تلك السنة، عاش طويلًا، وأصيب بالعمى في آخر حياته، ومات في المنفوحة سنة 7ه/629م.
-                    </Typography>
+                    <div className={styles.boxes_container}>
+
+                      <div className={styles.box}>
+                        <div className={styles.title}>
+                          <Typography >الاسم </Typography>
+                        </div>
+                        <div className={styles.name}>
+                          <Typography>ميمون بن قيس </Typography>
+                        </div>
+                      </div>
+                      <div className={styles.box}>
+                        <div className={styles.title}>
+                          <Typography>اللقب</Typography>
+                        </div>
+                        <div className={styles.name}>
+                          <Typography>الأعشى</Typography>
+                        </div>
+                      </div>
+                      <div className={styles.box}>
+                        <div className={styles.title}>
+                          <Typography>سبب اللقب</Typography>
+                        </div>
+                        <div className={styles.name}>
+                          <Typography>لضعف بصره</Typography>
+                        </div>
+                      </div>
+                      <div className={styles.box}>
+                        <div className={styles.title}>
+                          <Typography>تاريخ الميلاد</Typography>
+                        </div>
+                        <div className={styles.name}>
+                          <Typography>23 هـجريًا - 644 ميلاديًا</Typography>
+                        </div>
+                      </div>
+                      <div className={styles.box}>
+                        <div className={styles.title}>
+                          <Typography>محل الميلاد</Typography>
+                        </div>
+                        <div className={styles.name}>
+                          <Typography>المدينة المنورة</Typography>
+                        </div>
+                      </div>
+
+                      <div className={styles.box}>
+                        <div className={styles.title}>
+                          <Typography>تاريخ الوفاة</Typography>
+                        </div>
+                        <div className={styles.name}>
+                          <Typography>105 هـجريًا - 723 ميلاديًا</Typography>
+                        </div>
+                      </div>
+
+                      <div className={styles.box}>
+                        <div className={styles.title}>
+                          <Typography>محل الوفاة</Typography>
+                        </div>
+                        <div className={styles.name}>
+                          <Typography>المدينة المنورة</Typography>
+                        </div>
+                      </div>
+                      <div className={styles.box}>
+                        <div className={styles.title}>
+                          <Typography>عمره عند الوفاة</Typography>
+                        </div>
+                        <div className={styles.name}>
+                          <Typography>79 عام</Typography>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
-                </div>
-              </section>
+                </section>
 
-              <section className={styles.timelineSection}>
-                <div className={styles.sec_title}>
-                  <Typography variant='h3'>ما يميّزه</Typography>
-                </div>
-
-                <div className={styles.sec_container}>
-                  <div className={styles.desc}>
-                    <Typography>
-                      غناء الشعر ، ووفوده على ملوك العرب والفرس والتكسب بشعره – استخدام الألفاظ الفارسية في شعره
-                    </Typography>
+                <section className={styles.timelineSection}>
+                  <div className={styles.sec_title}>
+                    <Typography variant='h3'>نبذة عن حياته</Typography>
                   </div>
-                </div>
-              </section>
 
-              <section className={styles.timelineSection}>
-                <div className={styles.sec_title}>
-                  <Typography variant='h3'>ما اشتهر به الشاعر</Typography>
-                </div>
-
-                <div className={styles.sec_container}>
-                  <div className={styles.desc}>
-                    <Typography>
-                      خرج يريد مدح النبي صلى الله عليه وسلم فاعترضه بعض المشركين وحذروه من أن رسول الله يمنع الخمر وأعطوه مائة ناقة ليرجع فقال أرجع وأرتوي سنة من الخمر ثم أعود فأسلم فمات في تلك السنة.
-                    </Typography>
-                  </div>
-                </div>
-              </section>
-
-            </motion.div>
-          )}
-          {selectedTab === 1 && (
-            <motion.div
-              initial="enter"
-              animate="center"
-              exit="exit"
-              variants={variants}
-              className={styles.tabContent_container} dir='rtl'>
-              <section className={styles.timelineSection}>
-                <div className={styles.slider_container}>
-                  <div className={styles.filter_sec}>
-                    <div className={styles.shows}>
-                      <Typography dir='ltr'>
-                        <span>18</span> يتم عرض <span>10</span> من
+                  <div className={styles.sec_container}>
+                    <div className={styles.desc}>
+                      <Typography>
+                        ميمون بن قيس، من بني بكر، لُقِّب بالأعشى لضعف بصره، وُلِدَ في نجد بقرية المنفوحة في اليمامة، وعاش فيها، وكان كثير الوفود على ملوك العرب والفرس، وكثُرت في شعره الألفاظ الفارسية، كان من أغزر الشعراء شِعرًا، ولا يُعرف قبله من هو أكثر منه شِعرًا، ولا من تكسب بشعره قبله، يجيد جميع أنواع الشعر، اشتهر بغنائه لشعره، فسموه: صَنَّاجة العرب (والصناجة صفيحتان من النحاس يضرب بهما للطرب) ، أدرك الإسلام ولم يدخل فيه، فقد خرج يريد مدح النبي صلى الله عليه وسلم فاعترضه بعض المشركين وحذروه من أن رسول الله يمنع الخمر وأعطوه مائة ناقة ليرجع فقال أرجع وأرتوي سنة من الخمر ثم أعود فأسلم فمات في تلك السنة، عاش طويلًا، وأصيب بالعمى في آخر حياته، ومات في المنفوحة سنة 7ه/629م.
                       </Typography>
                     </div>
-                    <div className={styles.filter_methods}>
-                      <div className={styles.box}>
-                        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                          <Select
+                  </div>
+                </section>
 
-                            labelId="demo-select-small-label"
-                            id="demo-select-small"
-                            value={age}
-                            defaultValue='كل العصور'
-                            sx={selectBoxStyles}
-                            onChange={handleChange}
-                            IconComponent={CustomArrowIcon}
+                <section className={styles.timelineSection}>
+                  <div className={styles.sec_title}>
+                    <Typography variant='h3'>ما يميّزه</Typography>
+                  </div>
 
-                          >
-                            <MenuItem value="all_ages">كل العصور</MenuItem>
-                            <MenuItem value={10}>كل العصور</MenuItem>
-                            <MenuItem value={20}>كل العصور</MenuItem>
-                            <MenuItem value={30}>كل العصور</MenuItem>
-                          </Select>
-                        </FormControl>
-                      </div>
-                      <div className={styles.box}>
-                        <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                          <Select
-                            labelId="demo-select-small-label"
-                            id="demo-select-small"
-                            value={city}
-                            defaultValue='المملكة'
-                            sx={selectBoxStyles}
-                            onChange={handleChange}
-                            IconComponent={CustomArrowIcon}
-
-                          >
-                            <MenuItem value="all_cities">المملكة</MenuItem>
-                            <MenuItem value={10}>الرياض</MenuItem>
-                            <MenuItem value={20}>تابوك</MenuItem>
-                            <MenuItem value={30}>مكة المكرمة</MenuItem>
-                          </Select>
-                        </FormControl>
-                      </div>
+                  <div className={styles.sec_container}>
+                    <div className={styles.desc}>
+                      <Typography>
+                        غناء الشعر ، ووفوده على ملوك العرب والفرس والتكسب بشعره – استخدام الألفاظ الفارسية في شعره
+                      </Typography>
                     </div>
-
                   </div>
-                  <div className="slider">
-                    <SliderVerses />
+                </section>
+
+                <section className={styles.timelineSection}>
+                  <div className={styles.sec_title}>
+                    <Typography variant='h3'>ما اشتهر به الشاعر</Typography>
                   </div>
-                </div>
-              </section>
 
+                  <div className={styles.sec_container}>
+                    <div className={styles.desc}>
+                      <Typography>
+                        خرج يريد مدح النبي صلى الله عليه وسلم فاعترضه بعض المشركين وحذروه من أن رسول الله يمنع الخمر وأعطوه مائة ناقة ليرجع فقال أرجع وأرتوي سنة من الخمر ثم أعود فأسلم فمات في تلك السنة.
+                      </Typography>
+                    </div>
+                  </div>
+                </section>
+              </motion.div>
 
+            </div>
+          )}
+          {activeIndex === 0 && (
+            <div
 
-            </motion.div>
+              className={styles.tabContent_container} dir='rtl'>
+              <motion.div
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                transition={{ duration: 1, }}
+              >
+                <section className={styles.timelineSection}>
+                  <div className={styles.slider_container}>
+                    <div className={styles.filter_sec}>
+                      <div className={styles.shows}>
+                        <Typography dir='ltr'>
+                          <span>18</span> يتم عرض <span>10</span> من
+                        </Typography>
+                      </div>
+                      <div className={styles.filter_methods}>
+                        <div className={styles.box}>
+                          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                            <Select
+
+                              labelId="demo-select-small-label"
+                              id="demo-select-small"
+                              value={age}
+                              defaultValue='كل العصور'
+                              sx={selectBoxStyles}
+                              onChange={handleChange}
+                              IconComponent={CustomArrowIcon}
+
+                            >
+                              <MenuItem value="all_ages">كل العصور</MenuItem>
+                              <MenuItem value={10}>كل العصور</MenuItem>
+                              <MenuItem value={20}>كل العصور</MenuItem>
+                              <MenuItem value={30}>كل العصور</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </div>
+                        <div className={styles.box}>
+                          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                            <Select
+                              labelId="demo-select-small-label"
+                              id="demo-select-small"
+                              value={city}
+                              defaultValue='المملكة'
+                              sx={selectBoxStyles}
+                              onChange={handleChange}
+                              IconComponent={CustomArrowIcon}
+
+                            >
+                              <MenuItem value="all_cities">المملكة</MenuItem>
+                              <MenuItem value={10}>الرياض</MenuItem>
+                              <MenuItem value={20}>تابوك</MenuItem>
+                              <MenuItem value={30}>مكة المكرمة</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div className="slider">
+                      <SliderVerses />
+                    </div>
+                  </div>
+                </section>
+              </motion.div>
+
+            </div>
           )}
 
-        </Paper>
-      </Container>
+        </div>
+
+
+      </Container >
     </>
 
   );

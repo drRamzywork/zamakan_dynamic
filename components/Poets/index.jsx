@@ -145,8 +145,12 @@ const Poets = () => {
                     spaceBetween: 10,
                   },
                   400: {
-                    slidesPerView: 3.5,
+                    slidesPerView: 3,
                     spaceBetween: 10,
+                  },
+                  414: {
+                    slidesPerView: 3.5,
+                    spaceBetween: 11,
                   },
                   640: {
                     slidesPerView: 4,
