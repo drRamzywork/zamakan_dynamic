@@ -37,7 +37,8 @@
     border-radius: 139px 0px 0px 0px;
     @media screen and (max-width: 450px) {
       border-radius: 0;
-      top: 40px;
+      top: 0px;
+      height: 100vh;
     }
     .links {
       .link {
@@ -112,6 +113,11 @@
       height: 23px;
       margin-right: auto !important;
       margin-left: 31px;
+    }
+    @media screen and (max-width: 450px) {
+      width: 48px;
+      height: 100%;
+      margin-left: auto;
     }
 
     svg {

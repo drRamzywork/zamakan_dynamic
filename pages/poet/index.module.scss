@@ -549,6 +549,11 @@
           font-size: 14px;
           margin-left: 0px;
         }
+        @media screen and (max-width: 360px) {
+          padding: 6px;
+          font-size: 12px;
+        }
+
         .iconWrapper {
           background-color: #e6ddc6;
           color: #bb7165;
@@ -562,6 +567,10 @@
             width: 30px;
             height: 30px;
             margin-left: 24px;
+          }
+          @media screen and (max-width: 360px) {
+            margin-left: 12px;
+            margin-right: 0;
           }
 
           svg {
@@ -587,6 +596,9 @@
 
       &:last-child {
         margin-right: 28px;
+        @media screen and (max-width: 360px) {
+          margin-right: 16px;
+        }
       }
 
       &.active {
@@ -633,6 +645,9 @@
       width: 68.82px;
       right: 7px;
     }
+    @media screen and (max-width: 360px) {
+      width: 50px;
+    }
 
     // &::before {
     //   content: "";
@@ -664,6 +679,9 @@
     transform: translateX(-232px);
     @media screen and (max-width: 450px) {
       transform: translateX(-136px);
+    }
+    @media screen and (max-width: 360px) {
+      transform: translateX(-104px);
     }
   }
   .indicator-1 {
