@@ -128,7 +128,52 @@ const Poets = () => {
                         id="demo-select-small"
                         value={age}
                         defaultValue='كل العصور'
-                        sx={selectBoxStyles}
+                        sx={{
+                          m: 1,
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'flex-end',
+                          alignItems: 'flex-start',
+                          padding: '10px 16px',
+                          width: '199px',
+                          height: '47px',
+                          borderRadius: '30px',
+                          marginRight: 0,
+                          '@media (max-width: 600px)': {
+                            width: '140px',
+                            marginTop: 0,
+                            padding: '10px',
+                            paddingRight: '26px',
+                          },
+                          '@media (max-width: 450px)': {
+                            width: '100%',
+                          },
+                          '& .MuiOutlinedInput-notchedOutline': {
+                            '&.Mui-focused': { borderColor: '#E5E6F2' },
+                            '&:hover': { borderColor: '#E5E6F2' },
+                          },
+                          '.MuiSelect-select': {
+                            display: 'flex',
+                            flexDirection: 'row-reverse',
+                            justifyContent: 'flex-end',
+                            alignItems: 'center',
+                            padding: 0,
+                            width: '167px',
+                            height: '27px',
+                            paddingRight: 0,
+                            outline: 'none',
+                          },
+                          '#demo-select-small': {
+                            color: 'var(--main-blue-color)',
+                            fontFamily: 'var(--effra-font)',
+                            fontStyle: 'normal',
+                            fontWeight: 400,
+                            fontSize: '14px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            textAlign: 'right',
+                          },
+                        }}
                         onChange={handleChange}
                         IconComponent={CustomArrowIcon}
 
