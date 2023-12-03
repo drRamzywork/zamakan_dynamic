@@ -1,17 +1,16 @@
 import { Container, Typography, Button } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import localFont from 'next/font/local'
-// import Carousel from 'react-elastic-carousel';
 import styles from './index.module.scss'
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 import imgs from '../../assets/constants/imgs';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import PoetryIn from '../PoetryIn'
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Svg from '../SVGParts/Svg'
-import { LeftArrow } from '@/assets/svgsComponents'
+import { LeftArrow, CloseIcon } from '@/assets/svgsComponents'
 import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import PoetsSlider from '../PoetsSlider';
 
 const Effra = localFont({
   src: [
@@ -38,24 +37,11 @@ const Effra = localFont({
   ],
 })
 
-const Poets = () => {
+const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
   const [activePoet, setActivePoet] = useState(null);
-  const { ra3y1 } = imgs;
+  const { ra3y1, smallCity } = imgs;
 
-  const slides = [
-    { name: "كثير عزة", imageSrc: ra3y1.src },
-    { name: "الأخطل", imageSrc: ra3y1.src },
-    { name: "الأعشى", imageSrc: ra3y1.src },
-    { name: "الراعي", imageSrc: ra3y1.src },
-    { name: "الطرماح بن حكيم", imageSrc: ra3y1.src },
-    { name: "الفرزدق", imageSrc: ra3y1.src },
-    { name: "الكميت بن زيد", imageSrc: ra3y1.src },
-    { name: "جرير", imageSrc: ra3y1.src },
-    { name: "جرير", imageSrc: ra3y1.src },
-    { name: "جرير", imageSrc: ra3y1.src },
-    { name: "جرير", imageSrc: ra3y1.src },
-    { name: "جرير", imageSrc: ra3y1.src },
-  ];
+  const [activeCity, setActiveCity] = useState(null);
 
 
   const [landElments, setLandElemnts] = useState([])
@@ -78,8 +64,6 @@ const Poets = () => {
     });
   }, []);
 
-  const transformComponentRef = useRef(null);
-
   useEffect(() => {
     if (activePoet === null) {
       cityNames.forEach(cityName => {
@@ -96,34 +80,23 @@ const Poets = () => {
 
   const handleBoxClick = (index) => {
     setActivePoet(index);
-
     setActiveIndex(index); // Set the active index
     seIsPointsActive(false)
   };
 
+  const [isSafari, setIsSafari] = useState(false);
+
   useEffect(() => {
-    const dataIndex = document.querySelectorAll(`#land-${activeIndex}`)[0];
-    const elementsWithLandClassOnly = document.querySelectorAll('.land:not(.activeLand)');
+
+    // Detect Safari browser
+    setIsSafari(navigator.vendor.includes("Apple"));
 
 
+  }, []);
 
-    if (isPointsActive === true) {
-      elementsWithLandClassOnly.forEach((element, index) => {
-        // Only add 'hiddenPoints' to the first five elements
-        if (index < 5) {
-          element.classList.add('hiddenPoints');
-        }
-      });
-    } else {
-      elementsWithLandClassOnly.forEach((element) => {
-        element.classList.remove('hiddenPoints');
-      });
-
-    }
-
-  }, [activeIndex, activeLand])
-
-
+  const handleCityClick = cityName => {
+    setActiveCity(activeCity === cityName ? null : cityName);
+  };
 
   return (
     <>
@@ -171,15 +144,15 @@ const Poets = () => {
                 dir={'rtl'}
                 className={styles.swiper_container}
               >
-                {slides.map((slide, index) => (
+                {dataPoetsByEra?.map((poet, index) => (
                   <SwiperSlide key={index} className={styles.swiper_slide_box}>
                     <div onClick={() => handleBoxClick(index)} className={`${styles.box_container} `}>
                       <div className={`${styles.box} ${activePoet === index ? styles.active : ''}`}>
                         <div className={styles.img_container}>
-                          <img src={slide.imageSrc} alt={slide.name} />
+                          <img src={ra3y1.src} alt={poet.name} />
                         </div>
                         <div className={styles.name}>
-                          <Typography>{slide.name}</Typography>
+                          <Typography>{poet.name}</Typography>
                         </div>
                       </div>
                     </div>
@@ -195,7 +168,7 @@ const Poets = () => {
               <div className={styles.poetInfo}>
                 <div className={styles.title}>
                   <Typography variant='h3'>
-                    {slides[activePoet].name}
+                    {dataPoetsByEra[activePoet].name}
                   </Typography>
 
                   <div className={styles.tag}>
@@ -205,10 +178,10 @@ const Poets = () => {
 
                 <div className={styles.desc}>
                   <Typography>
-                    شاعر عظيم من أصحاب المعلقات، كان غزير الشعر، وفد إلى الملوك مادحاً، وكان أول المتكسبين بالشعر ، غنَّى شعرَه، وعمي في آخر حياته، توفي سنة 7ه/629م.
-                    <Link href='/poet' className={styles.more}>
+                    {dataPoetsByEra[activePoet].desc}
+                    <Link href={`/poet/${dataPoetsByEra[activePoet].id}`} className={styles.more}>
                       <Typography>
-                        المزيد عن كثير عزة
+                        المزيد عن {dataPoetsByEra[activePoet].name}
                         <div className={styles.icon_container}>
                           <LeftArrow />
                         </div>
@@ -222,13 +195,95 @@ const Poets = () => {
             }
             <div className={styles.svg_wrap}>
               <div id='map-boxes'>
+                {/* <Svg dataAllCitiesMap={dataAllCitiesMap} dataAllPlacesMap={dataAllPlacesMap} /> */}
+                <xml version="1.0" encoding="UTF-8" standalone="no" />
+                <svg
+                  id="svg1"
+                  width="858"
+                  height="724"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`${isSafari ? "saudi-map safari" : "saudi-map"}`}
+                  viewBox="90 90 758 624"
+                >
+                  {dataAllCitiesMap?.map((land, index) => (
+                    <g className="land" key={index} id={land.svgPathId}>
+                      {land.svgPath && ReactHtmlParser(land.svgPath)}
 
-                <Svg />
+                      <foreignObject x="231.96" y="101.1924" width="100" height="100" id="1">
+                        <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
+                          <div onClick={() => handleCityClick(`City${index}`)}
+                            className={`city-name  ${activeCity === `City${index}` && 'active'}`} id="p1">
+                            <div>
+                              <p>القنان</p>
+                              <svg
+                                width="15"
+                                height="6"
+                                viewBox="0 0 15 6"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M0.956299 0.882812H14.8405H12.9973C11.8578 0.882812 10.8162 1.52659 10.3066 2.54573L9.14027 4.87844C8.6286 5.90177 7.16825 5.90178 6.65658 4.87844L5.49023 2.54573C4.98065 1.52659 3.939 0.882812 2.79956 0.882812H0.956299Z"
+                                  fill="white"
+                                />
+                              </svg>
+                            </div>
+                          </div>
 
 
 
+
+                        </div>
+                      </foreignObject>
+                    </g>
+                  ))}
+
+                </svg>
 
               </div >
+
+
+              <AnimatePresence >
+                {activeCity && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -50 }}
+                    transition={{ duration: 0.5 }}
+                    className="custom-box"
+                    dir='rtl'
+                  >
+
+                    <div className="box_container">
+                      <div className="box_header">
+                        <div className="img-container">
+                          <img src={smallCity.src} alt="" />
+                        </div>
+                        <div className="title">
+                          <h3>وجرة</h3>
+
+                          <div className="desc">
+                            <p>صحراء واسعةٌ ومستوية، تقع في الطرفِ الشَّمالي من سَهل رُكبة في شمال الطائف، فيها أشجارٌ ومياه وأماكن للرعي.
+                              <a href='/city' className="more">
+                                <span>المزيد عن وَجْرَة</span>
+                                <LeftArrow />
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <PoetsSlider />
+
+                      <div className="close-btn" onClick={() => setActiveCity(null)}>
+                        <CloseIcon />
+                      </div>
+                    </div>
+
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
             </div>
 
           </div>
@@ -246,3 +301,4 @@ const Poets = () => {
 }
 
 export default Poets
+

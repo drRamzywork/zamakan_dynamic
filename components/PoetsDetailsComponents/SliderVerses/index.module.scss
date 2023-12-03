@@ -16,11 +16,12 @@
     }
     .tag {
       background-color: rgb(29 200 128 / 10%);
-      width: 41px;
-      height: 22.5px;
       padding: 2.5px 8px 6px 8px;
       border-radius: 16px;
       margin-bottom: 10px;
+      width: fit-content;
+      padding-bottom: 0;
+
       p {
         font-family: var(--effra-font);
         font-size: 12px;

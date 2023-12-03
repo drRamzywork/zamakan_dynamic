@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './index.module.scss'
 import { Container, Typography } from '@mui/material'
 import { Mountains } from '@/assets/svgsComponents'
@@ -7,6 +7,8 @@ import { useRouter } from 'next/router'
 import localFont from 'next/font/local'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import Link from 'next/link'
+import Image from 'next/image'
 
 const Effra = localFont({
   src: [
@@ -33,9 +35,13 @@ const Effra = localFont({
   ],
 })
 
-const LiteraryBanner = () => {
-  const router = useRouter()
+const LiteraryBanner = (props) => {
+  const { query } = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
+  const toArabicNumerals = (num) => {
+    const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    return num.toString().split('').map(digit => arabicNumbers[digit]).join('');
+  };
 
   const {
     left_branch,
@@ -50,18 +56,9 @@ const LiteraryBanner = () => {
   } = imgs
 
 
-  const carouselData = [
-    { title: 'عصر ما قبل الإسلام', date: '٦٦٣ - ٧٥٠م', img: pre_Islamic.src },
-    { title: 'العصر الإسلامي', date: '٦٦٣ - ٧٥٠م', img: Islamic_era.src },
-    { title: 'العصر العباسي ', date: '٦٦٣ - ٧٥٠م', img: Abbasid_era.src },
-    { title: 'العصر المملوكي', date: '٦٦٣ - ٧٥٠م', img: Mamluk_era.src },
-    { title: 'العصر الأموي', date: '٦٦٣ - ٧٥٠م', img: Umayyad_era.src },
-    { title: 'العصر الحديث', date: '٦٦٣ - ٧٥٠م', img: modern_era.src },
 
-  ]
-  const handleBoxClick = (index) => {
-    setActiveIndex(index);
-  };
+
+  const eraIndex = query.index ? Number(query.index) : 0;
 
 
   return (
@@ -135,30 +132,31 @@ const LiteraryBanner = () => {
 
           pagination={true} className={"swiper"}>
 
-          {carouselData.map((era, index) => (
-            <SwiperSlide key={index} className={styles.swiper_slide_box}>
-              <div
-                className={`${styles.box} ${activeIndex === index ? styles.active : ''}`}
-                onClick={() => handleBoxClick(index)}
-              >
-
+          {props?.dataAllEras?.map((era) => (
+            <SwiperSlide key={era.id} className={styles.swiper_slide_box}>
+              <Link href={`/literary-eras/era/${era.id}`} className={`${styles.box} ${eraIndex === era.id ? styles.active : ''}`}>
                 <div className={styles.img_container}>
-                  <img src={era.img} alt="" />
+                  {/* <img src={pre_Islamic.src} alt="" /> */}
+                  <Image src={pre_Islamic.src} alt={era.desc} width={277} height={346} />
+
                 </div>
 
                 <div className={styles.date_container}>
-                  <Typography>{era.date}</Typography>
+                  <Typography>  {toArabicNumerals(era.fromH)} - {toArabicNumerals(era.toH)}</Typography>
+
                 </div>
 
                 <div className={styles.title}>
                   <Typography variant='h4'>
-                    {era.title}
+                    {era.name}
                   </Typography>
                 </div>
 
-              </div>
+              </Link>
             </SwiperSlide>
           ))}
+
+
 
 
 

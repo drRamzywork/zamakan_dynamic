@@ -1,6 +1,6 @@
 import { Box, Container, Link, Typography } from '@mui/material'
 import React, { useRef } from 'react'
-import imgs from '../../assets/constants/imgs';
+import imgs from '../../../assets/constants/imgs';
 import { Navigation, } from 'swiper/modules';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -19,7 +19,6 @@ const Poetry = () => {
   const { ra3y, Feather_big, place } = imgs;
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-
   return (
     <>
       <section id={'poetry_page'} className={styles.poetry_page} dir='rtl'>
@@ -285,3 +284,18 @@ const Poetry = () => {
 }
 
 export default Poetry
+
+// export async function getServerSideProps(context) {
+//   const { id } = context.query;
+
+//   const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetPoetryFullData?id=${id}&lang=2`);
+//   const dataPoetry = await resPoetry.json();
+
+
+
+//   return {
+//     props: {
+//       dataPoetry
+//     },
+//   };
+// }

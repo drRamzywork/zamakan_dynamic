@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Defs from "./Defs";
 import GElements from "./GElements";
 
-const Svg = () => {
+const Svg = ({ dataAllCitiesMap, dataAllPlacesMap }) => {
   const [viewBox, setViewBox] = useState();
   const [smallScreen, setSmallScreen] = useState(false);
   const [isSafari, setIsSafari] = useState(false);
@@ -52,7 +52,7 @@ const Svg = () => {
         className={`${isSafari ? "saudi-map safari" : "saudi-map"}`}
         viewBox="90 90 758 624"
       >
-        <GElements />
+        <GElements dataAllPlacesMap={dataAllPlacesMap} dataAllCitiesMap={dataAllCitiesMap} />
       </svg>
     </>
   );

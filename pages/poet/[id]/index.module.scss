@@ -1,6 +1,6 @@
 .poetDetails {
   .headerImage {
-    background-image: url("../../assets/poet_details.png");
+    background-image: url("../../../assets/poet_details.png");
     margin-top: 30px;
     height: 200px;
     object-fit: contain;
@@ -544,6 +544,7 @@
         text-align: right;
         color: var(--main-blue-color);
         padding: 15px 23px 16px 31px;
+        cursor: pointer;
         @media screen and (max-width: 992px) {
           padding: 13px;
           font-size: 14px;

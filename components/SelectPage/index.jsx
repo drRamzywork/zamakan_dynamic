@@ -27,13 +27,11 @@ const SelectPage = ({ cityNames }) => {
 
 
 
-  console.log(isTop, "isTop")
 
   const handleDrag = (event, info) => {
     if (info.offset.y < 0) {
       // If dragging upwards, prevent further movement
       info.offset.y = 0;
-      console.log(info, "info")
 
     } else {
       setOpenSelect(true);

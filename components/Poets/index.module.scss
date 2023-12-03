@@ -146,6 +146,8 @@ section.Poets {
 
       .title {
         display: flex;
+        align-items: center;
+
         h3 {
           font-family: var(--effra-bold);
           font-size: 32px;
@@ -240,7 +242,7 @@ section.Poets {
   padding-top: 46px;
   margin-top: 60px;
   display: flex;
-
+  position: relative;
   @media screen and (max-width: 450px) {
     padding-top: 0;
     margin-top: 16px;

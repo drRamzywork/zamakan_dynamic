@@ -12,11 +12,10 @@ import { HiArrowLeft } from "react-icons/hi2";
 import styles from './index.module.scss'; // Make sure this path is correct
 import { Box, Button, Typography } from '@mui/material';
 import Link from 'next/link'
-export default function SliderVerses() {
+export default function SliderVerses({ dataPoetry }) {
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-
 
   return (
     <>
@@ -62,6 +61,50 @@ export default function SliderVerses() {
         dir='rtl'
       >
 
+        {dataPoetry.map((poetry, idx) => (
+          <SwiperSlide >
+            <div className={styles.box}>
+              <div className={styles.tag}>
+                <Typography>{poetry.placeName}</Typography>
+              </div>
+              <div className={styles.desc}>
+                <Typography>{poetry.poetryParts}</Typography>
+              </div>
+
+              <Link href={`/poetry/${poetry.id}`} className={styles.link_container}>
+                <Typography>تفاصيل البيت</Typography>
+
+                <div className={styles.icon_container}>
+                  <HiArrowLeft />
+                </div>
+              </Link>
+            </div>
+          </SwiperSlide>
+
+        ))}
+
+
+        <SwiperSlide >
+          <div className={styles.box}>
+            <div className={styles.tag}>
+              <Typography>بنبان</Typography>
+            </div>
+            <div className={styles.desc}>
+              <Typography>مقيم على     <span>
+                بنبان
+              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
+            </div>
+
+            <Link href='/poetry' className={styles.link_container}>
+              <Typography>تفاصيل البيت</Typography>
+
+              <div className={styles.icon_container}>
+                <HiArrowLeft />
+              </div>
+            </Link>
+          </div>
+        </SwiperSlide>
+        {/*
         <SwiperSlide >
           <div className={styles.box}>
             <div className={styles.tag}>
@@ -103,107 +146,6 @@ export default function SliderVerses() {
           </div>
         </SwiperSlide>
 
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
-              </div>
-            </Link>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
-              </div>
-            </Link>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
-              </div>
-            </Link>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
-              </div>
-            </Link>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.tag}>
-              <Typography>بنبان</Typography>
-            </div>
-            <div className={styles.desc}>
-              <Typography>مقيم على     <span>
-                بنبان
-              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
-            </div>
-
-            <Link href='/poetry' className={styles.link_container}>
-              <Typography>تفاصيل البيت</Typography>
-
-              <div className={styles.icon_container}>
-                <HiArrowLeft />
-              </div>
-            </Link>
-          </div>
-        </SwiperSlide>
         <SwiperSlide >
           <div className={styles.box}>
             <div className={styles.tag}>
@@ -364,6 +306,66 @@ export default function SliderVerses() {
             </Link>
           </div>
         </SwiperSlide>
+        <SwiperSlide >
+          <div className={styles.box}>
+            <div className={styles.tag}>
+              <Typography>بنبان</Typography>
+            </div>
+            <div className={styles.desc}>
+              <Typography>مقيم على     <span>
+                بنبان
+              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
+            </div>
+
+            <Link href='/poetry' className={styles.link_container}>
+              <Typography>تفاصيل البيت</Typography>
+
+              <div className={styles.icon_container}>
+                <HiArrowLeft />
+              </div>
+            </Link>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide >
+          <div className={styles.box}>
+            <div className={styles.tag}>
+              <Typography>بنبان</Typography>
+            </div>
+            <div className={styles.desc}>
+              <Typography>مقيم على     <span>
+                بنبان
+              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
+            </div>
+
+            <Link href='/poetry' className={styles.link_container}>
+              <Typography>تفاصيل البيت</Typography>
+
+              <div className={styles.icon_container}>
+                <HiArrowLeft />
+              </div>
+            </Link>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide >
+          <div className={styles.box}>
+            <div className={styles.tag}>
+              <Typography>بنبان</Typography>
+            </div>
+            <div className={styles.desc}>
+              <Typography>مقيم على     <span>
+                بنبان
+              </span> يمنع ماءه .. وماء وشيع ماء عطشان مرمل</Typography>
+            </div>
+
+            <Link href='/poetry' className={styles.link_container}>
+              <Typography>تفاصيل البيت</Typography>
+
+              <div className={styles.icon_container}>
+                <HiArrowLeft />
+              </div>
+            </Link>
+          </div>
+        </SwiperSlide> */}
 
       </Swiper>
 

@@ -8,6 +8,7 @@ import 'swiper/css';
 import { Mountains } from '@/assets/svgsComponents';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Image from 'next/image'
 
 
 const Effra = localFont({
@@ -35,7 +36,7 @@ const Effra = localFont({
   ],
 })
 
-const LiteraryEras = () => {
+const LiteraryEras = ({ erasAllEras }) => {
   const router = useRouter();
   const {
     left_branch,
@@ -52,6 +53,10 @@ const LiteraryEras = () => {
   } = imgs
 
 
+  const toArabicNumerals = (num) => {
+    const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    return num.toString().split('').map(digit => arabicNumbers[digit]).join('');
+  };
 
 
   return (
@@ -126,133 +131,36 @@ const LiteraryEras = () => {
           spaceBetween={24}
 
           pagination={true} className={"swiper"}>
-          <SwiperSlide className={styles.swiper_slide_box}>
-            <Link href={'/literary-eras/era'} className={styles.box}>
-              <div className={styles.img_container}>
-                <img src={pre_Islamic.src} alt="" />
-              </div>
 
-              <div className={styles.date_container}>
-                <Typography>٦٦٣ - ٧٥٠م</Typography>
-              </div>
 
-              <div className={styles.title}>
-                <Typography variant='h4'>
-                  عصر ما قبل الإسلام
-                </Typography>
-              </div>
+          {erasAllEras.map((era) => (
+            <SwiperSlide key={era.id} className={styles.swiper_slide_box}>
+              <Link href={`/literary-eras/era/${era.id}`} className={styles.box}>
+                <div className={styles.img_container}>
+                  {/* <img src={pre_Islamic.src} alt="" /> */}
+                  <Image src={pre_Islamic.src} alt={era.desc} width={277} height={346} />
 
-              <div className={styles.desc}>
-                <Typography>الفترة الزمنية التي سبقت الإسلام، والتي انتشر فيها الطيش، والظلم، والقهر.</Typography>
-              </div>
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide className={styles.swiper_slide_box}>
-            <Link href={'/literary-eras/era'} className={styles.box}>
-              <div className={styles.img_container}>
-                <img src={Islamic_era.src} alt="" />
-              </div>
+                </div>
 
-              <div className={styles.date_container}>
-                <Typography>٦٦٣ - ٧٥٠م</Typography>
-              </div>
+                <div className={styles.date_container}>
+                  <Typography>  {toArabicNumerals(era.fromH)} - {toArabicNumerals(era.toH)}</Typography>
 
-              <div className={styles.title}>
-                <Typography variant='h4'>
-                  العصر الإسلامي
-                </Typography>
-              </div>
+                </div>
 
-              <div className={styles.desc}>
-                <Typography>الفترة الزمنية التي سبقت الإسلام، والتي انتشر فيها الطيش، والظلم، والقهر.</Typography>
-              </div>
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide className={styles.swiper_slide_box}>
-            <Link href={'/literary-eras/era'} className={styles.box}>
-              <div className={styles.img_container}>
-                <img src={Abbasid_era.src} alt="" />
-              </div>
+                <div className={styles.title}>
+                  <Typography variant='h4'>
+                    {era.name}
+                  </Typography>
+                </div>
 
-              <div className={styles.date_container}>
-                <Typography>٦٦٣ - ٧٥٠م</Typography>
-              </div>
-
-              <div className={styles.title}>
-                <Typography variant='h4'>
-                  العصر العباسي
-                </Typography>
-              </div>
-
-              <div className={styles.desc}>
-                <Typography>الفترة التي حكم فيها خلفاء بني العباس بالعصر العباسي</Typography>
-              </div>
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide className={styles.swiper_slide_box}>
-            <Link href={'/literary-eras/era'} className={styles.box}>
-              <div className={styles.img_container}>
-                <img src={Mamluk_era.src} alt="" />
-              </div>
-
-              <div className={styles.date_container}>
-                <Typography>٦٦٣ - ٧٥٠م</Typography>
-              </div>
-
-              <div className={styles.title}>
-                <Typography variant='h4'>
-                  العصر المملوكي
-                </Typography>
-              </div>
-
-              <div className={styles.desc}>
-                <Typography>الفترة الزمنية التي سبقت الإسلام، والتي انتشر فيها الطيش، والظلم، والقهر.</Typography>
-              </div>
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide className={styles.swiper_slide_box}>
-            <Link href={'/literary-eras/era'} className={styles.box}>
-              <div className={styles.img_container}>
-                <img src={Umayyad_era.src} alt="" />
-              </div>
-
-              <div className={styles.date_container}>
-                <Typography>٦٦٣ - ٧٥٠م</Typography>
-              </div>
-
-              <div className={styles.title}>
-                <Typography variant='h4'>
-                  العصر الأموي
-                </Typography>
-              </div>
-
-              <div className={styles.desc}>
-                <Typography>الفترة الزمنية التي سبقت الإسلام، والتي انتشر فيها الطيش، والظلم، والقهر.</Typography>
-              </div>
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide className={styles.swiper_slide_box}>
-            <Link href={'/literary-eras/era'} className={styles.box}>
-              <div className={styles.img_container}>
-                <img src={modern_era.src} alt="" />
-              </div>
-
-              <div className={styles.date_container}>
-                <Typography>٦٦٣ - ٧٥٠م</Typography>
-              </div>
-
-              <div className={styles.title}>
-                <Typography variant='h4'>
-                  العصر الحديث
-                </Typography>
-              </div>
-
-              <div className={styles.desc}>
-                <Typography>الفترة الزمنية التي سبقت الإسلام، والتي انتشر فيها الطيش، والظلم، والقهر.</Typography>
-              </div>
-            </Link>
-          </SwiperSlide>
-
+                <div className={styles.desc}>
+                  <Typography>
+                    {era.desc}
+                  </Typography>
+                </div>
+              </Link>
+            </SwiperSlide>
+          ))}
 
         </Swiper>
       </div>
@@ -263,3 +171,17 @@ const LiteraryEras = () => {
 }
 
 export default LiteraryEras
+
+
+export async function getServerSideProps() {
+  const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
+  const erasAllEras = await resAllEras.json();
+
+
+  return {
+    props: {
+      erasAllEras: erasAllEras,
+    },
+  };
+}
+

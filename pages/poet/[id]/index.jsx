@@ -1,16 +1,15 @@
 import { Box, Container, Grid, Typography, Avatar, Tab, Tabs, Paper, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { useEffect, useState } from 'react';
 import styles from './index.module.scss';
-import Feather from '../../assets/svgsComponents/Feather'
-import Profile from '../../assets/svgsComponents/Profile'
+import Feather from '../../../assets/svgsComponents/Feather'
+import Profile from '../../../assets/svgsComponents/Profile'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { styled } from '@mui/system';
 import { motion } from 'framer-motion'
 import { imgs } from '@/assets/constants';
 import SliderVerses from '@/components/PoetsDetailsComponents/SliderVerses';
-import { IoHomeOutline, IoPersonOutline, IoChatbubbleOutline, IoCameraOutline, IoSettingsOutline } from 'react-icons/io5';
 
-export default function Poet() {
+export default function Poet({ dataPoet, dataPoetry }) {
   const [selectedTab, setSelectedTab] = useState(0);
   const [activeIndex, setActiveIndex] = useState(1);
 
@@ -121,7 +120,6 @@ export default function Poet() {
 
   useEffect(() => {
     const list = document.querySelectorAll("#list");
-    console.log(list)
     function activelink() {
       list.forEach((item) => item.classList.remove("active"));
       this.classList.add("active");
@@ -137,7 +135,7 @@ export default function Poet() {
           <div className={styles.text_container}>
             <ul>
               <li>
-                <a href="/">الشاعر كثير عزة</a>
+                <a href="/">الشاعر {dataPoet.name}</a>
               </li>
               <li>
                 <a href="/">العصور الأدبية</a>
@@ -150,61 +148,33 @@ export default function Poet() {
         </Box>
         <Grid container className={styles.profileSection}>
           <Grid item>
-            <Avatar src={ra3y.src} className={styles.avatar} />
+            <Avatar src={dataPoet.icon} className={styles.avatar} />
           </Grid>
           <Grid spacing={0} item>
             <Typography variant="h5" className={styles.profileName}>
-              الأعشى
+              {dataPoet.name}
             </Typography>
 
             <div className={styles.tags_container}>
               <div className={styles.tag}>
-                <Typography>صناجة العرب</Typography>
+                <Typography>
+                  {dataPoet.nickname}
+                </Typography>
               </div>
               <div className={styles.tag}>
-                <Typography>العصر الأموي</Typography>
+                <Typography>{dataPoet.zamanName}</Typography>
               </div>
             </div>
 
             <div className={styles.desc} dir='rtl'>
               <Typography>
-                شاعر عظيم من أصحاب المعلقات، كان غزير الشعر، وفد إلى الملوك مادحاً، وكان أول المتكسبين بالشعر ، غنَّى شعرَه، وعمي في آخر حياته، توفي سنة 7ه/629م.
+                {dataPoet.descriptionShort}
               </Typography>
             </div>
           </Grid>
         </Grid>
 
-        {/* <Paper square className={styles.tabsSection} dir={'rtl'}>
-            <Tabs
-              value={selectedTab}
-              onChange={handleTabChange}
-              sx={{
-                backgroundColor: 'transparent',
-                boxShadow: 'unset',
-                '.MuiAvatar-root': {
-                  marginLeft: '10px'
-                }
-              }}
-            >
-              <Tab
-                disableRipple
-                disableFocusRipple
-                icon={<div className={styles.iconWrapper}>
-                  <Profile />
-                </div>} label="عن الشاعر"
-                id='about'
-              />
-              <Tab
-                id='poets-btn'
-                disableRipple
-                disableFocusRipple
-                icon={<div className={styles.iconWrapper}>
-                  <Feather />
-                </div>} label="أبيات ذكرت فيها المملكة" />
 
-            </Tabs>
-          </Paper> 
-          */}
 
         <div className={styles.navigation}>
           <ul>
@@ -257,7 +227,9 @@ export default function Poet() {
                           <Typography >الاسم </Typography>
                         </div>
                         <div className={styles.name}>
-                          <Typography>ميمون بن قيس </Typography>
+                          <Typography>
+                            {dataPoet.fullName}
+                          </Typography>
                         </div>
                       </div>
                       <div className={styles.box}>
@@ -265,7 +237,9 @@ export default function Poet() {
                           <Typography>اللقب</Typography>
                         </div>
                         <div className={styles.name}>
-                          <Typography>الأعشى</Typography>
+                          <Typography>
+                            {dataPoet.nickname}
+                          </Typography>
                         </div>
                       </div>
                       <div className={styles.box}>
@@ -273,7 +247,7 @@ export default function Poet() {
                           <Typography>سبب اللقب</Typography>
                         </div>
                         <div className={styles.name}>
-                          <Typography>لضعف بصره</Typography>
+                          <Typography>{dataPoet.nicknameReason}</Typography>
                         </div>
                       </div>
                       <div className={styles.box}>
@@ -331,7 +305,7 @@ export default function Poet() {
                   <div className={styles.sec_container}>
                     <div className={styles.desc}>
                       <Typography>
-                        ميمون بن قيس، من بني بكر، لُقِّب بالأعشى لضعف بصره، وُلِدَ في نجد بقرية المنفوحة في اليمامة، وعاش فيها، وكان كثير الوفود على ملوك العرب والفرس، وكثُرت في شعره الألفاظ الفارسية، كان من أغزر الشعراء شِعرًا، ولا يُعرف قبله من هو أكثر منه شِعرًا، ولا من تكسب بشعره قبله، يجيد جميع أنواع الشعر، اشتهر بغنائه لشعره، فسموه: صَنَّاجة العرب (والصناجة صفيحتان من النحاس يضرب بهما للطرب) ، أدرك الإسلام ولم يدخل فيه، فقد خرج يريد مدح النبي صلى الله عليه وسلم فاعترضه بعض المشركين وحذروه من أن رسول الله يمنع الخمر وأعطوه مائة ناقة ليرجع فقال أرجع وأرتوي سنة من الخمر ثم أعود فأسلم فمات في تلك السنة، عاش طويلًا، وأصيب بالعمى في آخر حياته، ومات في المنفوحة سنة 7ه/629م.
+                        {dataPoet.description}
                       </Typography>
                     </div>
                   </div>
@@ -345,7 +319,7 @@ export default function Poet() {
                   <div className={styles.sec_container}>
                     <div className={styles.desc}>
                       <Typography>
-                        غناء الشعر ، ووفوده على ملوك العرب والفرس والتكسب بشعره – استخدام الألفاظ الفارسية في شعره
+                        {dataPoet.specialist}
                       </Typography>
                     </div>
                   </div>
@@ -359,7 +333,7 @@ export default function Poet() {
                   <div className={styles.sec_container}>
                     <div className={styles.desc}>
                       <Typography>
-                        خرج يريد مدح النبي صلى الله عليه وسلم فاعترضه بعض المشركين وحذروه من أن رسول الله يمنع الخمر وأعطوه مائة ناقة ليرجع فقال أرجع وأرتوي سنة من الخمر ثم أعود فأسلم فمات في تلك السنة.
+                        {dataPoet.storySayEvent}
                       </Typography>
                     </div>
                   </div>
@@ -429,7 +403,7 @@ export default function Poet() {
 
                     </div>
                     <div className="slider">
-                      <SliderVerses />
+                      <SliderVerses dataPoetry={dataPoetry} />
                     </div>
                   </div>
                 </section>
@@ -445,4 +419,27 @@ export default function Poet() {
     </>
 
   );
+}
+
+
+export async function getServerSideProps(context) {
+  const { id } = context.query;
+
+
+
+  const resPoet = await fetch(`https://api4z.suwa.io/api/Poets/GetPoetFullData?id=${id}&lang=2  `);
+  const dataPoet = await resPoet.json();
+
+
+  const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${id}&lang=2&pagenum=1&pagesize=50  `);
+  const dataPoetry = await resPoetry.json();
+
+
+
+  return {
+    props: {
+      dataPoet,
+      dataPoetry
+    },
+  };
 }
