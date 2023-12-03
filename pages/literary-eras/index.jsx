@@ -101,11 +101,11 @@ const LiteraryEras = () => {
           dir="rtl"
           breakpoints={{
             300: {
-              slidesPerView: 1.5,
+              slidesPerView: 1.3,
               spaceBetween: 24,
             },
             400: {
-              slidesPerView: 1.5,
+              slidesPerView: 1.3,
               spaceBetween: 24,
             },
             640: {

@@ -194,9 +194,6 @@ export default function Poet() {
                 </div>} label="عن الشاعر"
                 id='about'
               />
-
-
-
               <Tab
                 id='poets-btn'
                 disableRipple
@@ -206,10 +203,8 @@ export default function Poet() {
                 </div>} label="أبيات ذكرت فيها المملكة" />
 
             </Tabs>
-
-
-
-          </Paper> */}
+          </Paper> 
+          */}
 
         <div className={styles.navigation}>
           <ul>
