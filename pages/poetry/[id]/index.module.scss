@@ -176,6 +176,8 @@ section.poetry_page {
       display: flex;
       align-items: center;
       margin-top: 18px;
+      color: var(--main-blue-color);
+      text-decoration: none;
       @media screen and (max-width: 450px) {
         margin-right: 8px;
       }
@@ -323,6 +325,7 @@ section.poetry_page {
           h3 {
             font-size: 16px !important;
             font-weight: 700;
+            color: var(--main-blue-color);
           }
         }
         .info_sec {

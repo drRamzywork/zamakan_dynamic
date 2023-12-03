@@ -1,7 +1,7 @@
 import { Container, Typography, } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './index.module.scss'
-import imgs from '../../assets/constants/imgs'
+import imgs from '../../../assets/constants/imgs'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
@@ -9,6 +9,7 @@ import Svg from '@/components/SVGParts/Svg';
 import Link from 'next/link'
 import { Button } from '@mui/base'
 import { PageHeader } from '@/components/PlacesComponents'
+import { useRouter } from 'next/router';
 
 
 
@@ -26,6 +27,13 @@ const Places = ({ dataAllCitiesMap,
     mapPiece7,
 
   } = imgs
+  const router = useRouter();
+  const [cityId, setCityId] = useState(null);
+  useEffect(() => {
+    const placeID = Number(router.query.id);
+    const filtredCities = dataAllCitiesMap.filter((place) => (place.id === placeID))
+    setCityId(filtredCities)
+  }, [router]);
 
 
   const landData = [
@@ -123,19 +131,8 @@ const Places = ({ dataAllCitiesMap,
   const resetTransformRef = useRef(null);
 
 
-  const filterPlaces = async () => {
-    const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=13&lang=2&withPlaces=true&pagenum=1&pagesize=50  `);
-    const dataAllCitiesMap = await resAllCitiesMap.json();
-
-
-    const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=13&lang=2&pagenum=1&pagesize=50`);
-    const dataAllPlacesMap = await resAllPlacesMap.json();
-
-  }
-  useEffect(() => {
-
-
-  }, [])
+  console.log(dataAllCitiesMap, 'DATA')
+  console.log(dataAllPlacesMap, 'BATA')
   return (
 
     <>
@@ -197,14 +194,16 @@ const Places = ({ dataAllCitiesMap,
                 </SwiperSlide>
                 {dataAllCitiesMap.map((city, index) =>
                   <SwiperSlide key={index}>
-                    <div className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
+                    <Link
+                      scroll={false}
+                      href={`/places/${city.id}`} className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       <div className={styles.img_container}>
                         <img src={landData[index]?.image.src} alt='المملكة' />
                       </div>
                       <div className={styles.name}>
                         <Typography>{city.name}</Typography>
                       </div>
-                    </div>
+                    </Link>
 
                   </SwiperSlide >
                 )}
@@ -213,8 +212,6 @@ const Places = ({ dataAllCitiesMap,
             </div>
             <div className={styles.map_container}>
               <div className={styles.map} dir='ltr'>
-
-
                 <TransformWrapper
                   ref={transformComponentRef}
                   wheel={{ wheelDisabled: true }}
@@ -254,14 +251,14 @@ const Places = ({ dataAllCitiesMap,
               <div className={styles.text_container}>
                 <div className={styles.sec_title}>
                   <Typography variant='h3'>
-                    أبرز ما قيل في {activeIndex !== null && dataAllCitiesMap[activeIndex]?.name}  {activeIndex === null && "المملكة"}
+                    أبرز ما قيل في   {cityId === null ? "المملكة" : cityId[0].name}
                   </Typography>
                 </div>
 
                 <div className={styles.sec_info}>
                   <div className={styles.inner_info}>
                     <div className={styles.tag}>
-                      <Typography>{activeIndex !== null && dataAllCitiesMap[activeIndex]?.name}  {activeIndex === null && "المملكة"}</Typography>
+                      <Typography>  {cityId === null ? "المملكة" : cityId[0].name}</Typography>
                     </div>
                     <div className={styles.desc}>
                       <Typography>
@@ -300,59 +297,21 @@ const Places = ({ dataAllCitiesMap,
 
                   <div className={styles.sec_title}>
                     <Typography variant='h3'>
-                      مناطق {activeIndex !== null && dataAllCitiesMap[activeIndex]?.name}  {activeIndex === null && "المملكة"}
+                      مناطق  {cityId === null ? "المملكة" : cityId[0].name}
                     </Typography>
                   </div>
 
                   <div className={styles.tags_container}>
-                    {dataAllCitiesMap.map((city, idx) => (
-                      city.places.map((place, index) => (
-                        <Button key={index}>
-                          {console.log(city)}
-                          <Link href='/city'>
-                            {place.name}
-                          </Link>
-                        </Button>
-
-                      ))
+                    {dataAllPlacesMap.map((city, idx) => (
+                      <Button key={idx}>
+                        <Link href={`/city/${city.id}`}>
+                          {city.name}
+                        </Link>
+                      </Button>
 
                     ))}
 
-                    <Button >
-                      <Link href='/city'>
-                        حومل
-                      </Link>
-                    </Button>
 
-                    <Button >
-                      <Link href='/city'>
-                        وجرة
-                      </Link>
-                    </Button>
-
-                    <Button >
-                      <Link href='/city'>
-                        سقط اللوى
-                      </Link>
-                    </Button>
-
-                    <Button >
-                      <Link href='/city'>
-                        الصفاح
-                      </Link>
-                    </Button>
-
-                    <Button >
-                      <Link href='/city'>
-                        فيد
-                      </Link>
-                    </Button>
-
-                    <Button >
-                      <Link href='/city'>
-                        العذيب
-                      </Link>
-                    </Button>
                   </div>
                 </div>
 
@@ -372,12 +331,13 @@ export default Places
 
 
 export async function getServerSideProps(context) {
+  const { id } = context.query;
 
   const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=13&lang=2&withPlaces=true&pagenum=1&pagesize=50  `);
   const dataAllCitiesMap = await resAllCitiesMap.json();
 
 
-  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=13&lang=2&pagenum=1&pagesize=50`);
+  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?city=${id}&type=13&lang=2&pagenum=1&pagesize=50  `);
   const dataAllPlacesMap = await resAllPlacesMap.json();
 
 

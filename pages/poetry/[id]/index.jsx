@@ -15,10 +15,12 @@ import {
   Location
 } from '@/assets/svgsComponents';
 import Slider from '@/components/PoetryPageComponents/Slider'
-const Poetry = () => {
+const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
   const { ra3y, Feather_big, place } = imgs;
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+
+  console.log(dataPoetry, "additionalDataadditionalData")
   return (
     <>
       <section id={'poetry_page'} className={styles.poetry_page} dir='rtl'>
@@ -105,24 +107,24 @@ const Poetry = () => {
               </Box>
             </div>
             <hr />
-            <div className={styles.poet_info}>
+            <Link href={`/poet/${dataPoetry.poetId}`} className={styles.poet_info}>
               <div className={styles.img_container}>
                 <img src={ra3y.src} alt="" />
               </div>
               <div className={styles.text_container}>
                 <div className={styles.name}>
                   <Typography>
-                    كثير عزة
+                    {dataPoetry.poetName}
                   </Typography>
 
                 </div>
-                <Link href='/poet' >
-                  <div className={styles.tag}>
-                    <Typography>العصر الأموي</Typography>
-                  </div>
-                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    {dataPoetry.zamanName}
+                  </Typography>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
 
           <div className={styles.info_container}>
@@ -141,23 +143,23 @@ const Poetry = () => {
                         <Typography >العصر الأدبي </Typography>
                       </div>
                       <div className={styles.name}>
-                        <Typography>العصر الأموي</Typography>
+                        <Typography>{dataPoetry.zamanName}</Typography>
                       </div>
                     </div>
-                    <div className={styles.box}>
+                    {/* <div className={styles.box}>
                       <div className={styles.title}>
                         <Typography>مطلع القصيدة</Typography>
                       </div>
                       <div className={styles.name}>
                         <Typography>شكيسنتبا</Typography>
                       </div>
-                    </div>
+                    </div> */}
                     <div className={styles.box}>
                       <div className={styles.title}>
                         <Typography>المكان المذكور ببيت الشعر</Typography>
                       </div>
                       <div className={styles.name}>
-                        <Typography>بنبان</Typography>
+                        <Typography>{dataPoetry.placeName}</Typography>
                       </div>
                     </div>
                   </div>
@@ -172,7 +174,7 @@ const Poetry = () => {
                 <div className={styles.sec_container}>
                   <div className={styles.desc}>
                     <Typography>
-                      ينحدر بنبان نحو الشرق حيث يصب سيله في الروضة المسماة باسمه «روضة بنبان»، وإذا فاض ماء الروضة انحدر جنوباً نحو روضة العقلة، ثم روضة المونسية، ثم روضة الجنادرية التي ينحدر إليها أيضاً واديان صغيران هما: «أبا الجرفان» وأبا الهليم، وهما وسط منطقة المطار الآن
+                      {dataPoetry.meaning}
                     </Typography>
                   </div>
                 </div>
@@ -186,7 +188,8 @@ const Poetry = () => {
                 <div className={styles.sec_container}>
                   <div className={styles.desc}>
                     <Typography>
-                      ينحدر بنبان نحو الشرق حيث يصب سيله في الروضة المسماة باسمه «روضة بنبان»، وإذا فاض ماء الروضة انحدر جنوباً نحو روضة العقلة، ثم روضة المونسية، ثم روضة الجنادرية التي ينحدر إليها أيضاً واديان صغيران هما: «أبا الجرفان» وأبا الهليم، وهما وسط منطقة المطار الآن                    </Typography>
+                      {dataPoetry.reason}
+                    </Typography>
                   </div>
                 </div>
               </section>
@@ -198,10 +201,16 @@ const Poetry = () => {
             <div className={styles.place_info}>
               <div className={styles.container}>
                 <div className={styles.sec_title}>
-                  <Typography variant='h3'>بنبان</Typography>
+                  <Typography variant='h3'>
+                    {dataPoetry.placeName}
+                  </Typography>
                 </div>
                 <div className={styles.desc}>
-                  <Typography>تعد قرية بنبان المفضلة لسكان العاصمة للتوجه والتنزه بها كونها تضم مزارع قديمة وشعيباً يحمل اسم القرية يشتهر بجريانه عند نزول الأمطار.</Typography>
+                  <Typography>
+
+                    {dataPlace?.descriptionShort}
+
+                  </Typography>
                 </div>
                 <ul className={styles.list_container}>
                   <li>
@@ -213,7 +222,7 @@ const Poetry = () => {
                         <Typography>اسم المنطقة الحالي</Typography>
                       </div>
                       <div className={styles.answer}>
-                        <Typography>حي بنبان</Typography>
+                        <Typography>{dataPlace?.name}</Typography>
                       </div>
                     </div>
                   </li>
@@ -226,7 +235,7 @@ const Poetry = () => {
                         <Typography>اسم المنطقة سابقًا</Typography>
                       </div>
                       <div className={styles.answer}>
-                        <Typography>قرية بنبان القديمة</Typography>
+                        <Typography>{dataPlace?.otherNames}</Typography>
                       </div>
                     </div>
                   </li>
@@ -239,7 +248,7 @@ const Poetry = () => {
                         <Typography>وصف المنطقة</Typography>
                       </div>
                       <div className={styles.answer}>
-                        <Typography>تعتبر أحدث أحياء العاصمة، حيث تشتهر بمظهرها الصحراوي الجذاب، إذ تعد وجهة سياحية جديدة، بضمها 11 فندقًا، ومن أهم مناطقها، متنزه الأمير سلمان البري.</Typography>
+                        <Typography>{dataPlace?.description}</Typography>
                       </div>
                     </div>
                   </li>
@@ -252,7 +261,7 @@ const Poetry = () => {
                         <Typography>الموقع</Typography>
                       </div>
                       <div className={styles.answer}>
-                        <Typography>تبعد عن الرياض نحو 25 كيلومترًا شمالًا</Typography>
+                        <Typography>{dataPlace?.site}</Typography>
                       </div>
                     </div>
                   </li>
@@ -276,7 +285,7 @@ const Poetry = () => {
         </Container>
       </section >
 
-      <Slider />
+      <Slider additionalData={additionalData} />
 
     </>
 
@@ -287,15 +296,80 @@ export default Poetry
 
 // export async function getServerSideProps(context) {
 //   const { id } = context.query;
-
 //   const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetPoetryFullData?id=${id}&lang=2`);
 //   const dataPoetry = await resPoetry.json();
+
+//   const placeId = dataPoetry.placeId;
+
+//   // Check if placeId is available
+//   let dataPlace = null;
+//   if (placeId) {
+//     // Second API request using placeId
+//     const resPlace = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan= ${placeId}&lang=2`);
+//     dataPlace = await resPlace.json();
+
+
+//   }
+
+
+
+
 
 
 
 //   return {
 //     props: {
-//       dataPoetry
+//       dataPoetry,
+//       dataPlace,
+//       // dataPoets
 //     },
 //   };
 // }
+
+export async function getServerSideProps(context) {
+  const { id } = context.query;
+
+  try {
+    // Fetch data from the poetry API
+    const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetPoetryFullData?id=${id}&lang=2`);
+    if (!resPoetry.ok) {
+      throw new Error(`Error fetching poetry data: ${resPoetry.status}`);
+    }
+    const dataPoetry = await resPoetry.json();
+
+    let dataPlace = null;
+    let additionalData = null;  // Initialize additional data
+
+    // Check if placeId is available
+    if (dataPoetry.placeId) {
+      // Second API request using placeId
+      const resPlace = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${dataPoetry.placeId}&lang=2`);
+      if (!resPlace.ok) {
+        throw new Error(`Error fetching place data: ${resPlace.status}`);
+      }
+      dataPlace = await resPlace.json();
+
+      // Third API request using placeId
+      const resAdditional = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${dataPoetry.placeId}&lang=2&pagenum=1&pagesize=50`);
+      if (!resAdditional.ok) {
+        throw new Error(`Error fetching additional data: ${resAdditional.status}`);
+      }
+      additionalData = await resAdditional.json();
+    }
+
+    return {
+      props: {
+        dataPoetry,
+        dataPlace,
+        additionalData,  // Add this to props
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: {
+        error: error.message,
+      },
+    };
+  }
+}

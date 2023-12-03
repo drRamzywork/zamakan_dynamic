@@ -255,7 +255,7 @@ export default function Poet({ dataPoet, dataPoetry }) {
                           <Typography>تاريخ الميلاد</Typography>
                         </div>
                         <div className={styles.name}>
-                          <Typography>23 هـجريًا - 644 ميلاديًا</Typography>
+                          <Typography>{dataPoet.fromM} هـجريًا - {dataPoet.fromH} ميلاديًا</Typography>
                         </div>
                       </div>
                       <div className={styles.box}>
@@ -271,8 +271,9 @@ export default function Poet({ dataPoet, dataPoetry }) {
                         <div className={styles.title}>
                           <Typography>تاريخ الوفاة</Typography>
                         </div>
+                        {console.log(dataPoet, "dataPoet")}
                         <div className={styles.name}>
-                          <Typography>105 هـجريًا - 723 ميلاديًا</Typography>
+                          <Typography>{dataPoet.toM} هـجريًا - {dataPoet.toH} ميلاديًا</Typography>
                         </div>
                       </div>
 

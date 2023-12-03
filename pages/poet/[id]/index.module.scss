@@ -39,16 +39,16 @@
           align-items: center;
           justify-content: center;
 
-          &:not(:-child):after {
-            content: "";
+          &:not(:last-child):after {
             position: absolute;
+            content: "";
+            width: 1px;
+            height: 12px;
             top: 50%;
             left: 0;
             transform: translate(0, -50%);
             z-index: 22222;
             background-color: var(--main-white-color);
-            width: 1px;
-            height: 12px;
           }
 
           &:first-child {
