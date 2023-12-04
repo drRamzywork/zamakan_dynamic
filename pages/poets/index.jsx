@@ -1,19 +1,42 @@
 import { Container, FormControl, MenuItem, Select, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './index.module.scss'
 import { styled } from '@mui/system';
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import SliderVerses from '../../components/PoetDetails/SliderVerses'
 import { Search } from '@/assets/svgsComponents';
+import { useRouter } from 'next/router';
 
-const Poets = () => {
-  const [age, setAge] = useState('all_ages');
+const Poets = ({ erasAllEras, dataDefault }) => {
+  const [age, setAge] = useState(0);
   const [city, setCity] = useState('all_cities');
+  const [filtredPoets, setFiltredPoets] = useState(dataDefault);
 
-  const handleChange = (event) => {
-    // setAge(event.target.value);
-    // setCity(event.target.value)
+  const router = useRouter();
+  console.log(filtredPoets)
+  const handleChange = async (event) => {
+    const selectedValue = event.target.value;
+
+    const res = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?${selectedValue !== 0 ? `era=${selectedValue}` : ''}&lang=2&pagenum=1&pagesize=50`);
+
+    const filteredData = await res.json();
+
+    setAge(selectedValue);
+    setFiltredPoets(filteredData)
+    router.push(`/poets?place=${selectedValue}`, undefined, { shallow: true });
   };
+
+  const defaultValues = async () => {
+    const res = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?lang=2&pagenum=1&pagesize=50`);
+    const filteredData = await res.json();
+    setFiltredPoets(filteredData)
+  }
+
+  useEffect(() => {
+    defaultValues()
+  }, [])
+
+
   const selectBoxStyles = {
     m: 1,
     display: 'flex',
@@ -126,65 +149,19 @@ const Poets = () => {
                       <Select
                         labelId="demo-select-small-label"
                         id="demo-select-small"
-                        value={age}
-                        defaultValue='كل العصور'
-                        sx={{
-                          m: 1,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'flex-end',
-                          alignItems: 'flex-start',
-                          padding: '10px 16px',
-                          width: '199px',
-                          height: '47px',
-                          borderRadius: '30px',
-                          marginRight: 0,
-                          '@media (max-width: 600px)': {
-                            width: '140px',
-                            marginTop: 0,
-                            padding: '10px',
-                            paddingRight: '26px',
-                          },
-                          '@media (max-width: 450px)': {
-                            width: '100%',
-                          },
-                          '& .MuiOutlinedInput-notchedOutline': {
-                            '&.Mui-focused': { borderColor: '#E5E6F2' },
-                            '&:hover': { borderColor: '#E5E6F2' },
-                          },
-                          '.MuiSelect-select': {
-                            display: 'flex',
-                            flexDirection: 'row-reverse',
-                            justifyContent: 'flex-end',
-                            alignItems: 'center',
-                            padding: 0,
-                            width: '167px',
-                            height: '27px',
-                            paddingRight: 0,
-                            outline: 'none',
-                          },
-                          '#demo-select-small': {
-                            color: 'var(--main-blue-color)',
-                            fontFamily: 'var(--effra-font)',
-                            fontStyle: 'normal',
-                            fontWeight: 400,
-                            fontSize: '14px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            textAlign: 'right',
-                          },
-                        }}
+                        value={age}  // Use the 'value' prop instead of 'defaultValue'
+                        sx={selectBoxStyles}
                         onChange={handleChange}
                         IconComponent={CustomArrowIcon}
-
                       >
-                        <MenuItem value="all_ages">كل العصور</MenuItem>
-                        <MenuItem value={10}>كل العصور</MenuItem>
-                        <MenuItem value={20}>كل العصور</MenuItem>
-                        <MenuItem value={30}>كل العصور</MenuItem>
+                        <MenuItem value={0}>كل العصور</MenuItem>
+                        {erasAllEras.map((era, index) => (
+                          <MenuItem key={era.id} value={era.id}>
+                            {era.name}
+                          </MenuItem>
+                        ))}
                       </Select>
                     </FormControl>
-
 
                   </div>
 
@@ -192,7 +169,7 @@ const Poets = () => {
 
               </div>
               <div className="slider">
-                <SliderVerses />
+                <SliderVerses filtredPoets={filtredPoets} />
               </div>
             </div>
           </section>
@@ -207,3 +184,19 @@ const Poets = () => {
 }
 
 export default Poets
+export async function getServerSideProps() {
+  const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
+  const erasAllEras = await resAllEras.json();
+
+  const resDefault = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?lang=2&pagenum=1&pagesize=50`);
+  const dataDefault = await resDefault.json();
+
+
+  return {
+    props: {
+      erasAllEras,
+      dataDefault
+    },
+  };
+}
+

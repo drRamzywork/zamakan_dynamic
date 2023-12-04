@@ -1,5 +1,8 @@
-.swiper_container {
+.sliderContainer {
   margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 
   .box {
     width: 568px;
@@ -112,9 +115,47 @@
   }
 }
 
-.pagination_arrows {
+.paginationBox {
   display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: center;
+
+  .paginationContainer {
+    display: flex;
+    align-items: flex-start;
+
+    button,
+    .arrow_btn {
+      background: rgba(55, 45, 64, 1);
+      color: #ffffff;
+      text-align: center;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      transition: all 0.3s ease-in-out;
+      font-family: var(--effra-font);
+      cursor: pointer;
+      border: none;
+      padding-top: 4px;
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+
+      &:last-child {
+        margin-right: 10px;
+      }
+
+      &:hover {
+        background: #e6ddc6;
+        color: black;
+      }
+    }
+    button.active {
+      background-color: rgba(230, 221, 198, 1);
+      color: rgba(55, 45, 64, 1);
+    }
+    .arrow_btn:disabled {
+      opacity: 0.5;
+    }
+  }
 }

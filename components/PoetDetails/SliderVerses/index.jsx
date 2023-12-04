@@ -1,5 +1,5 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Grid } from 'swiper/modules';
 
@@ -15,16 +15,29 @@ import { Box, Button, Typography } from '@mui/material';
 import Link from 'next/link'
 import { imgs } from '@/assets/constants';
 
-export default function SliderVerses() {
+const ITEMS_PER_PAGE = 10;
+import { motion } from 'framer-motion'
+export default function SliderVerses({ filtredPoets }) {
   const { ra3y1 } = imgs;
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
+  const [currentPage, setCurrentPage] = useState(0);
+  const totalPages = Math.ceil(filtredPoets.length / ITEMS_PER_PAGE);
 
+  console.log(currentPage, "currentPage")
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+  const poetsToShow = filtredPoets.slice(
+    currentPage * ITEMS_PER_PAGE,
+    (currentPage + 1) * ITEMS_PER_PAGE
+  );
+  // console.log(, "filtredPoets Count")
   return (
     <>
 
-      <Swiper
+      {/* <Swiper
         modules={[Navigation, Pagination, Grid]}
         navigation={{
           prevEl: prevRef.current,
@@ -98,382 +111,49 @@ export default function SliderVerses() {
 
           </div>
         </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.poet_info}>
-              <div className={styles.img_container}>
-                <img src={ra3y1.src} alt="" />
-              </div>
 
-              <div className={styles.text_container}>
-                <Link href='/poet' className={styles.name}>
-                  <Typography>الراعي</Typography>
-                  <div className={styles.date}>
-                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+        {Array.isArray(filtredPoets) ? (
+          filtredPoets.map((poet) => (
+            <SwiperSlide key={poet.id}>
+              <div className={styles.box}>
+                <div className={styles.poet_info}>
+                  <div className={styles.img_container}>
+                    <img src={ra3y1.src} alt="" />
                   </div>
-                </Link>
-                <div className={styles.tag}>
-                  <Typography>
-                    العصر الأموي
-                  </Typography>
 
-                </div>
-              </div>
-            </div>
+                  <div className={styles.text_container}>
+                    <Link href={`/poet/${poet.placeId}`} className={styles.name}>
+                      <Typography>{poet.poetName}</Typography>
+                      <div className={styles.date}>
+                        <Typography>{poet.fromH} هـ - {poet.toH} هـ</Typography>
+                      </div>
+                    </Link>
+                    <div className={styles.tag}>
+                      <Typography>
+                        {poet.zamanName}
+                      </Typography>
 
-            <hr />
-
-            <div className={styles.desc}>
-              <Typography>
-                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
-              </Typography>
-            </div>
-
-
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.poet_info}>
-              <div className={styles.img_container}>
-                <img src={ra3y1.src} alt="" />
-              </div>
-
-              <div className={styles.text_container}>
-                <Link href='/poet' className={styles.name}>
-                  <Typography>الراعي</Typography>
-                  <div className={styles.date}>
-                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
+                    </div>
                   </div>
-                </Link>
-                <div className={styles.tag}>
-                  <Typography>
-                    العصر الأموي
-                  </Typography>
-
                 </div>
-              </div>
-            </div>
 
-            <hr />
+                <hr />
 
-            <div className={styles.desc}>
-              <Typography>
-                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
-              </Typography>
-            </div>
-
-
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.poet_info}>
-              <div className={styles.img_container}>
-                <img src={ra3y1.src} alt="" />
-              </div>
-
-              <div className={styles.text_container}>
-                <Link href='/poet' className={styles.name}>
-                  <Typography>الراعي</Typography>
-                  <div className={styles.date}>
-                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
-                  </div>
-                </Link>
-                <div className={styles.tag}>
+                <div className={styles.desc}>
                   <Typography>
-                    العصر الأموي
+                    {poet.entrance}
                   </Typography>
-
                 </div>
+
+
               </div>
-            </div>
+            </SwiperSlide>
+          ))
+        ) : (
+          <div style={{ textAlign: 'center' }} dir='ltr'>Loading...</div>
+        )}
 
-            <hr />
-
-            <div className={styles.desc}>
-              <Typography>
-                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
-              </Typography>
-            </div>
-
-
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.poet_info}>
-              <div className={styles.img_container}>
-                <img src={ra3y1.src} alt="" />
-              </div>
-
-              <div className={styles.text_container}>
-                <Link href='/poet' className={styles.name}>
-                  <Typography>الراعي</Typography>
-                  <div className={styles.date}>
-                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
-                  </div>
-                </Link>
-                <div className={styles.tag}>
-                  <Typography>
-                    العصر الأموي
-                  </Typography>
-
-                </div>
-              </div>
-            </div>
-
-            <hr />
-
-            <div className={styles.desc}>
-              <Typography>
-                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
-              </Typography>
-            </div>
-
-
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.poet_info}>
-              <div className={styles.img_container}>
-                <img src={ra3y1.src} alt="" />
-              </div>
-
-              <div className={styles.text_container}>
-                <Link href='/poet' className={styles.name}>
-                  <Typography>الراعي</Typography>
-                  <div className={styles.date}>
-                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
-                  </div>
-                </Link>
-                <div className={styles.tag}>
-                  <Typography>
-                    العصر الأموي
-                  </Typography>
-
-                </div>
-              </div>
-            </div>
-
-            <hr />
-
-            <div className={styles.desc}>
-              <Typography>
-                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
-              </Typography>
-            </div>
-
-
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.poet_info}>
-              <div className={styles.img_container}>
-                <img src={ra3y1.src} alt="" />
-              </div>
-
-              <div className={styles.text_container}>
-                <Link href='/poet' className={styles.name}>
-                  <Typography>الراعي</Typography>
-                  <div className={styles.date}>
-                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
-                  </div>
-                </Link>
-                <div className={styles.tag}>
-                  <Typography>
-                    العصر الأموي
-                  </Typography>
-
-                </div>
-              </div>
-            </div>
-
-            <hr />
-
-            <div className={styles.desc}>
-              <Typography>
-                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
-              </Typography>
-            </div>
-
-
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.poet_info}>
-              <div className={styles.img_container}>
-                <img src={ra3y1.src} alt="" />
-              </div>
-
-              <div className={styles.text_container}>
-                <Link href='/poet' className={styles.name}>
-                  <Typography>الراعي</Typography>
-                  <div className={styles.date}>
-                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
-                  </div>
-                </Link>
-                <div className={styles.tag}>
-                  <Typography>
-                    العصر الأموي
-                  </Typography>
-
-                </div>
-              </div>
-            </div>
-
-            <hr />
-
-            <div className={styles.desc}>
-              <Typography>
-                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
-              </Typography>
-            </div>
-
-
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.poet_info}>
-              <div className={styles.img_container}>
-                <img src={ra3y1.src} alt="" />
-              </div>
-
-              <div className={styles.text_container}>
-                <Link href='/poet' className={styles.name}>
-                  <Typography>الراعي</Typography>
-                  <div className={styles.date}>
-                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
-                  </div>
-                </Link>
-                <div className={styles.tag}>
-                  <Typography>
-                    العصر الأموي
-                  </Typography>
-
-                </div>
-              </div>
-            </div>
-
-            <hr />
-
-            <div className={styles.desc}>
-              <Typography>
-                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
-              </Typography>
-            </div>
-
-
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.poet_info}>
-              <div className={styles.img_container}>
-                <img src={ra3y1.src} alt="" />
-              </div>
-
-              <div className={styles.text_container}>
-                <Link href='/poet' className={styles.name}>
-                  <Typography>الراعي</Typography>
-                  <div className={styles.date}>
-                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
-                  </div>
-                </Link>
-                <div className={styles.tag}>
-                  <Typography>
-                    العصر الأموي
-                  </Typography>
-
-                </div>
-              </div>
-            </div>
-
-            <hr />
-
-            <div className={styles.desc}>
-              <Typography>
-                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
-              </Typography>
-            </div>
-
-
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.poet_info}>
-              <div className={styles.img_container}>
-                <img src={ra3y1.src} alt="" />
-              </div>
-
-              <div className={styles.text_container}>
-                <Link href='/poet' className={styles.name}>
-                  <Typography>الراعي</Typography>
-                  <div className={styles.date}>
-                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
-                  </div>
-                </Link>
-                <div className={styles.tag}>
-                  <Typography>
-                    العصر الأموي
-                  </Typography>
-
-                </div>
-              </div>
-            </div>
-
-            <hr />
-
-            <div className={styles.desc}>
-              <Typography>
-                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
-              </Typography>
-            </div>
-
-
-          </div>
-        </SwiperSlide>
-        <SwiperSlide >
-          <div className={styles.box}>
-            <div className={styles.poet_info}>
-              <div className={styles.img_container}>
-                <img src={ra3y1.src} alt="" />
-              </div>
-
-              <div className={styles.text_container}>
-                <Link href='/poet' className={styles.name}>
-                  <Typography>الراعي</Typography>
-                  <div className={styles.date}>
-                    <Typography>٢٣ هـ - ١٠٥ هـ</Typography>
-                  </div>
-                </Link>
-                <div className={styles.tag}>
-                  <Typography>
-                    العصر الأموي
-                  </Typography>
-
-                </div>
-              </div>
-            </div>
-
-            <hr />
-
-            <div className={styles.desc}>
-              <Typography>
-                شاعرٌ عربي متيم من أهل المدينة المنورة وشعراء الدولة الأموية، اشتهر بعشقه عزة بنت جميل بن حفص بن إياس الغفارية الكنانية.
-              </Typography>
-            </div>
-
-
-          </div>
-        </SwiperSlide>
-
-      </Swiper>
+      </Swiper> */}
       {/* <div className={styles.pagination_arrows}>
         <Box ref={nextRef} className={styles.swiperButtonPrev} id='swiperButton'>
           <HiArrowLeft />
@@ -482,6 +162,82 @@ export default function SliderVerses() {
           <HiArrowRight />
         </Box>
       </div> */}
+
+
+      <div className={styles.sliderContainer}>
+        {poetsToShow.map((poet) => (
+          <motion.div
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }}
+            className={styles.box}>
+            <div className={styles.poet_info}>
+              <div className={styles.img_container}>
+                <img src={ra3y1.src} alt="" />
+              </div>
+
+              <div className={styles.text_container}>
+                <Link href={`/poet/${poet.placeId}`} className={styles.name}>
+                  <Typography>{poet.poetName}</Typography>
+                  <div className={styles.date}>
+                    <Typography>{poet.fromH} هـ - {poet.toH} هـ</Typography>
+                  </div>
+                </Link>
+                <div className={styles.tag}>
+                  <Typography>
+                    {poet.zamanName}
+                  </Typography>
+
+                </div>
+              </div>
+            </div>
+
+            <hr />
+
+            <div className={styles.desc}>
+              <Typography>
+                {poet.entrance}
+              </Typography>
+            </div>
+
+
+          </motion.div>
+        ))}
+      </div>
+
+      {filtredPoets.length !== 0
+        &&
+        <div className={styles.paginationBox}>
+
+          <div className={styles.paginationContainer}>
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 0}
+              className={styles.arrow_btn}
+            >
+              <HiArrowRight />
+            </button>
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index}
+                className={index === currentPage ? styles.active : ''}
+                onClick={() => handlePageChange(index)}
+              >
+                {index + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages - 1}
+              className={styles.arrow_btn}
+            >
+              <HiArrowLeft />
+
+            </button>
+          </div>
+        </div>
+      }
+
 
 
     </>
