@@ -12,7 +12,7 @@ import { HiArrowLeft } from "react-icons/hi2";
 import styles from './index.module.scss'; // Make sure this path is correct
 import { Box, Button, Typography } from '@mui/material';
 import Link from 'next/link'
-export default function SliderVerses({ dataPoetry }) {
+export default function SliderVerses({ dataPoetry, results }) {
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -61,7 +61,7 @@ export default function SliderVerses({ dataPoetry }) {
         dir='rtl'
       >
 
-        {dataPoetry.map((poetry, idx) => (
+        {results.map((poetry, idx) => (
           <SwiperSlide key={idx}>
             <div className={styles.box}>
               <div className={styles.tag}>

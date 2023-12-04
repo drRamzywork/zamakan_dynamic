@@ -8,23 +8,38 @@ import { styled } from '@mui/system';
 import { motion } from 'framer-motion'
 import { imgs } from '@/assets/constants';
 import SliderVerses from '@/components/PoetsDetailsComponents/SliderVerses';
+import { useRouter } from 'next/router';
 
-export default function Poet({ dataPoet, dataPoetry }) {
+export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
   const [selectedTab, setSelectedTab] = useState(0);
   const [activeIndex, setActiveIndex] = useState(1);
-
+  const router = useRouter();
+  console.log(router.query.id)
   const { ra3y, } = imgs;
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
   };
 
-  const [age, setAge] = useState('all_ages');
-  const [city, setCity] = useState('all_cities');
+  console.log(dataAllEras, "dataDefaultEr22a")
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-    setCity(event.target.value)
+  const [age, setAge] = useState(0);
+  const [city, setCity] = useState('all_cities');
+  const [results, setResults] = useState([]);
+
+  const handleChange = async (event) => {
+    const selectedValue = event.target.value;
+
+    const res = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?${selectedValue !== 0 ? `era=${selectedValue}` : ''}&lang=2&pagenum=1&pagesize=50`);
+    const res1 = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${router.query.id}&${selectedValue !== 0 ? `era=${selectedValue}` : ''}&lang=2&pagenum=1&pagesize=50 `);
+
+    const filteredData = await res1.json();
+
+    setAge(selectedValue);
+    setResults(filteredData)
+    router.push(`/poet/${router.query.id}?era=${selectedValue}`, undefined, { shallow: true });
   };
+
+  { console.log(results, "resultssss") }
 
   const selectBoxStyles = {
     m: 1,
@@ -93,30 +108,6 @@ export default function Poet({ dataPoet, dataPoetry }) {
     color: ' #11292F',
   });
 
-  // Animation
-  const variants = {
-    enter: {
-      opacity: 0,
-      x: 100,
-      transition: {
-        duration: 0.5,
-
-      }
-    },
-    center: {
-      zIndex: 1,
-      opacity: 1,
-      x: 0
-    },
-    exit: {
-      opacity: 0,
-      x: -50,
-      transition: {
-        duration: 0.5,
-
-      }
-    }
-  };
 
   useEffect(() => {
     const list = document.querySelectorAll("#list");
@@ -364,20 +355,19 @@ export default function Poet({ dataPoet, dataPoetry }) {
                         <div className={styles.box}>
                           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                             <Select
-
                               labelId="demo-select-small-label"
                               id="demo-select-small"
                               value={age}
-                              defaultValue='كل العصور'
                               sx={selectBoxStyles}
                               onChange={handleChange}
                               IconComponent={CustomArrowIcon}
-
                             >
-                              <MenuItem value="all_ages">كل العصور</MenuItem>
-                              <MenuItem value={10}>كل العصور</MenuItem>
-                              <MenuItem value={20}>كل العصور</MenuItem>
-                              <MenuItem value={30}>كل العصور</MenuItem>
+                              <MenuItem value={0}>كل العصور</MenuItem>
+                              {dataAllEras.map((era, index) => (
+                                <MenuItem key={era.id} value={era.id}>
+                                  {era.name}
+                                </MenuItem>
+                              ))}
                             </Select>
                           </FormControl>
                         </div>
@@ -404,7 +394,7 @@ export default function Poet({ dataPoet, dataPoetry }) {
 
                     </div>
                     <div className="slider">
-                      <SliderVerses dataPoetry={dataPoetry} />
+                      <SliderVerses dataPoetry={dataPoetry} results={results} />
                     </div>
                   </div>
                 </section>
@@ -412,7 +402,6 @@ export default function Poet({ dataPoet, dataPoetry }) {
 
             </div>
           )}
-
         </div>
 
 
@@ -425,21 +414,20 @@ export default function Poet({ dataPoet, dataPoetry }) {
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
-
-
   const resPoet = await fetch(`https://api4z.suwa.io/api/Poets/GetPoetFullData?id=${id}&lang=2  `);
   const dataPoet = await resPoet.json();
 
-
-  const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${id}&lang=2&pagenum=1&pagesize=50  `);
+  const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${id}&lang=2&pagenum=1&pagesize=50`);
   const dataPoetry = await resPoetry.json();
 
-
+  const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
+  const dataAllEras = await resAllEras.json();
 
   return {
     props: {
       dataPoet,
-      dataPoetry
+      dataPoetry,
+      dataAllEras
     },
   };
 }

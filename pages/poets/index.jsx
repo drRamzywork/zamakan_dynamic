@@ -6,18 +6,24 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import SliderVerses from '../../components/PoetDetails/SliderVerses'
 import { Search } from '@/assets/svgsComponents';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 const Poets = ({ erasAllEras, dataDefault }) => {
   const [age, setAge] = useState(0);
   const [city, setCity] = useState('all_cities');
   const [filtredPoets, setFiltredPoets] = useState(dataDefault);
 
+  const [searchString, setSearchString] = useState('');
+  const [poets, setPoets] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+
   const router = useRouter();
-  console.log(filtredPoets)
   const handleChange = async (event) => {
     const selectedValue = event.target.value;
 
-    const res = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?${selectedValue !== 0 ? `era=${selectedValue}` : ''}&lang=2&pagenum=1&pagesize=50`);
+    const res = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?${selectedValue !== 0 ? `era=${selectedValue}` : ''}&lang=2&pagenum=1&pagesize=50`);
 
     const filteredData = await res.json();
 
@@ -26,15 +32,29 @@ const Poets = ({ erasAllEras, dataDefault }) => {
     router.push(`/poets?place=${selectedValue}`, undefined, { shallow: true });
   };
 
-  const defaultValues = async () => {
-    const res = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?lang=2&pagenum=1&pagesize=50`);
-    const filteredData = await res.json();
-    setFiltredPoets(filteredData)
-  }
+  const handleSearch = async () => {
+    setIsLoading(true);
+    setError(null);
 
-  useEffect(() => {
-    defaultValues()
-  }, [])
+    try {
+      const response = await axios.get(
+        `https://api4z.suwa.io/api/Poets/GetAllPoets`,
+        {
+          params: {
+            searchString: searchString,
+            pagenum: 1,
+            pagesize: 50
+          }
+        }
+      );
+      setFiltredPoets(response.data);
+      setIsLoading(false);
+    } catch (error) {
+      setError(error);
+      setIsLoading(false);
+    }
+  };
+
 
 
   const selectBoxStyles = {
@@ -137,10 +157,18 @@ const Poets = ({ erasAllEras, dataDefault }) => {
                 <div className={styles.filter_methods}>
                   <div className={styles.box}>
                     <div className={styles.form_container}>
-                      <input type="text" placeholder='ابحث بإسم الشاعر..' />
-                      <div className={styles.icon_container}>
+                      <input
+                        type="text"
+                        placeholder='ابحث بإسم الشاعر..'
+                        value={searchString}
+                        onChange={(e) => setSearchString(e.target.value)}
+                        onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                      />
+                      <div className={styles.icon_container} onClick={handleSearch}>
                         <Search />
                       </div>
+                      {isLoading && <div>Loading...</div>}
+                      {error && <div>Error: {error.message}</div>}
                     </div>
 
                   </div>
@@ -188,7 +216,7 @@ export async function getServerSideProps() {
   const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
   const erasAllEras = await resAllEras.json();
 
-  const resDefault = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?lang=2&pagenum=1&pagesize=50`);
+  const resDefault = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?lang=2&pagenum=1&pagesize=50`);
   const dataDefault = await resDefault.json();
 
 

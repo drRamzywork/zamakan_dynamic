@@ -33,7 +33,7 @@ export default function SliderVerses({ filtredPoets }) {
     currentPage * ITEMS_PER_PAGE,
     (currentPage + 1) * ITEMS_PER_PAGE
   );
-  // console.log(, "filtredPoets Count")
+  console.log(filtredPoets, "filtredPoets Count")
   return (
     <>
 
@@ -173,12 +173,12 @@ export default function SliderVerses({ filtredPoets }) {
             className={styles.box}>
             <div className={styles.poet_info}>
               <div className={styles.img_container}>
-                <img src={ra3y1.src} alt="" />
+                <img src={poet.icon} alt="" />
               </div>
 
               <div className={styles.text_container}>
-                <Link href={`/poet/${poet.placeId}`} className={styles.name}>
-                  <Typography>{poet.poetName}</Typography>
+                <Link href={`https://zamakan.suwa.io${poet.icon}`} className={styles.name}>
+                  <Typography>{poet.name}</Typography>
                   <div className={styles.date}>
                     <Typography>{poet.fromH} هـ - {poet.toH} هـ</Typography>
                   </div>
@@ -196,7 +196,7 @@ export default function SliderVerses({ filtredPoets }) {
 
             <div className={styles.desc}>
               <Typography>
-                {poet.entrance}
+                {poet.descShort}
               </Typography>
             </div>
 
@@ -205,7 +205,7 @@ export default function SliderVerses({ filtredPoets }) {
         ))}
       </div>
 
-      {filtredPoets.length !== 0
+      {filtredPoets.length > 1
         &&
         <div className={styles.paginationBox}>
 

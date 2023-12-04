@@ -23,6 +23,7 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.5",
     "@next/font": "^14.0.1",
     "autoprefixer": "^10.4.16",
+    "axios": "^1.6.2",
     "disable-devtool": "^0.3.6",
     "framer-motion": "^10.16.4",
     "next": "14.0.1",

@@ -93,7 +93,7 @@ const LandingPage = () => {
         <div className={styles.boxes_container}>
           <Link href='/literary-eras' className={styles.box}>
             <div className={styles.icon_container}>
-              <SmallSaudiMap />
+              <Feather />
             </div>
             <div className={styles.title}>
               <Typography variant='h4'>
@@ -108,7 +108,8 @@ const LandingPage = () => {
           </Link>
           <Link href='/places' className={styles.box}>
             <div className={styles.icon_container}>
-              <Feather />
+              <SmallSaudiMap />
+
             </div>
             <div className={styles.title}>
               <Typography variant='h4'>

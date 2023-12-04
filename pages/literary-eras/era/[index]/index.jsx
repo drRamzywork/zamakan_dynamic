@@ -4,8 +4,6 @@ import Poets from '@/components/Poets'
 import { useRouter } from 'next/router';
 
 const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAllCitiesMap }) => {
-  const router = useRouter();
-  const { index } = router.query;
 
 
   return (
