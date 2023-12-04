@@ -23,7 +23,8 @@ section.LiteraryBanner {
   .sec_container {
     .sec_title {
       padding-top: 50px;
-      @media screen and (max-width: 450px) {
+
+      @media screen and (max-width: 992px) {
         padding-top: 16px;
       }
       h1 {
@@ -34,13 +35,17 @@ section.LiteraryBanner {
         letter-spacing: 0px;
         text-align: right;
         color: rgba(61, 85, 63, 1);
+        @media screen and (max-width: 992px) {
+          font-size: 48px;
+          line-height: 46px;
+        }
         @media screen and (max-width: 450px) {
           font-size: 38px;
           line-height: 46px;
         }
 
         br {
-          @media screen and (min-width: 450px) {
+          @media screen and (min-width: 992px) {
             display: none;
           }
         }
@@ -56,11 +61,11 @@ section.LiteraryBanner {
       border-radius: 50%;
       background-color: rgba(246, 244, 232, 1);
       z-index: -1;
-      @media screen and (min-width: 450px) {
+      @media screen and (min-width: 992px) {
         left: 197px;
       }
 
-      @media screen and (max-width: 450px) {
+      @media screen and (max-width: 992px) {
         right: 80px;
         top: 7px;
         width: 66.88px;
@@ -94,13 +99,14 @@ section.LiteraryBanner {
         object-fit: contain;
       }
 
-      @media screen and (min-width: 450px) {
+      @media screen and (min-width: 992px) {
         left: 0;
         top: 0;
       }
       @media screen and (max-width: 450px) {
         right: -44px;
         background-origin: 0;
+        top: 66px !important;
         img {
           // width: 205.61px;
           height: 222px;
@@ -133,7 +139,7 @@ section.LiteraryBanner {
     .mountains {
       left: 170px;
       top: 157px;
-      @media screen and (max-width: 450px) {
+      @media screen and (max-width: 992px) {
         left: -151px;
         top: 66px;
       }

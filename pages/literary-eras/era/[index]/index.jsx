@@ -1,7 +1,7 @@
+import React from 'react'
 import LiteraryBanner from '@/components/LiteraryBanner'
 import Poets from '@/components/Poets'
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react'
 
 const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAllCitiesMap }) => {
   const router = useRouter();
@@ -61,4 +61,5 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
 

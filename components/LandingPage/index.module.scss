@@ -37,9 +37,16 @@ section.landingPage {
       @media screen and (max-width: 450px) {
         padding-top: 50px;
       }
+      @media screen and (max-width: 992px) {
+        padding-top: 60x;
+      }
+
       img {
         @media screen and (max-width: 450px) {
-          width: 359px;
+          width: 359px !important;
+        }
+        @media screen and (max-width: 992px) {
+          width: 450px;
         }
       }
     }
@@ -70,14 +77,21 @@ section.landingPage {
       top: 0;
       left: 0;
       @media screen and (max-width: 450px) {
-        top: 40%;
+        top: 40% !important;
         left: 10%;
       }
+      @media screen and (max-width: 992px) {
+        top: 80px;
+      }
+
       img {
         @media screen and (max-width: 450px) {
-          width: 400px;
+          width: 400px !important;
           height: 280px;
           object-fit: contain;
+        }
+        @media screen and (max-width: 992px) {
+          width: 600px;
         }
       }
     }

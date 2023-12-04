@@ -7,14 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Link from 'next/link';
-const Verses = () => {
+const Verses = ({ dataCityPoetry, dataCityData }) => {
   const { ra3y } = imgs;
-
-
-
-
-
-
 
 
   return (
@@ -34,7 +28,7 @@ const Verses = () => {
                     <Typography >الاسم السابق</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>وجرة</Typography>
+                    <Typography>{dataCityData.otherNames}</Typography>
                   </div>
                 </div>
                 <div className={styles.box}>
@@ -42,7 +36,7 @@ const Verses = () => {
                     <Typography>الاسم الحالي</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>ركبه</Typography>
+                    <Typography>{dataCityData.name}</Typography>
                   </div>
                 </div>
                 <div className={styles.box}>
@@ -50,7 +44,7 @@ const Verses = () => {
                     <Typography>أسماء أخرى</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>سهل ركبه</Typography>
+                    <Typography>{dataCityData.otherNames}</Typography>
                   </div>
                 </div>
                 <div className={styles.box}>
@@ -58,7 +52,7 @@ const Verses = () => {
                     <Typography>المنطقة الإدراية</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>مكة المكرمة</Typography>
+                    <Typography>{dataCityData.otherNames}</Typography>
                   </div>
                 </div>
                 <div className={styles.box}>
@@ -66,7 +60,7 @@ const Verses = () => {
                     <Typography>قيمة المكان</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>مكان مناسب قديمًا للرعي لوفرة مائه وأشجاره</Typography>
+                    <Typography>{dataCityData.qema}</Typography>
                   </div>
                 </div>
 
@@ -75,7 +69,7 @@ const Verses = () => {
                     <Typography>وصف المكان قديمًا</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>مكان مناسب قديمًا للرعي لوفرة مائه وأشجاره</Typography>
+                    <Typography>{dataCityData.wasfOld}</Typography>
                   </div>
                 </div>
 
@@ -84,7 +78,7 @@ const Verses = () => {
                     <Typography>وصف المكان حديثًا</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>غير موجود وهو ضمن سهل ركبة</Typography>
+                    <Typography>{dataCityData.wasfNew}</Typography>
                   </div>
                 </div>
                 <div className={styles.box}>
@@ -92,7 +86,7 @@ const Verses = () => {
                     <Typography>الموقع</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>شمال الطائف</Typography>
+                    <Typography>{dataCityData.site}</Typography>
                   </div>
                 </div>
 
@@ -106,7 +100,7 @@ const Verses = () => {
 
             <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
               <div className={styles.sec_title}>
-                <Typography variant='h3'>أبيات قيلت في وَجْرَة</Typography>
+                <Typography variant='h3'>أبيات قيلت في {dataCityData.name}</Typography>
               </div>
             </Container>
             <div className={styles.slider_sec}>
@@ -140,146 +134,53 @@ const Verses = () => {
                 pagination={{ clickable: true }}
                 className={styles.swiper}
               >
-                <SwiperSlide>
-                  <div className={styles.box}>
-                    <div className={styles.box_container}>
-                      <Link href='/poet' className={styles.info}>
-                        <div className={styles.img_container}>
-                          <img src={ra3y.src} alt="ra3y" />
-                        </div>
 
-                        <div className={styles.text_container}>
-                          <div className={styles.name}>
-                            <Typography>امرؤ القيس</Typography>
-                          </div>
-                          <div className={styles.type}>
-                            <Typography>العصر الأموي</Typography>
-                          </div>
-                        </div>
-                      </Link>
 
-                      <div className={styles.desc}>
-                        <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
+
+                {Array.isArray(dataCityPoetry) ? dataCityPoetry.map((poet, index) => {
+                  const [beforeDots, afterDots] = poet.poetryParts.split('...');
+
+                  return (
+                    <SwiperSlide key={poet.id}>
+                      <div className={styles.box}>
+                        <div className={styles.box_container}>
+                          <Link href={`/poet/${poet.poetId}`} className={styles.info}>
+                            <div className={styles.img_container}>
+                              <img src={poet.poetIcon} alt={poet.poetName} />
+                            </div>
+
+                            <div className={styles.text_container}>
+                              <div className={styles.name}>
+                                <Typography>{poet.poetName}</Typography>
+                              </div>
+                              <div className={styles.type}>
+                                <Typography>{poet.placeName}</Typography>
+                              </div>
+                            </div>
+                          </Link>
+
+                          <div className={styles.desc}>
+                            <Typography>{poet.entrance}</Typography>
+                          </div>
+                          <Link href={`/poetry/${poet.id}`} className={styles.said}>
+                            <div className={styles.title}>
+                              <Typography>يقول</Typography>
+                            </div>
+                            <div className={styles.desc}>
+                              <Typography>
+                                {beforeDots}
+                                <br />
+                                {afterDots}
+
+                              </Typography>
+                            </div>
+                          </Link>
+
+                        </div>
                       </div>
-                      <Link href='/poetry' className={styles.said}>
-                        <div className={styles.title}>
-                          <Typography>يقول</Typography>
-                        </div>
-                        <div className={styles.desc}>
-                          <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
-                            بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
-                        </div>
-                      </Link>
-
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className={styles.box}>
-                    <div className={styles.box_container}>
-                      <Link href='/poet' className={styles.info}>
-                        <div className={styles.img_container}>
-                          <img src={ra3y.src} alt="ra3y" />
-                        </div>
-
-                        <div className={styles.text_container}>
-                          <div className={styles.name}>
-                            <Typography>امرؤ القيس</Typography>
-                          </div>
-                          <div className={styles.type}>
-                            <Typography>العصر الأموي</Typography>
-                          </div>
-                        </div>
-                      </Link>
-
-                      <div className={styles.desc}>
-                        <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
-                      </div>
-                      <Link href='/poetry' className={styles.said}>
-                        <div className={styles.title}>
-                          <Typography>يقول</Typography>
-                        </div>
-                        <div className={styles.desc}>
-                          <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
-                            بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
-                        </div>
-                      </Link>
-
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className={styles.box}>
-                    <div className={styles.box_container}>
-                      <Link href='/poet' className={styles.info}>
-                        <div className={styles.img_container}>
-                          <img src={ra3y.src} alt="ra3y" />
-                        </div>
-
-                        <div className={styles.text_container}>
-                          <div className={styles.name}>
-                            <Typography>امرؤ القيس</Typography>
-                          </div>
-                          <div className={styles.type}>
-                            <Typography>العصر الأموي</Typography>
-                          </div>
-                        </div>
-                      </Link>
-
-                      <div className={styles.desc}>
-                        <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
-                      </div>
-                      <Link href='/poetry' className={styles.said}>
-                        <div className={styles.title}>
-                          <Typography>يقول</Typography>
-                        </div>
-                        <div className={styles.desc}>
-                          <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
-                            بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
-                        </div>
-                      </Link>
-
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className={styles.box}>
-                    <div className={styles.box_container}>
-                      <Link href='/poet' className={styles.info}>
-                        <div className={styles.img_container}>
-                          <img src={ra3y.src} alt="ra3y" />
-                        </div>
-
-                        <div className={styles.text_container}>
-                          <div className={styles.name}>
-                            <Typography>امرؤ القيس</Typography>
-                          </div>
-                          <div className={styles.type}>
-                            <Typography>العصر الأموي</Typography>
-                          </div>
-                        </div>
-                      </Link>
-
-                      <div className={styles.desc}>
-                        <Typography>ذكرها امرؤُ القيسِ في معلَّقته، عندما وصفَ محبوبته بأنها تنظرُ إليه بعينِ ظبيةٍ من ظباءِ وَجْرةَ معها طفلُها، لأن عينَي الظبية تكونان في غايةِ الجمال إذا نظرَت إلى أولادها نظرةَ العطف والشفقة</Typography>
-                      </div>
-                      <Link href='/poetry' className={styles.said}>
-                        <div className={styles.title}>
-                          <Typography>يقول</Typography>
-                        </div>
-                        <div className={styles.desc}>
-                          <Typography>تَصُــدُّ وتُبْــدي عَن أَسِيــــلٍ وتَتَّقـي <br />
-                            بِناظِرَةٍ من وَحشِ وَجْرَةَ مُطْفِلِ</Typography>
-                        </div>
-                      </Link>
-
-                    </div>
-                  </div>
-                </SwiperSlide>
-
-
-
-
+                    </SwiperSlide>
+                  )
+                }) : null}
 
               </Swiper>
             </div>

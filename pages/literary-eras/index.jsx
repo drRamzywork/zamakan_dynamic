@@ -113,18 +113,21 @@ const LiteraryEras = ({ erasAllEras }) => {
               slidesPerView: 1.3,
               spaceBetween: 24,
             },
-            640: {
-              slidesPerView: 3,
+            607: {
+              slidesPerView: 1.8,
               spaceBetween: 24,
             },
-            768: {
-              slidesPerView: 4.5,
+            700: {
+              slidesPerView: 2.2,
               spaceBetween: 24,
             },
-            1024: {
+            1200: {
+              slidesPerView: 3.5,
+              spaceBetween: 24,
+            },
+            1300: {
               slidesPerView: 4.5,
               spaceBetween: 24,
-
             },
           }}
           slidesPerView={4.5}

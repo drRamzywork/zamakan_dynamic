@@ -54,6 +54,9 @@ section.poetry_page {
 
           border-radius: 61px 10px 10px 10px;
 
+          @media screen and (max-width: 992px) {
+            width: 80%;
+          }
           @media screen and (max-width: 450px) {
             width: 293.57px !important;
             min-height: 79px;
@@ -82,7 +85,7 @@ section.poetry_page {
           display: flex;
           align-items: center;
           justify-content: center;
-          @media screen and (max-width: 450px) {
+          @media screen and (max-width: 992px) {
             flex-direction: column;
           }
 
@@ -111,14 +114,14 @@ section.poetry_page {
 
           p:first-child {
             margin-left: 99px;
-            @media screen and (max-width: 450px) {
+            @media screen and (max-width: 992px) {
               margin-left: 0;
               margin-bottom: 9px;
             }
           }
           p:last-child {
             margin-right: 99px;
-            @media screen and (max-width: 450px) {
+            @media screen and (max-width: 992px) {
               margin-right: 0;
             }
           }
@@ -258,8 +261,9 @@ section.poetry_page {
     align-items: flex-start;
     margin-top: 47px;
     justify-content: space-between;
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 992px) {
       flex-direction: column;
+      align-items: center;
     }
 
     .poet_info {
@@ -484,6 +488,9 @@ section.poetry_page {
       @media screen and (max-width: 450px) {
         width: 100%;
         border-radius: 51px 10px 10px 10px;
+      }
+      @media screen and (max-width: 992px) {
+        margin-top: 16px;
       }
       .container {
         margin: 24px;

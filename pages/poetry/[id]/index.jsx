@@ -20,7 +20,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
-  console.log(dataPoetry, "additionalDataadditionalData")
+
   return (
     <>
       <section id={'poetry_page'} className={styles.poetry_page} dir='rtl'>
@@ -165,7 +165,18 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                   </div>
                 </div>
               </section>
-
+              <section className={styles.timelineSection}>
+                <div className={styles.sec_title}>
+                  <Typography variant='h3'>مدخل البيت</Typography>
+                </div>
+                <div className={styles.sec_container}>
+                  <div className={styles.desc}>
+                    <Typography>
+                      {dataPoetry.entrance}
+                    </Typography>
+                  </div>
+                </div>
+              </section>
               <section className={styles.timelineSection}>
                 <div className={styles.sec_title}>
                   <Typography variant='h3'>المقصد من البيت</Typography>
@@ -179,6 +190,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                   </div>
                 </div>
               </section>
+
 
               <section className={styles.timelineSection}>
                 <div className={styles.sec_title}>
@@ -293,38 +305,6 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
 }
 
 export default Poetry
-
-// export async function getServerSideProps(context) {
-//   const { id } = context.query;
-//   const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetPoetryFullData?id=${id}&lang=2`);
-//   const dataPoetry = await resPoetry.json();
-
-//   const placeId = dataPoetry.placeId;
-
-//   // Check if placeId is available
-//   let dataPlace = null;
-//   if (placeId) {
-//     // Second API request using placeId
-//     const resPlace = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan= ${placeId}&lang=2`);
-//     dataPlace = await resPlace.json();
-
-
-//   }
-
-
-
-
-
-
-
-//   return {
-//     props: {
-//       dataPoetry,
-//       dataPlace,
-//       // dataPoets
-//     },
-//   };
-// }
 
 export async function getServerSideProps(context) {
   const { id } = context.query;

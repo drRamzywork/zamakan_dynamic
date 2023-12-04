@@ -168,7 +168,7 @@ export default function Poet({ dataPoet, dataPoetry }) {
 
             <div className={styles.desc} dir='rtl'>
               <Typography>
-                {dataPoet.descriptionShort}
+                {dataPoet.description}
               </Typography>
             </div>
           </Grid>
@@ -271,7 +271,7 @@ export default function Poet({ dataPoet, dataPoetry }) {
                         <div className={styles.title}>
                           <Typography>تاريخ الوفاة</Typography>
                         </div>
-                        {console.log(dataPoet, "dataPoet")}
+
                         <div className={styles.name}>
                           <Typography>{dataPoet.toM} هـجريًا - {dataPoet.toH} ميلاديًا</Typography>
                         </div>
@@ -425,7 +425,6 @@ export default function Poet({ dataPoet, dataPoetry }) {
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
-
 
 
   const resPoet = await fetch(`https://api4z.suwa.io/api/Poets/GetPoetFullData?id=${id}&lang=2  `);

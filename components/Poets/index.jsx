@@ -37,7 +37,7 @@ const Effra = localFont({
   ],
 })
 
-const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
+const Poets = ({ dataPoetsByEra, dataAllCitiesMap, }) => {
   const [activePoet, setActivePoet] = useState(null);
   const { ra3y1, smallCity } = imgs;
 
@@ -47,10 +47,9 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
   const [landElments, setLandElemnts] = useState([])
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeLand, setActiveLand] = useState(null);
-
   const [isPointsActive, seIsPointsActive] = useState(false);
-
   const [cityNames, setCityNames] = useState([]);
+
   useEffect(() => {
     // Select all elements with the class name .land
     const elements = document.querySelectorAll('.land');
@@ -77,7 +76,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
   }, [activePoet, cityNames]);
 
 
-
   const handleBoxClick = (index) => {
     setActivePoet(index);
     setActiveIndex(index); // Set the active index
@@ -85,7 +83,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
   };
 
   const [isSafari, setIsSafari] = useState(false);
-
   useEffect(() => {
 
     // Detect Safari browser
@@ -93,7 +90,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
 
 
   }, []);
-
   const handleCityClick = cityName => {
     setActiveCity(activeCity === cityName ? null : cityName);
   };
@@ -110,7 +106,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
             </div>
 
             <div className={styles.tags_slider} id='carosuel'>
-
               <Swiper
                 breakpoints={{
                   300: {
@@ -149,7 +144,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
                     <div onClick={() => handleBoxClick(index)} className={`${styles.box_container} `}>
                       <div className={`${styles.box} ${activePoet === index ? styles.active : ''}`}>
                         <div className={styles.img_container}>
-                          <img src={ra3y1.src} alt={poet.name} />
+                          <img src={poet.icon} alt={poet.name} />
                         </div>
                         <div className={styles.name}>
                           <Typography>{poet.name}</Typography>
@@ -168,20 +163,22 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
               <div className={styles.poetInfo}>
                 <div className={styles.title}>
                   <Typography variant='h3'>
-                    {dataPoetsByEra[activePoet].name}
+                    {dataPoetsByEra[activePoet]?.name}
                   </Typography>
 
                   <div className={styles.tag}>
-                    <Typography>صناجة العرب</Typography>
+                    <Typography>
+                      {dataPoetsByEra[activePoet]?.nickname}
+                    </Typography>
                   </div>
                 </div>
 
                 <div className={styles.desc}>
                   <Typography>
-                    {dataPoetsByEra[activePoet].desc}
-                    <Link href={`/poet/${dataPoetsByEra[activePoet].id}`} className={styles.more}>
+                    {dataPoetsByEra[activePoet]?.descShort}
+                    <Link href={`/poet/${dataPoetsByEra[activePoet]?.id}`} className={styles.more}>
                       <Typography>
-                        المزيد عن {dataPoetsByEra[activePoet].name}
+                        المزيد عن {dataPoetsByEra[activePoet]?.name}
                         <div className={styles.icon_container}>
                           <LeftArrow />
                         </div>
@@ -195,7 +192,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
             }
             <div className={styles.svg_wrap}>
               <div id='map-boxes'>
-                {/* <Svg dataAllCitiesMap={dataAllCitiesMap} dataAllPlacesMap={dataAllPlacesMap} /> */}
+
                 <xml version="1.0" encoding="UTF-8" standalone="no" />
                 <svg
                   id="svg1"

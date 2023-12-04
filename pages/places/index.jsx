@@ -288,54 +288,14 @@ const Places = ({ dataAllCitiesMap,
                   </div>
 
                   <div className={styles.tags_container}>
-                    {dataAllCitiesMap.map((city, idx) => (
-                      city.places.map((place, index) => (
-                        <Button key={index}>
-                          {console.log(city)}
-                          <Link href='/city'>
-                            {place.name}
-                          </Link>
-                        </Button>
-
-                      ))
+                    {dataAllPlacesMap.map((city, idx) => (
+                      <Button key={idx}>
+                        <Link href={`/city/${city.id}`}>
+                          {city.name}
+                        </Link>
+                      </Button>
 
                     ))}
-
-                    <Button >
-                      <Link href='/city'>
-                        حومل
-                      </Link>
-                    </Button>
-
-                    <Button >
-                      <Link href='/city'>
-                        وجرة
-                      </Link>
-                    </Button>
-
-                    <Button >
-                      <Link href='/city'>
-                        سقط اللوى
-                      </Link>
-                    </Button>
-
-                    <Button >
-                      <Link href='/city'>
-                        الصفاح
-                      </Link>
-                    </Button>
-
-                    <Button >
-                      <Link href='/city'>
-                        فيد
-                      </Link>
-                    </Button>
-
-                    <Button >
-                      <Link href='/city'>
-                        العذيب
-                      </Link>
-                    </Button>
                   </div>
                 </div>
 
@@ -354,7 +314,7 @@ const Places = ({ dataAllCitiesMap,
 export default Places
 
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps() {
 
   const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=13&lang=2&withPlaces=true&pagenum=1&pagesize=50  `);
   const dataAllCitiesMap = await resAllCitiesMap.json();
@@ -362,6 +322,7 @@ export async function getServerSideProps(context) {
 
   const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=13&lang=2&pagenum=1&pagesize=50`);
   const dataAllPlacesMap = await resAllPlacesMap.json();
+
 
 
   return {

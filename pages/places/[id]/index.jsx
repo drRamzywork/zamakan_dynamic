@@ -1,6 +1,6 @@
 import { Container, Typography, } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
-import styles from './index.module.scss'
+import styles from '../index.module.scss'
 import imgs from '../../../assets/constants/imgs'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -10,11 +10,11 @@ import Link from 'next/link'
 import { Button } from '@mui/base'
 import { PageHeader } from '@/components/PlacesComponents'
 import { useRouter } from 'next/router';
-
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 
 const Places = ({ dataAllCitiesMap,
-  dataAllPlacesMap }) => {
+  dataAllPlacesMap, dataPlacePoetry, dataDefaultPlacePoetry }) => {
   const {
     ra3y,
     saudiAllPieces,
@@ -115,7 +115,6 @@ const Places = ({ dataAllCitiesMap,
   }, [activeIndex, activeLand])
 
   const handleZoomToLand = (landIndex) => {
-    console.log(landIndex)
     const elementId = `land-${landIndex}`;
     if (transformComponentRef.current) {
       const { zoomToElement } = transformComponentRef.current;
@@ -157,7 +156,7 @@ const Places = ({ dataAllCitiesMap,
                     spaceBetween: 40,
                   },
                   1024: {
-                    slidesPerView: 9.1,
+                    slidesPerView: 8,
                     spaceBetween: 40,
 
                   },
@@ -188,18 +187,26 @@ const Places = ({ dataAllCitiesMap,
                 </SwiperSlide>
                 {dataAllCitiesMap.map((city, index) =>
                   <SwiperSlide key={city.id}>
-                    {console.log("city id", city.id)}
                     <Link
                       scroll={false}
                       href={`/places/${city.id}`} className={`${styles.slider} ${city.id === placeID ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       <div className={styles.img_container}>
-                        <img src={landData[index]?.image.src} alt='المملكة' />
+                        <svg
+                          id="svg1"
+                          width="858"
+                          height="724"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 758 624"
+                        >
+                          {city.svgPath && ReactHtmlParser(city.svgPath)}
+
+                        </svg>
                       </div>
                       <div className={styles.name}>
                         <Typography>{city.name}</Typography>
                       </div>
                     </Link>
-
                   </SwiperSlide >
                 )}
 
@@ -253,33 +260,40 @@ const Places = ({ dataAllCitiesMap,
                 <div className={styles.sec_info}>
                   <div className={styles.inner_info}>
                     <div className={styles.tag}>
-                      <Typography>  {cityId === null ? "المملكة" : cityId[0].name}</Typography>
+                      <Typography>
+                        {cityId === null ? "المملكة" : cityId[0].name}
+                      </Typography>
                     </div>
                     <div className={styles.desc}>
                       <Typography>
-                        مقـــــيم على
-                        {` `}
-                        <span>
-                          بنبــــــان
-                        </span>
-                        {` `}
-                        يمنــــع مـــــاءه
-                        وماء وشيع ماء عطشان مرمل
+                        {dataPlacePoetry.length > 0 ? dataPlacePoetry[0]?.poetryParts :
+                          dataDefaultPlacePoetry[0].poetryParts
+                        }
                       </Typography>
                     </div>
                     <hr />
                     <div className={styles.poet_info}>
                       <div className={styles.img_container}>
-                        <img src={ra3y.src} alt="" />
+                        <img src={dataPlacePoetry.length > 0 ? dataPlacePoetry[0]?.poetIcon :
+                          dataDefaultPlacePoetry[0].poetIcon
+                        } alt="" />
                       </div>
 
                       <div className={styles.text_container}>
-                        <Link href='/poet' className={styles.name}>
-                          <Typography>الراعي</Typography>
+                        <Link href={`/poet/${dataPlacePoetry[0]?.poetId}`} className={styles.name}>
+                          <Typography>
+
+                            {dataPlacePoetry.length > 0 ? dataPlacePoetry[0]?.poetName :
+                              dataDefaultPlacePoetry[0].poetName
+                            }
+
+                          </Typography>
                         </Link>
                         <div className={styles.tag}>
                           <Typography>
-                            العصر الأموي
+                            {dataPlacePoetry.length > 0 ? dataPlacePoetry[0]?.zamanName :
+                              dataDefaultPlacePoetry[0].zamanName
+                            }
                           </Typography>
 
                         </div>
@@ -295,7 +309,6 @@ const Places = ({ dataAllCitiesMap,
                       مناطق  {cityId === null ? "المملكة" : cityId[0].name}
                     </Typography>
                   </div>
-
                   <div className={styles.tags_container}>
                     {dataAllPlacesMap.map((city, idx) => (
                       <Button key={idx}>
@@ -303,7 +316,6 @@ const Places = ({ dataAllCitiesMap,
                           {city.name}
                         </Link>
                       </Button>
-
                     ))}
 
 
@@ -315,7 +327,7 @@ const Places = ({ dataAllCitiesMap,
             </div>
           </div>
         </section >
-      </Container>
+      </Container >
 
     </>
 
@@ -325,21 +337,47 @@ const Places = ({ dataAllCitiesMap,
 export default Places
 
 
-export async function getServerSideProps(context) {
-  const { id } = context.query;
 
-  const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=13&lang=2&withPlaces=true&pagenum=1&pagesize=50  `);
+
+export async function getStaticProps({ params }) {
+  const { id } = params;
+
+  const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=13&lang=2&withPlaces=true&pagenum=1&pagesize=50`);
   const dataAllCitiesMap = await resAllCitiesMap.json();
 
-
-  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?city=${id}&type=13&lang=2&pagenum=1&pagesize=50  `);
+  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?city=${id}&type=13&lang=2&pagenum=1&pagesize=50`);
   const dataAllPlacesMap = await resAllPlacesMap.json();
 
+  const resPlacePoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?city=${id}&lang=2&pagenum=1&pagesize=1`);
+  const dataPlacePoetry = await resPlacePoetry.json();
+
+  const resDefaultPlacePoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?lang=2&pagenum=1&pagesize=1`);
+  const dataDefaultPlacePoetry = await resDefaultPlacePoetry.json();
 
   return {
     props: {
-      dataAllCitiesMap: dataAllCitiesMap,
-      dataAllPlacesMap: dataAllPlacesMap
+      dataAllCitiesMap,
+      dataAllPlacesMap,
+      dataPlacePoetry,
+      dataDefaultPlacePoetry
     },
   };
+}
+
+
+export async function getStaticPaths() {
+  const response = await fetch('https://api4z.suwa.io/api/Makan/GetAllPlacesIds');
+  if (!response.ok) {
+    throw new Error(`API call failed: ${response.status}`);
+  }
+
+  const ids = await response.json();
+  console.log(ids, "idsg")
+
+  // Generate the paths
+  const paths = ids.map(id => ({
+    params: { id: id.toString() },
+  }));
+
+  return { paths, fallback: 'blocking' };
 }

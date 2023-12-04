@@ -23,7 +23,7 @@ section.LiteraryEras {
   .sec_container {
     .sec_title {
       padding-top: 123px;
-      @media screen and (max-width: 450px) {
+      @media screen and (max-width: 992px) {
         padding-top: 32px;
       }
 
@@ -35,13 +35,17 @@ section.LiteraryEras {
         letter-spacing: 0px;
         text-align: right;
         color: rgba(61, 85, 63, 1);
-
+        @media screen and (max-width: 992px) {
+          font-size: 48px;
+          line-height: 46px;
+        }
         @media screen and (max-width: 450px) {
           font-size: 38px;
           line-height: 46px;
         }
+
         br {
-          @media screen and (min-width: 450px) {
+          @media screen and (min-width: 992px) {
             display: none;
           }
         }
@@ -57,11 +61,11 @@ section.LiteraryEras {
       border-radius: 50%;
       background-color: rgba(246, 244, 232, 1);
       z-index: -1;
-      @media screen and (min-width: 450px) {
+      @media screen and (min-width: 992px) {
         left: 197px;
       }
 
-      @media screen and (max-width: 450px) {
+      @media screen and (max-width: 992px) {
         right: 80px;
         top: 7px;
         width: 66.88px;
@@ -79,16 +83,16 @@ section.LiteraryEras {
     .right_branch {
       right: 0;
       top: 0;
-      @media screen and (max-width: 450px) {
+      @media screen and (max-width: 992px) {
         display: none;
       }
     }
     .left_branch {
-      @media screen and (min-width: 450px) {
+      @media screen and (min-width: 992px) {
         left: 0;
         top: 0;
       }
-      @media screen and (max-width: 450px) {
+      @media screen and (max-width: 992px) {
         right: -44px;
         background-origin: 0;
         img {
@@ -105,7 +109,7 @@ section.LiteraryEras {
       left: 0;
       top: 138px;
       z-index: 1;
-      @media screen and (max-width: 450px) {
+      @media screen and (max-width: 992px) {
         img {
           width: 175.71px;
           object-fit: contain;
@@ -116,7 +120,7 @@ section.LiteraryEras {
     .mountains {
       top: 157px;
       left: 170px;
-      @media screen and (max-width: 450px) {
+      @media screen and (max-width: 992px) {
         left: -189px;
         top: 36px;
       }
@@ -129,7 +133,7 @@ section.LiteraryEras {
   position: relative;
   z-index: 222;
   background-color: transparent;
-  @media screen and (max-width: 450px) {
+  @media screen and (max-width: 992px) {
     margin-top: -140px;
   }
 

@@ -56,8 +56,6 @@ const LiteraryBanner = (props) => {
   } = imgs
 
 
-
-
   const eraIndex = query.index ? Number(query.index) : 0;
 
 
@@ -113,14 +111,23 @@ const LiteraryBanner = (props) => {
               spaceBetween: 24,
             },
             640: {
-              slidesPerView: 3,
+              slidesPerView: 2.5,
               spaceBetween: 24,
             },
-            768: {
-              slidesPerView: 4,
+            700: {
+              slidesPerView: 2.8,
               spaceBetween: 24,
             },
-            1024: {
+            992: {
+              slidesPerView: 3.5,
+              spaceBetween: 24,
+            },
+            1200: {
+              slidesPerView: 3.5,
+              spaceBetween: 24,
+
+            },
+            1300: {
               slidesPerView: 4.5,
               spaceBetween: 24,
 
