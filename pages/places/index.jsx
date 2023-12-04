@@ -67,9 +67,6 @@ const Places = ({ dataAllCitiesMap,
   const transformComponentRef = useRef(null);
 
 
-
-
-
   const handleBoxClick = (index) => {
     const elementId = `land-${index}`;
     if (transformComponentRef.current) {
@@ -123,19 +120,7 @@ const Places = ({ dataAllCitiesMap,
   const resetTransformRef = useRef(null);
 
 
-  const filterPlaces = async () => {
-    const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=13&lang=2&withPlaces=true&pagenum=1&pagesize=50  `);
-    const dataAllCitiesMap = await resAllCitiesMap.json();
 
-
-    const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=13&lang=2&pagenum=1&pagesize=50`);
-    const dataAllPlacesMap = await resAllPlacesMap.json();
-
-  }
-  useEffect(() => {
-
-
-  }, [])
   return (
 
     <>
@@ -197,14 +182,14 @@ const Places = ({ dataAllCitiesMap,
                 </SwiperSlide>
                 {dataAllCitiesMap.map((city, index) =>
                   <SwiperSlide key={index}>
-                    <div className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
+                    <Link href={`/places/${city.id}`} className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       <div className={styles.img_container}>
                         <img src={landData[index]?.image.src} alt='المملكة' />
                       </div>
                       <div className={styles.name}>
                         <Typography>{city.name}</Typography>
                       </div>
-                    </div>
+                    </Link>
 
                   </SwiperSlide >
                 )}
@@ -213,8 +198,6 @@ const Places = ({ dataAllCitiesMap,
             </div>
             <div className={styles.map_container}>
               <div className={styles.map} dir='ltr'>
-
-
                 <TransformWrapper
                   ref={transformComponentRef}
                   wheel={{ wheelDisabled: true }}

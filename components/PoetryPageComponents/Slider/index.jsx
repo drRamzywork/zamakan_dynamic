@@ -75,7 +75,7 @@ const Slider = ({ additionalData }) => {
                         </Typography>
                       </div>
 
-                      <Link href={`/poetry/88`} className={styles.link_container}>
+                      <Link href={`/poetry/${poet.id}`} className={styles.link_container}>
                         <Typography>تفاصيل القصيدة</Typography>
 
                         <div className={styles.icon_container}>

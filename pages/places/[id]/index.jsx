@@ -29,8 +29,8 @@ const Places = ({ dataAllCitiesMap,
   } = imgs
   const router = useRouter();
   const [cityId, setCityId] = useState(null);
+  const placeID = Number(router.query.id);
   useEffect(() => {
-    const placeID = Number(router.query.id);
     const filtredCities = dataAllCitiesMap.filter((place) => (place.id === placeID))
     setCityId(filtredCities)
   }, [router]);
@@ -74,10 +74,6 @@ const Places = ({ dataAllCitiesMap,
 
   const transformComponentRef = useRef(null);
 
-
-
-
-
   const handleBoxClick = (index) => {
     const elementId = `land-${index}`;
     if (transformComponentRef.current) {
@@ -119,7 +115,7 @@ const Places = ({ dataAllCitiesMap,
   }, [activeIndex, activeLand])
 
   const handleZoomToLand = (landIndex) => {
-
+    console.log(landIndex)
     const elementId = `land-${landIndex}`;
     if (transformComponentRef.current) {
       const { zoomToElement } = transformComponentRef.current;
@@ -131,8 +127,6 @@ const Places = ({ dataAllCitiesMap,
   const resetTransformRef = useRef(null);
 
 
-  console.log(dataAllCitiesMap, 'DATA')
-  console.log(dataAllPlacesMap, 'BATA')
   return (
 
     <>
@@ -171,7 +165,7 @@ const Places = ({ dataAllCitiesMap,
 
                 pagination={true} className="mySwiper">
                 <SwiperSlide>
-                  <div className={`${styles.slider} ${activeIndex === null ? styles.active : ''}`} onClick={() => {
+                  <Link href='/places' className={`${styles.slider} `} onClick={() => {
                     resetTransformRef.current && resetTransformRef.current()
                     setActiveIndex(null);
                     setActiveLand(null);
@@ -190,13 +184,14 @@ const Places = ({ dataAllCitiesMap,
                       <Typography>المملكة</Typography>
                     </div>
 
-                  </div>
+                  </Link>
                 </SwiperSlide>
                 {dataAllCitiesMap.map((city, index) =>
-                  <SwiperSlide key={index}>
+                  <SwiperSlide key={city.id}>
+                    {console.log("city id", city.id)}
                     <Link
                       scroll={false}
-                      href={`/places/${city.id}`} className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
+                      href={`/places/${city.id}`} className={`${styles.slider} ${city.id === placeID ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       <div className={styles.img_container}>
                         <img src={landData[index]?.image.src} alt='المملكة' />
                       </div>
