@@ -297,13 +297,13 @@ const Places = ({ dataAllCitiesMap,
                     </Typography>
                   </div>
                   <div className={styles.tags_container}>
-                    {Array.isArray(dataAllPlacesMap) ? dataAllPlacesMap.map((city, index) => {
-                      <Button key={index}>
+                    {dataAllPlacesMap.map((city, idx) => (
+                      <Button key={idx}>
                         <Link href={`/city/${city.id}`}>
                           {city.name}
                         </Link>
                       </Button>
-                    }) : null}
+                    ))}
 
 
                   </div>
@@ -328,11 +328,11 @@ export default Places
 
 export async function getStaticProps({ params }) {
   const { id } = params;
-
+  console.log(id, "IDSXXX")
   const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=13&lang=2&withPlaces=true&pagenum=1&pagesize=50`);
   const dataAllCitiesMap = await resAllCitiesMap.json();
 
-  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?city=${id}&type=13&lang=2&pagenum=1&pagesize=50`);
+  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?city=7&type=13&lang=2&pagenum=1&pagesize=50`);
   const dataAllPlacesMap = await resAllPlacesMap.json();
 
   const resPlacePoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?city=${id}&lang=2&pagenum=1&pagesize=1`);

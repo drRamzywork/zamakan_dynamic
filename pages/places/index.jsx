@@ -294,7 +294,6 @@ const Places = ({ dataAllCitiesMap,
                           {city.name}
                         </Link>
                       </Button>
-
                     ))}
                   </div>
                 </div>
