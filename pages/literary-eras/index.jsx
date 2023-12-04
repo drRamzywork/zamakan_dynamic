@@ -135,7 +135,6 @@ const LiteraryEras = ({ erasAllEras }) => {
 
           pagination={true} className={"swiper"}>
 
-
           {erasAllEras.map((era) => (
             <SwiperSlide key={era.id} className={styles.swiper_slide_box}>
               <Link href={`/literary-eras/era/${era.id}`} className={styles.box}>

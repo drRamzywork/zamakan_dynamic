@@ -164,9 +164,6 @@ const LiteraryBanner = (props) => {
           ))}
 
 
-
-
-
         </Swiper>
       </div>
     </>

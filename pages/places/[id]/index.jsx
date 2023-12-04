@@ -187,6 +187,8 @@ const Places = ({ dataAllCitiesMap,
                         >
                           {city.svgPath && ReactHtmlParser(city.svgPath)}
                         </svg>
+
+
                       </div>
                       <div className={styles.name}>
                         <Typography>{city.name}</Typography>

@@ -144,7 +144,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, }) => {
                     <div onClick={() => handleBoxClick(index)} className={`${styles.box_container} `}>
                       <div className={`${styles.box} ${activePoet === index ? styles.active : ''}`}>
                         <div className={styles.img_container}>
-                          <img src={poet.icon} alt={poet.name} />
+                          <img src={`https://zamakan.suwa.io${poet.icon}`} alt={poet.name} />
                         </div>
                         <div className={styles.name}>
                           <Typography>{poet.name}</Typography>
