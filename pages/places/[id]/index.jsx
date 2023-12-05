@@ -207,7 +207,7 @@ const Places = ({ dataAllCitiesMap,
                   wheel={{ wheelDisabled: true }}
                   initialPositionX={0}
                   initialPositionY={0}
-                  pan={{ disabled: false }}
+                  panning={{ disabled: true }}
                   zoomIn={{ step: 100 }}
                   zoomOut={{ step: 100 }}
 

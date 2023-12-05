@@ -84,8 +84,6 @@ const Places = ({ dataAllCitiesMap,
     if (activeLand) {
       activeLand.classList.remove('activeLand');
       seIsPointsActive(false)
-
-
     }
 
     if (dataIndex) {
@@ -212,14 +210,12 @@ const Places = ({ dataAllCitiesMap,
                   wheel={{ wheelDisabled: true }}
                   initialPositionX={0}
                   initialPositionY={0}
-                  pan={{ disabled: false }}
                   zoomIn={{ step: 100 }}
                   zoomOut={{ step: 100 }}
-
+                  panning={{ disabled: true }}
                   minScale={0.5}
                   maxScale={2}
                   initialScale={1}
-
                   doubleClick={{ disabled: false, mode: "reset" }}
                   wrapperStyle={{ maxWidth: "100%", maxHeight: "calc(100vh - 50px)", overflow: 'unset !important' }}
 

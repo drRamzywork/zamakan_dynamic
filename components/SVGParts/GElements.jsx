@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import PoetsSlider from "../PoetsSlider";
-import { motion, AnimatePresence } from 'framer-motion';
 import { imgs } from "@/assets/constants";
-import parse from 'react-html-parser';
 
 const GElements = ({ dataAllCitiesMap, dataAllPlacesMap }) => {
   const { smallCity } = imgs
@@ -28,7 +25,7 @@ const GElements = ({ dataAllCitiesMap, dataAllPlacesMap }) => {
           {land.places.map((place, index) =>
             <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
               <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
-                <div onClick={() => handleCityClick(`City${index}`)}
+                <div
                   className={`city-name  ${activeCity === `City${index}` && 'active'}`} id="p1">
                   <div>
                     <p>{place.name}</p>

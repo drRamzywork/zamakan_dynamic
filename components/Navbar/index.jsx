@@ -115,6 +115,7 @@ const Navbar = (props) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [navMenuRef]);
+  console.log(navMenuRef, "navMenuRef")
 
   return (
     <>
@@ -124,8 +125,10 @@ const Navbar = (props) => {
 
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} style={...Effra.style} dir='rtl' className={styles.navbar}>
           <div className={styles.sec_container}
+            ref={navMenuRef}
+
           >
-            <Button className={styles.burger_icon} onClick={() => setNavMenu(true)}>
+            <Button className={styles.burger_icon} onClick={() => setNavMenu(!navMenu)}>
               <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {/* Top line */}
                 <motion.path
@@ -158,7 +161,6 @@ const Navbar = (props) => {
             </Button>
             {navMenu &&
               <motion.div
-                ref={navMenuRef}
                 initial="closed"
                 animate={navMenu ? "open" : "closed"}
                 variants={variants}
