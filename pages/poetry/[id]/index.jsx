@@ -15,14 +15,29 @@ import {
   Location
 } from '@/assets/svgsComponents';
 import Slider from '@/components/PoetryPageComponents/Slider'
+import Head from 'next/head';
 const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
   const { ra3y, Feather_big, place } = imgs;
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-
-
+  { console.log(additionalData, "dataPoetry") }
+  const [beforeDots, afterDots] = dataPoetry.poetryParts.split('...')
+  { console.log(beforeDots, "dataPoetry") }
+  { console.log(afterDots, "dataPoetry") }
   return (
     <>
+
+      <Head>
+        <title>بيت الشعر</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta name="description" content="استكشف الشعراء
+عبر العصور" />
+        <meta name="description" content="شُعراء العصور الأَدبيّة في مَناطِق المملكة العربيّة السُّعوديّة" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <section id={'poetry_page'} className={styles.poetry_page} dir='rtl'>
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
           <div className={styles.slider_container} >
@@ -48,6 +63,8 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                 dir='rtl'
                 className={styles.swiper_container} >
                 <SwiperSlide>
+
+
                   <div className={styles.box}>
                     <div className={styles.content_container}>
 
@@ -55,14 +72,18 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                         <img src={Feather_big.src} alt="" />
                       </div>
                       <div className={styles.text_container}>
-                        <Typography>مقيم على  <span>بنبان</span>    يمنع ماءه</Typography>
+                        <Typography>
+                          {beforeDots}
+                        </Typography>
                         <span>... </span>
-                        <Typography>وماء وشيع ماء عطشان مرمل</Typography>
+                        <Typography>{afterDots}</Typography>
                       </div>
                     </div>
 
                   </div>
                 </SwiperSlide>
+
+
                 <SwiperSlide>
                   <div className={styles.box}>
                     <div className={styles.content_container}>
@@ -109,7 +130,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
             <hr />
             <Link href={`/poet/${dataPoetry.poetId}`} className={styles.poet_info}>
               <div className={styles.img_container}>
-                <img src={ra3y.src} alt="" />
+                <img src={dataPoetry.poetIcon} alt="" />
               </div>
               <div className={styles.text_container}>
                 <div className={styles.name}>
@@ -341,7 +362,7 @@ export async function getServerSideProps(context) {
       props: {
         dataPoetry,
         dataPlace,
-        additionalData,  // Add this to props
+        additionalData,
       },
     };
   } catch (error) {

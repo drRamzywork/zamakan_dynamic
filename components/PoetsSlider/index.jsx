@@ -31,9 +31,30 @@ const PoetsSlider = ({ poetriesData }) => {
         <div className={styles.slider_container}>
           <div className={styles.slider}>
             <Swiper
-              slidesPerView={1.3}
               spaceBetween={24}
+              breakpoints={{
+                300: {
+                  slidesPerView: 1,
+                  spaceBetween: 24,
+                },
+                400: {
+                  slidesPerView: 1,
+                  spaceBetween: 24,
+                },
+                640: {
+                  slidesPerView: 1,
+                  spaceBetween: 24,
+                },
+                768: {
+                  slidesPerView: 1,
+                  spaceBetween: 24,
+                },
+                1024: {
+                  slidesPerView: 1.3,
+                  spaceBetween: 24,
 
+                },
+              }}
               dir='rtl'
               className={styles.swiper_container} >
 

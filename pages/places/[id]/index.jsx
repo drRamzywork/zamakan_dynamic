@@ -11,6 +11,11 @@ import { Button } from '@mui/base'
 import { PageHeader } from '@/components/PlacesComponents'
 import { useRouter } from 'next/router';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import Head from 'next/head';
+import { AnimatePresence, motion } from 'framer-motion';
+import { CloseIcon, LeftArrow } from '@/assets/svgsComponents';
+import PoetsSlider from '@/components/PoetsSlider';
+import Image from 'next/image';
 
 
 const Places = ({ dataAllCitiesMap,
@@ -26,7 +31,9 @@ const Places = ({ dataAllCitiesMap,
     mapPiece6,
     mapPiece7,
 
-  } = imgs
+  } = imgs;
+  const [activeCity, setActiveCity] = useState(null);
+
   const router = useRouter();
   const [cityId, setCityId] = useState(null);
   const placeID = Number(router.query.id);
@@ -43,8 +50,20 @@ const Places = ({ dataAllCitiesMap,
   const [activeLand, setActiveLand] = useState(null);
 
   const [isPointsActive, seIsPointsActive] = useState(false);
+  const [cityData, setCityData] = useState(null)
+  const [poetriesData, setPoetriesData] = useState(null)
+
+  const [isSafari, setIsSafari] = useState(false);
+  useEffect(() => {
+
+    // Detect Safari browser
+    setIsSafari(navigator.vendor.includes("Apple"));
+
+
+  }, []);
 
   const [cityNames, setCityNames] = useState([]);
+
   useEffect(() => {
     // Select all elements with the class name .land
     const elements = document.querySelectorAll('.land');
@@ -111,10 +130,40 @@ const Places = ({ dataAllCitiesMap,
   };
   const resetTransformRef = useRef(null);
 
+  const handlePlaceWindow = async (placeId) => {
+    setActiveCity(placeId)
+    const resCityData = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${placeId}&lang=2`);
+    const dataCityData = await resCityData.json();
 
+    const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${placeId}&type=6&lang=2&pagenum=1&pagesize=50`);
+    const dataCityPoetry = await resCityPoetry.json();
+
+    setCityData(dataCityData)
+    setPoetriesData(dataCityPoetry)
+  }
+  const convertSVGPathsToJSX = (svgString) => {
+    const paths = svgString.split("</path>");
+    return paths.map((path, index) => (
+      <g key={index} dangerouslySetInnerHTML={{ __html: path + "</path>" }} />
+    ));
+  };
   return (
 
     <>
+      <Head>
+        {cityId && (
+          <title>المنطقة {cityId[0]?.name} </title>
+        )}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta name="description" content="استكشف الشعراء
+عبر العصور" />
+        <meta name="description" content="شُعراء العصور الأَدبيّة في مَناطِق المملكة العربيّة السُّعوديّة" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <PageHeader />
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
 
@@ -200,8 +249,8 @@ const Places = ({ dataAllCitiesMap,
 
               </Swiper>
             </div>
-            <div className={styles.map_container}>
-              <div className={styles.map} dir='ltr'>
+            <div className={styles.map_container1}>
+              <div className={styles.map} dir='ltr' styles={{ width: "100%" }}>
                 <TransformWrapper
                   ref={transformComponentRef}
                   wheel={{ wheelDisabled: true }}
@@ -210,11 +259,10 @@ const Places = ({ dataAllCitiesMap,
                   panning={{ disabled: true }}
                   zoomIn={{ step: 100 }}
                   zoomOut={{ step: 100 }}
-
                   minScale={0.5}
                   maxScale={2}
                   initialScale={1}
-
+                  styles={{ width: "100%" }}
                   doubleClick={{ disabled: false, mode: "reset" }}
                   wrapperStyle={{ maxWidth: "100%", maxHeight: "calc(100vh - 50px)", overflow: 'unset !important' }}
 
@@ -224,16 +272,101 @@ const Places = ({ dataAllCitiesMap,
 
                     return (
                       <>
-                        <TransformComponent>
-                          <Svg dataAllCitiesMap={dataAllCitiesMap}
-                            dataAllPlacesMap={dataAllPlacesMap} />
+                        <TransformComponent styles={{ width: "100%" }}>
+
+                          <xml version="1.0" encoding="UTF-8" standalone="no" />
+                          <svg
+                            id="svg1"
+                            width="858"
+                            height="724"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className={`${isSafari ? "saudi-map safari" : "saudi-map"}`}
+                            viewBox="90 90 758 624"
+                          >
+                            {dataAllCitiesMap?.map((land, index) => (
+                              <g className="land" key={index} id={land.svgPathId} >
+                                {convertSVGPathsToJSX(land.svgPath)}
+                                {land.places.map((place, index) =>
+                                  <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
+                                    <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
+                                      <div onClick={() => handlePlaceWindow(place.id)}
+
+                                        className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
+
+                                        <div>
+                                          <p>{place.name}</p>
+                                          <svg
+                                            width="15"
+                                            height="6"
+                                            viewBox="0 0 15 6"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <path
+                                              d="M0.956299 0.882812H14.8405H12.9973C11.8578 0.882812 10.8162 1.52659 10.3066 2.54573L9.14027 4.87844C8.6286 5.90177 7.16825 5.90178 6.65658 4.87844L5.49023 2.54573C4.98065 1.52659 3.939 0.882812 2.79956 0.882812H0.956299Z"
+                                              fill="white"
+                                            />
+                                          </svg>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </foreignObject>
+                                )}
+
+                              </g>
+                            ))}
+                          </svg>
                         </TransformComponent>
                       </>
                     );
                   }}
                 </TransformWrapper >
+
+                <AnimatePresence >
+                  {activeCity && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -50 }}
+                      transition={{ duration: 0.5 }}
+                      className={styles.custom_box}
+                      dir='rtl'
+                    >
+
+                      <div className={styles.box_container}>
+                        <div className={styles.box_header}>
+                          <div className={styles.img_container}>
+                            <Image width={72} height={72} src={cityData?.icon} alt={cityData?.name}
+                            />
+                          </div>
+                          <div className={styles.title}>
+                            <h3>{cityData?.name}</h3>
+
+                            <div className={styles.desc}>
+                              <p>
+                                {cityData?.descriptionShort}
+                                <Link href={`/city/${cityData?.id}`} className={styles.more}>
+                                  <span>المزيد عن {cityData?.name}</span>
+                                  <LeftArrow />
+                                </Link>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <PoetsSlider poetriesData={poetriesData} />
+
+                        <div className={styles.close_btn} onClick={() => setActiveCity(null)}>
+                          <CloseIcon />
+                        </div>
+                      </div>
+
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div >
-              <div className={styles.text_container}>
+              {/* <div className={styles.text_container}>
                 <div className={styles.sec_title}>
                   <Typography variant='h3'>
                     أبرز ما قيل في   {cityId === null ? "المملكة" : cityId[0].name}
@@ -306,7 +439,7 @@ const Places = ({ dataAllCitiesMap,
                 </div>
 
 
-              </div>
+              </div> */}
             </div>
           </div>
         </section >

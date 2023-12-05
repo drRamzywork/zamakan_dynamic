@@ -48,7 +48,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
 
   const [landElments, setLandElemnts] = useState([])
   const [activeIndex, setActiveIndex] = useState(null);
-  const [activeLand, setActiveLand] = useState(null);
   const [isPointsActive, seIsPointsActive] = useState(false);
   const [cityNames, setCityNames] = useState([]);
   const [places, setPlaces] = useState(null);
@@ -126,11 +125,8 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
     const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${placeId}&type=6&lang=2&pagenum=1&pagesize=50`);
     const dataCityPoetry = await resCityPoetry.json();
 
-
     setCityData(dataCityData)
     setPoetriesData(dataCityPoetry)
-
-
   }
 
 
@@ -312,7 +308,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
                           <div className={styles.desc}>
                             <p>
                               {cityData?.descriptionShort}
-                              <Link href={`/city/${cityData.id}`} className={styles.more}>
+                              <Link href={`/city/${cityData?.id}`} className={styles.more}>
                                 <span>المزيد عن {cityData?.name}</span>
                                 <LeftArrow />
                               </Link>
