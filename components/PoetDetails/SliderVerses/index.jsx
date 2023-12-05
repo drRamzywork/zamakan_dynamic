@@ -186,7 +186,7 @@ export default function SliderVerses({ filtredPoets }) {
               </div>
 
               <div className={styles.text_container}>
-                <Link href={`https://zamakan.suwa.io${poet.icon}`} className={styles.name}>
+                <Link href={`/poet/${poet.id}`} className={styles.name}>
                   <Typography>{poet.name}</Typography>
                   <div className={styles.date}>
                     <Typography>{poet.fromH} هـ - {poet.toH} هـ</Typography>
