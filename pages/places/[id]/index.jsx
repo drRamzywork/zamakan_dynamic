@@ -151,9 +151,8 @@ const Places = ({ dataAllCitiesMap,
 
     <>
       <Head>
-        {cityId && (
-          <title>{cityId ? `${cityId.name} المنطقة` : 'Loading...'}</title>
-        )}
+        <title>مناطق المملكة العربية السعودية</title>
+
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
