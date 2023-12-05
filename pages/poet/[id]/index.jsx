@@ -10,6 +10,7 @@ import { imgs } from '@/assets/constants';
 import SliderVerses from '@/components/PoetsDetailsComponents/SliderVerses';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Link from 'next/link';
 
 export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -149,13 +150,13 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
           <div className={styles.text_container}>
             <ul>
               <li>
-                <a href="/">الشاعر {dataPoet.name}</a>
+                <a >الشاعر {dataPoet.name}</a>
               </li>
               <li>
-                <a href="/">العصور الأدبية</a>
+                <Link href="/literary-eras">العصور الأدبية</Link>
               </li>
               <li>
-                <a href="/">الرئيسية</a>
+                <Link href="/">الرئيسية</Link>
               </li>
             </ul>
           </div>

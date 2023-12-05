@@ -259,6 +259,13 @@ section.Poets {
     box-shadow: 0px 19px 14px 0px rgba(0, 0, 0, 0.14);
     border-radius: 24px;
     z-index: 22;
+    @media screen and (max-width: 992px) {
+      width: 100% !important;
+      height: auto !important;
+      left: 9px !important;
+      overflow-y: scroll;
+      bottom: -58px !important  ;
+    }
     .box_container {
       position: relative;
       .close_btn {
