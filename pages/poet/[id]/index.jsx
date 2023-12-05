@@ -9,8 +9,9 @@ import { motion } from 'framer-motion'
 import { imgs } from '@/assets/constants';
 import SliderVerses from '@/components/PoetsDetailsComponents/SliderVerses';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
-export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
+export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) {
   const [selectedTab, setSelectedTab] = useState(0);
   const [activeIndex, setActiveIndex] = useState(1);
   const router = useRouter();
@@ -22,19 +23,17 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
 
   const [age, setAge] = useState(0);
   const [city, setCity] = useState('all_cities');
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(dataPoetry);
 
   const handleChange = async (event) => {
     const selectedValue = event.target.value;
-
-    const res = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?${selectedValue !== 0 ? `era=${selectedValue}` : ''}&lang=2&pagenum=1&pagesize=50`);
-    const res1 = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${router.query.id}&${selectedValue !== 0 ? `era=${selectedValue}` : ''}&lang=2&pagenum=1&pagesize=50 `);
-
-    const filteredData = await res1.json();
+    console.log(selectedValue, "selectedValue")
+    const res = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${router.query.id}&${selectedValue !== 0 ? `place=${selectedValue}` : ''}&lang=2&pagenum=1&pagesize=50 `);
+    const filteredData = await res.json();
 
     setAge(selectedValue);
     setResults(filteredData)
-    router.push(`/poet/${router.query.id}?era=${selectedValue}`, undefined, { shallow: true });
+    router.push(`/poet/${router.query.id}?verse=${selectedValue}`, undefined, { shallow: true });
   };
 
 
@@ -127,6 +126,18 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
 
   return (
     <>
+      <Head>
+        <title>الشاعر {dataPoet.name} </title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta name="description" content="استكشف الشعراء
+عبر العصور" />
+        <meta name="description" content="شُعراء العصور الأَدبيّة في مَناطِق المملكة العربيّة السُّعوديّة" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <Container sx={{ maxWidth: "1400px" }} dir="rtl" maxWidth={false} className={styles.poetDetails}>
         <Box className={styles.headerImage} >
           <div className={styles.text_container}>
@@ -358,7 +369,7 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
                       </div>
                       <div className={styles.filter_methods}>
                         <div className={styles.box}>
-                          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                          {/* <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                             <Select
                               labelId="demo-select-small-label"
                               id="demo-select-small"
@@ -367,31 +378,33 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
                               onChange={handleChange}
                               IconComponent={CustomArrowIcon}
                             >
-                              <MenuItem value={0}>كل العصور</MenuItem>
-                              {dataAllEras.map((era, index) => (
-                                <MenuItem key={era.id} value={era.id}>
-                                  {era.name}
+                              <MenuItem value={0}>المملكة</MenuItem>
+                              {dataPlaces?.map((place, index) => (
+                                <MenuItem key={place.id} value={place.id}>
+                                  {place.name}
                                 </MenuItem>
                               ))}
                             </Select>
-                          </FormControl>
+                          </FormControl> */}
                         </div>
                         <div className={styles.box}>
                           <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                             <Select
                               labelId="demo-select-small-label"
                               id="demo-select-small"
-                              value={city}
-                              defaultValue='المملكة'
+                              value={age}
                               sx={selectBoxStyles}
                               onChange={handleChange}
                               IconComponent={CustomArrowIcon}
 
                             >
-                              <MenuItem value="all_cities">المملكة</MenuItem>
-                              <MenuItem value={10}>الرياض</MenuItem>
-                              <MenuItem value={20}>تابوك</MenuItem>
-                              <MenuItem value={30}>مكة المكرمة</MenuItem>
+                              <MenuItem value={0}>المملكة</MenuItem>
+                              {dataPlaces?.map((place, index) => (
+                                <MenuItem key={place.id} value={place.id}>
+                                  {place.name}
+                                </MenuItem>
+                              ))}
+
                             </Select>
                           </FormControl>
                         </div>
@@ -399,7 +412,7 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
 
                     </div>
                     <div className="slider">
-                      <SliderVerses dataPoetry={dataPoetry} results={results} />
+                      <SliderVerses results={results} />
                     </div>
                   </div>
                 </section>
@@ -415,9 +428,10 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
 }
 
 
-export async function getServerSideProps(context) {
-  const { id } = context.query;
-  const resPoet = await fetch(`https://api4z.suwa.io/api/Poets/GetPoetFullData?id=${id}&lang=2  `);
+export async function getStaticProps(context) {
+  const { id } = context.params;
+
+  const resPoet = await fetch(`https://api4z.suwa.io/api/Poets/GetPoetFullData?id=${id}&lang=2`);
   const dataPoet = await resPoet.json();
 
   const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${id}&lang=2&pagenum=1&pagesize=50`);
@@ -426,12 +440,30 @@ export async function getServerSideProps(context) {
   const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
   const dataAllEras = await resAllEras.json();
 
+  const resPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&poet=${id}&lang=2&pagenum=1&pagesize=50`);
+  const dataPlaces = await resPlaces.json();
+
   return {
     props: {
       dataPoet,
       dataPoetry,
-      dataAllEras
+      dataAllEras,
+      dataPlaces
     },
+    revalidate: 10
   };
 }
 
+
+export async function getStaticPaths() {
+  const response = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoetsIds`);
+  const placeIds = await response.json();
+
+  const paths = placeIds.map((id) => ({
+    params: { id: id.toString() },
+  }));
+  return {
+    paths,
+    fallback: 'blocking'
+  };
+}

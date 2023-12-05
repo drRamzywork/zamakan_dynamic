@@ -12,7 +12,7 @@ import { HiArrowLeft } from "react-icons/hi2";
 import styles from './index.module.scss'; // Make sure this path is correct
 import { Box, Button, Typography } from '@mui/material';
 import Link from 'next/link'
-export default function SliderVerses({ dataPoetry, results }) {
+export default function SliderVerses({ results }) {
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);

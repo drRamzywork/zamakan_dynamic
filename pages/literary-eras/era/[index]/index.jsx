@@ -2,12 +2,25 @@ import React from 'react'
 import LiteraryBanner from '@/components/LiteraryBanner'
 import Poets from '@/components/Poets'
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAllCitiesMap }) => {
 
 
   return (
     <>
+      <Head>
+        <title>{eraDetails.name}</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta name="description" content="استكشف الشعراء
+عبر العصور" />
+        <meta name="description" content="شُعراء العصور الأَدبيّة في مَناطِق المملكة العربيّة السُّعوديّة" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <LiteraryBanner eraDetails={eraDetails} dataAllEras={dataAllEras} />
       <Poets dataPoetsByEra={dataPoetsByEra} dataAllCitiesMap={dataAllCitiesMap} dataAllPlacesMap={dataAllPlacesMap} />
 

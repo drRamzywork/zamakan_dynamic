@@ -9,6 +9,7 @@ import { Mountains } from '@/assets/svgsComponents';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image'
+import Head from 'next/head'
 
 
 const Effra = localFont({
@@ -61,6 +62,18 @@ const LiteraryEras = ({ erasAllEras }) => {
 
   return (
     <>
+      <Head>
+        <title>العصور الأدبية التاريخية</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta name="description" content="استكشف الشعراء
+عبر العصور" />
+        <meta name="description" content="شُعراء العصور الأَدبيّة في مَناطِق المملكة العربيّة السُّعوديّة" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
 
       < section id='LiteraryEras' className={styles.LiteraryEras} style={...Effra.style}>
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >

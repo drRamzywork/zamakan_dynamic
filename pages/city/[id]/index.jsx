@@ -1,11 +1,24 @@
 import PageHeader from '@/components/Cities/PageHeader'
 import Verses from '@/components/Cities/Verses'
+import Head from 'next/head'
 import React from 'react'
 
 const Cities = ({ dataCityData, dataCityPoetry }) => {
 
   return (
     <>
+      <Head>
+        <title>{dataCityData.name}</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta name="description" content="استكشف الشعراء
+عبر العصور" />
+        <meta name="description" content="شُعراء العصور الأَدبيّة في مَناطِق المملكة العربيّة السُّعوديّة" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <PageHeader dataCityPoetry={dataCityPoetry} dataCityData={dataCityData} />
       <Verses dataCityPoetry={dataCityPoetry} dataCityData={dataCityData} />
     </>
