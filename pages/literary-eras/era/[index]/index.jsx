@@ -40,11 +40,11 @@ export async function getServerSideProps(context) {
   const resPoetsByEra = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?era=${index}&lang=2&pagenum=1&pagesize=50`);
   const dataPoetsByEra = await resPoetsByEra.json();
 
-  const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=13&lang=2&withPlaces=true&pagenum=1&pagesize=50  `);
+  const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50  `);
   const dataAllCitiesMap = await resAllCitiesMap.json();
 
 
-  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=13&lang=2&pagenum=1&pagesize=50`);
+  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&lang=2&pagenum=1&pagesize=50`);
   const dataAllPlacesMap = await resAllPlacesMap.json();
 
 

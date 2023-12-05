@@ -103,113 +103,111 @@ const Navbar = (props) => {
 
   return (
     <>
+      <AppBar style={{
+        background: ` #f6f8fc`
+      }} elevation={0} >
 
-      <main style={...Effra.style} dir='rtl' className={styles.navbar}>
-        <AppBar style={{
-          background: ` #f6f8fc`
-        }} elevation={0} >
-
-          <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
-            <div className={styles.sec_container}
-            >
-              <Button className={styles.burger_icon} onClick={() => setNavMenu(prev => !prev)}>
-                <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Top line */}
-                  <motion.path
-                    d="M1.39014 1H17.3901"
-                    stroke="#11292F"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    variants={lineVariants}
-                    animate={navMenu ? "cross" : "burger"}
-                  />
-                  {/* Middle line */}
-                  <motion.path
-                    d="M1.39014 7H17.3901"
-                    stroke="#11292F"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    variants={middleLineVariants}
-                    animate={navMenu ? "cross" : "burger"}
-                  />
-                  {/* Bottom line */}
-                  <motion.path
-                    d="M1.39014 13H17.3901"
-                    stroke="#11292F"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    variants={bottomLineVariants}
-                    animate={navMenu ? "cross" : "burger"}
-                  />
-                </svg>
-              </Button>
-              {navMenu &&
-                <motion.div
-                  initial="closed"
-                  animate={navMenu ? "open" : "closed"}
-                  variants={variants}
-                  transition={{ duration: 0.5, type: "tween" }}
-                  className={styles.nav_menu_container}>
-                  <div className={styles.links} onClick={() => setNavMenu(false)}>
-                    <div className={styles.link}>
-                      <Link href='/places'>مناطق المملكة </Link>
-                    </div>
-                    <div className={styles.link}>
-                      <Link href='/literary-eras'>العصور الأدبية</Link>
-                    </div>
-                    <div className={styles.link}>
-                      <Link href='/poets'>الشعراء </Link>
-                    </div>
+        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} style={...Effra.style} dir='rtl' className={styles.navbar}>
+          <div className={styles.sec_container}
+          >
+            <Button className={styles.burger_icon} onClick={() => setNavMenu(prev => !prev)}>
+              <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* Top line */}
+                <motion.path
+                  d="M1.39014 1H17.3901"
+                  stroke="#11292F"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  variants={lineVariants}
+                  animate={navMenu ? "cross" : "burger"}
+                />
+                {/* Middle line */}
+                <motion.path
+                  d="M1.39014 7H17.3901"
+                  stroke="#11292F"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  variants={middleLineVariants}
+                  animate={navMenu ? "cross" : "burger"}
+                />
+                {/* Bottom line */}
+                <motion.path
+                  d="M1.39014 13H17.3901"
+                  stroke="#11292F"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  variants={bottomLineVariants}
+                  animate={navMenu ? "cross" : "burger"}
+                />
+              </svg>
+            </Button>
+            {navMenu &&
+              <motion.div
+                initial="closed"
+                animate={navMenu ? "open" : "closed"}
+                variants={variants}
+                transition={{ duration: 0.5, type: "tween" }}
+                className={styles.nav_menu_container}>
+                <div className={styles.links} onClick={() => setNavMenu(false)}>
+                  <div className={styles.link}>
+                    <Link href='/places'>مناطق المملكة </Link>
                   </div>
-                  <div className={styles.soical_links} onClick={() => setNavMenu(false)}>
-                    <Link href='https://www.twitter.com'>
-                      <Twitter />
-                    </Link>
-
-                    <Link href='https://www.instagram.com'>
-                      <Instagram />
-                    </Link>
-
-                    <Link href='https://www.linkedIn.com'>
-                      <LinkedIn />
-                    </Link>
-
-                    <Link href='https://www.youtube.com'>
-                      <Youtube />
-                    </Link>
+                  <div className={styles.link}>
+                    <Link href='/literary-eras'>العصور الأدبية</Link>
                   </div>
-                </motion.div>
-              }
+                  <div className={styles.link}>
+                    <Link href='/poets'>الشعراء </Link>
+                  </div>
+                </div>
+                <div className={styles.soical_links} onClick={() => setNavMenu(false)}>
+                  <Link href='https://www.twitter.com'>
+                    <Twitter />
+                  </Link>
 
-              <Button className={styles.search_icon_mobile}>
+                  <Link href='https://www.instagram.com'>
+                    <Instagram />
+                  </Link>
+
+                  <Link href='https://www.linkedIn.com'>
+                    <LinkedIn />
+                  </Link>
+
+                  <Link href='https://www.youtube.com'>
+                    <Youtube />
+                  </Link>
+                </div>
+              </motion.div>
+            }
+
+            <Button className={styles.search_icon_mobile}>
+              <Search />
+            </Button>
+
+            <Link className={styles.logo} href={'/'}>
+              <Logo />
+            </Link>
+
+
+            <div className={styles.discover}>
+
+              <Button className={styles.search_icon}>
                 <Search />
               </Button>
 
-              <Link className={styles.logo} href={'/'}>
-                <Logo />
+              <Button className={styles.lang}>
+                EN
+              </Button>
+
+              <Link href='/poets' className={styles.btn_container}>
+                <Button>استكشف الشعراء</Button>
               </Link>
-
-
-              <div className={styles.discover}>
-
-                <Button className={styles.search_icon}>
-                  <Search />
-                </Button>
-
-                <Button className={styles.lang}>
-                  EN
-                </Button>
-
-                <div className={styles.btn_container}>
-                  <Button>استكشف الشعراء</Button>
-                </div>
-              </div>
-
             </div>
-          </Container>
-        </AppBar>
-        <Toolbar />
-      </main >
+
+          </div>
+        </Container>
+      </AppBar>
+      <Toolbar />
+
     </>
   );
 };

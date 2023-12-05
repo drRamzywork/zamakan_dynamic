@@ -98,74 +98,77 @@ const LiteraryBanner = (props) => {
 
 
       </section >
-      <div className={styles.swiper_container}>
-        <Swiper
-          dir="rtl"
-          breakpoints={{
-            300: {
-              slidesPerView: 2,
-              spaceBetween: 24,
-            },
-            400: {
-              slidesPerView: 2,
-              spaceBetween: 24,
-            },
-            640: {
-              slidesPerView: 2.5,
-              spaceBetween: 24,
-            },
-            700: {
-              slidesPerView: 2.8,
-              spaceBetween: 24,
-            },
-            992: {
-              slidesPerView: 3.5,
-              spaceBetween: 24,
-            },
-            1200: {
-              slidesPerView: 3.5,
-              spaceBetween: 24,
+      <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className={styles.leftSide}>
+        <div className={styles.swiper_container}>
+          <Swiper
+            dir="rtl"
+            breakpoints={{
+              300: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+              },
+              400: {
+                slidesPerView: 2,
+                spaceBetween: 24,
+              },
+              640: {
+                slidesPerView: 2.5,
+                spaceBetween: 24,
+              },
+              700: {
+                slidesPerView: 2.8,
+                spaceBetween: 24,
+              },
+              992: {
+                slidesPerView: 3.5,
+                spaceBetween: 24,
+              },
+              1200: {
+                slidesPerView: 3.5,
+                spaceBetween: 24,
 
-            },
-            1300: {
-              slidesPerView: 4.5,
-              spaceBetween: 24,
+              },
+              1300: {
+                slidesPerView: 4.5,
+                spaceBetween: 24,
 
-            },
-          }}
-          slidesPerView={4.5}
-          spaceBetween={24}
-
-
-          pagination={true} className={"swiper"}>
-
-          {props?.dataAllEras?.map((era) => (
-            <SwiperSlide key={era.id} className={styles.swiper_slide_box}>
-              <Link href={`/literary-eras/era/${era.id}`} className={`${styles.box} ${eraIndex === era.id ? styles.active : ''}`}>
-                <div className={styles.img_container}>
-                  {/* <img src={pre_Islamic.src} alt="" /> */}
-                  <Image src={pre_Islamic.src} alt={era.desc} width={277} height={346} />
-
-                </div>
-
-                <div className={styles.date_container}>
-                  <Typography>  {toArabicNumerals(era.fromH)} - {toArabicNumerals(era.toH)}</Typography>
-
-                </div>
-
-                <div className={styles.title}>
-                  <Typography variant='h4'>
-                    {era.name}
-                  </Typography>
-                </div>
-
-              </Link>
-            </SwiperSlide>
-          ))}
+              },
+            }}
+            slidesPerView={4.5}
+            spaceBetween={24}
 
 
-        </Swiper>
-      </div>
+            pagination={true} className={"swiper"}>
+
+            {props?.dataAllEras?.map((era) => (
+              <SwiperSlide key={era.id} className={styles.swiper_slide_box}>
+                <Link href={`/literary-eras/era/${era.id}`} className={`${styles.box} ${eraIndex === era.id ? styles.active : ''}`}>
+                  <div className={styles.img_container}>
+                    {/* <img src={pre_Islamic.src} alt="" /> */}
+                    <Image src={pre_Islamic.src} alt={era.desc} width={277} height={346} />
+
+                  </div>
+
+                  <div className={styles.date_container}>
+                    <Typography>  {toArabicNumerals(era.fromH)} - {toArabicNumerals(era.toH)}</Typography>
+
+                  </div>
+
+                  <div className={styles.title}>
+                    <Typography variant='h4'>
+                      {era.name}
+                    </Typography>
+                  </div>
+
+                </Link>
+              </SwiperSlide>
+            ))}
+
+
+          </Swiper>
+        </div>
+      </Container>
+
     </>
 
   )

@@ -14,13 +14,11 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
   const [selectedTab, setSelectedTab] = useState(0);
   const [activeIndex, setActiveIndex] = useState(1);
   const router = useRouter();
-  console.log(router.query.id)
   const { ra3y, } = imgs;
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
   };
 
-  console.log(dataAllEras, "dataDefaultEr22a")
 
   const [age, setAge] = useState(0);
   const [city, setCity] = useState('all_cities');
@@ -39,7 +37,6 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
     router.push(`/poet/${router.query.id}?era=${selectedValue}`, undefined, { shallow: true });
   };
 
-  { console.log(results, "resultssss") }
 
   const selectBoxStyles = {
     m: 1,
@@ -118,6 +115,15 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
     list.forEach((item) => item.addEventListener("click", activelink));
 
   }, [])
+  // adjust image
+  const adjustImageUrl = (imageUrl) => {
+    if (imageUrl?.startsWith('https')) {
+      return imageUrl;
+    } else {
+      return `https://zamakan.suwa.io${imageUrl}`;
+    }
+  };
+
 
   return (
     <>
@@ -139,7 +145,7 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
         </Box>
         <Grid container className={styles.profileSection}>
           <Grid item>
-            <Avatar src={dataPoet.icon} className={styles.avatar} />
+            <Avatar src={adjustImageUrl(dataPoet.icon)} className={styles.avatar} />
           </Grid>
           <Grid spacing={0} item>
             <Typography variant="h5" className={styles.profileName}>
@@ -336,7 +342,6 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
           )}
           {activeIndex === 0 && (
             <div
-
               className={styles.tabContent_container} dir='rtl'>
               <motion.div
                 animate={{ opacity: 1 }}
@@ -403,8 +408,6 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras }) {
             </div>
           )}
         </div>
-
-
       </Container >
     </>
 
@@ -431,3 +434,4 @@ export async function getServerSideProps(context) {
     },
   };
 }
+

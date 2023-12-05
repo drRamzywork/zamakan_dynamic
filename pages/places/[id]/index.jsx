@@ -118,7 +118,7 @@ const Places = ({ dataAllCitiesMap,
       <PageHeader />
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
 
-        < section id='Places' className={styles.Places} dir='rtl'>
+        <section id='Places' className={styles.Places} dir='rtl'>
           <div className={styles.sec_container}>
 
             <div className={styles.slider_container}>
@@ -185,7 +185,7 @@ const Places = ({ dataAllCitiesMap,
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 758 624"
                         >
-                          {city.svgPath && ReactHtmlParser(city.svgPath)}
+                          <g dangerouslySetInnerHTML={{ __html: city.svgPath }} />
                         </svg>
 
 
@@ -219,7 +219,6 @@ const Places = ({ dataAllCitiesMap,
                   wrapperStyle={{ maxWidth: "100%", maxHeight: "calc(100vh - 50px)", overflow: 'unset !important' }}
 
                 >
-
                   {({ zoomIn, zoomOut, resetTransform }) => {
                     resetTransformRef.current = resetTransform;
 
@@ -233,12 +232,7 @@ const Places = ({ dataAllCitiesMap,
                     );
                   }}
                 </TransformWrapper >
-
-
-
-
               </div >
-
               <div className={styles.text_container}>
                 <div className={styles.sec_title}>
                   <Typography variant='h3'>
@@ -317,9 +311,7 @@ const Places = ({ dataAllCitiesMap,
           </div>
         </section >
       </Container >
-
     </>
-
   )
 }
 
@@ -330,11 +322,10 @@ export default Places
 
 export async function getStaticProps({ params }) {
   const { id } = params;
-  console.log(id, "IDSXXX")
-  const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=13&lang=2&withPlaces=true&pagenum=1&pagesize=50`);
+  const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50`);
   const dataAllCitiesMap = await resAllCitiesMap.json();
 
-  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=13&lang=2&pagenum=1&pagesize=50`);
+  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50  `);
   const dataAllPlacesMap = await resAllPlacesMap.json();
 
   const resPlacePoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?city=${id}&lang=2&pagenum=1&pagesize=1`);
@@ -361,7 +352,6 @@ export async function getStaticPaths() {
   }
 
   const ids = await response.json();
-  console.log(ids, "idsg")
 
   // Generate the paths
   const paths = ids.map(id => ({

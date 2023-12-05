@@ -60,10 +60,7 @@ const LiteraryEras = ({ erasAllEras }) => {
 
 
   return (
-
     <>
-
-
 
       < section id='LiteraryEras' className={styles.LiteraryEras} style={...Effra.style}>
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
@@ -102,69 +99,71 @@ const LiteraryEras = ({ erasAllEras }) => {
 
 
       <div className={styles.swiper_container}>
-        <Swiper
-          dir="rtl"
-          breakpoints={{
-            300: {
-              slidesPerView: 1.3,
-              spaceBetween: 24,
-            },
-            400: {
-              slidesPerView: 1.3,
-              spaceBetween: 24,
-            },
-            607: {
-              slidesPerView: 1.8,
-              spaceBetween: 24,
-            },
-            700: {
-              slidesPerView: 2.2,
-              spaceBetween: 24,
-            },
-            1200: {
-              slidesPerView: 3.5,
-              spaceBetween: 24,
-            },
-            1300: {
-              slidesPerView: 4.5,
-              spaceBetween: 24,
-            },
-          }}
-          slidesPerView={4.5}
-          spaceBetween={24}
+        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className={styles.leftSide}>
+          <Swiper
+            dir="rtl"
+            breakpoints={{
+              300: {
+                slidesPerView: 1.3,
+                spaceBetween: 24,
+              },
+              400: {
+                slidesPerView: 1.3,
+                spaceBetween: 24,
+              },
+              607: {
+                slidesPerView: 1.8,
+                spaceBetween: 24,
+              },
+              700: {
+                slidesPerView: 2.2,
+                spaceBetween: 24,
+              },
+              1200: {
+                slidesPerView: 3.5,
+                spaceBetween: 24,
+              },
+              1300: {
+                slidesPerView: 4.5,
+                spaceBetween: 24,
+              },
+            }}
+            slidesPerView={4.5}
+            spaceBetween={24}
 
-          pagination={true} className={"swiper"}>
+            pagination={true} className={"swiper"}>
 
-          {erasAllEras.map((era) => (
-            <SwiperSlide key={era.id} className={styles.swiper_slide_box}>
-              <Link href={`/literary-eras/era/${era.id}`} className={styles.box}>
-                <div className={styles.img_container}>
-                  {/* <img src={pre_Islamic.src} alt="" /> */}
-                  <Image src={pre_Islamic.src} alt={era.desc} width={277} height={346} />
+            {erasAllEras.map((era) => (
+              <SwiperSlide key={era.id} className={styles.swiper_slide_box}>
+                <Link href={`/literary-eras/era/${era.id}`} className={styles.box}>
+                  <div className={styles.img_container}>
+                    {/* <img src={pre_Islamic.src} alt="" /> */}
+                    <Image src={pre_Islamic.src} alt={era.desc} width={277} height={346} />
 
-                </div>
+                  </div>
 
-                <div className={styles.date_container}>
-                  <Typography>  {toArabicNumerals(era.fromH)} - {toArabicNumerals(era.toH)}</Typography>
+                  <div className={styles.date_container}>
+                    <Typography>  {toArabicNumerals(era.fromH)} - {toArabicNumerals(era.toH)}</Typography>
 
-                </div>
+                  </div>
 
-                <div className={styles.title}>
-                  <Typography variant='h4'>
-                    {era.name}
-                  </Typography>
-                </div>
+                  <div className={styles.title}>
+                    <Typography variant='h4'>
+                      {era.name}
+                    </Typography>
+                  </div>
 
-                <div className={styles.desc}>
-                  <Typography>
-                    {era.desc}
-                  </Typography>
-                </div>
-              </Link>
-            </SwiperSlide>
-          ))}
+                  <div className={styles.desc}>
+                    <Typography>
+                      {era.desc}
+                    </Typography>
+                  </div>
+                </Link>
+              </SwiperSlide>
+            ))}
 
-        </Swiper>
+          </Swiper>
+        </Container>
       </div>
 
     </>

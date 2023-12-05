@@ -80,15 +80,8 @@ export default function SliderVerses({ dataPoetry, results }) {
               </Link>
             </div>
           </SwiperSlide>
-
         ))}
-
-
-
-
-
       </Swiper>
-
     </>
   );
 }

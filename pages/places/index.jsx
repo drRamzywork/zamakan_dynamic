@@ -184,7 +184,16 @@ const Places = ({ dataAllCitiesMap,
                   <SwiperSlide key={index}>
                     <Link href={`/places/${city.id}`} className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       <div className={styles.img_container}>
-                        <img src={landData[index]?.image.src} alt='المملكة' />
+                        <svg
+                          id="svg1"
+                          width="858"
+                          height="724"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 758 624"
+                        >
+                          <g dangerouslySetInnerHTML={{ __html: city.svgPath }} />
+                        </svg>
                       </div>
                       <div className={styles.name}>
                         <Typography>{city.name}</Typography>
@@ -315,11 +324,11 @@ export default Places
 
 export async function getServerSideProps() {
 
-  const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=13&lang=2&withPlaces=true&pagenum=1&pagesize=50  `);
+  const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50  `);
   const dataAllCitiesMap = await resAllCitiesMap.json();
 
 
-  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=13&lang=2&pagenum=1&pagesize=50`);
+  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50  `);
   const dataAllPlacesMap = await resAllPlacesMap.json();
 
 

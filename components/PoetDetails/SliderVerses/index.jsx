@@ -25,7 +25,6 @@ export default function SliderVerses({ filtredPoets }) {
   const [currentPage, setCurrentPage] = useState(0);
   const totalPages = Math.ceil(filtredPoets.length / ITEMS_PER_PAGE);
 
-  console.log(currentPage, "currentPage")
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
@@ -33,7 +32,6 @@ export default function SliderVerses({ filtredPoets }) {
     currentPage * ITEMS_PER_PAGE,
     (currentPage + 1) * ITEMS_PER_PAGE
   );
-  console.log(filtredPoets, "filtredPoets Count")
   return (
     <>
 
