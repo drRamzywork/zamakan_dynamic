@@ -273,14 +273,14 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
                           <Typography>{dataPoet.fromM} هـجريًا - {dataPoet.fromH} ميلاديًا</Typography>
                         </div>
                       </div>
-                      <div className={styles.box}>
+                      {/* <div className={styles.box}>
                         <div className={styles.title}>
                           <Typography>محل الميلاد</Typography>
                         </div>
                         <div className={styles.name}>
                           <Typography>المدينة المنورة</Typography>
                         </div>
-                      </div>
+                      </div> */}
 
                       <div className={styles.box}>
                         <div className={styles.title}>
