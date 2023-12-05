@@ -292,14 +292,14 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
                         </div>
                       </div>
 
-                      <div className={styles.box}>
+                      {/* <div className={styles.box}>
                         <div className={styles.title}>
                           <Typography>محل الوفاة</Typography>
                         </div>
                         <div className={styles.name}>
                           <Typography>المدينة المنورة</Typography>
                         </div>
-                      </div>
+                      </div> */}
                       <div className={styles.box}>
                         <div className={styles.title}>
                           <Typography>عمره عند الوفاة</Typography>
