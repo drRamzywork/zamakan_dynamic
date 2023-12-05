@@ -10,7 +10,7 @@ const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAl
   return (
     <>
       <Head>
-        <title>{eraDetails.name}</title>
+        <title>{eraDetails?.name}</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
