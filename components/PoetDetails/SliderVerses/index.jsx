@@ -33,7 +33,6 @@ export default function SliderVerses({ filtredPoets }) {
     (currentPage + 1) * ITEMS_PER_PAGE
   );
 
-  console.log(filtredPoets, "filtredPoets")
 
   const adjustImageUrl = (imageUrl) => {
     if (imageUrl?.startsWith('https')) {

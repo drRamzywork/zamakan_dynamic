@@ -115,7 +115,6 @@ const Navbar = (props) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [navMenuRef]);
-  console.log(navMenuRef, "navMenuRef")
 
   return (
     <>

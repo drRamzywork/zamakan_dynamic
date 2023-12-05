@@ -312,10 +312,10 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
                           <div className={styles.desc}>
                             <p>
                               {cityData?.descriptionShort}
-                              <a href='/city' className={styles.more}>
+                              <Link href={`/city/${cityData.id}`} className={styles.more}>
                                 <span>المزيد عن {cityData?.name}</span>
                                 <LeftArrow />
-                              </a>
+                              </Link>
                             </p>
                           </div>
                         </div>
@@ -323,7 +323,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
 
                       <PoetsSlider poetriesData={poetriesData} />
 
-                      <div className="close-btn" onClick={() => setActiveCity(null)}>
+                      <div className={styles.close_btn} onClick={() => setActiveCity(null)}>
                         <CloseIcon />
                       </div>
                     </div>
