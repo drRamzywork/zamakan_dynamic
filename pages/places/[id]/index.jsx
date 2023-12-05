@@ -152,7 +152,7 @@ const Places = ({ dataAllCitiesMap,
     <>
       <Head>
         {cityId && (
-          <title>المنطقة {cityId[0]?.name} </title>
+          <title>{cityId ? `${cityId.name} المنطقة` : 'Loading...'}</title>
         )}
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
