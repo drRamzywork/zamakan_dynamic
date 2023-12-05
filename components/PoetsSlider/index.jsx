@@ -11,10 +11,18 @@ import Link from 'next/link';
 
 
 
-const PoetsSlider = () => {
+const PoetsSlider = ({ poetriesData }) => {
   const { ra3y, Feather_big, place } = imgs;
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
+
+
+  const adjustImageUrl = (imageUrl) => {
+    if (imageUrl?.startsWith('https')) {
+      return imageUrl;
+    } else {
+      return `https://zamakan.suwa.io${imageUrl}`;
+    }
+  };
+
   return (
     <>
       <div id='simlar_poets' className={styles.simlar_poets}>
@@ -28,438 +36,52 @@ const PoetsSlider = () => {
 
               dir='rtl'
               className={styles.swiper_container} >
-              <SwiperSlide>
-                <div className={styles.box}>
 
-                  <div className={styles.tag}>
-                    <Typography>بنبان</Typography>
-                  </div>
-
-                  <div className={styles.desc}>
-                    <Typography>
-                      مقيم على <span>بنبان</span> يمنع ماءه ... وماء وشيع ماء عطشان مرمل
-                    </Typography>
-                  </div>
-
-                  <Link href='/poetry' className={styles.link_container}>
-                    <Typography>تفاصيل القصيدة</Typography>
-
-                    <div className={styles.icon_container}>
-                      <HiArrowLeft />
-                    </div>
-                  </Link>
-                  <hr />
-
-
-                  <div className={styles.poet_info}>
-                    <div className={styles.img_container}>
-                      <img src={ra3y.src} alt="" />
+              {poetriesData?.map((poetry, index) =>
+                <SwiperSlide key={poetry.id}>
+                  <div className={styles.box}>
+                    <div className={styles.tag}>
+                      <Typography>{poetry.placeName}</Typography>
                     </div>
 
-                    <div className={styles.text_container}>
-                      <Link href='/poet' className={styles.name}>
-                        <Typography>الراعي</Typography>
-                      </Link>
-                      <div className={styles.poet_tag}>
-                        <Typography>
-                          العصر الأموي
-                        </Typography>
+                    <div className={styles.desc}>
+                      <Typography>
+                        {poetry.poetryParts}
+                      </Typography>
+                    </div>
 
+                    <Link href={`/poetry/${poetry.id} `} className={styles.link_container}>
+                      <Typography>تفاصيل القصيدة</Typography>
+
+                      <div className={styles.icon_container}>
+                        <HiArrowLeft />
+                      </div>
+                    </Link>
+                    <hr />
+
+
+                    <div className={styles.poet_info}>
+                      <div className={styles.img_container}>
+                        <img src={adjustImageUrl(poetry.poetIcon)} alt={poetry.poetName} />
+                      </div>
+
+                      <div className={styles.text_container}>
+                        <Link href={`/poet/${poetry.poetId}`} className={styles.name}>
+                          <Typography>{poetry.poetName}</Typography>
+                        </Link>
+                        <div className={styles.poet_tag}>
+                          <Typography>
+                            العصر الأموي
+                            {poetry.zamanName}
+                          </Typography>
+
+                        </div>
                       </div>
                     </div>
+
                   </div>
-
-
-
-
-
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className={styles.box}>
-
-                  <div className={styles.tag}>
-                    <Typography>بنبان</Typography>
-                  </div>
-
-                  <div className={styles.desc}>
-                    <Typography>
-                      مقيم على <span>بنبان</span> يمنع ماءه ... وماء وشيع ماء عطشان مرمل
-                    </Typography>
-                  </div>
-
-                  <Link href='/poetry' className={styles.link_container}>
-                    <Typography>تفاصيل القصيدة</Typography>
-
-                    <div className={styles.icon_container}>
-                      <HiArrowLeft />
-                    </div>
-                  </Link>
-                  <hr />
-
-
-                  <div className={styles.poet_info}>
-                    <div className={styles.img_container}>
-                      <img src={ra3y.src} alt="" />
-                    </div>
-
-                    <div className={styles.text_container}>
-                      <Link href='/poet' className={styles.name}>
-                        <Typography>الراعي</Typography>
-                      </Link>
-                      <div className={styles.poet_tag}>
-                        <Typography>
-                          العصر الأموي
-                        </Typography>
-
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className={styles.box}>
-
-                  <div className={styles.tag}>
-                    <Typography>بنبان</Typography>
-                  </div>
-
-                  <div className={styles.desc}>
-                    <Typography>
-                      مقيم على <span>بنبان</span> يمنع ماءه ... وماء وشيع ماء عطشان مرمل
-                    </Typography>
-                  </div>
-
-                  <Link href='/poetry' className={styles.link_container}>
-                    <Typography>تفاصيل القصيدة</Typography>
-
-                    <div className={styles.icon_container}>
-                      <HiArrowLeft />
-                    </div>
-                  </Link>
-                  <hr />
-
-
-                  <div className={styles.poet_info}>
-                    <div className={styles.img_container}>
-                      <img src={ra3y.src} alt="" />
-                    </div>
-
-                    <div className={styles.text_container}>
-                      <Link href='/poet' className={styles.name}>
-                        <Typography>الراعي</Typography>
-                      </Link>
-                      <div className={styles.poet_tag}>
-                        <Typography>
-                          العصر الأموي
-                        </Typography>
-
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className={styles.box}>
-
-                  <div className={styles.tag}>
-                    <Typography>بنبان</Typography>
-                  </div>
-
-                  <div className={styles.desc}>
-                    <Typography>
-                      مقيم على <span>بنبان</span> يمنع ماءه ... وماء وشيع ماء عطشان مرمل
-                    </Typography>
-                  </div>
-
-                  <Link href='/poetry' className={styles.link_container}>
-                    <Typography>تفاصيل القصيدة</Typography>
-
-                    <div className={styles.icon_container}>
-                      <HiArrowLeft />
-                    </div>
-                  </Link>
-                  <hr />
-
-
-                  <div className={styles.poet_info}>
-                    <div className={styles.img_container}>
-                      <img src={ra3y.src} alt="" />
-                    </div>
-
-                    <div className={styles.text_container}>
-                      <Link href='/poet' className={styles.name}>
-                        <Typography>الراعي</Typography>
-                      </Link>
-                      <div className={styles.poet_tag}>
-                        <Typography>
-                          العصر الأموي
-                        </Typography>
-
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className={styles.box}>
-
-                  <div className={styles.tag}>
-                    <Typography>بنبان</Typography>
-                  </div>
-
-                  <div className={styles.desc}>
-                    <Typography>
-                      مقيم على <span>بنبان</span> يمنع ماءه ... وماء وشيع ماء عطشان مرمل
-                    </Typography>
-                  </div>
-
-                  <Link href='/poetry' className={styles.link_container}>
-                    <Typography>تفاصيل القصيدة</Typography>
-
-                    <div className={styles.icon_container}>
-                      <HiArrowLeft />
-                    </div>
-                  </Link>
-                  <hr />
-
-
-                  <div className={styles.poet_info}>
-                    <div className={styles.img_container}>
-                      <img src={ra3y.src} alt="" />
-                    </div>
-
-                    <div className={styles.text_container}>
-                      <Link href='/poet' className={styles.name}>
-                        <Typography>الراعي</Typography>
-                      </Link>
-                      <div className={styles.poet_tag}>
-                        <Typography>
-                          العصر الأموي
-                        </Typography>
-
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className={styles.box}>
-
-                  <div className={styles.tag}>
-                    <Typography>بنبان</Typography>
-                  </div>
-
-                  <div className={styles.desc}>
-                    <Typography>
-                      مقيم على <span>بنبان</span> يمنع ماءه ... وماء وشيع ماء عطشان مرمل
-                    </Typography>
-                  </div>
-
-                  <Link href='/poetry' className={styles.link_container}>
-                    <Typography>تفاصيل القصيدة</Typography>
-
-                    <div className={styles.icon_container}>
-                      <HiArrowLeft />
-                    </div>
-                  </Link>
-                  <hr />
-
-
-                  <div className={styles.poet_info}>
-                    <div className={styles.img_container}>
-                      <img src={ra3y.src} alt="" />
-                    </div>
-
-                    <div className={styles.text_container}>
-                      <Link href='/poet' className={styles.name}>
-                        <Typography>الراعي</Typography>
-                      </Link>
-                      <div className={styles.poet_tag}>
-                        <Typography>
-                          العصر الأموي
-                        </Typography>
-
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className={styles.box}>
-
-                  <div className={styles.tag}>
-                    <Typography>بنبان</Typography>
-                  </div>
-
-                  <div className={styles.desc}>
-                    <Typography>
-                      مقيم على <span>بنبان</span> يمنع ماءه ... وماء وشيع ماء عطشان مرمل
-                    </Typography>
-                  </div>
-
-                  <Link href='/poetry' className={styles.link_container}>
-                    <Typography>تفاصيل القصيدة</Typography>
-
-                    <div className={styles.icon_container}>
-                      <HiArrowLeft />
-                    </div>
-                  </Link>
-                  <hr />
-
-
-                  <div className={styles.poet_info}>
-                    <div className={styles.img_container}>
-                      <img src={ra3y.src} alt="" />
-                    </div>
-
-                    <div className={styles.text_container}>
-                      <Link href='/poet' className={styles.name}>
-                        <Typography>الراعي</Typography>
-                      </Link>
-                      <div className={styles.poet_tag}>
-                        <Typography>
-                          العصر الأموي
-                        </Typography>
-
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className={styles.box}>
-
-                  <div className={styles.tag}>
-                    <Typography>بنبان</Typography>
-                  </div>
-
-                  <div className={styles.desc}>
-                    <Typography>
-                      مقيم على <span>بنبان</span> يمنع ماءه ... وماء وشيع ماء عطشان مرمل
-                    </Typography>
-                  </div>
-
-                  <Link href='/poetry' className={styles.link_container}>
-                    <Typography>تفاصيل القصيدة</Typography>
-
-                    <div className={styles.icon_container}>
-                      <HiArrowLeft />
-                    </div>
-                  </Link>
-                  <hr />
-
-
-                  <div className={styles.poet_info}>
-                    <div className={styles.img_container}>
-                      <img src={ra3y.src} alt="" />
-                    </div>
-
-                    <div className={styles.text_container}>
-                      <Link href='/poet' className={styles.name}>
-                        <Typography>الراعي</Typography>
-                      </Link>
-                      <div className={styles.poet_tag}>
-                        <Typography>
-                          العصر الأموي
-                        </Typography>
-
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-
-                </div>
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <div className={styles.box}>
-
-                  <div className={styles.tag}>
-                    <Typography>بنبان</Typography>
-                  </div>
-
-                  <div className={styles.desc}>
-                    <Typography>
-                      مقيم على <span>بنبان</span> يمنع ماءه ... وماء وشيع ماء عطشان مرمل
-                    </Typography>
-                  </div>
-
-                  <Link href='/poetry' className={styles.link_container}>
-                    <Typography>تفاصيل القصيدة</Typography>
-
-                    <div className={styles.icon_container}>
-                      <HiArrowLeft />
-                    </div>
-                  </Link>
-                  <hr />
-
-
-                  <div className={styles.poet_info}>
-                    <div className={styles.img_container}>
-                      <img src={ra3y.src} alt="" />
-                    </div>
-
-                    <div className={styles.text_container}>
-                      <Link href='/poet' className={styles.name}>
-                        <Typography>الراعي</Typography>
-                      </Link>
-                      <div className={styles.poet_tag}>
-                        <Typography>
-                          العصر الأموي
-                        </Typography>
-
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-
-                </div>
-              </SwiperSlide>
-
+                </SwiperSlide>
+              )}
 
 
 

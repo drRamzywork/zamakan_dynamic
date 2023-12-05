@@ -11,7 +11,6 @@ import {
 } from '../../assets/svgsComponents';
 
 import localFont from 'next/font/local'
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
@@ -100,6 +99,22 @@ const Navbar = (props) => {
       translateY: -6,
     },
   };
+  const navMenuRef = useRef(null);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (navMenuRef.current && !navMenuRef.current.contains(event.target)) {
+        setNavMenu(false);
+      }
+    }
+
+    // Attach the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Clean up the event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [navMenuRef]);
 
   return (
     <>
@@ -110,7 +125,7 @@ const Navbar = (props) => {
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} style={...Effra.style} dir='rtl' className={styles.navbar}>
           <div className={styles.sec_container}
           >
-            <Button className={styles.burger_icon} onClick={() => setNavMenu(prev => !prev)}>
+            <Button className={styles.burger_icon} onClick={() => setNavMenu(true)}>
               <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 {/* Top line */}
                 <motion.path
@@ -143,11 +158,13 @@ const Navbar = (props) => {
             </Button>
             {navMenu &&
               <motion.div
+                ref={navMenuRef}
                 initial="closed"
                 animate={navMenu ? "open" : "closed"}
                 variants={variants}
                 transition={{ duration: 0.5, type: "tween" }}
-                className={styles.nav_menu_container}>
+                className={styles.nav_menu_container}
+              >
                 <div className={styles.links} onClick={() => setNavMenu(false)}>
                   <div className={styles.link}>
                     <Link href='/places'>مناطق المملكة </Link>

@@ -7,6 +7,7 @@ import SliderVerses from '../../components/PoetDetails/SliderVerses'
 import { Search } from '@/assets/svgsComponents';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { MagnifyingGlass } from 'react-loader-spinner';
 
 const Poets = ({ erasAllEras, dataDefault }) => {
   const [age, setAge] = useState(0);
@@ -138,6 +139,8 @@ const Poets = ({ erasAllEras, dataDefault }) => {
     top: '19% !important',
     color: ' #11292F',
   });
+
+
   return (
     <section id='poets' className='poets'>
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
@@ -165,9 +168,20 @@ const Poets = ({ erasAllEras, dataDefault }) => {
                         onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                       />
                       <div className={styles.icon_container} onClick={handleSearch}>
-                        <Search />
+                        {isLoading ? <MagnifyingGlass
+                          visible={true}
+                          height="30"
+                          width="30"
+                          ariaLabel="MagnifyingGlass-loading"
+                          wrapperStyle={{}}
+                          wrapperClass="MagnifyingGlass-wrapper"
+                          glassColor='#c0efff'
+                          color='rgba(151, 155, 182, 1)'
+                        /> :
+                          <Search />
+                        }
                       </div>
-                      {isLoading && <div>Loading...</div>}
+
                       {error && <div>Error: {error.message}</div>}
                     </div>
 

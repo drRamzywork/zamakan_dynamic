@@ -706,6 +706,9 @@ foreignObject {
   justify-content: center;
   // border-radius: 35px;
   cursor: pointer;
+
+  position: relative;
+  z-index: 222222222;
 }
 .city-name p {
   background: #fff;
@@ -746,93 +749,6 @@ svg.saudi-map.safari .city-name > div:hover {
   margin-bottom: 10px;
 }
 
-// active city box (MAP)
-.custom-box {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 602px;
-  height: 399px;
-  padding: 40px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0px 19px 14px 0px rgba(0, 0, 0, 0.14);
-  border-radius: 24px;
-  z-index: 22;
-  .box_container {
-    position: relative;
-    .close-btn {
-      position: absolute;
-      top: -9px;
-      left: -9px;
-      cursor: pointer;
-      svg {
-        path {
-          stroke: rgba(17, 41, 47, 1) !important;
-        }
-      }
-    }
-
-    .box_header {
-      display: flex;
-      align-items: flex-start;
-      .img-container {
-        width: 72px;
-        height: 72px;
-        margin-left: 16px;
-        border-radius: 16px;
-        flex-basis: 28%;
-
-        img {
-          width: 100%;
-          height: 100%;
-          border-radius: 16px;
-          object-fit: contain;
-        }
-      }
-
-      .title {
-        margin-bottom: 24px;
-        h3 {
-          margin-bottom: 8px !important;
-        }
-        .desc {
-          p {
-            font-family: var(--effra-bold);
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 22px;
-            letter-spacing: 0em;
-            text-align: right;
-          }
-
-          .more {
-            margin-right: 8px;
-            span {
-              color: rgba(187, 113, 101, 1);
-              font-family: var(--effra-bold);
-              font-size: 20px;
-              font-weight: 700;
-              line-height: 24px;
-              letter-spacing: 0em;
-              text-align: right;
-            }
-
-            svg {
-              margin-right: 8px;
-
-              width: 6.67px;
-              height: 11.67px;
-              path {
-                stroke: rgba(187, 113, 101, 1) !important;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
 .MuiTabs-indicator {
   display: none;
 }

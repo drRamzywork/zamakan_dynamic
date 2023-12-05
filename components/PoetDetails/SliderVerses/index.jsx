@@ -32,6 +32,18 @@ export default function SliderVerses({ filtredPoets }) {
     currentPage * ITEMS_PER_PAGE,
     (currentPage + 1) * ITEMS_PER_PAGE
   );
+
+  console.log(filtredPoets, "filtredPoets")
+
+  const adjustImageUrl = (imageUrl) => {
+    if (imageUrl?.startsWith('https')) {
+      return imageUrl;
+    } else {
+      return `https://zamakan.suwa.io${imageUrl}`;
+    }
+  };
+
+
   return (
     <>
 
@@ -171,7 +183,7 @@ export default function SliderVerses({ filtredPoets }) {
             className={styles.box}>
             <div className={styles.poet_info}>
               <div className={styles.img_container}>
-                <img src={poet.icon} alt="" />
+                <img src={adjustImageUrl(poet.icon)} alt={poet.name} />
               </div>
 
               <div className={styles.text_container}>

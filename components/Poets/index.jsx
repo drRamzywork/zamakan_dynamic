@@ -12,6 +12,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import PoetsSlider from '../PoetsSlider';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
+import Image from 'next/image';
 
 const Effra = localFont({
   src: [
@@ -50,6 +51,8 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
   const [activeLand, setActiveLand] = useState(null);
   const [isPointsActive, seIsPointsActive] = useState(false);
   const [cityNames, setCityNames] = useState([]);
+  const [places, setPlaces] = useState(null);
+
 
   useEffect(() => {
     // Select all elements with the class name .land
@@ -77,10 +80,11 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
   }, [activePoet, cityNames]);
 
 
-  const handleBoxClick = (index) => {
-    setActivePoet(index);
-    setActiveIndex(index); // Set the active index
+  const handleBoxClick = (poetID) => {
+    setActivePoet(poetID);
+    setActiveIndex(poetID); // Set the active index
     seIsPointsActive(false)
+
   };
 
   const [isSafari, setIsSafari] = useState(false);
@@ -91,9 +95,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
 
 
   }, []);
-  const handleCityClick = cityName => {
-    // setActiveCity(activeCity === cityName ? null : cityName);
-  };
+
 
 
   const convertSVGPathsToJSX = (svgString) => {
@@ -111,17 +113,35 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
       return `https://zamakan.suwa.io${imageUrl}`;
     }
   };
+
+
+  const [cityData, setCityData] = useState(null)
+  const [poetriesData, setPoetriesData] = useState(null)
+
   const handlePlaceWindow = async (placeId) => {
     setActiveCity(placeId)
     const resCityData = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${placeId}&lang=2`);
     const dataCityData = await resCityData.json();
 
-    const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${placeId}&lang=2&pagenum=1&pagesize=1`);
+    const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${placeId}&type=6&lang=2&pagenum=1&pagesize=50`);
     const dataCityPoetry = await resCityPoetry.json();
 
-    console.log(dataCityData, 'cityById')
-    console.log(dataCityPoetry, "poetryByCity")
+
+    setCityData(dataCityData)
+    setPoetriesData(dataCityPoetry)
+
+
   }
+
+
+  const handlePoetData = async (poetID) => {
+    const resPoetPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?poet=${poetID}&lang=2&pagenum=1&pagesize=50`);
+    const dataPoetPlaces = await resPoetPlaces.json();
+
+    setPlaces(dataPoetPlaces)
+  }
+
+
   return (
     <>
       < section id='Poets' className={styles.Poets} style={...Effra.style} dir='rtl'>
@@ -168,7 +188,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
                 className={styles.swiper_container}
               >
                 {dataPoetsByEra?.map((poet, index) => (
-                  <SwiperSlide key={index} className={styles.swiper_slide_box}>
+                  <SwiperSlide key={index} onClick={() => handlePoetData(poet.id)} className={styles.swiper_slide_box}>
                     <div onClick={() => handleBoxClick(index)} className={`${styles.box_container} `}>
                       <div className={`${styles.box} ${activePoet === index ? styles.active : ''}`}>
                         <div className={styles.img_container}>
@@ -235,35 +255,35 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
                   {dataAllCitiesMap?.map((land, index) => (
                     <g className="land" key={index} id={land.svgPathId} >
                       {convertSVGPathsToJSX(land.svgPath)}
-                      {land.places.map((place, index) =>
-                        <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
-                          <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
-                            <div onClick={() => handlePlaceWindow(place.id)}
-
-                              className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
-
-                              <div>
-                                <p>{place.name}</p>
-                                <svg
-                                  width="15"
-                                  height="6"
-                                  viewBox="0 0 15 6"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M0.956299 0.882812H14.8405H12.9973C11.8578 0.882812 10.8162 1.52659 10.3066 2.54573L9.14027 4.87844C8.6286 5.90177 7.16825 5.90178 6.65658 4.87844L5.49023 2.54573C4.98065 1.52659 3.939 0.882812 2.79956 0.882812H0.956299Z"
-                                    fill="white"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                        </foreignObject>
-                      )}
-
                     </g>
                   ))}
+                  {
+                    places?.map((place, index) =>
+                      <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
+                        <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
+                          <div onClick={() => handlePlaceWindow(place.id)}
+
+                            className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
+
+                            <div>
+                              <p>{place.name}</p>
+                              <svg
+                                width="15"
+                                height="6"
+                                viewBox="0 0 15 6"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M0.956299 0.882812H14.8405H12.9973C11.8578 0.882812 10.8162 1.52659 10.3066 2.54573L9.14027 4.87844C8.6286 5.90177 7.16825 5.90178 6.65658 4.87844L5.49023 2.54573C4.98065 1.52659 3.939 0.882812 2.79956 0.882812H0.956299Z"
+                                  fill="white"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </foreignObject>
+                    )}
                 </svg>
 
               </div >
@@ -276,29 +296,32 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -50 }}
                     transition={{ duration: 0.5 }}
-                    className="custom-box"
+                    className={styles.custom_box}
                     dir='rtl'
                   >
 
-                    <div className="box_container">
-                      <div className="box_header">
-                        <div className="img-container">
-                          <img src={smallCity.src} alt="" />
+                    <div className={styles.box_container}>
+                      <div className={styles.box_header}>
+                        <div className={styles.img_container}>
+                          <Image width={72} height={72} src={cityData?.icon} alt={cityData?.name}
+                          />
                         </div>
-                        <div className="title">
-                          <h3>وجرة</h3>
+                        <div className={styles.title}>
+                          <h3>{cityData?.name}</h3>
 
-                          <div className="desc">
-                            <p>صحراء واسعةٌ ومستوية، تقع في الطرفِ الشَّمالي من سَهل رُكبة في شمال الطائف، فيها أشجارٌ ومياه وأماكن للرعي.
-                              <a href='/city' className="more">
-                                <span>المزيد عن وَجْرَة</span>
+                          <div className={styles.desc}>
+                            <p>
+                              {cityData?.descriptionShort}
+                              <a href='/city' className={styles.more}>
+                                <span>المزيد عن {cityData?.name}</span>
                                 <LeftArrow />
                               </a>
                             </p>
                           </div>
                         </div>
                       </div>
-                      <PoetsSlider />
+
+                      <PoetsSlider poetriesData={poetriesData} />
 
                       <div className="close-btn" onClick={() => setActiveCity(null)}>
                         <CloseIcon />
