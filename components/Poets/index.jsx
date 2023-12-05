@@ -92,7 +92,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
 
   }, []);
   const handleCityClick = cityName => {
-    setActiveCity(activeCity === cityName ? null : cityName);
+    // setActiveCity(activeCity === cityName ? null : cityName);
   };
 
 
@@ -111,7 +111,17 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
       return `https://zamakan.suwa.io${imageUrl}`;
     }
   };
+  const handlePlaceWindow = async (placeId) => {
+    setActiveCity(placeId)
+    const resCityData = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${placeId}&lang=2`);
+    const dataCityData = await resCityData.json();
 
+    const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${placeId}&lang=2&pagenum=1&pagesize=1`);
+    const dataCityPoetry = await resCityPoetry.json();
+
+    console.log(dataCityData, 'cityById')
+    console.log(dataCityPoetry, "poetryByCity")
+  }
   return (
     <>
       < section id='Poets' className={styles.Poets} style={...Effra.style} dir='rtl'>
@@ -228,8 +238,10 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
                       {land.places.map((place, index) =>
                         <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
                           <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
-                            <div onClick={() => handleCityClick(`City${index}`)}
-                              className={`city-name  ${activeCity === `City${index}` && 'active'}`} id="p1">
+                            <div onClick={() => handlePlaceWindow(place.id)}
+
+                              className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
+
                               <div>
                                 <p>{place.name}</p>
                                 <svg
