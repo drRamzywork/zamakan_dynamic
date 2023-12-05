@@ -107,13 +107,19 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
 
   useEffect(() => {
     const list = document.querySelectorAll("#list");
-    function activelink() {
+
+    async function activelink() {
       list.forEach((item) => item.classList.remove("active"));
       this.classList.add("active");
     }
+
     list.forEach((item) => item.addEventListener("click", activelink));
 
-  }, [])
+    return () => {
+      // Cleanup logic if needed
+    };
+  }, []);
+
   // adjust image
   const adjustImageUrl = (imageUrl) => {
     if (imageUrl?.startsWith('https')) {
@@ -127,7 +133,7 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
   return (
     <>
       <Head>
-        <title>الشاعر {dataPoet.name} </title>
+        <title>الشاعر {dataPoet?.name} </title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -467,3 +473,6 @@ export async function getStaticPaths() {
     fallback: 'blocking'
   };
 }
+
+
+

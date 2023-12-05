@@ -183,20 +183,24 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
                 dir={'rtl'}
                 className={styles.swiper_container}
               >
-                {dataPoetsByEra?.map((poet, index) => (
-                  <SwiperSlide key={index} onClick={() => handlePoetData(poet.id)} className={styles.swiper_slide_box}>
-                    <div onClick={() => handleBoxClick(index)} className={`${styles.box_container} `}>
-                      <div className={`${styles.box} ${activePoet === index ? styles.active : ''}`}>
-                        <div className={styles.img_container}>
-                          <img src={adjustImageUrl(poet.icon)} alt={poet.name} />
-                        </div>
-                        <div className={styles.name}>
-                          <Typography>{poet.name}</Typography>
+
+
+                {
+                  Array.isArray(dataPoetsByEra) &&
+                  dataPoetsByEra?.map((poet, index) => (
+                    <SwiperSlide key={index} onClick={() => handlePoetData(poet.id)} className={styles.swiper_slide_box}>
+                      <div onClick={() => handleBoxClick(index)} className={`${styles.box_container} `}>
+                        <div className={`${styles.box} ${activePoet === index ? styles.active : ''}`}>
+                          <div className={styles.img_container}>
+                            <img src={adjustImageUrl(poet.icon)} alt={poet.name} />
+                          </div>
+                          <div className={styles.name}>
+                            <Typography>{poet.name}</Typography>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
+                    </SwiperSlide>
+                  ))}
               </Swiper>
 
 

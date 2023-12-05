@@ -33,7 +33,6 @@ export default Era
 export async function getStaticProps({ params }) {
   const { index } = params;
   let eraDetails = null;
-  console.log(index, "DXXXXS")
 
   try {
     const res = await fetch(`https://api4z.suwa.io/api/Zaman/GetEra?id=${index}&lang=2`);
