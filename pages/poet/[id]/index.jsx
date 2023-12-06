@@ -150,13 +150,13 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
           <div className={styles.text_container}>
             <ul>
               <li>
-                <a >الشاعر {dataPoet.name}</a>
+                <Link href="/">الرئيسية</Link>
               </li>
               <li>
                 <Link href="/literary-eras">العصور الأدبية</Link>
               </li>
               <li>
-                <Link href="/">الرئيسية</Link>
+                <a >الشاعر {dataPoet.name}</a>
               </li>
             </ul>
           </div>
@@ -180,15 +180,25 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
                   {dataPoet.nickname}
                 </Typography>
               </div>
-              <div className={styles.tag}>
+              {/* <div className={styles.tag}>
                 <Typography>{dataPoet.zamanName}</Typography>
-              </div>
+              </div> */}
             </div>
 
             <div className={styles.desc} dir='rtl'>
+              {/* <Typography>
+              </Typography> */}
+
               <Typography>
-                {dataPoet.description}
+                {dataPoet.description.split('.').map((sentence, index, array) => (
+                  <span key={index}>
+                    {sentence.trim()}
+                    {index < array.length - 1 && <>&nbsp;.&nbsp;<br /></>}
+                  </span>
+                ))}
               </Typography>
+
+
             </div>
           </Grid>
         </Grid>

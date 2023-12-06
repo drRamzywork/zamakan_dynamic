@@ -7,7 +7,7 @@ section.landingPage {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  height: 418px;
+  height: 318px;
   background-color: rgba(229, 216, 193, 1);
   overflow: hidden;
   @media screen and (max-width: 450px) {
@@ -137,6 +137,11 @@ section.landingPage {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: var(--main-beige-color);
+    }
+
     &:last-child {
       margin-right: 24px;
     }
