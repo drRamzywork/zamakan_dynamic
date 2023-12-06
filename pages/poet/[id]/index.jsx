@@ -332,7 +332,7 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
                   </div>
                 </section>
 
-                <section className={styles.timelineSection}>
+                {/* <section className={styles.timelineSection}>
                   <div className={styles.sec_title}>
                     <Typography variant='h3'>نبذة عن حياته</Typography>
                   </div>
@@ -344,11 +344,11 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
                       </Typography>
                     </div>
                   </div>
-                </section>
+                </section> */}
 
                 <section className={styles.timelineSection}>
                   <div className={styles.sec_title}>
-                    <Typography variant='h3'>ما يميّزه</Typography>
+                    <Typography variant='h3'>ما يتميز به الشاعر:</Typography>
                   </div>
 
                   <div className={styles.sec_container}>
@@ -362,7 +362,7 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
 
                 <section className={styles.timelineSection}>
                   <div className={styles.sec_title}>
-                    <Typography variant='h3'>ما اشتهر به الشاعر</Typography>
+                    <Typography variant='h3'>ما اشتهر به الشاعر:</Typography>
                   </div>
 
                   <div className={styles.sec_container}>
