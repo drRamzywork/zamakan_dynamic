@@ -94,17 +94,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
   const [cityData, setCityData] = useState(null)
   const [poetriesData, setPoetriesData] = useState(null)
 
-  // const handlePlaceWindow = async (placeId) => {
-  //   setActiveCity(placeId)
-  //   const resCityData = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${placeId}&lang=2`);
-  //   const dataCityData = await resCityData.json();
 
-  //   const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${placeId}&type=6&lang=2&pagenum=1&pagesize=50`);
-  //   const dataCityPoetry = await resCityPoetry.json();
-
-  //   setCityData(dataCityData)
-  //   setPoetriesData(dataCityPoetry)
-  // }
 
   const handlePlaceWindow = async (placeId) => {
     setActiveCity(placeId);
@@ -147,15 +137,15 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
               <Swiper
                 breakpoints={{
                   300: {
-                    slidesPerView: 3.5,
+                    slidesPerView: 2.4,
                     spaceBetween: 10,
                   },
                   400: {
-                    slidesPerView: 3,
+                    slidesPerView: 2.4,
                     spaceBetween: 10,
                   },
                   414: {
-                    slidesPerView: 3.5,
+                    slidesPerView: 2.8,
                     spaceBetween: 11,
                   },
                   640: {
