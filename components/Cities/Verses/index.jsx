@@ -1,5 +1,5 @@
 import { Container, Typography, } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './index.module.scss'
 import { imgs } from '@/assets/constants'
 
@@ -7,8 +7,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 const Verses = ({ dataCityPoetry, dataCityData }) => {
   const { ra3y } = imgs;
+  const [expandedStates, setExpandedStates] = useState({});
 
   const adjustImageUrl = (imageUrl) => {
     if (imageUrl?.startsWith('https')) {
@@ -18,7 +20,14 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
     }
   };
 
-  console.log(dataCityData, "2222dataCityData")
+
+
+  const toggleExpanded = (index) => {
+    setExpandedStates(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
 
   return (
     <>
@@ -202,19 +211,31 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                             </div>
                           </Link>
 
-                          <div className={styles.desc}>
+                          <motion.div
+                            className={`${styles.desc_container} ${expandedStates[index] ? styles.expanded : ''}`}
+                            initial={{ height: '70px' }}
+                            animate={{ height: expandedStates[index] ? 'auto' : '70px' }}
+                            transition={{ duration: 0.5 }}
+                          >
                             <Typography>{poet.entrance}</Typography>
+                          </motion.div>
+                          <div className={styles.more_btn} onClick={() => toggleExpanded(index)}>
+                            <Typography>{expandedStates[index] ? 'أقل' : 'المزيد'}</Typography>
                           </div>
+
                           <Link href={`/poetry/${poet.id}`} className={styles.said}>
-                            <div className={styles.title}>
+                            {/* <div className={styles.title}>
                               <Typography>يقول</Typography>
-                            </div>
+                            </div> */}
                             <div className={styles.desc}>
                               <Typography>
                                 {beforeDots}
-                                <br />
+                              </Typography>
+                              <br />
+                              <Typography>
                                 {afterDots}
                               </Typography>
+
                             </div>
                           </Link>
 

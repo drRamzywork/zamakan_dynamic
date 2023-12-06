@@ -12,7 +12,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 
-export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) {
+export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
   const [selectedTab, setSelectedTab] = useState(0);
   const [activeIndex, setActiveIndex] = useState(1);
   const router = useRouter();
@@ -23,12 +23,10 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
 
 
   const [age, setAge] = useState(0);
-  const [city, setCity] = useState('all_cities');
   const [results, setResults] = useState(dataPoetry);
 
   const handleChange = async (event) => {
     const selectedValue = event.target.value;
-    console.log(selectedValue, "selectedValue")
     const res = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${router.query.id}&${selectedValue !== 0 ? `place=${selectedValue}` : ''}&lang=2&pagenum=1&pagesize=50 `);
     const filteredData = await res.json();
 
@@ -169,7 +167,6 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
           <Grid container className={styles.profileSection}>
             <Grid item>
               <div className={styles.img_container}>
-
                 <Avatar src={adjustImageUrl(dataPoet.icon)} className={styles.avatar} />
               </div>
 
@@ -241,7 +238,6 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
           <div className={styles.tabsSection}>
             {activeIndex === 1 && (
               <div
-
                 className={styles.tabContent_container} dir='rtl'>
                 <motion.div
                   animate={{ opacity: 1 }}

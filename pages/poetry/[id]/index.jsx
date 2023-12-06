@@ -30,9 +30,6 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
       return `https://zamakan.suwa.io${imageUrl}`;
     }
   };
-  console.log(dataPoetry, "dataPoetry")
-  console.log(dataPlace, "dataPlace")
-  console.log(additionalData, "additionalData")
   return (
     <>
 
