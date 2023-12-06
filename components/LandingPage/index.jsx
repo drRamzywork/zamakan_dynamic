@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SmallSaudiMap from '@/assets/svgsComponents/SmallSaudiMap';
 import Head from 'next/head';
-
+import { motion } from 'framer-motion';
 const Effra = localFont({
   src: [
     {
@@ -66,7 +66,12 @@ const LandingPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       < section id='landingPage' className={styles.landingPage} style={...Effra.style}>
-        <div className={styles.sec_container}>
+        <motion.div
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 1, }}
+
+          className={styles.sec_container}>
           <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
             <div className={styles.sec_title}>
               <img src={Landing_Banner_text.src} alt="" />
@@ -85,12 +90,17 @@ const LandingPage = () => {
             <img src={Palm.src} alt="" />
           </div>
 
-        </div>
+        </motion.div>
 
       </section >
 
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className='disable_container'>
-        <div className={styles.boxes_container}>
+        <motion.div
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 1, }}
+
+          className={styles.boxes_container}>
           <Link href='/literary-eras' className={styles.box}>
             <div className={styles.icon_container}>
               <Feather />
@@ -122,7 +132,7 @@ const LandingPage = () => {
               <LeftArrow />
             </div>
           </Link>
-        </div>
+        </motion.div>
       </Container>
 
     </>

@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image'
 import Head from 'next/head'
-
+import { motion } from 'framer-motion'
 
 const Effra = localFont({
   src: [
@@ -83,7 +83,11 @@ const LiteraryEras = ({ erasAllEras }) => {
 
       < section id='LiteraryEras' className={styles.LiteraryEras} style={...Effra.style}>
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
-          <div className={styles.sec_container}>
+          <motion.div
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }}
+            className={styles.sec_container}>
             <div className={styles.sec_title}>
               <Typography variant='h1'>
                 العصور الأدبية
@@ -110,14 +114,18 @@ const LiteraryEras = ({ erasAllEras }) => {
             </div>
 
 
-          </div>
+          </motion.div>
 
         </Container>
       </section >
 
 
 
-      <div className={styles.swiper_container}>
+      <motion.div
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ duration: 1, }}
+        className={styles.swiper_container}>
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className={styles.leftSide}>
           <Swiper
             dir="rtl"
@@ -156,7 +164,7 @@ const LiteraryEras = ({ erasAllEras }) => {
                 <Link href={`/literary-eras/era/${era.id}`} className={styles.box}>
                   <div className={styles.img_container}>
                     {/* <img src={pre_Islamic.src} alt="" /> */}
-                    <Image src={adjustImageUrl(era.icon)} alt={era.desc} width={277} height={346} />
+                    <img src={adjustImageUrl(era.icon)} alt={era.desc} />
 
                   </div>
 
@@ -182,7 +190,7 @@ const LiteraryEras = ({ erasAllEras }) => {
 
           </Swiper>
         </Container>
-      </div>
+      </motion.div>
 
     </>
 

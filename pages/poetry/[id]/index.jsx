@@ -21,9 +21,15 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [beforeDots, afterDots] = dataPoetry.poetryParts.split('...')
-  { console.log(additionalData, "dataPoetry") }
-  { console.log(beforeDots, "dataPoetry") }
-  { console.log(afterDots, "dataPoetry") }
+  const adjustImageUrl = (imageUrl) => {
+    if (imageUrl?.startsWith('https')) {
+      return imageUrl;
+    } else {
+      return `https://zamakan.suwa.io${imageUrl}`;
+    }
+  };
+
+  { console.log(dataPoetry, 'dataPoetry') }
   return (
     <>
 
@@ -130,7 +136,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
             <hr />
             <Link href={`/poet/${dataPoetry.poetId}`} className={styles.poet_info}>
               <div className={styles.img_container}>
-                <img src={dataPoetry.poetIcon} alt="" />
+                <img src={adjustImageUrl(dataPoetry.poetIcon)} alt={dataPoetry.poetName} />
               </div>
               <div className={styles.text_container}>
                 <div className={styles.name}>

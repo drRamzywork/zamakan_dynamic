@@ -1,8 +1,8 @@
 import React from 'react'
 import LiteraryBanner from '@/components/LiteraryBanner'
 import Poets from '@/components/Poets'
-import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { motion } from 'framer-motion';
 
 const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAllCitiesMap }) => {
 
@@ -21,8 +21,16 @@ const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAl
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <LiteraryBanner eraDetails={eraDetails} dataAllEras={dataAllEras} />
-      <Poets dataPoetsByEra={dataPoetsByEra} dataAllCitiesMap={dataAllCitiesMap} dataAllPlacesMap={dataAllPlacesMap} />
+      <motion.div
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ duration: 1, }}
+
+      >
+
+        <LiteraryBanner eraDetails={eraDetails} dataAllEras={dataAllEras} />
+        <Poets dataPoetsByEra={dataPoetsByEra} dataAllCitiesMap={dataAllCitiesMap} dataAllPlacesMap={dataAllPlacesMap} />
+      </motion.div>
 
     </>
   )

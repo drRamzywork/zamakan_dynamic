@@ -25,9 +25,7 @@ const PageHeader = ({ dataCityData }) => {
               </ul>
             </div> */}
             <div className={styles.img_box}>
-              {/* <img src={backgroundCity.src} /> */}
               <img src={dataCityData.icon} alt={dataCityData.name} />
-
             </div>
 
           </div>

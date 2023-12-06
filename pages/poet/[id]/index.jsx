@@ -145,154 +145,158 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Container sx={{ maxWidth: "1400px" }} dir="rtl" maxWidth={false} className={styles.poetDetails}>
-        <Box className={styles.headerImage} >
-          <div className={styles.text_container}>
-            <ul>
-              <li>
-                <Link href="/">الرئيسية</Link>
-              </li>
-              <li>
-                <Link href="/literary-eras">العصور الأدبية</Link>
-              </li>
-              <li>
-                <a >الشاعر {dataPoet.name}</a>
-              </li>
-            </ul>
-          </div>
-        </Box>
-        <Grid container className={styles.profileSection}>
-          <Grid item>
-            <div className={styles.img_container}>
-
-              <Avatar src={adjustImageUrl(dataPoet.icon)} className={styles.avatar} />
+      <motion.div animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ duration: 1, }}
+      >
+        <Container sx={{ maxWidth: "1400px" }} dir="rtl" maxWidth={false} className={styles.poetDetails}>
+          <Box className={styles.headerImage} >
+            <div className={styles.text_container}>
+              <ul>
+                <li>
+                  <Link href="/">الرئيسية</Link>
+                </li>
+                <li>
+                  <Link href="/literary-eras">العصور الأدبية</Link>
+                </li>
+                <li>
+                  <a >الشاعر {dataPoet.name}</a>
+                </li>
+              </ul>
             </div>
+          </Box>
+          <Grid container className={styles.profileSection}>
+            <Grid item>
+              <div className={styles.img_container}>
 
-          </Grid>
-          <Grid spacing={0} item>
-            <Typography variant="h5" className={styles.profileName}>
-              {dataPoet.name}
-            </Typography>
-
-            <div className={styles.tags_container}>
-              <div className={styles.tag}>
-                <Typography>
-                  {dataPoet.nickname}
-                </Typography>
+                <Avatar src={adjustImageUrl(dataPoet.icon)} className={styles.avatar} />
               </div>
-              {/* <div className={styles.tag}>
-                <Typography>{dataPoet.zamanName}</Typography>
-              </div> */}
-            </div>
 
-            <div className={styles.desc} dir='rtl'>
-              {/* <Typography>
-              </Typography> */}
-
-              <Typography>
-                {
-                  dataPoet &&
-                  dataPoet?.description?.split('.').map((sentence, index, array) => (
-                    <span key={index}>
-                      {sentence.trim()}
-                      {index < array?.length - 1 && <>&nbsp;.&nbsp;<br /></>}
-                    </span>
-                  ))}
+            </Grid>
+            <Grid spacing={0} item>
+              <Typography variant="h5" className={styles.profileName}>
+                {dataPoet.name}
               </Typography>
 
+              <div className={styles.tags_container}>
+                <div className={styles.tag}>
+                  <Typography>
+                    {dataPoet.nickname}
+                  </Typography>
+                </div>
+                {/* <div className={styles.tag}>
+                <Typography>{dataPoet.zamanName}</Typography>
+              </div> */}
+              </div>
 
-            </div>
+              <div className={styles.desc} dir='rtl'>
+                {/* <Typography>
+              </Typography> */}
+
+                <Typography>
+                  {
+                    dataPoet &&
+                    dataPoet?.description?.split('.').map((sentence, index, array) => (
+                      <span key={index}>
+                        {sentence.trim()}
+                        {index < array?.length - 1 && <>&nbsp;.&nbsp;<br /></>}
+                      </span>
+                    ))}
+                </Typography>
+
+
+              </div>
+            </Grid>
           </Grid>
-        </Grid>
 
 
 
-        <div className={styles.navigation}>
-          <ul>
+          <div className={styles.navigation}>
+            <ul>
 
 
-            <li className={`${styles.list} ${1 === activeIndex ? styles.active : ''}`} onClick={() => setActiveIndex(1)}>
-              <button >
-                <span className={styles.iconWrapper}>
-                  <Profile />
-                </span>
-                <p>عن الشاعر</p>
-              </button>
-            </li>
+              <li className={`${styles.list} ${1 === activeIndex ? styles.active : ''}`} onClick={() => setActiveIndex(1)}>
+                <button >
+                  <span className={styles.iconWrapper}>
+                    <Profile />
+                  </span>
+                  <p>عن الشاعر</p>
+                </button>
+              </li>
 
 
-            <li className={`${styles.list} ${0 === activeIndex ? styles.active : ''}`} onClick={() => setActiveIndex(0)}>
-              <button >
-                <span className={styles.iconWrapper}>
-                  <Feather />
-                </span>
-                <p>أبيات ذكرت فيها المملكة
-                </p>
-              </button>
-            </li>
-            <div className={`${styles.indicator} ${styles[`indicator-${activeIndex}`]}`}><span></span></div>
-          </ul>
-        </div>
-        <div className={styles.tabsSection}>
-          {activeIndex === 1 && (
-            <div
+              <li className={`${styles.list} ${0 === activeIndex ? styles.active : ''}`} onClick={() => setActiveIndex(0)}>
+                <button >
+                  <span className={styles.iconWrapper}>
+                    <Feather />
+                  </span>
+                  <p>أبيات ذكرت فيها المملكة
+                  </p>
+                </button>
+              </li>
+              <div className={`${styles.indicator} ${styles[`indicator-${activeIndex}`]}`}><span></span></div>
+            </ul>
+          </div>
+          <div className={styles.tabsSection}>
+            {activeIndex === 1 && (
+              <div
 
-              className={styles.tabContent_container} dir='rtl'>
-              <motion.div
-                animate={{ opacity: 1 }}
-                initial={{ opacity: 0 }}
-                transition={{ duration: 1, }}
-              >
+                className={styles.tabContent_container} dir='rtl'>
+                <motion.div
+                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 1, }}
+                >
 
-                <section className={styles.timelineSection}>
-                  <div className={styles.sec_title}>
-                    <Typography variant='h3'>معلوماته الشخصية</Typography>
-                  </div>
+                  <section className={styles.timelineSection}>
+                    <div className={styles.sec_title}>
+                      <Typography variant='h3'>معلوماته الشخصية</Typography>
+                    </div>
 
-                  <div className={styles.info_sec}>
+                    <div className={styles.info_sec}>
 
-                    <div className={styles.boxes_container}>
+                      <div className={styles.boxes_container}>
 
-                      <div className={styles.box}>
-                        <div className={styles.title}>
-                          <Typography >الاسم </Typography>
+                        <div className={styles.box}>
+                          <div className={styles.title}>
+                            <Typography >الاسم </Typography>
+                          </div>
+                          <div className={styles.name}>
+                            <Typography>
+                              {dataPoet.fullName}
+                            </Typography>
+                          </div>
                         </div>
-                        <div className={styles.name}>
-                          <Typography>
-                            {dataPoet.fullName}
-                          </Typography>
+                        <div className={styles.box}>
+                          <div className={styles.title}>
+                            <Typography>اللقب</Typography>
+                          </div>
+                          <div className={styles.name}>
+                            <Typography>
+                              {dataPoet.nickname}
+                            </Typography>
+                          </div>
                         </div>
-                      </div>
-                      <div className={styles.box}>
-                        <div className={styles.title}>
-                          <Typography>اللقب</Typography>
+                        <div className={styles.box}>
+                          <div className={styles.title}>
+                            <Typography>سبب اللقب</Typography>
+                          </div>
+                          <div className={styles.name}>
+                            <Typography>{dataPoet.nicknameReason}</Typography>
+                          </div>
                         </div>
-                        <div className={styles.name}>
-                          <Typography>
-                            {dataPoet.nickname}
-                          </Typography>
+                        <div className={styles.box}>
+                          <div className={styles.title}>
+                            <Typography>تاريخ الميلاد</Typography>
+                          </div>
+                          <div className={styles.name} dir='ltr'>
+                            <Typography>
+                              {dataPoet?.fromM === 0 ? '-' : dataPoet?.fromM}
+                              هـجريًا -
+                              {dataPoet?.fromH === 0 ? '-' : dataPoet?.fromM} ميلاديًا</Typography>
+                          </div>
                         </div>
-                      </div>
-                      <div className={styles.box}>
-                        <div className={styles.title}>
-                          <Typography>سبب اللقب</Typography>
-                        </div>
-                        <div className={styles.name}>
-                          <Typography>{dataPoet.nicknameReason}</Typography>
-                        </div>
-                      </div>
-                      <div className={styles.box}>
-                        <div className={styles.title}>
-                          <Typography>تاريخ الميلاد</Typography>
-                        </div>
-                        <div className={styles.name} dir='ltr'>
-                          <Typography>
-                            {dataPoet?.fromM === 0 ? '-' : dataPoet?.fromM}
-                            هـجريًا -
-                            {dataPoet?.fromH === 0 ? '-' : dataPoet?.fromM} ميلاديًا</Typography>
-                        </div>
-                      </div>
-                      {/* <div className={styles.box}>
+                        {/* <div className={styles.box}>
                         <div className={styles.title}>
                           <Typography>محل الميلاد</Typography>
                         </div>
@@ -301,17 +305,17 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
                         </div>
                       </div> */}
 
-                      <div className={styles.box}>
-                        <div className={styles.title}>
-                          <Typography>تاريخ الوفاة</Typography>
+                        <div className={styles.box}>
+                          <div className={styles.title}>
+                            <Typography>تاريخ الوفاة</Typography>
+                          </div>
+
+                          <div className={styles.name}>
+                            <Typography>{dataPoet.toM} هـجريًا - {dataPoet.toH} ميلاديًا</Typography>
+                          </div>
                         </div>
 
-                        <div className={styles.name}>
-                          <Typography>{dataPoet.toM} هـجريًا - {dataPoet.toH} ميلاديًا</Typography>
-                        </div>
-                      </div>
-
-                      {/* <div className={styles.box}>
+                        {/* <div className={styles.box}>
                         <div className={styles.title}>
                           <Typography>محل الوفاة</Typography>
                         </div>
@@ -319,20 +323,20 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
                           <Typography>المدينة المنورة</Typography>
                         </div>
                       </div> */}
-                      <div className={styles.box}>
-                        <div className={styles.title}>
-                          <Typography>عمره عند الوفاة</Typography>
+                        <div className={styles.box}>
+                          <div className={styles.title}>
+                            <Typography>عمره عند الوفاة</Typography>
+                          </div>
+                          <div className={styles.name}>
+                            <Typography>79 عام</Typography>
+                          </div>
                         </div>
-                        <div className={styles.name}>
-                          <Typography>79 عام</Typography>
-                        </div>
+
                       </div>
-
                     </div>
-                  </div>
-                </section>
+                  </section>
 
-                {/* <section className={styles.timelineSection}>
+                  {/* <section className={styles.timelineSection}>
                   <div className={styles.sec_title}>
                     <Typography variant='h3'>نبذة عن حياته</Typography>
                   </div>
@@ -346,56 +350,56 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
                   </div>
                 </section> */}
 
-                <section className={styles.timelineSection}>
-                  <div className={styles.sec_title}>
-                    <Typography variant='h3'>ما يتميز به الشاعر:</Typography>
-                  </div>
-
-                  <div className={styles.sec_container}>
-                    <div className={styles.desc}>
-                      <Typography>
-                        {dataPoet.specialist}
-                      </Typography>
+                  <section className={styles.timelineSection}>
+                    <div className={styles.sec_title}>
+                      <Typography variant='h3'>ما يتميز به الشاعر:</Typography>
                     </div>
-                  </div>
-                </section>
 
-                <section className={styles.timelineSection}>
-                  <div className={styles.sec_title}>
-                    <Typography variant='h3'>ما اشتهر به الشاعر:</Typography>
-                  </div>
-
-                  <div className={styles.sec_container}>
-                    <div className={styles.desc}>
-                      <Typography>
-                        {dataPoet.storySayEvent}
-                      </Typography>
-                    </div>
-                  </div>
-                </section>
-              </motion.div>
-
-            </div>
-          )}
-          {activeIndex === 0 && (
-            <div
-              className={styles.tabContent_container} dir='rtl'>
-              <motion.div
-                animate={{ opacity: 1 }}
-                initial={{ opacity: 0 }}
-                transition={{ duration: 1, }}
-              >
-                <section className={styles.timelineSection}>
-                  <div className={styles.slider_container}>
-                    <div className={styles.filter_sec}>
-                      <div className={styles.shows}>
-                        <Typography dir='ltr'>
-                          <span>18</span> يتم عرض <span>10</span> من
+                    <div className={styles.sec_container}>
+                      <div className={styles.desc}>
+                        <Typography>
+                          {dataPoet.specialist}
                         </Typography>
                       </div>
-                      <div className={styles.filter_methods}>
-                        <div className={styles.box}>
-                          {/* <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                    </div>
+                  </section>
+
+                  <section className={styles.timelineSection}>
+                    <div className={styles.sec_title}>
+                      <Typography variant='h3'>ما اشتهر به الشاعر:</Typography>
+                    </div>
+
+                    <div className={styles.sec_container}>
+                      <div className={styles.desc}>
+                        <Typography>
+                          {dataPoet.storySayEvent}
+                        </Typography>
+                      </div>
+                    </div>
+                  </section>
+                </motion.div>
+
+              </div>
+            )}
+            {activeIndex === 0 && (
+              <div
+                className={styles.tabContent_container} dir='rtl'>
+                <motion.div
+                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 1, }}
+                >
+                  <section className={styles.timelineSection}>
+                    <div className={styles.slider_container}>
+                      <div className={styles.filter_sec}>
+                        <div className={styles.shows}>
+                          <Typography dir='ltr'>
+                            <span>18</span> يتم عرض <span>10</span> من
+                          </Typography>
+                        </div>
+                        <div className={styles.filter_methods}>
+                          <div className={styles.box}>
+                            {/* <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                             <Select
                               labelId="demo-select-small-label"
                               id="demo-select-small"
@@ -412,42 +416,44 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
                               ))}
                             </Select>
                           </FormControl> */}
-                        </div>
-                        <div className={styles.box}>
-                          <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                            <Select
-                              labelId="demo-select-small-label"
-                              id="demo-select-small"
-                              value={age}
-                              sx={selectBoxStyles}
-                              onChange={handleChange}
-                              IconComponent={CustomArrowIcon}
+                          </div>
+                          <div className={styles.box}>
+                            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                              <Select
+                                labelId="demo-select-small-label"
+                                id="demo-select-small"
+                                value={age}
+                                sx={selectBoxStyles}
+                                onChange={handleChange}
+                                IconComponent={CustomArrowIcon}
 
-                            >
-                              <MenuItem value={0}>المملكة</MenuItem>
-                              {dataPlaces?.map((place, index) => (
-                                <MenuItem key={place.id} value={place.id}>
-                                  {place.name}
-                                </MenuItem>
-                              ))}
+                              >
+                                <MenuItem value={0}>المملكة</MenuItem>
+                                {dataPlaces?.map((place, index) => (
+                                  <MenuItem key={place.id} value={place.id}>
+                                    {place.name}
+                                  </MenuItem>
+                                ))}
 
-                            </Select>
-                          </FormControl>
+                              </Select>
+                            </FormControl>
+                          </div>
                         </div>
+
                       </div>
-
+                      <div className="slider">
+                        <SliderVerses results={results} />
+                      </div>
                     </div>
-                    <div className="slider">
-                      <SliderVerses results={results} />
-                    </div>
-                  </div>
-                </section>
-              </motion.div>
+                  </section>
+                </motion.div>
 
-            </div>
-          )}
-        </div>
-      </Container >
+              </div>
+            )}
+          </div>
+        </Container >
+      </motion.div>
+
     </>
 
   );
