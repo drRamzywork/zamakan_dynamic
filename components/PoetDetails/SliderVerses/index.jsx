@@ -180,35 +180,37 @@ export default function SliderVerses({ filtredPoets }) {
             initial={{ opacity: 0 }}
             transition={{ duration: 1, }}
             className={styles.box}>
-            <div className={styles.poet_info}>
-              <div className={styles.img_container}>
-                <img src={adjustImageUrl(poet.icon)} alt={poet.name} />
-              </div>
+            <Link href={`/poet/${poet.id}`}>
+              <div className={styles.poet_info}>
+                <div className={styles.img_container}>
+                  <img src={adjustImageUrl(poet.icon)} alt={poet.name} />
+                </div>
 
-              <div className={styles.text_container}>
-                <Link href={`/poet/${poet.id}`} className={styles.name}>
-                  <Typography>{poet.name}</Typography>
-                  <div className={styles.date}>
-                    <Typography>{poet.fromH} هـ - {poet.toH} هـ</Typography>
+                <div className={styles.text_container}>
+                  <div className={styles.name}>
+                    <Typography>{poet.name}</Typography>
+                    <div className={styles.date}>
+                      <Typography>{poet.fromH} هـ - {poet.toH} هـ</Typography>
+                    </div>
                   </div>
-                </Link>
-                <div className={styles.tag}>
-                  <Typography>
-                    {poet.zamanName}
-                  </Typography>
+                  <div className={styles.tag}>
+                    <Typography>
+                      {poet.zamanName}
+                    </Typography>
 
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <hr />
+              <hr />
 
-            <div className={styles.desc}>
-              <Typography>
-                {poet.descShort}
-              </Typography>
-            </div>
+              <div className={styles.desc}>
+                <Typography>
+                  {poet.descShort}
+                </Typography>
+              </div>
 
+            </Link>
 
           </motion.div>
         ))}

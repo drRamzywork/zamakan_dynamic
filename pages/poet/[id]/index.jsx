@@ -285,8 +285,11 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
                         <div className={styles.title}>
                           <Typography>تاريخ الميلاد</Typography>
                         </div>
-                        <div className={styles.name}>
-                          <Typography>{dataPoet.fromM} هـجريًا - {dataPoet.fromH} ميلاديًا</Typography>
+                        <div className={styles.name} dir='ltr'>
+                          <Typography>
+                            {dataPoet?.fromM === 0 ? '-' : dataPoet?.fromM}
+                            هـجريًا -
+                            {dataPoet?.fromH === 0 ? '-' : dataPoet?.fromM} ميلاديًا</Typography>
                         </div>
                       </div>
                       {/* <div className={styles.box}>

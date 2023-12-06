@@ -58,12 +58,17 @@ const LiteraryBanner = (props) => {
 
   const eraIndex = query.index ? Number(query.index) : 0;
 
-
+  const adjustImageUrl = (imageUrl) => {
+    if (imageUrl?.startsWith('https')) {
+      return imageUrl;
+    } else {
+      return `https://zamakan.suwa.io${imageUrl}`;
+    }
+  };
   return (
 
     <>
       <section id='LiteraryBanner' className={styles.LiteraryBanner} style={...Effra.style} >
-
         <div className={styles.sec_container}>
           <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
             <div className={styles.sec_title}>
@@ -145,7 +150,7 @@ const LiteraryBanner = (props) => {
                 <Link href={`/literary-eras/era/${era.id}`} className={`${styles.box} ${eraIndex === era.id ? styles.active : ''}`}>
                   <div className={styles.img_container}>
                     {/* <img src={pre_Islamic.src} alt="" /> */}
-                    <Image src={pre_Islamic.src} alt={era.desc} width={277} height={346} />
+                    <Image src={adjustImageUrl(era.icon)} alt={era.desc} width={277} height={346} />
 
                   </div>
 

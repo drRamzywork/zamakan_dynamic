@@ -7,6 +7,7 @@ import Head from 'next/head';
 const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAllCitiesMap }) => {
 
 
+
   return (
     <>
       <Head>

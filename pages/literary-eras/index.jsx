@@ -59,7 +59,13 @@ const LiteraryEras = ({ erasAllEras }) => {
     return num.toString().split('').map(digit => arabicNumbers[digit]).join('');
   };
 
-
+  const adjustImageUrl = (imageUrl) => {
+    if (imageUrl?.startsWith('https')) {
+      return imageUrl;
+    } else {
+      return `https://zamakan.suwa.io${imageUrl}`;
+    }
+  };
   return (
     <>
       <Head>
@@ -150,7 +156,7 @@ const LiteraryEras = ({ erasAllEras }) => {
                 <Link href={`/literary-eras/era/${era.id}`} className={styles.box}>
                   <div className={styles.img_container}>
                     {/* <img src={pre_Islamic.src} alt="" /> */}
-                    <Image src={pre_Islamic.src} alt={era.desc} width={277} height={346} />
+                    <Image src={adjustImageUrl(era.icon)} alt={era.desc} width={277} height={346} />
 
                   </div>
 
