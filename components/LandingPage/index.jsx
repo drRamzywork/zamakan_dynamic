@@ -73,9 +73,9 @@ const LandingPage = () => {
             </div>
           </Container>
 
-          <div className={styles.img_container}>
+          {/* <div className={styles.img_container}>
             <img src={land_banner.src} alt="" />
-          </div>
+          </div> */}
 
           <div className={styles.palm}>
             <PalmSvg />

@@ -11,6 +11,7 @@
     padding-top: 20px;
     border-radius: 20px 20px 0px 0px;
     margin-top: -100px;
+    overflow: unset;
   }
 
   .sec_container {
@@ -111,6 +112,7 @@
   box-shadow: inset 0px 16px 80px 0px #00000012;
   @media screen and (max-width: 450px) {
     flex-direction: column;
+    overflow: unset !important;
   }
   .map {
     position: relative;
@@ -119,23 +121,38 @@
     .custom_box {
       position: absolute;
       bottom: 0;
-      left: 50%;
+      top: 11%;
       transform: translateX(-50%);
       width: 602px;
-      height: 399px;
-      padding: 40px;
+      height: fit-content;
+      padding: 24px;
       background-color: rgb(255, 255, 255);
       box-shadow: 0px 19px 14px 0px rgba(0, 0, 0, 0.14);
       border-radius: 24px;
       z-index: 22;
 
+      @media screen and (max-width: 992px) {
+        width: 100% !important;
+        height: auto !important;
+        left: 0px !important;
+        overflow-y: scroll;
+        top: 58px !important;
+        padding: 16px;
+        box-shadow: 0px 19px 14px 0px rgba(0, 0, 0, 0.14),
+          inset 0px 3px 14px 0px rgba(0, 0, 0, 0.14);
+      }
       .box_container {
         position: relative;
+
         .close_btn {
           position: absolute;
           top: -9px;
           left: -9px;
           cursor: pointer;
+          @media screen and (max-width: 450px) {
+            top: -2px;
+            left: -2px;
+          }
           svg {
             path {
               stroke: rgba(17, 41, 47, 1) !important;
@@ -147,17 +164,17 @@
           display: flex;
           align-items: flex-start;
           .img_container {
-            width: 72px;
-            height: 72px;
+            // width: 72px;
+            // height: 72px;
             margin-left: 16px;
             border-radius: 16px;
             flex-basis: 28%;
 
             img {
-              // width: 100%;
-              // height: 100%;
+              width: 211px;
+              height: 151px;
               border-radius: 16px;
-              object-fit: contain;
+              object-fit: cover;
             }
           }
 
@@ -216,13 +233,8 @@
   align-items: center !important;
   justify-content: center !important;
   .custom_box {
-    left: 0 !important;
-    top: 0% !important;
-
     @media screen and (max-width: 992px) {
       width: 100% !important;
-      height: auto !important;
-      overflow-y: auto;
     }
   }
 }

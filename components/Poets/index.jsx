@@ -26,6 +26,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
   const [isPointsActive, seIsPointsActive] = useState(false);
   const [cityNames, setCityNames] = useState([]);
   const [places, setPlaces] = useState(null);
+  const [isCityLoading, setIsCityLoading] = useState(false);
 
 
   useEffect(() => {
@@ -96,7 +97,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
 
   const handlePlaceWindow = async (placeId) => {
     setActiveCity(placeId);
-
     try {
       const response = await fetch(`/api/fetchCityData?placeId=${placeId}`);
       if (!response.ok) {
@@ -109,7 +109,12 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
+    setIsCityLoading(false)
   };
+
+
+
+  console.log(isCityLoading, "isCityLoading")
 
 
   const handlePoetData = async (poetID) => {
@@ -272,7 +277,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
 
 
               <AnimatePresence >
-                {activeCity && (
+                {cityData && (
                   <motion.div
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -285,7 +290,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
                     <div className={styles.box_container}>
                       <div className={styles.box_header}>
                         <div className={styles.img_container}>
-                          <Image width={72} height={72} src={cityData?.icon} alt={cityData?.name}
+                          <img src={cityData?.icon} alt={cityData?.name}
                           />
                         </div>
                         <div className={styles.title}>
@@ -305,7 +310,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
 
                       <PoetsSlider poetriesData={poetriesData} />
 
-                      <div className={styles.close_btn} onClick={() => setActiveCity(null)}>
+                      <div className={styles.close_btn} onClick={() => setCityData(null)}>
                         <CloseIcon />
                       </div>
                     </div>

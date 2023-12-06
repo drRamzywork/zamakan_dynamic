@@ -140,8 +140,8 @@ const Places = ({ dataAllCitiesMap,
       }
       const { cityData, poetryData } = await response.json();
 
-      setCityData(cityData);
       setPoetriesData(poetryData);
+      setCityData(cityData);
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
@@ -331,7 +331,7 @@ const Places = ({ dataAllCitiesMap,
                 </TransformWrapper >
 
                 <AnimatePresence >
-                  {activeCity && (
+                  {cityData && (
                     <motion.div
                       initial={{ opacity: 0, y: -50 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -344,7 +344,7 @@ const Places = ({ dataAllCitiesMap,
                       <div className={styles.box_container}>
                         <div className={styles.box_header}>
                           <div className={styles.img_container}>
-                            <Image width={72} height={72} src={cityData?.icon} alt={cityData?.name}
+                            <img src={cityData?.icon} alt={cityData?.name}
                             />
                           </div>
                           <div className={styles.title}>
@@ -364,11 +364,10 @@ const Places = ({ dataAllCitiesMap,
 
                         <PoetsSlider poetriesData={poetriesData} />
 
-                        <div className={styles.close_btn} onClick={() => setActiveCity(null)}>
+                        <div className={styles.close_btn} onClick={() => setCityData(null)}>
                           <CloseIcon />
                         </div>
                       </div>
-
                     </motion.div>
                   )}
                 </AnimatePresence>

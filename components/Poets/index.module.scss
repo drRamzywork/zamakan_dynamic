@@ -272,7 +272,7 @@ section.Poets {
 
   .custom_box {
     position: absolute;
-    bottom: 0;
+    bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
     width: 602px;
@@ -314,6 +314,9 @@ section.Poets {
       .box_header {
         display: flex;
         align-items: flex-start;
+        @media screen and (max-width: 450px) {
+          flex-direction: column;
+        }
         .img_container {
           // width: 72px;
           // height: 72px;
