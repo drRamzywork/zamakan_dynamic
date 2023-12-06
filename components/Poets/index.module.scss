@@ -301,7 +301,7 @@ section.Poets {
         left: -9px;
         cursor: pointer;
         @media screen and (max-width: 450px) {
-          top: -2px;
+          top: -27px;
           left: -2px;
         }
         svg {
@@ -315,7 +315,9 @@ section.Poets {
         display: flex;
         align-items: flex-start;
         @media screen and (max-width: 450px) {
+          margin-top: 20px;
           flex-direction: column;
+          align-items: center;
         }
         .img_container {
           // width: 72px;
@@ -323,12 +325,19 @@ section.Poets {
           margin-left: 16px;
           border-radius: 16px;
           flex-basis: 28%;
+          @media screen and (max-width: 450px) {
+            width: 100%;
+            margin-left: 0px;
+          }
 
           img {
             width: 211px;
             height: 151px;
             border-radius: 16px;
             object-fit: cover;
+            @media screen and (max-width: 450px) {
+              width: 100%;
+            }
           }
         }
 

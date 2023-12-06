@@ -114,7 +114,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
 
 
 
-  console.log(isCityLoading, "isCityLoading")
 
 
   const handlePoetData = async (poetID) => {
