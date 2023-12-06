@@ -10,6 +10,9 @@ import Link from 'next/link'
 import { Button } from '@mui/base'
 import { PageHeader } from '@/components/PlacesComponents'
 import Head from 'next/head';
+import { AnimatePresence, motion } from 'framer-motion';
+import { CloseIcon, LeftArrow } from '@/assets/svgsComponents';
+import PoetsSlider from '@/components/PoetsSlider';
 
 
 
@@ -118,8 +121,43 @@ const Places = ({ dataAllCitiesMap,
   };
   const resetTransformRef = useRef(null);
 
+  const [cityData, setCityData] = useState(null)
+  const [poetriesData, setPoetriesData] = useState(null)
+  const [isSafari, setIsSafari] = useState(false);
+  const [activeCity, setActiveCity] = useState(null);
+
+  useEffect(() => {
+
+    // Detect Safari browser
+    setIsSafari(navigator.vendor.includes("Apple"));
 
 
+  }, []);
+
+
+  const convertSVGPathsToJSX = (svgString) => {
+    const paths = svgString.split("</path>");
+    return paths.map((path, index) => (
+      <g key={index} dangerouslySetInnerHTML={{ __html: path + "</path>" }} />
+    ));
+  };
+
+  const handlePlaceWindow = async (placeId) => {
+    setActiveCity(placeId);
+
+    try {
+      const response = await fetch(`/api/fetchCityData?placeId=${placeId}`);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const { cityData, poetryData } = await response.json();
+
+      setPoetriesData(poetryData);
+      setCityData(cityData);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
   return (
 
     <>
@@ -193,7 +231,7 @@ const Places = ({ dataAllCitiesMap,
                 </SwiperSlide> */}
                 {dataAllCitiesMap.map((city, index) =>
                   <SwiperSlide key={index}>
-                    <Link href={`/places/${city.id}`} className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
+                    <div className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       {/* <div className={styles.img_container}>
                         <svg
                           id="svg1"
@@ -209,7 +247,7 @@ const Places = ({ dataAllCitiesMap,
                       <div className={styles.name}>
                         <Typography>{city.name}</Typography>
                       </div>
-                    </Link>
+                    </div>
 
                   </SwiperSlide >
                 )}
@@ -240,14 +278,97 @@ const Places = ({ dataAllCitiesMap,
                     return (
                       <>
                         <TransformComponent>
-                          <Svg dataAllCitiesMap={dataAllCitiesMap}
-                            dataAllPlacesMap={dataAllPlacesMap} />
+
+                          <xml version="1.0" encoding="UTF-8" standalone="no" />
+                          <svg
+                            id="svg1"
+                            width="858"
+                            height="724"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className={`${isSafari ? "saudi-map safari" : "saudi-map"}`}
+                            viewBox="90 90 758 624"
+                          >
+                            {dataAllCitiesMap?.map((land, index) => (
+                              <g className="land" key={index} id={land.svgPathId} >
+                                {convertSVGPathsToJSX(land.svgPath)}
+                                {land.places.map((place, index) =>
+                                  <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
+                                    <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
+                                      <div onClick={() => handlePlaceWindow(place.id)}
+
+                                        className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
+
+                                        <div>
+                                          <p>{place.name}</p>
+                                          <svg
+                                            width="15"
+                                            height="6"
+                                            viewBox="0 0 15 6"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <path
+                                              d="M0.956299 0.882812H14.8405H12.9973C11.8578 0.882812 10.8162 1.52659 10.3066 2.54573L9.14027 4.87844C8.6286 5.90177 7.16825 5.90178 6.65658 4.87844L5.49023 2.54573C4.98065 1.52659 3.939 0.882812 2.79956 0.882812H0.956299Z"
+                                              fill="white"
+                                            />
+                                          </svg>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </foreignObject>
+                                )}
+
+                              </g>
+                            ))}
+                          </svg>
                         </TransformComponent>
                       </>
                     );
                   }}
                 </TransformWrapper >
 
+                <AnimatePresence >
+                  {cityData && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -50 }}
+                      transition={{ duration: 0.5 }}
+                      className={styles.custom_box}
+                      dir='rtl'
+                    >
+
+                      <div className={styles.box_container}>
+                        <div className={styles.box_header}>
+                          <div className={styles.img_container}>
+                            <img src={cityData?.icon} alt={cityData?.name}
+                            />
+                          </div>
+                          <div className={styles.title}>
+                            <h3>{cityData?.name}</h3>
+
+                            <div className={styles.desc}>
+                              <p>
+                                {cityData?.descriptionShort}
+                                <Link href={`/city/${cityData?.id}`} className={styles.more}>
+                                  <span>المزيد عن {cityData?.name}</span>
+                                  <LeftArrow />
+                                </Link>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <PoetsSlider poetriesData={poetriesData} />
+
+                        <div className={styles.close_btn} onClick={() => setCityData(null)}>
+                          <CloseIcon />
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
 
               </div >
