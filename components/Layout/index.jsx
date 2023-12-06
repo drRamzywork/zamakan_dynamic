@@ -33,7 +33,9 @@ export default function Layout({ children }) {
   return (
     <>
       <Navbar />
-      <main style={...Effra.style}>{children}</main>
+      <main style={...Effra.style}>
+        {children?.filter(str => str != ';')}
+      </main>
       <Footer />
     </>
   )

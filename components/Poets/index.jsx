@@ -119,11 +119,15 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
 
   const handlePlaceWindow = async (placeId) => {
     setActiveCity(placeId)
-    const resCityData = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${placeId}&lang=2`);
-    const dataCityData = await resCityData.json();
+    try {
+      const resCityData = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${placeId}&lang=2`);
+      const dataCityData = await resCityData.json();
 
-    const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${placeId}&type=6&lang=2&pagenum=1&pagesize=50`);
-    const dataCityPoetry = await resCityPoetry.json();
+      const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${placeId}&type=6&lang=2&pagenum=1&pagesize=50`);
+      const dataCityPoetry = await resCityPoetry.json();
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
 
     setCityData(dataCityData)
     setPoetriesData(dataCityPoetry)

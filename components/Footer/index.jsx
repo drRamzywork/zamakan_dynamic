@@ -40,12 +40,12 @@ const Footer = () => {
                 </Link>
 
               </div>
-              <Link href='tel:009668001189999' className={styles.contact}>
+              {/* <Link href='tel:009668001189999' className={styles.contact}>
                 <Typography variant="body1">(009) 668001189999</Typography>
                 <IconButton aria-label="phone">
                   <Phone />
                 </IconButton>
-              </Link>
+              </Link> */}
             </div>
 
 

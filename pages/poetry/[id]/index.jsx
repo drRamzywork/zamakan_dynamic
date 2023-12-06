@@ -20,8 +20,8 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
   const { ra3y, Feather_big, place } = imgs;
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-  { console.log(additionalData, "dataPoetry") }
   const [beforeDots, afterDots] = dataPoetry.poetryParts.split('...')
+  { console.log(additionalData, "dataPoetry") }
   { console.log(beforeDots, "dataPoetry") }
   { console.log(afterDots, "dataPoetry") }
   return (
