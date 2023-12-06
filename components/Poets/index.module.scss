@@ -276,8 +276,8 @@ section.Poets {
     left: 50%;
     transform: translateX(-50%);
     width: 602px;
-    height: 399px;
-    padding: 40px;
+    height: auto;
+    padding: 24px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 19px 14px 0px rgba(0, 0, 0, 0.14);
     border-radius: 24px;
@@ -315,15 +315,15 @@ section.Poets {
         display: flex;
         align-items: flex-start;
         .img_container {
-          width: 72px;
-          height: 72px;
+          // width: 72px;
+          // height: 72px;
           margin-left: 16px;
           border-radius: 16px;
           flex-basis: 28%;
 
           img {
-            // width: 100%;
-            // height: 100%;
+            width: 211px;
+            height: 151px;
             border-radius: 16px;
             object-fit: cover;
           }

@@ -59,49 +59,62 @@ const PoetsSlider = ({ poetriesData }) => {
               dir='rtl'
               className={styles.swiper_container} >
 
-              {poetriesData?.map((poetry, index) =>
-                <SwiperSlide key={poetry.id}>
-                  <div className={styles.box}>
-                    <div className={styles.tag}>
-                      <Typography>{poetry.placeName}</Typography>
-                    </div>
+              {poetriesData?.map((poetry, index) => {
+                const [beforeDots, afterDots] = poetry.poetryParts.split('...');
+                return (
+                  <SwiperSlide key={poetry.id}>
+                    <div className={styles.box}>
+                      <div className={styles.tag}>
+                        <Typography>{poetry.placeName}</Typography>
+                      </div>
 
-                    <div className={styles.desc}>
-                      <Typography>
+                      <div className={styles.desc}>
+                        {/* <Typography>
                         {poetry.poetryParts}
-                      </Typography>
-                    </div>
+                      </Typography> */}
 
-                    <Link href={`/poetry/${poetry.id} `} className={styles.link_container}>
-                      <Typography>تفاصيل البيت</Typography>
-
-                      <div className={styles.icon_container}>
-                        <HiArrowLeft />
-                      </div>
-                    </Link>
-                    <hr />
-
-
-                    <div className={styles.poet_info}>
-                      <div className={styles.img_container}>
-                        <img src={adjustImageUrl(poetry.poetIcon)} alt={poetry.poetName} />
+                        <Typography>
+                          {beforeDots}
+                        </Typography>
+                        <br />
+                        <Typography>
+                          {afterDots}
+                        </Typography>
                       </div>
 
-                      <div className={styles.text_container}>
-                        <Link href={`/poet/${poetry.poetId}`} className={styles.name}>
-                          <Typography>{poetry.poetName}</Typography>
-                        </Link>
-                        <div className={styles.poet_tag}>
-                          <Typography>
-                            {poetry.zamanName}
-                          </Typography>
+                      <Link href={`/poetry/${poetry.id} `} className={styles.link_container}>
+                        <Typography>تفاصيل البيت</Typography>
 
+                        <div className={styles.icon_container}>
+                          <HiArrowLeft />
+                        </div>
+                      </Link>
+                      <hr />
+
+
+                      <div className={styles.poet_info}>
+                        <div className={styles.img_container}>
+                          <img src={adjustImageUrl(poetry.poetIcon)} alt={poetry.poetName} />
+                        </div>
+
+                        <div className={styles.text_container}>
+                          <Link href={`/poet/${poetry.poetId}`} className={styles.name}>
+                            <Typography>{poetry.poetName}</Typography>
+                          </Link>
+                          <div className={styles.poet_tag}>
+                            <Typography>
+                              {poetry.zamanName}
+                            </Typography>
+
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                  </div>
-                </SwiperSlide>
+                    </div>
+                  </SwiperSlide>
+
+                )
+              }
               )}
 
 
@@ -111,7 +124,7 @@ const PoetsSlider = ({ poetriesData }) => {
           </div>
         </div>
 
-      </div>
+      </div >
     </>
   )
 }

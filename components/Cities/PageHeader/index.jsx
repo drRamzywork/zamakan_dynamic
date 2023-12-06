@@ -26,7 +26,7 @@ const PageHeader = ({ dataCityData }) => {
             </div> */}
             <div className={styles.img_box}>
               {/* <img src={backgroundCity.src} /> */}
-              <Image src={dataCityData.icon} width={434} height={168.2} alt={dataCityData.name} />
+              <img src={dataCityData.icon} alt={dataCityData.name} />
 
             </div>
 

@@ -9,9 +9,7 @@ import Svg from '../SVGParts/Svg'
 import { LeftArrow, CloseIcon } from '@/assets/svgsComponents'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import PoetsSlider from '../PoetsSlider';
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import Image from 'next/image';
 
 

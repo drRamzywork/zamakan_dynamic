@@ -171,7 +171,6 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                                 {beforeDots}
                                 <br />
                                 {afterDots}
-
                               </Typography>
                             </div>
                           </Link>

@@ -5,6 +5,7 @@ import React from 'react'
 
 const Cities = ({ dataCityData, dataCityPoetry }) => {
 
+  console.log(dataCityData)
   return (
     <>
       <Head>
