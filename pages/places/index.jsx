@@ -252,6 +252,7 @@ const Places = ({ dataAllCitiesMap,
 
               </div >
 
+              {/* 
               <div className={styles.text_container}>
                 <div className={styles.sec_title}>
                   <Typography variant='h3'>
@@ -305,19 +306,12 @@ const Places = ({ dataAllCitiesMap,
                     </Typography>
                   </div>
 
-                  {/* <div className={styles.tags_container}>
-                    {dataAllPlacesMap.map((city, idx) => (
-                      <Button key={idx}>
-                        <Link href={`/city/${city.id}`}>
-                          {city.name}
-                        </Link>
-                      </Button>
-                    ))}
-                  </div> */}
+               
                 </div>
 
 
-              </div>
+              </div> */}
+
             </div>
           </div>
         </section >

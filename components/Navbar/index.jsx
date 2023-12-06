@@ -168,7 +168,7 @@ const Navbar = (props) => {
               >
                 <div className={styles.links} onClick={() => setNavMenu(false)}>
                   <div className={styles.link}>
-                    <Link href='/places/1'>مناطق المملكة </Link>
+                    <Link href='/places'>مناطق المملكة </Link>
                   </div>
                   <div className={styles.link}>
                     <Link href='/literary-eras'>العصور الأدبية</Link>

@@ -5,7 +5,6 @@ import imgs from '../../../assets/constants/imgs'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
-import Svg from '@/components/SVGParts/Svg';
 import Link from 'next/link'
 import { PageHeader } from '@/components/PlacesComponents'
 import { useRouter } from 'next/router';
@@ -14,7 +13,6 @@ import Head from 'next/head';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CloseIcon, LeftArrow } from '@/assets/svgsComponents';
 import PoetsSlider from '@/components/PoetsSlider';
-import Image from 'next/image';
 
 
 const Places = ({ dataAllCitiesMap,
