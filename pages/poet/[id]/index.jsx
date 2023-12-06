@@ -286,7 +286,7 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
                             <Typography>{dataPoet.nicknameReason}</Typography>
                           </div>
                         </div>
-                        <div className={styles.box}>
+                        {/* <div className={styles.box}>
                           <div className={styles.title}>
                             <Typography>تاريخ الميلاد</Typography>
                           </div>
@@ -296,7 +296,7 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
                               هـجريًا -
                               {dataPoet?.fromH === 0 ? '-' : dataPoet?.fromM} ميلاديًا</Typography>
                           </div>
-                        </div>
+                        </div> */}
                         {/* <div className={styles.box}>
                         <div className={styles.title}>
                           <Typography>محل الميلاد</Typography>

@@ -18,6 +18,8 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
     }
   };
 
+  console.log(dataCityData, "2222dataCityData")
+
   return (
     <>
       <section id='Verses' className={styles.Verses} dir='rtl' >
@@ -35,7 +37,11 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                     <Typography >الاسم السابق</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>{dataCityData.otherNames}</Typography>
+                    <Typography>
+                      {
+                        dataCityData.otherNames === null || dataCityData.otherNames === "" ? "------" : dataCityData.otherNames
+                      }
+                    </Typography>
                   </div>
                 </div>
                 <div className={styles.box}>
@@ -43,7 +49,11 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                     <Typography>الاسم الحالي</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>{dataCityData.name}</Typography>
+                    <Typography>
+                      {
+                        dataCityData.name === null ? "------" : dataCityData.name
+                      }
+                    </Typography>
                   </div>
                 </div>
                 <div className={styles.box}>
@@ -51,7 +61,11 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                     <Typography>أسماء أخرى</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>{dataCityData.otherNames}</Typography>
+                    <Typography>
+                      {
+                        dataCityData.otherNames === null || dataCityData.otherNames === "" ? "------" : dataCityData.otherNames
+                      }
+                    </Typography>
                   </div>
                 </div>
                 <div className={styles.box}>
@@ -59,7 +73,12 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                     <Typography>المنطقة الإدراية</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>{dataCityData.otherNames}</Typography>
+                    <Typography>
+                      {
+                        dataCityData.otherNames === null || dataCityData.otherNames === "" ? "------" : dataCityData.otherNames
+                      }
+
+                    </Typography>
                   </div>
                 </div>
                 <div className={styles.box}>
@@ -67,7 +86,12 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                     <Typography>قيمة المكان</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>{dataCityData.qema}</Typography>
+                    <Typography>
+                      {
+                        dataCityData.qema === null ? "------" : dataCityData.qema
+                      }
+
+                    </Typography>
                   </div>
                 </div>
 
@@ -76,7 +100,13 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                     <Typography>وصف المكان قديمًا</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>{dataCityData.wasfOld}</Typography>
+                    <Typography>
+                      {
+                        dataCityData.wasfOld === null ? "------" : dataCityData.wasfOld
+                      }
+
+
+                    </Typography>
                   </div>
                 </div>
 
@@ -85,7 +115,12 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                     <Typography>وصف المكان حديثًا</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>{dataCityData.wasfNew}</Typography>
+                    <Typography>
+                      {
+                        dataCityData.wasfNew === null ? "------" : dataCityData.wasfNew
+                      }
+
+                    </Typography>
                   </div>
                 </div>
                 <div className={styles.box}>
@@ -93,7 +128,11 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                     <Typography>الموقع</Typography>
                   </div>
                   <div className={styles.name}>
-                    <Typography>{dataCityData.site}</Typography>
+                    <Typography>
+                      {
+                        dataCityData.site === null ? "------" : dataCityData.site
+                      }
+                    </Typography>
                   </div>
                 </div>
 
