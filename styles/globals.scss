@@ -105,6 +105,15 @@ header {
   }
 }
 
+#Places {
+  .swiper-wrapper {
+    @media screen and (min-width: 992px) {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
 // global scrollbar
 body {
   scrollbar-width: thin;

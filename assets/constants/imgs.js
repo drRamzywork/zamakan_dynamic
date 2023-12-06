@@ -24,6 +24,8 @@ import mapPiece4 from "../mapPiece4.png";
 import mapPiece5 from "../mapPiece5.png";
 import mapPiece6 from "../mapPiece6.png";
 import mapPiece7 from "../mapPiece7.png";
+import Ministry_of_Culture from "../Ministry_of_Culture.png";
+import Literature from "../Literature.png";
 import Landing_Banner_text from "../Landing_Banner_text.png";
 import backgroundCity from "../backgroundCity.png";
 import modern_era from "../modern_era.png";
@@ -70,4 +72,6 @@ export default {
   mapPiece7,
   Feather_big,
   place,
+  Ministry_of_Culture,
+  Literature,
 };

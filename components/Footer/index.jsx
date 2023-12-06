@@ -12,7 +12,8 @@ import {
 import imgs from '../../assets/constants/imgs'
 import Link from 'next/link'
 const Footer = () => {
-  const { Vision2030 } = imgs;
+  const { Vision2030, Ministry_of_Culture,
+    Literature } = imgs;
   return (
     <footer className={styles.footer} dir='ltr'>
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
