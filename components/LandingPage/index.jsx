@@ -106,7 +106,7 @@ const LandingPage = () => {
               <LeftArrow />
             </div>
           </Link>
-          <Link href='/places' className={styles.box}>
+          <Link href='/places/1' className={styles.box}>
             <div className={styles.icon_container}>
               <SmallSaudiMap />
 

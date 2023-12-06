@@ -2,10 +2,9 @@ import { Container, Typography } from '@mui/material'
 import React from 'react'
 import styles from './index.module.scss'
 import imgs from '../../../assets/constants/imgs'
-const PageHeader = ({ dataCityPoetry, dataCityData }) => {
-  const { backgroundCity } = imgs;
+import Image from 'next/image'
+const PageHeader = ({ dataCityData }) => {
 
-  console.log(dataCityData, "dataCityData")
 
   return (
     <header id={styles.cities} dir='rtl'>
@@ -26,7 +25,9 @@ const PageHeader = ({ dataCityPoetry, dataCityData }) => {
               </ul>
             </div> */}
             <div className={styles.img_box}>
-              <img src={backgroundCity.src} />
+              {/* <img src={backgroundCity.src} /> */}
+              <Image src={dataCityData.icon} width={434} height={168.2} alt={dataCityData.name} />
+
             </div>
 
           </div>

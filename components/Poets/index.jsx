@@ -14,30 +14,7 @@ import PoetsSlider from '../PoetsSlider';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import Image from 'next/image';
 
-const Effra = localFont({
-  src: [
-    {
-      path: '../../fonts/Effra_Md.ttf',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra_Heavy.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra_Rg.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra-Bold.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-})
+
 
 const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
   const [activePoet, setActivePoet] = useState(null);
@@ -117,21 +94,34 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
   const [cityData, setCityData] = useState(null)
   const [poetriesData, setPoetriesData] = useState(null)
 
-  const handlePlaceWindow = async (placeId) => {
-    setActiveCity(placeId)
-    try {
-      const resCityData = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${placeId}&lang=2`);
-      const dataCityData = await resCityData.json();
+  // const handlePlaceWindow = async (placeId) => {
+  //   setActiveCity(placeId)
+  //   const resCityData = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${placeId}&lang=2`);
+  //   const dataCityData = await resCityData.json();
 
-      const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${placeId}&type=6&lang=2&pagenum=1&pagesize=50`);
-      const dataCityPoetry = await resCityPoetry.json();
+  //   const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${placeId}&type=6&lang=2&pagenum=1&pagesize=50`);
+  //   const dataCityPoetry = await resCityPoetry.json();
+
+  //   setCityData(dataCityData)
+  //   setPoetriesData(dataCityPoetry)
+  // }
+
+  const handlePlaceWindow = async (placeId) => {
+    setActiveCity(placeId);
+
+    try {
+      const response = await fetch(`/api/fetchCityData?placeId=${placeId}`);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const { cityData, poetryData } = await response.json();
+
+      setCityData(cityData);
+      setPoetriesData(poetryData);
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
-
-    setCityData(dataCityData)
-    setPoetriesData(dataCityPoetry)
-  }
+  };
 
 
   const handlePoetData = async (poetID) => {
@@ -144,7 +134,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
 
   return (
     <>
-      < section id='Poets' className={styles.Poets} style={...Effra.style} dir='rtl'>
+      < section id='Poets' className={styles.Poets} dir='rtl'>
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
           <div className={styles.sec_container}>
             <div className={styles.sec_title}>

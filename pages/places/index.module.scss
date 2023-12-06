@@ -218,11 +218,11 @@
   .custom_box {
     left: 0 !important;
     top: 0% !important;
-    overflow: scroll;
 
     @media screen and (max-width: 992px) {
       width: 100% !important;
       height: auto !important;
+      overflow-y: auto;
     }
   }
 }

@@ -92,7 +92,6 @@ const PoetsSlider = ({ poetriesData }) => {
                         </Link>
                         <div className={styles.poet_tag}>
                           <Typography>
-                            العصر الأموي
                             {poetry.zamanName}
                           </Typography>
 

@@ -7,10 +7,9 @@ import 'swiper/css';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Svg from '@/components/SVGParts/Svg';
 import Link from 'next/link'
-import { Button } from '@mui/base'
 import { PageHeader } from '@/components/PlacesComponents'
 import { useRouter } from 'next/router';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
 import Head from 'next/head';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CloseIcon, LeftArrow } from '@/assets/svgsComponents';
@@ -130,17 +129,26 @@ const Places = ({ dataAllCitiesMap,
   };
   const resetTransformRef = useRef(null);
 
+
   const handlePlaceWindow = async (placeId) => {
-    setActiveCity(placeId)
-    const resCityData = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${placeId}&lang=2`);
-    const dataCityData = await resCityData.json();
+    setActiveCity(placeId);
 
-    const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${placeId}&type=6&lang=2&pagenum=1&pagesize=50`);
-    const dataCityPoetry = await resCityPoetry.json();
+    try {
+      const response = await fetch(`/api/fetchCityData?placeId=${placeId}`);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const { cityData, poetryData } = await response.json();
 
-    setCityData(dataCityData)
-    setPoetriesData(dataCityPoetry)
-  }
+      setCityData(cityData);
+      setPoetriesData(poetryData);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  };
+
+
+
   const convertSVGPathsToJSX = (svgString) => {
     const paths = svgString.split("</path>");
     return paths.map((path, index) => (
