@@ -145,9 +145,10 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <motion.div animate={{ opacity: 1 }}
-        initial={{ opacity: 0 }}
-        transition={{ duration: 1, }}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }} // start state: fully transparent and 100 pixels down
+        animate={{ opacity: 1, y: 0 }} // end state: fully opaque and at its final position
+        transition={{ duration: 1 }}
       >
         <Container sx={{ maxWidth: "1400px" }} dir="rtl" maxWidth={false} className={styles.poetDetails}>
           <Box className={styles.headerImage} >
