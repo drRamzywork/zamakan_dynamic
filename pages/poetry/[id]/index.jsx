@@ -16,6 +16,8 @@ import {
 } from '@/assets/svgsComponents';
 import Slider from '@/components/PoetryPageComponents/Slider'
 import Head from 'next/head';
+import { motion } from 'framer-motion';
+
 const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
   const { ra3y, Feather_big, place } = imgs;
   const prevRef = useRef(null);
@@ -28,8 +30,9 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
       return `https://zamakan.suwa.io${imageUrl}`;
     }
   };
-
-  { console.log(dataPoetry, 'dataPoetry') }
+  console.log(dataPoetry, "dataPoetry")
+  console.log(dataPlace, "dataPlace")
+  console.log(additionalData, "additionalData")
   return (
     <>
 
@@ -45,135 +48,140 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section id={'poetry_page'} className={styles.poetry_page} dir='rtl'>
-        <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
-          <div className={styles.slider_container} >
-            <div className={styles.sec_title}>
-              <Typography variant='h3'>بيت الشعر</Typography>
-            </div>
-            <div className={styles.slider}>
-              <Swiper
-                modules={[Navigation,]}
-
-                navigation={{
-                  prevEl: prevRef.current,
-                  nextEl: nextRef.current,
-                }}
-                onSwiper={(swiper) => {
-                  swiper.params.navigation.prevEl = prevRef.current;
-                  swiper.params.navigation.nextEl = nextRef.current;
-                  swiper.navigation.init();
-                  swiper.navigation.update();
-                }}
-                slidesPerView={1}
-
-                dir='rtl'
-                className={styles.swiper_container} >
-                <SwiperSlide>
-
-
-                  <div className={styles.box}>
-                    <div className={styles.content_container}>
-
-                      <div className={styles.img_container}>
-                        <img src={Feather_big.src} alt="" />
-                      </div>
-                      <div className={styles.text_container}>
-                        <Typography>
-                          {beforeDots}
-                        </Typography>
-                        <span>... </span>
-                        <Typography>{afterDots}</Typography>
-                      </div>
-                    </div>
-
-                  </div>
-                </SwiperSlide>
-
-
-                <SwiperSlide>
-                  <div className={styles.box}>
-                    <div className={styles.content_container}>
-
-                      <div className={styles.img_container}>
-                        <img src={Feather_big.src} alt="" />
-                      </div>
-                      <div className={styles.text_container}>
-                        <Typography>مقيم على  <span>بنبان</span>    يمنع ماءه</Typography>
-                        <span>... </span>
-                        <Typography>وماء وشيع ماء عطشان مرمل</Typography>
-                      </div>
-                    </div>
-
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className={styles.box}>
-                    <div className={styles.content_container}>
-
-                      <div className={styles.img_container}>
-                        <img src={Feather_big.src} alt="" />
-                      </div>
-                      <div className={styles.text_container}>
-                        <Typography>مقيم على  <span>بنبان</span>    يمنع ماءه</Typography>
-                        <span>... </span>
-                        <Typography>وماء وشيع ماء عطشان مرمل</Typography>
-                      </div>
-                    </div>
-
-                  </div>
-                </SwiperSlide>
-
-
-
-              </Swiper>
-              <Box ref={nextRef} className={styles.prevbtn} id={styles.swiperbtn}>
-                <RightArrow />
-              </Box>
-              <Box ref={prevRef} className={styles.nextbtn} id={styles.swiperbtn}>
-                <RightArrow />
-              </Box>
-            </div>
-            <hr />
-            <Link href={`/poet/${dataPoetry.poetId}`} className={styles.poet_info}>
-              <div className={styles.img_container}>
-                <img src={adjustImageUrl(dataPoetry.poetIcon)} alt={dataPoetry.poetName} />
+        <motion.div
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 1, }}
+        >
+          <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
+            <div className={styles.slider_container} >
+              <div className={styles.sec_title}>
+                <Typography variant='h3'>بيت الشعر</Typography>
               </div>
-              <div className={styles.text_container}>
-                <div className={styles.name}>
-                  <Typography>
-                    {dataPoetry.poetName}
-                  </Typography>
+              <div className={styles.slider}>
+                <Swiper
+                  modules={[Navigation,]}
 
-                </div>
-                <div className={styles.tag}>
-                  <Typography>
-                    {dataPoetry.zamanName}
-                  </Typography>
-                </div>
-              </div>
-            </Link>
-          </div>
+                  navigation={{
+                    prevEl: prevRef.current,
+                    nextEl: nextRef.current,
+                  }}
+                  onSwiper={(swiper) => {
+                    swiper.params.navigation.prevEl = prevRef.current;
+                    swiper.params.navigation.nextEl = nextRef.current;
+                    swiper.navigation.init();
+                    swiper.navigation.update();
+                  }}
+                  slidesPerView={1}
 
-          <div className={styles.info_container}>
-            <div className={styles.poet_info}  >
-              <section className={styles.timelineSection}>
-                <div className={styles.sec_title}>
-                  <Typography variant='h3'>معلومات عن بيت الشعر</Typography>
-                </div>
+                  dir='rtl'
+                  className={styles.swiper_container} >
+                  <SwiperSlide>
 
-                <div className={styles.info_sec}>
-
-                  <div className={styles.boxes_container}>
 
                     <div className={styles.box}>
-                      <div className={styles.title}>
-                        <Typography >العصر الأدبي </Typography>
+                      <div className={styles.content_container}>
+
+                        <div className={styles.img_container}>
+                          <img src={Feather_big.src} alt="" />
+                        </div>
+                        <div className={styles.text_container}>
+                          <Typography>
+                            {beforeDots}
+                          </Typography>
+                          <span>... </span>
+                          <Typography>{afterDots}</Typography>
+                        </div>
                       </div>
-                      <div className={styles.name}>
-                        <Typography>{dataPoetry.zamanName}</Typography>
-                      </div>
+
                     </div>
-                    {/* <div className={styles.box}>
+                  </SwiperSlide>
+
+
+                  <SwiperSlide>
+                    <div className={styles.box}>
+                      <div className={styles.content_container}>
+
+                        <div className={styles.img_container}>
+                          <img src={Feather_big.src} alt="" />
+                        </div>
+                        <div className={styles.text_container}>
+                          <Typography>مقيم على  <span>بنبان</span>    يمنع ماءه</Typography>
+                          <span>... </span>
+                          <Typography>وماء وشيع ماء عطشان مرمل</Typography>
+                        </div>
+                      </div>
+
+                    </div>
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <div className={styles.box}>
+                      <div className={styles.content_container}>
+
+                        <div className={styles.img_container}>
+                          <img src={Feather_big.src} alt="" />
+                        </div>
+                        <div className={styles.text_container}>
+                          <Typography>مقيم على  <span>بنبان</span>    يمنع ماءه</Typography>
+                          <span>... </span>
+                          <Typography>وماء وشيع ماء عطشان مرمل</Typography>
+                        </div>
+                      </div>
+
+                    </div>
+                  </SwiperSlide>
+
+
+
+                </Swiper>
+                <Box ref={nextRef} className={styles.prevbtn} id={styles.swiperbtn}>
+                  <RightArrow />
+                </Box>
+                <Box ref={prevRef} className={styles.nextbtn} id={styles.swiperbtn}>
+                  <RightArrow />
+                </Box>
+              </div>
+              <hr />
+              <Link href={`/poet/${dataPoetry.poetId}`} className={styles.poet_info}>
+                <div className={styles.img_container}>
+                  <img src={adjustImageUrl(dataPoetry.poetIcon)} alt={dataPoetry.poetName} />
+                </div>
+                <div className={styles.text_container}>
+                  <div className={styles.name}>
+                    <Typography>
+                      {dataPoetry.poetName}
+                    </Typography>
+
+                  </div>
+                  <div className={styles.tag}>
+                    <Typography>
+                      {dataPoetry.zamanName}
+                    </Typography>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            <div className={styles.info_container}>
+              <div className={styles.poet_info}  >
+                <section className={styles.timelineSection}>
+                  <div className={styles.sec_title}>
+                    <Typography variant='h3'>معلومات عن بيت الشعر</Typography>
+                  </div>
+
+                  <div className={styles.info_sec}>
+
+                    <div className={styles.boxes_container}>
+
+                      <div className={styles.box}>
+                        <div className={styles.title}>
+                          <Typography >العصر الأدبي </Typography>
+                        </div>
+                        <div className={styles.name}>
+                          <Typography>{dataPoetry.zamanName}</Typography>
+                        </div>
+                      </div>
+                      {/* <div className={styles.box}>
                       <div className={styles.title}>
                         <Typography>مطلع القصيدة</Typography>
                       </div>
@@ -181,147 +189,150 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                         <Typography>شكيسنتبا</Typography>
                       </div>
                     </div> */}
-                    <div className={styles.box}>
-                      <div className={styles.title}>
-                        <Typography>المكان المذكور ببيت الشعر</Typography>
-                      </div>
-                      <div className={styles.name}>
-                        <Typography>{dataPoetry.placeName}</Typography>
+                      <div className={styles.box}>
+                        <div className={styles.title}>
+                          <Typography>المكان المذكور ببيت الشعر</Typography>
+                        </div>
+                        <div className={styles.name}>
+                          <Typography>{dataPoetry.placeName}</Typography>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </section>
-              <section className={styles.timelineSection}>
-                <div className={styles.sec_title}>
-                  <Typography variant='h3'>مدخل البيت</Typography>
-                </div>
-                <div className={styles.sec_container}>
-                  <div className={styles.desc}>
-                    <Typography>
-                      {dataPoetry.entrance}
+                </section>
+                <section className={styles.timelineSection}>
+                  <div className={styles.sec_title}>
+                    <Typography variant='h3'>مدخل البيت</Typography>
+                  </div>
+                  <div className={styles.sec_container}>
+                    <div className={styles.desc}>
+                      <Typography>
+                        {dataPoetry.entrance}
+                      </Typography>
+                    </div>
+                  </div>
+                </section>
+                <section className={styles.timelineSection}>
+                  <div className={styles.sec_title}>
+                    <Typography variant='h3'>المقصد من البيت</Typography>
+                  </div>
+
+                  <div className={styles.sec_container}>
+                    <div className={styles.desc}>
+                      <Typography>
+                        {dataPoetry.meaning}
+                      </Typography>
+                    </div>
+                  </div>
+                </section>
+
+
+                <section className={styles.timelineSection}>
+                  <div className={styles.sec_title}>
+                    <Typography variant='h3'>سبب كتابة الشاعر للبيت</Typography>
+                  </div>
+
+                  <div className={styles.sec_container}>
+                    <div className={styles.desc}>
+                      <Typography>
+                        {dataPoetry.reason}
+                      </Typography>
+                    </div>
+                  </div>
+                </section>
+
+
+
+              </div >
+
+              <div className={styles.place_info}>
+                <div className={styles.container}>
+                  <div className={styles.sec_title}>
+                    <Typography variant='h3'>
+                      {dataPoetry.placeName}
                     </Typography>
                   </div>
-                </div>
-              </section>
-              <section className={styles.timelineSection}>
-                <div className={styles.sec_title}>
-                  <Typography variant='h3'>المقصد من البيت</Typography>
-                </div>
-
-                <div className={styles.sec_container}>
                   <div className={styles.desc}>
                     <Typography>
-                      {dataPoetry.meaning}
+
+                      {dataPlace?.descriptionShort}
+
                     </Typography>
                   </div>
-                </div>
-              </section>
-
-
-              <section className={styles.timelineSection}>
-                <div className={styles.sec_title}>
-                  <Typography variant='h3'>سبب كتابة الشاعر للبيت</Typography>
-                </div>
-
-                <div className={styles.sec_container}>
-                  <div className={styles.desc}>
-                    <Typography>
-                      {dataPoetry.reason}
-                    </Typography>
-                  </div>
-                </div>
-              </section>
-
-
-
-            </div >
-
-            <div className={styles.place_info}>
-              <div className={styles.container}>
-                <div className={styles.sec_title}>
-                  <Typography variant='h3'>
-                    {dataPoetry.placeName}
-                  </Typography>
-                </div>
-                <div className={styles.desc}>
-                  <Typography>
-
-                    {dataPlace?.descriptionShort}
-
-                  </Typography>
-                </div>
-                <ul className={styles.list_container}>
-                  <li>
-                    <div className={styles.icon_container}>
-                      <Checked />
-                    </div>
-                    <div className={styles.text_container}>
-                      <div className={styles.name}>
-                        <Typography>اسم المنطقة الحالي</Typography>
+                  <ul className={styles.list_container}>
+                    <li>
+                      <div className={styles.icon_container}>
+                        <Checked />
                       </div>
-                      <div className={styles.answer}>
-                        <Typography>{dataPlace?.name}</Typography>
+                      <div className={styles.text_container}>
+                        <div className={styles.name}>
+                          <Typography>اسم المنطقة الحالي</Typography>
+                        </div>
+                        <div className={styles.answer}>
+                          <Typography>{dataPlace?.name}</Typography>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className={styles.icon_container}>
-                      <Checked />
-                    </div>
-                    <div className={styles.text_container}>
-                      <div className={styles.name}>
-                        <Typography>اسم المنطقة سابقًا</Typography>
+                    </li>
+                    <li>
+                      <div className={styles.icon_container}>
+                        <Checked />
                       </div>
-                      <div className={styles.answer}>
-                        <Typography>{dataPlace?.otherNames}</Typography>
+                      <div className={styles.text_container}>
+                        <div className={styles.name}>
+                          <Typography>اسم المنطقة سابقًا</Typography>
+                        </div>
+                        <div className={styles.answer}>
+                          <Typography>{dataPlace?.otherNames}</Typography>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className={styles.icon_container}>
-                      <Check />
-                    </div>
-                    <div className={styles.text_container}>
-                      <div className={styles.name}>
-                        <Typography>وصف المنطقة</Typography>
+                    </li>
+                    <li>
+                      <div className={styles.icon_container}>
+                        <Check />
                       </div>
-                      <div className={styles.answer}>
-                        <Typography>{dataPlace?.description}</Typography>
+                      <div className={styles.text_container}>
+                        <div className={styles.name}>
+                          <Typography>وصف المنطقة</Typography>
+                        </div>
+                        <div className={styles.answer}>
+                          <Typography>{dataPlace?.description}</Typography>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className={styles.icon_container}>
-                      <Location />
-                    </div>
-                    <div className={styles.text_container}>
-                      <div className={styles.name}>
-                        <Typography>الموقع</Typography>
+                    </li>
+                    <li>
+                      <div className={styles.icon_container}>
+                        <Location />
                       </div>
-                      <div className={styles.answer}>
-                        <Typography>{dataPlace?.site}</Typography>
+                      <div className={styles.text_container}>
+                        <div className={styles.name}>
+                          <Typography>الموقع</Typography>
+                        </div>
+                        <div className={styles.answer}>
+                          <Typography>{dataPlace?.site}</Typography>
+                        </div>
                       </div>
-                    </div>
-                  </li>
-                </ul>
+                    </li>
+                  </ul>
 
 
-                <div className={styles.imgs_container}>
-                  <div className={styles.img_container}>
-                    <img src={place.src} alt="" />
-                  </div>
-                  <div className={styles.img_container}>
-                    <img src={place.src} alt="" />
-                  </div>
-                  <div className={styles.img_container}>
-                    <img src={place.src} alt="" />
+                  <div className={styles.imgs_container}>
+                    <div className={styles.img_container}>
+                      <img src={dataPlace.icon} alt="" />
+                    </div>
+                    <div className={styles.img_container}>
+                      <img src={dataPlace.icon} alt="" />
+                    </div>
+                    <div className={styles.img_container}>
+                      <img src={dataPlace.icon} alt="" />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </Container>
+          </Container>
+
+        </motion.div>
+
       </section >
 
       <Slider additionalData={additionalData} />

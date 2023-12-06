@@ -69,10 +69,6 @@ const PoetsSlider = ({ poetriesData }) => {
                       </div>
 
                       <div className={styles.desc}>
-                        {/* <Typography>
-                        {poetry.poetryParts}
-                      </Typography> */}
-
                         <Typography>
                           {beforeDots}
                         </Typography>

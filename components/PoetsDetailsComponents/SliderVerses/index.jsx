@@ -61,26 +61,36 @@ export default function SliderVerses({ results }) {
         dir='rtl'
       >
 
-        {results.map((poetry, idx) => (
-          <SwiperSlide key={idx}>
-            <div className={styles.box}>
-              <div className={styles.tag}>
-                <Typography>{poetry.placeName}</Typography>
-              </div>
-              <div className={styles.desc}>
-                <Typography>{poetry.poetryParts}</Typography>
-              </div>
+        {results.map((poetry, idx) => {
+          const [beforeDots, afterDots] = poetry.poetryParts.split('...');
+          return (
 
-              <Link href={`/poetry/${poetry.id}`} className={styles.link_container}>
-                <Typography>تفاصيل البيت</Typography>
-
-                <div className={styles.icon_container}>
-                  <HiArrowLeft />
+            <SwiperSlide key={idx}>
+              <div className={styles.box}>
+                <div className={styles.tag}>
+                  <Typography>{poetry.placeName}</Typography>
                 </div>
-              </Link>
-            </div>
-          </SwiperSlide>
-        ))}
+                <div className={styles.desc}>
+                  <Typography>
+                    {beforeDots}
+                  </Typography>
+                  <br />
+                  <Typography>
+                    {afterDots}
+                  </Typography>
+                </div>
+
+                <Link href={`/poetry/${poetry.id}`} className={styles.link_container}>
+                  <Typography>تفاصيل البيت</Typography>
+
+                  <div className={styles.icon_container}>
+                    <HiArrowLeft />
+                  </div>
+                </Link>
+              </div>
+            </SwiperSlide>
+          )
+        })}
       </Swiper>
     </>
   );

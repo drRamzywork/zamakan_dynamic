@@ -34,6 +34,17 @@
 
     .desc {
       margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      p:first-child {
+        margin-left: 24px;
+      }
+      p:last-child {
+        margin-right: 24px;
+      }
+
       p {
         font-family: var(--effra-font);
         font-size: 16px;
