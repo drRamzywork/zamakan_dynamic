@@ -163,7 +163,11 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
         </Box>
         <Grid container className={styles.profileSection}>
           <Grid item>
-            <Avatar src={adjustImageUrl(dataPoet.icon)} className={styles.avatar} />
+            <div className={styles.img_container}>
+
+              <Avatar src={adjustImageUrl(dataPoet.icon)} className={styles.avatar} />
+            </div>
+
           </Grid>
           <Grid spacing={0} item>
             <Typography variant="h5" className={styles.profileName}>
