@@ -31,6 +31,7 @@ const PoetsSlider = ({ poetriesData }) => {
         <div className={styles.slider_container}>
           <div className={styles.slider}>
             <Swiper
+
               spaceBetween={24}
               breakpoints={{
                 300: {

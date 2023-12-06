@@ -13,7 +13,6 @@ const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAl
         <title>{eraDetails?.name}</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <meta name="description" content="استكشف الشعراء
 عبر العصور" />
         <meta name="description" content="شُعراء العصور الأَدبيّة في مَناطِق المملكة العربيّة السُّعوديّة" />
@@ -64,7 +63,6 @@ export async function getStaticProps({ params }) {
       dataAllPlacesMap: dataAllPlacesMap,
     },
     revalidate: 10
-
   };
 }
 
