@@ -50,7 +50,7 @@ export async function getStaticProps({ params }) {
   const resCityData = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${id}&lang=2`);
   const dataCityData = await resCityData.json();
 
-  const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${id}&lang=2&pagenum=1&pagesize=1`);
+  const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${id}&lang=2&pagenum=1&pagesize=50`);
   const dataCityPoetry = await resCityPoetry.json();
 
   return {

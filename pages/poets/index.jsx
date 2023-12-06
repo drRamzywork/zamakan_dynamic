@@ -8,6 +8,7 @@ import { Search } from '@/assets/svgsComponents';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { MagnifyingGlass } from 'react-loader-spinner';
+import Head from 'next/head';
 
 const Poets = ({ erasAllEras, dataDefault }) => {
   const [age, setAge] = useState(0);
@@ -142,86 +143,101 @@ const Poets = ({ erasAllEras, dataDefault }) => {
 
 
   return (
-    <section id='poets' className='poets'>
-      <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
+    <>
+      <Head>
+        <title>استكشف الشعراء</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <div className={styles.tabContent_container} dir='rtl'>
-          <section className={styles.timelineSection}>
-            <div className={styles.sec_title}>
-              <Typography variant='h3'>الشعراء</Typography>
-            </div>
-            <div className={styles.slider_container}>
-              <div className={styles.filter_sec}>
-                <div className={styles.shows}>
-                  <Typography dir='ltr'>
-                    <span>18</span> يتم عرض <span>10</span> من
-                  </Typography>
-                </div>
-                <div className={styles.filter_methods}>
-                  <div className={styles.box}>
-                    <div className={styles.form_container}>
-                      <input
-                        type="text"
-                        placeholder='ابحث بإسم الشاعر..'
-                        value={searchString}
-                        onChange={(e) => setSearchString(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                      />
-                      <div className={styles.icon_container} onClick={handleSearch}>
-                        {isLoading ? <MagnifyingGlass
-                          visible={true}
-                          height="30"
-                          width="30"
-                          ariaLabel="MagnifyingGlass-loading"
-                          wrapperStyle={{}}
-                          wrapperClass="MagnifyingGlass-wrapper"
-                          glassColor='#c0efff'
-                          color='rgba(151, 155, 182, 1)'
-                        /> :
-                          <Search />
-                        }
+        <meta name="description" content="استكشف الشعراء
+عبر العصور" />
+        <meta name="description" content="شُعراء العصور الأَدبيّة في مَناطِق المملكة العربيّة السُّعوديّة" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <section id='poets' className='poets'>
+        <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
+
+          <div className={styles.tabContent_container} dir='rtl'>
+            <section className={styles.timelineSection}>
+              <div className={styles.sec_title}>
+                <Typography variant='h3'>الشعراء</Typography>
+              </div>
+              <div className={styles.slider_container}>
+                <div className={styles.filter_sec}>
+                  <div className={styles.shows}>
+                    <Typography dir='ltr'>
+                      <span>18</span> يتم عرض <span>10</span> من
+                    </Typography>
+                  </div>
+                  <div className={styles.filter_methods}>
+                    <div className={styles.box}>
+                      <div className={styles.form_container}>
+                        <input
+                          type="text"
+                          placeholder='ابحث بإسم الشاعر..'
+                          value={searchString}
+                          onChange={(e) => setSearchString(e.target.value)}
+                          onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+                        />
+                        <div className={styles.icon_container} onClick={handleSearch}>
+                          {isLoading ? <MagnifyingGlass
+                            visible={true}
+                            height="30"
+                            width="30"
+                            ariaLabel="MagnifyingGlass-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="MagnifyingGlass-wrapper"
+                            glassColor='#c0efff'
+                            color='rgba(151, 155, 182, 1)'
+                          /> :
+                            <Search />
+                          }
+                        </div>
+
+                        {error && <div>Error: {error.message}</div>}
                       </div>
 
-                      {error && <div>Error: {error.message}</div>}
+                    </div>
+                    <div className={styles.box}>
+                      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                        <Select
+                          labelId="demo-select-small-label"
+                          id="demo-select-small"
+                          value={age}  // Use the 'value' prop instead of 'defaultValue'
+                          sx={selectBoxStyles}
+                          onChange={handleChange}
+                          IconComponent={CustomArrowIcon}
+                        >
+                          <MenuItem value={0}>كل العصور</MenuItem>
+                          {erasAllEras.map((era, index) => (
+                            <MenuItem key={era.id} value={era.id}>
+                              {era.name}
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+
                     </div>
 
                   </div>
-                  <div className={styles.box}>
-                    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                      <Select
-                        labelId="demo-select-small-label"
-                        id="demo-select-small"
-                        value={age}  // Use the 'value' prop instead of 'defaultValue'
-                        sx={selectBoxStyles}
-                        onChange={handleChange}
-                        IconComponent={CustomArrowIcon}
-                      >
-                        <MenuItem value={0}>كل العصور</MenuItem>
-                        {erasAllEras.map((era, index) => (
-                          <MenuItem key={era.id} value={era.id}>
-                            {era.name}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-
-                  </div>
 
                 </div>
-
+                <div className="slider">
+                  <SliderVerses filtredPoets={filtredPoets} />
+                </div>
               </div>
-              <div className="slider">
-                <SliderVerses filtredPoets={filtredPoets} />
-              </div>
-            </div>
-          </section>
+            </section>
 
 
 
-        </div >
-      </Container >
+          </div >
+        </Container >
 
-    </section >
+      </section >
+    </>
+
   )
 }
 
@@ -241,4 +257,3 @@ export async function getServerSideProps() {
     },
   };
 }
-

@@ -189,9 +189,9 @@ export default function SliderVerses({ filtredPoets }) {
                 <div className={styles.text_container}>
                   <div className={styles.name}>
                     <Typography>{poet.name}</Typography>
-                    <div className={styles.date}>
+                    {/* <div className={styles.date}>
                       <Typography>{poet.fromH} هـ - {poet.toH} هـ</Typography>
-                    </div>
+                    </div> */}
                   </div>
                   <div className={styles.tag}>
                     <Typography>

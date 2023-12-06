@@ -10,6 +10,13 @@ import Link from 'next/link';
 const Verses = ({ dataCityPoetry, dataCityData }) => {
   const { ra3y } = imgs;
 
+  const adjustImageUrl = (imageUrl) => {
+    if (imageUrl?.startsWith('https')) {
+      return imageUrl;
+    } else {
+      return `https://zamakan.suwa.io${imageUrl}`;
+    }
+  };
 
   return (
     <>
@@ -134,9 +141,6 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                 pagination={{ clickable: true }}
                 className={styles.swiper}
               >
-
-
-
                 {Array.isArray(dataCityPoetry) ? dataCityPoetry.map((poet, index) => {
                   const [beforeDots, afterDots] = poet.poetryParts.split('...');
 
@@ -146,7 +150,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                         <div className={styles.box_container}>
                           <Link href={`/poet/${poet.poetId}`} className={styles.info}>
                             <div className={styles.img_container}>
-                              <img src={poet.poetIcon} alt={poet.poetName} />
+                              <img src={adjustImageUrl(poet.poetIcon)} alt={poet.poetName} />
                             </div>
 
                             <div className={styles.text_container}>
