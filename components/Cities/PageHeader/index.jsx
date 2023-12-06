@@ -5,6 +5,7 @@ import imgs from '../../../assets/constants/imgs'
 const PageHeader = ({ dataCityPoetry, dataCityData }) => {
   const { backgroundCity } = imgs;
 
+  console.log(dataCityData, "dataCityData")
 
   return (
     <header id={styles.cities} dir='rtl'>

@@ -190,12 +190,14 @@ export default function Poet({ dataPoet, dataPoetry, dataAllEras, dataPlaces }) 
               </Typography> */}
 
               <Typography>
-                {dataPoet.description.split('.').map((sentence, index, array) => (
-                  <span key={index}>
-                    {sentence.trim()}
-                    {index < array.length - 1 && <>&nbsp;.&nbsp;<br /></>}
-                  </span>
-                ))}
+                {
+                  dataPoet &&
+                  dataPoet?.description?.split('.').map((sentence, index, array) => (
+                    <span key={index}>
+                      {sentence.trim()}
+                      {index < array?.length - 1 && <>&nbsp;.&nbsp;<br /></>}
+                    </span>
+                  ))}
               </Typography>
 
 

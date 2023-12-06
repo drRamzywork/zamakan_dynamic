@@ -76,7 +76,7 @@ const Slider = ({ additionalData }) => {
                       </div>
 
                       <Link href={`/poetry/${poet.id}`} className={styles.link_container}>
-                        <Typography>تفاصيل القصيدة</Typography>
+                        <Typography>تفاصيل البيت</Typography>
 
                         <div className={styles.icon_container}>
                           <HiArrowLeft />

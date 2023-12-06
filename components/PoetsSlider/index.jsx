@@ -72,7 +72,7 @@ const PoetsSlider = ({ poetriesData }) => {
                     </div>
 
                     <Link href={`/poetry/${poetry.id} `} className={styles.link_container}>
-                      <Typography>تفاصيل القصيدة</Typography>
+                      <Typography>تفاصيل البيت</Typography>
 
                       <div className={styles.icon_container}>
                         <HiArrowLeft />

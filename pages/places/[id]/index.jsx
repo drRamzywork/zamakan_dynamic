@@ -197,7 +197,7 @@ const Places = ({ dataAllCitiesMap,
                 }}
 
                 pagination={true} className="mySwiper">
-                <SwiperSlide>
+                {/* <SwiperSlide>
                   <Link href='/places' className={`${styles.slider} `} onClick={() => {
                     resetTransformRef.current && resetTransformRef.current()
                     setActiveIndex(null);
@@ -218,13 +218,13 @@ const Places = ({ dataAllCitiesMap,
                     </div>
 
                   </Link>
-                </SwiperSlide>
+                </SwiperSlide> */}
                 {dataAllCitiesMap.map((city, index) =>
                   <SwiperSlide key={city.id}>
                     <Link
                       scroll={false}
                       href={`/places/${city.id}`} className={`${styles.slider} ${city.id === placeID ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
-                      <div className={styles.img_container}>
+                      {/* <div className={styles.img_container}>
                         <svg
                           id="svg1"
                           width="858"
@@ -237,7 +237,7 @@ const Places = ({ dataAllCitiesMap,
                         </svg>
 
 
-                      </div>
+                      </div> */}
                       <div className={styles.name}>
                         <Typography>{city.name}</Typography>
                       </div>
