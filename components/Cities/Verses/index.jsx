@@ -157,96 +157,98 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                 <Typography variant='h3'>أبيات قيلت في {dataCityData.name}</Typography>
               </div>
             </Container>
-            <div className={styles.slider_sec}>
-              <Swiper
-                breakpoints={{
-                  300: {
-                    slidesPerView: 1.7,
-                    spaceBetween: 16,
-                  },
-                  400: {
-                    slidesPerView: 1.7,
-                    spaceBetween: 16,
-                  },
-                  640: {
-                    slidesPerView: 2,
-                    spaceBetween: 24,
-                  },
-                  768: {
-                    slidesPerView: 2.5,
-                    spaceBetween: 24,
-                  },
-                  1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 24,
+            <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className={styles.slider_container}>
+              <div className={styles.slider_sec}>
+                <Swiper
+                  breakpoints={{
+                    300: {
+                      slidesPerView: 1.2,
+                      spaceBetween: 16,
+                    },
+                    400: {
+                      slidesPerView: 1.2,
+                      spaceBetween: 16,
+                    },
+                    640: {
+                      slidesPerView: 2,
+                      spaceBetween: 24,
+                    },
+                    768: {
+                      slidesPerView: 2.5,
+                      spaceBetween: 24,
+                    },
+                    1024: {
+                      slidesPerView: 3,
+                      spaceBetween: 24,
 
-                  },
-                }}
+                    },
+                  }}
 
-                spaceBetween={24}
-                slidesPerView={3}
-                pagination={{ clickable: true }}
-                className={styles.swiper}
-              >
-                {Array.isArray(dataCityPoetry) ? dataCityPoetry.map((poet, index) => {
-                  const [beforeDots, afterDots] = poet.poetryParts.split('...');
+                  spaceBetween={24}
+                  slidesPerView={3}
+                  pagination={{ clickable: true }}
+                  className={styles.swiper}
+                >
+                  {Array.isArray(dataCityPoetry) ? dataCityPoetry.map((poet, index) => {
+                    const [beforeDots, afterDots] = poet.poetryParts.split('...');
 
-                  return (
-                    <SwiperSlide key={poet.id}>
-                      <div className={styles.box}>
-                        <div className={styles.box_container}>
-                          <Link href={`/poet/${poet.poetId}`} className={styles.info}>
-                            <div className={styles.img_container}>
-                              <img src={adjustImageUrl(poet.poetIcon)} alt={poet.poetName} />
+                    return (
+                      <SwiperSlide key={poet.id}>
+                        <div className={styles.box}>
+                          <div className={styles.box_container}>
+                            <Link href={`/poet/${poet.poetId}`} className={styles.info}>
+                              <div className={styles.img_container}>
+                                <img src={adjustImageUrl(poet.poetIcon)} alt={poet.poetName} />
+                              </div>
+
+                              <div className={styles.text_container}>
+                                <div className={styles.name}>
+                                  <Typography>{poet.poetName}</Typography>
+                                </div>
+                                <div className={styles.type}>
+                                  <Typography>{poet.placeName}</Typography>
+                                </div>
+                              </div>
+                            </Link>
+
+                            <motion.div
+                              className={`${styles.desc_container} ${expandedStates[index] ? styles.expanded : ''}`}
+                              initial={{ height: '70px' }}
+                              animate={{ height: expandedStates[index] ? 'auto' : '70px' }}
+                              transition={{ duration: 0.5 }}
+                            >
+                              <Typography>{poet.entrance}</Typography>
+                            </motion.div>
+                            <div className={styles.more_btn} onClick={() => toggleExpanded(index)}>
+                              <Typography>{expandedStates[index] ? 'أقل' : 'المزيد'}</Typography>
                             </div>
 
-                            <div className={styles.text_container}>
-                              <div className={styles.name}>
-                                <Typography>{poet.poetName}</Typography>
-                              </div>
-                              <div className={styles.type}>
-                                <Typography>{poet.placeName}</Typography>
-                              </div>
-                            </div>
-                          </Link>
-
-                          <motion.div
-                            className={`${styles.desc_container} ${expandedStates[index] ? styles.expanded : ''}`}
-                            initial={{ height: '70px' }}
-                            animate={{ height: expandedStates[index] ? 'auto' : '70px' }}
-                            transition={{ duration: 0.5 }}
-                          >
-                            <Typography>{poet.entrance}</Typography>
-                          </motion.div>
-                          <div className={styles.more_btn} onClick={() => toggleExpanded(index)}>
-                            <Typography>{expandedStates[index] ? 'أقل' : 'المزيد'}</Typography>
-                          </div>
-
-                          <Link href={`/poetry/${poet.id}`} className={styles.said}>
-                            {/* <div className={styles.title}>
+                            <Link href={`/poetry/${poet.id}`} className={styles.said}>
+                              {/* <div className={styles.title}>
                               <Typography>يقول</Typography>
                             </div> */}
-                            <div className={styles.desc}>
-                              <Typography>
-                                {beforeDots}
-                              </Typography>
-                              <br />
-                              <Typography>
-                                {afterDots}
-                              </Typography>
+                              <div className={styles.desc}>
+                                <Typography>
+                                  {beforeDots}
+                                </Typography>
+                                <br />
+                                <Typography>
+                                  {afterDots}
+                                </Typography>
 
-                            </div>
-                          </Link>
+                              </div>
+                            </Link>
 
+                          </div>
                         </div>
-                      </div>
-                    </SwiperSlide>
-                  )
-                }) : null}
+                      </SwiperSlide>
+                    )
+                  }) : null}
 
-              </Swiper>
-            </div>
+                </Swiper>
+              </div>
 
+            </Container>
 
           </Container>
 
