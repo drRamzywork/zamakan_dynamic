@@ -55,18 +55,18 @@ const Places = ({ dataAllCitiesMap,
   const [isPointsActive, seIsPointsActive] = useState(false);
 
   const [cityNames, setCityNames] = useState([]);
-  // useEffect(() => {
-  //   // Select all elements with the class name .land
-  //   const elements = document.querySelectorAll('.land');
-  //   const city = document.querySelectorAll('.city-name');
-  //   setCityNames(city)
-  //   setLandElemnts(elements)
+  useEffect(() => {
+    // Select all elements with the class name .land
+    const elements = document.querySelectorAll('.land');
+    const city = document.querySelectorAll('.city-name');
+    setCityNames(city)
+    setLandElemnts(elements)
 
-  //   // Add dynamic IDs to the selected elements
-  //   elements.forEach((element, index) => {
-  //     element.setAttribute('id', `land-${index}`);
-  //   });
-  // }, []);
+    // Add dynamic IDs to the selected elements
+    elements.forEach((element, index) => {
+      element.setAttribute('id', `land-${index}`);
+    });
+  }, []);
 
   const transformComponentRef = useRef(null);
 
@@ -158,56 +158,6 @@ const Places = ({ dataAllCitiesMap,
       console.error("Error fetching data: ", error);
     }
   };
-
-  // ------
-  const [activeLand1, setActiveLand1] = useState(null);
-
-  // const handleLandClick = (land, index) => {
-  //   // Calculate the position and scale
-  //   const bbox = land.getBBox();
-  //   const centerX = bbox.x + bbox.width / 2;
-  //   const centerY = bbox.y + bbox.height / 2;
-
-  //   setActiveLand1({ id: land.id, centerX, centerY });
-  // };
-
-  const handleLandClick = (index) => {
-    const landId = `land-${index}`;
-    const landElement = document.getElementById(landId);
-    setActiveIndex(index);
-    seIsPointsActive(false)
-
-    if (landElement) {
-
-      const bbox = landElement.getBBox();
-      const centerX = bbox.x + bbox.width / 2;
-      const centerY = bbox.y + bbox.height / 2;
-
-      setActiveLand1({ id: landElement.id, centerX, centerY });
-    }
-  };
-
-  const getSVGTransform = () => {
-    if (!activeLand1) return '';
-
-    const scale = 1.2; // Example scale factor
-    const offsetX = window.innerWidth / 2 - activeLand1.centerX * scale;
-    const offsetY = window.innerHeight / 2 - activeLand1.centerY * scale;
-
-    return `translate(${offsetX - 100}px, ${offsetY}px) scale(${scale})`;
-  };
-
-
-  const adjustImageUrl = (imageUrl) => {
-    if (imageUrl?.startsWith('https')) {
-      return imageUrl;
-    } else {
-      return `https://zamakan.suwa.io${imageUrl}`;
-    }
-  };
-
-
-
   return (
 
     <>
@@ -281,9 +231,7 @@ const Places = ({ dataAllCitiesMap,
                 </SwiperSlide> */}
                 {dataAllCitiesMap.map((city, index) =>
                   <SwiperSlide key={index}>
-                    <div className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleLandClick(index)}
-
-                    >
+                    <div className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       {/* <div className={styles.img_container}>
                         <svg
                           id="svg1"
@@ -308,57 +256,77 @@ const Places = ({ dataAllCitiesMap,
             </div>
             <div className={styles.map_container}>
               <div className={styles.map} dir='ltr'>
-                <xml version="1.0" encoding="UTF-8" standalone="no" />
-                <svg
-                  id="svg1"
-                  width="858"
-                  height="724"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`${isSafari ? "saudi-map safari" : "saudi-map"}`}
-                  viewBox="90 90 758 624"
-                  style={{ transform: getSVGTransform(), transition: 'transform 0.5s' }}
+                <TransformWrapper
+                  ref={transformComponentRef}
+                  wheel={{ wheelDisabled: true }}
+                  initialPositionX={0}
+                  initialPositionY={0}
+                  zoomIn={{ step: 100 }}
+                  zoomOut={{ step: 100 }}
+                  panning={{ disabled: true }}
+                  minScale={0.5}
+                  maxScale={2}
+                  initialScale={1}
+                  doubleClick={{ disabled: false, mode: "reset" }}
+                  wrapperStyle={{ maxWidth: "100%", maxHeight: "calc(100vh - 50px)", overflow: 'unset !important' }}
 
                 >
-                  {dataAllCitiesMap?.map((land, index) => (
-                    <g
-                      className="land"
-                      key={index}
-                      onClick={(e) => handleLandClick(index)}
-                      id={`land-${index}`}
-                    >
-                      {convertSVGPathsToJSX(land.svgPath)}
-                      {land.places.map((place, index) =>
-                        <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
-                          <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
-                            <div onClick={() => handlePlaceWindow(place.id)}
 
-                              className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
+                  {({ zoomIn, zoomOut, resetTransform }) => {
+                    resetTransformRef.current = resetTransform;
 
-                              <div>
-                                <p>{place.name}</p>
-                                <svg
-                                  width="15"
-                                  height="6"
-                                  viewBox="0 0 15 6"
-                                  fill="none"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                >
-                                  <path
-                                    d="M0.956299 0.882812H14.8405H12.9973C11.8578 0.882812 10.8162 1.52659 10.3066 2.54573L9.14027 4.87844C8.6286 5.90177 7.16825 5.90178 6.65658 4.87844L5.49023 2.54573C4.98065 1.52659 3.939 0.882812 2.79956 0.882812H0.956299Z"
-                                    fill="white"
-                                  />
-                                </svg>
-                              </div>
-                            </div>
-                          </div>
-                        </foreignObject>
-                      )}
+                    return (
+                      <>
+                        <TransformComponent>
 
-                    </g>
-                  ))}
-                </svg>
+                          <xml version="1.0" encoding="UTF-8" standalone="no" />
+                          <svg
+                            id="svg1"
+                            width="858"
+                            height="724"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className={`${isSafari ? "saudi-map safari" : "saudi-map"}`}
+                            viewBox="90 90 758 624"
+                          >
+                            {dataAllCitiesMap?.map((land, index) => (
+                              <g className="land" key={index} id={land.svgPathId} >
+                                {convertSVGPathsToJSX(land.svgPath)}
+                                {land.places.map((place, index) =>
+                                  <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
+                                    <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
+                                      <div onClick={() => handlePlaceWindow(place.id)}
 
+                                        className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
+
+                                        <div>
+                                          <p>{place.name}</p>
+                                          <svg
+                                            width="15"
+                                            height="6"
+                                            viewBox="0 0 15 6"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                          >
+                                            <path
+                                              d="M0.956299 0.882812H14.8405H12.9973C11.8578 0.882812 10.8162 1.52659 10.3066 2.54573L9.14027 4.87844C8.6286 5.90177 7.16825 5.90178 6.65658 4.87844L5.49023 2.54573C4.98065 1.52659 3.939 0.882812 2.79956 0.882812H0.956299Z"
+                                              fill="white"
+                                            />
+                                          </svg>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </foreignObject>
+                                )}
+
+                              </g>
+                            ))}
+                          </svg>
+                        </TransformComponent>
+                      </>
+                    );
+                  }}
+                </TransformWrapper >
 
                 <AnimatePresence >
                   {cityData && (
@@ -374,7 +342,8 @@ const Places = ({ dataAllCitiesMap,
                       <div className={styles.box_container}>
                         <div className={styles.box_header}>
                           <div className={styles.img_container}>
-                            <img src={adjustImageUrl(cityData.icon)} alt={""} />
+                            <img src={cityData?.icon} alt={cityData?.name}
+                            />
                           </div>
                           <div className={styles.title}>
                             <h3>{cityData?.name}</h3>
@@ -401,13 +370,73 @@ const Places = ({ dataAllCitiesMap,
                   )}
                 </AnimatePresence>
 
-              </div>
-            </div>
-            s
 
+              </div >
+
+              {/* 
+              <div className={styles.text_container}>
+                <div className={styles.sec_title}>
+                  <Typography variant='h3'>
+                    أبرز ما قيل في {activeIndex !== null && dataAllCitiesMap[activeIndex]?.name}  {activeIndex === null && "المملكة"}
+                  </Typography>
+                </div>
+
+                <div className={styles.sec_info}>
+                  <div className={styles.inner_info}>
+                    <div className={styles.tag}>
+                      <Typography>{activeIndex !== null && dataAllCitiesMap[activeIndex]?.name}  {activeIndex === null && "المملكة"}</Typography>
+                    </div>
+                    <div className={styles.desc}>
+                      <Typography>
+                        مقـــــيم على
+                        {` `}
+                        <span>
+                          بنبــــــان
+                        </span>
+                        {` `}
+                        يمنــــع مـــــاءه
+                        وماء وشيع ماء عطشان مرمل
+                      </Typography>
+                    </div>
+                    <hr />
+                    <div className={styles.poet_info}>
+                      <div className={styles.img_container}>
+                        <img src={ra3y.src} alt="" />
+                      </div>
+
+                      <div className={styles.text_container}>
+                        <Link href='/poet' className={styles.name}>
+                          <Typography>الراعي</Typography>
+                        </Link>
+                        <div className={styles.tag}>
+                          <Typography>
+                            العصر الأموي
+                          </Typography>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className={styles.explore}>
+
+                  <div className={styles.sec_title}>
+                    <Typography variant='h3'>
+                      مناطق {activeIndex !== null && dataAllCitiesMap[activeIndex]?.name}  {activeIndex === null && "المملكة"}
+                    </Typography>
+                  </div>
+
+               
+                </div>
+
+
+              </div> */}
+
+            </div>
           </div>
         </section >
-      </Container >
+      </Container>
 
     </>
 
@@ -415,9 +444,6 @@ const Places = ({ dataAllCitiesMap,
 }
 
 export default Places
-
-
-
 
 
 export async function getServerSideProps() {
