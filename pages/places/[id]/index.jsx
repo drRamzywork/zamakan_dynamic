@@ -478,6 +478,8 @@ export async function getStaticProps({ params }) {
       dataPlacePoetry,
       dataDefaultPlacePoetry
     },
+    revalidate: 10,
+
   };
 }
 

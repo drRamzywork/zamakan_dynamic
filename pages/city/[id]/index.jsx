@@ -57,6 +57,6 @@ export async function getStaticProps({ params }) {
       dataCityData,
       dataCityPoetry
     },
-    revalidate: 3600,
+    revalidate: 10,
   };
 }

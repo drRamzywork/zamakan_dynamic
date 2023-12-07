@@ -1,5 +1,5 @@
 import { Container, Typography, } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './index.module.scss'
 import { imgs } from '@/assets/constants'
 
@@ -27,6 +27,44 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
       [index]: !prev[index]
     }));
   };
+
+  const [isMoreButtonVisible, setIsMoreButtonVisible] = useState([]);
+  // const textRefs = useRef(dataCityPoetry.map(() => React.createRef()));
+
+  // useEffect(() => {
+  //   const lineHeights = textRefs.current.map(ref => {
+  //     if (ref.current) {
+  //       const style = window.getComputedStyle(ref.current);
+  //       const lineHeight = parseInt(style.lineHeight, 10);
+  //       const height = ref.current.clientHeight;
+  //       return Math.ceil(height / lineHeight);
+  //     }
+  //     return 0;
+  //   });
+
+  //   console.log(lineHeights, "lineHeights"); // This array will have the approximate line counts
+  // }, []);
+
+  const textRefs = useRef(dataCityPoetry.map(() => React.createRef()));
+  const [lineCountResult, setLineCountResult] = useState();
+  useEffect(() => {
+    const newIsMoreButtonVisible = textRefs.current.map(ref => {
+      if (ref.current) {
+        const style = window.getComputedStyle(ref.current);
+        const lineHeight = parseInt(style.lineHeight, 10);
+        const height = ref.current.clientHeight;
+        const lineCount = Math.ceil(height / lineHeight);
+        return lineCount <= 5; // isMoreButton is not visible if lineCount is more than 5
+      }
+      return true; // Default to true if no ref
+    });
+
+    setIsMoreButtonVisible(newIsMoreButtonVisible);
+  }, [dataCityPoetry]); // Make sure to include dependencies
+
+
+
+  const CHAR_LIMIT = 300;
 
   return (
     <>
@@ -217,10 +255,15 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                               animate={{ height: expandedStates[index] ? 'auto' : '70px' }}
                               transition={{ duration: 0.5 }}
                             >
-                              <Typography>{poet.entrance}</Typography>
+                              <Typography ref={textRefs.current[index]}>{poet.entrance}</Typography>
                             </motion.div>
                             <div className={styles.more_btn} onClick={() => toggleExpanded(index)}>
-                              <Typography>{expandedStates[index] ? 'أقل' : 'المزيد'}</Typography>
+
+                              {isMoreButtonVisible[index] && (
+                                <Typography>{expandedStates[index] ? 'أقل' : 'المزيد'}</Typography>)}
+
+
+                              {console.log(isMoreButtonVisible[index], "isMoreButtonVisible[index] ")}
                             </div>
 
                             <Link href={`/poetry/${poet.id}`} className={styles.said}>

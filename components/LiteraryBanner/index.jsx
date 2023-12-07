@@ -75,10 +75,6 @@ const LiteraryBanner = (props) => {
 
               <Typography variant='h1'>
                 العصور الأدبية
-                {` `}
-                <br />
-                {` `}
-                التاريخية
               </Typography>
             </div>
           </Container>
@@ -153,10 +149,10 @@ const LiteraryBanner = (props) => {
 
                   </div>
 
-                  <div className={styles.date_container}>
+                  {/* <div className={styles.date_container}>
                     <Typography>  {toArabicNumerals(era.fromH)} - {toArabicNumerals(era.toH)}</Typography>
 
-                  </div>
+                  </div> */}
 
                   <div className={styles.title}>
                     <Typography variant='h4'>

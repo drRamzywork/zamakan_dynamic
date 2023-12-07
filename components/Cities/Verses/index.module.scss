@@ -232,15 +232,15 @@ section.Verses {
             .desc_container {
               margin-top: 16px;
               text-align: justify;
-              height: 70px;
+              height: 120px;
               overflow: hidden;
               position: relative;
 
               display: -webkit-box;
               -webkit-box-orient: vertical;
-              -webkit-line-clamp: 3;
+              -webkit-line-clamp: 6;
               white-space: pre-wrap;
-              -webkit-line-clamp: 3;
+              -webkit-line-clamp: 6;
 
               p {
                 font-family: var(--effra-font);
