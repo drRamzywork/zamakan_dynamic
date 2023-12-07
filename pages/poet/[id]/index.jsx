@@ -20,7 +20,9 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
   };
-
+  console.log(dataPoet, "dataPoetZZZ")
+  console.log(dataPoetry, "dataPoetry")
+  console.log(dataPlaces, "dataPlaces")
 
   const [age, setAge] = useState(0);
   const [results, setResults] = useState(dataPoetry);
@@ -293,14 +295,14 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                               {dataPoet?.fromH === 0 ? '-' : dataPoet?.fromM} ميلاديًا</Typography>
                           </div>
                         </div> */}
-                        {/* <div className={styles.box}>
-                        <div className={styles.title}>
-                          <Typography>محل الميلاد</Typography>
+                        <div className={styles.box}>
+                          <div className={styles.title}>
+                            <Typography>محل الميلاد</Typography>
+                          </div>
+                          <div className={styles.name}>
+                            <Typography>{dataPoet.places}</Typography>
+                          </div>
                         </div>
-                        <div className={styles.name}>
-                          <Typography>المدينة المنورة</Typography>
-                        </div>
-                      </div> */}
 
                         <div className={styles.box}>
                           <div className={styles.title}>
@@ -308,7 +310,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                           </div>
 
                           <div className={styles.name}>
-                            <Typography>{dataPoet.toM} هـجريًا - {dataPoet.toH} ميلاديًا</Typography>
+                            <Typography>{dataPoet.toH} هـجريًا - {dataPoet.toM} ميلاديًا</Typography>
                           </div>
                         </div>
 

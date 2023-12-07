@@ -21,7 +21,6 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
   };
 
 
-
   const toggleExpanded = (index) => {
     setExpandedStates(prev => ({
       ...prev,
@@ -41,7 +40,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
               </div>
               <div className={styles.boxes_container}>
 
-                <div className={styles.box}>
+                {/* <div className={styles.box}>
                   <div className={styles.title}>
                     <Typography >الاسم السابق</Typography>
                   </div>
@@ -52,7 +51,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                       }
                     </Typography>
                   </div>
-                </div>
+                </div> */}
                 <div className={styles.box}>
                   <div className={styles.title}>
                     <Typography>الاسم الحالي</Typography>
@@ -84,7 +83,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                   <div className={styles.name}>
                     <Typography>
                       {
-                        dataCityData.otherNames === null || dataCityData.otherNames === "" ? "------" : dataCityData.otherNames
+                        dataCityData.parentName6 === null || dataCityData.parentName6 === "" ? "------" : dataCityData.parentName6
                       }
 
                     </Typography>
