@@ -292,16 +292,16 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                               {dataPoet?.fromH === 0 ? '-' : dataPoet?.fromM} ميلاديًا</Typography>
                           </div>
                         </div> */}
-                        <div className={styles.box}>
+                        {/* <div className={styles.box}>
                           <div className={styles.title}>
                             <Typography>محل الميلاد</Typography>
                           </div>
                           <div className={styles.name}>
                             <Typography>{dataPoet.places}</Typography>
                           </div>
-                        </div>
+                        </div> */}
 
-                        <div className={styles.box}>
+                        {/* <div className={styles.box}>
                           <div className={styles.title}>
                             <Typography>تاريخ الوفاة</Typography>
                           </div>
@@ -309,7 +309,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                           <div className={styles.name}>
                             <Typography>{dataPoet.toH} هـجريًا - {dataPoet.toM} ميلاديًا</Typography>
                           </div>
-                        </div>
+                        </div> */}
 
                         {/* <div className={styles.box}>
                         <div className={styles.title}>

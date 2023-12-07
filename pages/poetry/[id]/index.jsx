@@ -32,7 +32,6 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
   };
   return (
     <>
-
       <Head>
         <title>بيت الشعر</title>
         <meta charset="UTF-8" />

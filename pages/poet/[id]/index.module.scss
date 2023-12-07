@@ -268,12 +268,17 @@
       }
 
       .timelineSection {
+      }
+      .timelineSection {
         position: relative;
         padding-left: 30px;
         margin-right: 29px;
         overflow: unset;
         padding-bottom: 40px;
 
+        &:first-child {
+          padding-bottom: 0;
+        }
         &:not(:last-child) {
           &::before {
             content: "";
@@ -304,7 +309,7 @@
           }
         }
         .info_sec {
-          border-bottom: 2px solid #e5e6f2;
+          // border-bottom: 2px solid #e5e6f2;
           padding: 24px;
 
           @media screen and (max-width: 992px) {
