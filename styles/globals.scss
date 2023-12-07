@@ -353,10 +353,11 @@ body::-webkit-scrollbar-track {
   // width: 695.43px !important;
   // height: 100% !important;
   // margin-top: -200px !important;
-}
-#svg1 {
-  width: 100% !important;
-  height: 100% !important;
+
+  #svg1 {
+    width: 100% !important;
+    height: 100% !important;
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -686,18 +687,14 @@ foreignObject {
   -webkit-backface-visibility: unset !important;
   transition: unset !important;
   transform: unset !important;
-  position: relative;
-  z-index: -22;
 }
 .city-container {
   overflow: unset !important;
-  // position: unset !important;
+  position: unset !important;
   --webkit-transform-style: unset !important;
   -webkit-backface-visibility: unset !important;
   transition: unset !important;
   transform: unset !important;
-  position: relative;
-  z-index: -222;
 }
 .city-name {
   // background: #fff;
@@ -718,8 +715,6 @@ foreignObject {
   justify-content: center;
   // border-radius: 35px;
   cursor: pointer;
-
-  z-index: 222222222;
 }
 .city-name p {
   background: #fff;

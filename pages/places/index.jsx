@@ -265,18 +265,31 @@ const Places = ({ dataAllCitiesMap,
             <div className={styles.map_container}>
               <div className={styles.map} dir='ltr'>
                 <TransformWrapper
+                  // ref={transformComponentRef}
+                  // wheel={{ wheelDisabled: true }}
+                  // initialPositionX={0}
+                  // initialPositionY={0}
+                  // zoomIn={{ step: 100 }}
+                  // zoomOut={{ step: 100 }}
+                  // panning={{ disabled: true }}
+                  // minScale={0.5}
+                  // maxScale={2}
+                  // initialScale={1}
+                  // doubleClick={{ disabled: false, mode: "reset" }}
+                  // wrapperStyle={{ maxWidth: "100%", maxHeight: "calc(100vh - 50px)", overflow: 'unset !important' }}
+
+
+
                   ref={transformComponentRef}
                   wheel={{ wheelDisabled: true }}
-                  initialPositionX={0}
-                  initialPositionY={0}
                   zoomIn={{ step: 100 }}
                   zoomOut={{ step: 100 }}
-                  panning={{ disabled: true }}
                   minScale={0.5}
-                  maxScale={2}
+                  maxScale={1.5}
                   initialScale={1}
+                  wrapperStyle={{ maxWidth: '100%', maxHeight: 'calc(100vh - 50px)' }}
                   doubleClick={{ disabled: false, mode: "reset" }}
-                  wrapperStyle={{ maxWidth: "100%", maxHeight: "calc(100vh - 50px)", overflow: 'unset !important' }}
+
 
                 >
 
