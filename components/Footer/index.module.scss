@@ -101,6 +101,10 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    @media screen and (max-width: 992px) {
+      flex-direction: column;
+      align-items: center;
+    }
 
     .img_container {
       width: 66.58px;
@@ -119,15 +123,14 @@
       .images_box {
         display: flex;
         .image_container {
-          width: 66.58px;
-          height: 66px;
+          // width: 66.58px;
+          // height: 66px;
           &:last-child {
             margin-left: 16px;
           }
           img {
-            width: 66.58px;
+            width: 100px;
             height: 66.58px;
-            object-fit: cover;
           }
         }
       }

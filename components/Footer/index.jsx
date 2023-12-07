@@ -11,6 +11,7 @@ import {
 } from '../../assets/svgsComponents';
 import imgs from '../../assets/constants/imgs'
 import Link from 'next/link'
+import Image from 'next/image';
 const Footer = () => {
   const { Vision2030, Ministry_of_Culture,
     Literature } = imgs;
@@ -58,17 +59,21 @@ const Footer = () => {
               <img src={Vision2030.src} alt="" />
             </div>
           </Box>
+          <Box className={styles.box_container}>
+            <div className={styles.image_container}>
+              <Image width={300} height={80} src={Literature.src} alt="" />
+
+            </div>
+          </Box>
+
 
           <Box className={styles.box_container}>
             <div className={styles.images_box}>
               <div className={styles.image_container}>
-                <img src={Ministry_of_Culture.src} alt="" />
+                <Image width={100} height={60} src={Ministry_of_Culture.src} alt="" />
 
               </div>
-              <div className={styles.image_container}>
-                <img src={Literature.src} alt="" />
 
-              </div>
             </div>
 
             <Typography >

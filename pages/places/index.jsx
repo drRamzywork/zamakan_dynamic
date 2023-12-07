@@ -70,6 +70,7 @@ const Places = ({ dataAllCitiesMap,
 
   const transformComponentRef = useRef(null);
 
+  const resetTransformRef = useRef(null);
 
   const handleBoxClick = (index) => {
     const elementId = `land-${index}`;
@@ -118,7 +119,6 @@ const Places = ({ dataAllCitiesMap,
     setActiveIndex(landIndex);
     seIsPointsActive(false)
   };
-  const resetTransformRef = useRef(null);
 
   const [cityData, setCityData] = useState(null)
   const [poetriesData, setPoetriesData] = useState(null)
@@ -126,10 +126,8 @@ const Places = ({ dataAllCitiesMap,
   const [activeCity, setActiveCity] = useState(null);
 
   useEffect(() => {
-
     // Detect Safari browser
     setIsSafari(navigator.vendor.includes("Apple"));
-
 
   }, []);
 
@@ -236,7 +234,7 @@ const Places = ({ dataAllCitiesMap,
 
                   </div>
                 </SwiperSlide> */}
-                {dataAllCitiesMap.map((city, index) =>
+                {dataAllCitiesMap?.map((city, index) =>
                   <SwiperSlide key={index}>
                     <div className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       {/* <div className={styles.img_container}>
@@ -266,12 +264,10 @@ const Places = ({ dataAllCitiesMap,
                 <TransformWrapper
                   ref={transformComponentRef}
                   wheel={{ wheelDisabled: true }}
-                  initialPositionX={0}
-                  initialPositionY={0}
                   zoomIn={{ step: 100 }}
                   zoomOut={{ step: 100 }}
                   minScale={0.5}
-                  maxScale={2}
+                  maxScale={1.5}
                   initialScale={1}
                   doubleClick={{ disabled: false, mode: "reset" }}
                   wrapperStyle={{ maxWidth: "100%", maxHeight: "calc(100vh - 50px)", overflow: 'unset !important' }}
