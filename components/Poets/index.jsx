@@ -289,8 +289,8 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
                     <div className={styles.box_container}>
                       <div className={styles.box_header}>
                         <div className={styles.img_container}>
-                          <img src={cityData?.icon} alt={cityData?.name}
-                          />
+                          <img src={adjustImageUrl(cityData.icon)} alt={""} />
+
                         </div>
                         <div className={styles.title}>
                           <h3>{cityData?.name}</h3>

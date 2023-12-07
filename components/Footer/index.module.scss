@@ -100,7 +100,7 @@
 
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 
     .img_container {
       width: 66.58px;
@@ -112,12 +112,34 @@
       }
     }
 
-    p {
-      font-family: var(--effra-font);
-      font-size: 12px;
-      font-weight: 400;
-      text-align: left;
-      color: #686c85 !important;
+    .box_container {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      .images_box {
+        display: flex;
+        .image_container {
+          width: 66.58px;
+          height: 66px;
+          &:last-child {
+            margin-left: 16px;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+
+      p {
+        margin-top: 16px;
+        font-family: var(--effra-font);
+        font-size: 12px;
+        font-weight: 400;
+        text-align: left;
+        color: #686c85 !important;
+      }
     }
   }
 }

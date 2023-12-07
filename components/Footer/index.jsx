@@ -53,12 +53,29 @@ const Footer = () => {
           </Grid>
         </Grid>
         <Box className={styles.footerBottom}>
-          <div className={styles.img_container}>
-            <img src={Vision2030.src} alt="" />
-          </div>
-          <Typography >
-            جميع الحقوق محفوظة لزمكان © 2023
-          </Typography>
+          <Box >
+            <div className={styles.img_container}>
+              <img src={Vision2030.src} alt="" />
+            </div>
+          </Box>
+
+          <Box className={styles.box_container}>
+            <div className={styles.images_box}>
+              <div className={styles.image_container}>
+                <img src={Ministry_of_Culture.src} alt="" />
+
+              </div>
+              <div className={styles.image_container}>
+                <img src={Literature.src} alt="" />
+
+              </div>
+            </div>
+
+            <Typography >
+              جميع الحقوق محفوظة © 2023
+            </Typography>
+          </Box>
+
         </Box>
       </Container>
     </footer >
