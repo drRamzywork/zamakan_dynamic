@@ -143,8 +143,8 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
       </Head>
 
       <motion.div
-        initial={{ opacity: 0, y: 50 }} // start state: fully transparent and 100 pixels down
-        animate={{ opacity: 1, y: 0 }} // end state: fully opaque and at its final position
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
         <Container sx={{ maxWidth: "1400px" }} dir="rtl" maxWidth={false} className={styles.poetDetails}>

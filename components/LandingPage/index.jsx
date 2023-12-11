@@ -1,8 +1,6 @@
 import { Container, Typography, } from '@mui/material'
 import React from 'react'
-import localFont from 'next/font/local'
 import styles from './index.module.scss'
-import PoetryIn from '../PoetryIn';
 import imgs from '../../assets/constants/imgs'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -13,30 +11,7 @@ import { useRouter } from 'next/router';
 import SmallSaudiMap from '@/assets/svgsComponents/SmallSaudiMap';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
-const Effra = localFont({
-  src: [
-    {
-      path: '../../fonts/Effra_Md.ttf',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra_Heavy.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra_Rg.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra-Bold.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-})
+
 
 const LandingPage = () => {
   const router = useRouter();
@@ -65,12 +40,12 @@ const LandingPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      < section id='landingPage' className={styles.landingPage} style={...Effra.style}>
+
+      < section id='landingPage' className={styles.landingPage} >
         <motion.div
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}
           transition={{ duration: 1, }}
-
           className={styles.sec_container}>
           <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
             <div className={styles.sec_title}>

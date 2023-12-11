@@ -43,11 +43,12 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <section id={'poetry_page'} className={styles.poetry_page} dir='rtl'>
         <motion.div
-          animate={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
-          transition={{ duration: 1, }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
         >
           <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
             <div className={styles.slider_container} >
@@ -157,7 +158,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                 </div>
               </Link>
             </div>
-
+            {console.log(dataPoetry)}
             <div className={styles.info_container}>
               <div className={styles.poet_info}  >
                 <section className={styles.timelineSection}>
@@ -343,6 +344,7 @@ export default Poetry
 export async function getServerSideProps(context) {
   const { id } = context.query;
 
+
   try {
     // Fetch data from the poetry API
     const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetPoetryFullData?id=${id}&lang=2`);
@@ -357,6 +359,7 @@ export async function getServerSideProps(context) {
     // Check if placeId is available
     if (dataPoetry.placeId) {
       // Second API request using placeId
+
       const resPlace = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${dataPoetry.placeId}&lang=2`);
       if (!resPlace.ok) {
         throw new Error(`Error fetching place data: ${resPlace.status}`);

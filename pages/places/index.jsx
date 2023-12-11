@@ -449,21 +449,38 @@ const Places = ({ dataAllCitiesMap,
 export default Places
 
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
+  try {
+    const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50`);
+    if (!resAllCitiesMap.ok) {
+      throw new Error(`HTTP error! Status: ${resAllCitiesMap.status}`);
+    }
+    const dataAllCitiesMap = await resAllCitiesMap.json();
 
-  const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50  `);
-  const dataAllCitiesMap = await resAllCitiesMap.json();
+    // Ensure the URL is correct and different from resAllCitiesMap if they are supposed to fetch different data
+    const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50`);
+    if (!resAllPlacesMap.ok) {
+      throw new Error(`HTTP error! Status: ${resAllPlacesMap.status}`);
+    }
+    const dataAllPlacesMap = await resAllPlacesMap.json();
 
+    return {
+      props: {
+        dataAllCitiesMap,
+        dataAllPlacesMap
+      },
+      revalidate: 10,
+    };
+  } catch (error) {
+    console.error('Failed to fetch API:', error);
 
-  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50  `);
-  const dataAllPlacesMap = await resAllPlacesMap.json();
-
-
-
-  return {
-    props: {
-      dataAllCitiesMap: dataAllCitiesMap,
-      dataAllPlacesMap: dataAllPlacesMap
-    },
-  };
+    return {
+      props: {
+        dataAllCitiesMap: [],
+        dataAllPlacesMap: [],
+        error: 'API fetch failed',
+      },
+      revalidate: 10,
+    };
+  }
 }

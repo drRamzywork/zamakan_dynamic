@@ -1,6 +1,5 @@
 import { Container, Typography, } from '@mui/material'
 import React from 'react'
-import localFont from 'next/font/local'
 import styles from './index.module.scss'
 import imgs from '../../assets/constants/imgs'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -12,33 +11,8 @@ import Image from 'next/image'
 import Head from 'next/head'
 import { motion } from 'framer-motion'
 
-const Effra = localFont({
-  src: [
-    {
-      path: '../../fonts/Effra_Md.ttf',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra_Heavy.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra_Rg.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra-Bold.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-})
 
 const LiteraryEras = ({ erasAllEras }) => {
-  const router = useRouter();
   const {
     left_branch,
     right_branch,
@@ -66,6 +40,7 @@ const LiteraryEras = ({ erasAllEras }) => {
       return `https://zamakan.suwa.io${imageUrl}`;
     }
   };
+
   return (
     <>
       <Head>
@@ -81,7 +56,7 @@ const LiteraryEras = ({ erasAllEras }) => {
       </Head>
 
 
-      < section id='LiteraryEras' className={styles.LiteraryEras} style={...Effra.style}>
+      < section id='LiteraryEras' className={styles.LiteraryEras} >
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
           <motion.div
             animate={{ opacity: 1 }}
@@ -155,13 +130,11 @@ const LiteraryEras = ({ erasAllEras }) => {
             spaceBetween={24}
 
             pagination={true} className={"swiper"}>
-            {erasAllEras.map((era) => (
+            {erasAllEras?.map((era) => (
               <SwiperSlide key={era.id} className={styles.swiper_slide_box}>
                 <Link href={`/literary-eras/era/${era.id}`} className={styles.box}>
                   <div className={styles.img_container}>
-                    {/* <img src={pre_Islamic.src} alt="" /> */}
                     <img src={adjustImageUrl(era.icon)} alt={era.desc} />
-
                   </div>
 
                   {/* <div className={styles.date_container}>
@@ -196,15 +169,32 @@ const LiteraryEras = ({ erasAllEras }) => {
 export default LiteraryEras
 
 
-export async function getServerSideProps() {
-  const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
-  const erasAllEras = await resAllEras.json();
+export async function getStaticProps() {
+  try {
+    const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
 
+    if (!resAllEras.ok) {
+      throw new Error(`HTTP error! Status: ${resAllEras.status}`);
+    }
 
-  return {
-    props: {
-      erasAllEras: erasAllEras,
-    },
-  };
+    const erasAllEras = await resAllEras.json();
+
+    return {
+      props: {
+        erasAllEras,
+      },
+      revalidate: 10,
+    };
+  } catch (error) {
+    console.error('Failed to fetch API:', error);
+
+    return {
+      props: {
+        erasAllEras: [],
+        error: 'API fetch failed',
+      },
+      revalidate: 10,
+    };
+  }
 }
 

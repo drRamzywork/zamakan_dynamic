@@ -242,18 +242,34 @@ const Poets = ({ erasAllEras, dataDefault }) => {
 }
 
 export default Poets
-export async function getServerSideProps() {
-  const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
-  const erasAllEras = await resAllEras.json();
+export async function getStaticProps() {
+  try {
+    const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
+    if (!resAllEras.ok) {
+      throw new Error(`Error fetching eras data: ${resAllEras.status}`);
+    }
+    const erasAllEras = await resAllEras.json();
 
-  const resDefault = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?lang=2&pagenum=1&pagesize=50`);
-  const dataDefault = await resDefault.json();
+    const resDefault = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?lang=2&pagenum=1&pagesize=50`);
+    if (!resDefault.ok) {
+      throw new Error(`Error fetching poets data: ${resDefault.status}`);
+    }
+    const dataDefault = await resDefault.json();
 
-
-  return {
-    props: {
-      erasAllEras,
-      dataDefault
-    },
-  };
+    return {
+      props: {
+        erasAllEras,
+        dataDefault
+      },
+      revalidate: 10, // Regenerate the page every 10 seconds
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: {
+        error: error.message,
+      },
+      revalidate: 10,
+    };
+  }
 }
