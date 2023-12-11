@@ -4,36 +4,11 @@ import { Container, Typography } from '@mui/material'
 import { Mountains } from '@/assets/svgsComponents'
 import imgs from '../../assets/constants/imgs'
 import { useRouter } from 'next/router'
-import localFont from 'next/font/local'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Link from 'next/link'
 import Image from 'next/image'
 
-const Effra = localFont({
-  src: [
-    {
-      path: '../../fonts/Effra_Md.ttf',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra_Heavy.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra_Rg.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra-Bold.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-})
 
 const LiteraryBanner = (props) => {
   const { query } = useRouter();
@@ -59,6 +34,8 @@ const LiteraryBanner = (props) => {
   const eraIndex = query.index ? Number(query.index) : 0;
 
   const adjustImageUrl = (imageUrl) => {
+
+
     if (imageUrl?.startsWith('https')) {
       return imageUrl;
     } else {
@@ -68,7 +45,7 @@ const LiteraryBanner = (props) => {
   return (
 
     <>
-      <section id='LiteraryBanner' className={styles.LiteraryBanner} style={...Effra.style} >
+      <section id='LiteraryBanner' className={styles.LiteraryBanner} >
         <div className={styles.sec_container}>
           <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
             <div className={styles.sec_title}>
@@ -145,7 +122,7 @@ const LiteraryBanner = (props) => {
                 <Link href={`/literary-eras/era/${era.id}`} className={`${styles.box} ${eraIndex === era.id ? styles.active : ''}`}>
                   <div className={styles.img_container}>
                     {/* <img src={pre_Islamic.src} alt="" /> */}
-                    <Image src={adjustImageUrl(era.icon)} alt={era.desc} width={277} height={346} />
+                    <img src={adjustImageUrl(era.icon)} alt={era.desc} />
 
                   </div>
 
