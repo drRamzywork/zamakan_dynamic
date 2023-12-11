@@ -142,6 +142,16 @@ const Poets = ({ erasAllEras, dataDefault }) => {
   });
 
 
+
+  const [poetsData, setPoetsData] = useState([]);
+
+  const handlePoetsData = (data) => {
+    setPoetsData(data);
+  };
+
+
+
+
   return (
     <>
       <Head>
@@ -168,7 +178,7 @@ const Poets = ({ erasAllEras, dataDefault }) => {
                 <div className={styles.filter_sec}>
                   <div className={styles.shows}>
                     <Typography dir='ltr'>
-                      <span>18</span> يتم عرض <span>10</span> من
+                      <span>{filtredPoets.length}</span> يتم عرض <span>{poetsData.length}</span> من
                     </Typography>
                   </div>
                   <div className={styles.filter_methods}>
@@ -225,7 +235,7 @@ const Poets = ({ erasAllEras, dataDefault }) => {
 
                 </div>
                 <div className="slider">
-                  <SliderVerses filtredPoets={filtredPoets} />
+                  <SliderVerses filtredPoets={filtredPoets} onPoetsDataChange={handlePoetsData} />
                 </div>
               </div>
             </section>

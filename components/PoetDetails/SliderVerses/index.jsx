@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Grid } from 'swiper/modules';
 
@@ -17,7 +17,7 @@ import { imgs } from '@/assets/constants';
 
 const ITEMS_PER_PAGE = 10;
 import { motion } from 'framer-motion'
-export default function SliderVerses({ filtredPoets }) {
+export default function SliderVerses({ filtredPoets, onPoetsDataChange }) {
   const { ra3y1 } = imgs;
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -32,6 +32,11 @@ export default function SliderVerses({ filtredPoets }) {
     currentPage * ITEMS_PER_PAGE,
     (currentPage + 1) * ITEMS_PER_PAGE
   );
+
+  useEffect(() => {
+    // Call the callback function whenever poetsToShow changes
+    onPoetsDataChange(poetsToShow);
+  }, [poetsToShow, onPoetsDataChange]);
 
 
   const adjustImageUrl = (imageUrl) => {
@@ -219,7 +224,6 @@ export default function SliderVerses({ filtredPoets }) {
       {filtredPoets.length > 1
         &&
         <div className={styles.paginationBox}>
-
           <div className={styles.paginationContainer}>
             <button
               onClick={() => handlePageChange(currentPage - 1)}
