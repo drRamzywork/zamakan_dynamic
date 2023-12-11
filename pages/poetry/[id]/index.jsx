@@ -158,7 +158,6 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                 </div>
               </Link>
             </div>
-            {console.log(dataPoetry)}
             <div className={styles.info_container}>
               <div className={styles.poet_info}  >
                 <section className={styles.timelineSection}>

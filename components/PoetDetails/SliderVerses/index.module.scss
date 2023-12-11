@@ -168,6 +168,7 @@
       cursor: pointer;
       border: none;
       padding-top: 4px;
+
       &:not(:last-child) {
         margin-right: 10px;
       }
@@ -180,6 +181,12 @@
         background: #e6ddc6;
         color: black;
       }
+    }
+
+    button:not(.arrow_btn) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     button.active {
       background-color: rgba(230, 221, 198, 1);
