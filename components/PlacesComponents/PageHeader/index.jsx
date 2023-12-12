@@ -3,7 +3,7 @@ import styles from './index.module.scss'
 import { Container, Typography } from '@mui/material'
 import { imgs } from '@/assets/constants'
 import { useRouter } from 'next/router'
-
+import { motion } from 'framer-motion'
 
 const PageHeader = () => {
   const { Central,
@@ -20,27 +20,50 @@ const PageHeader = () => {
       <div className={styles.img_container}>
 
         {router.query.id === undefined &&
-          <img src={Central.src} alt="" />
+          <motion.img
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }}
+
+            src={Central.src} alt="" />
         }
         {router.query.id === "1" &&
-          <img src={North.src} alt="" />
+          <motion.img
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }} src={North.src} alt="" />
         }
 
         {router.query.id === "2" &&
-          <img src={Northwest.src} alt="" />
+          <motion.img
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }} src={Northwest.src} alt="" />
         }
 
         {router.query.id === "3" &&
-          <img src={Eastern.src} alt="" />
+          <motion.img
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }} src={Eastern.src} alt="" />
         }
         {router.query.id === "4" &&
-          <img src={South.src} alt="" />
+          <motion.img
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }} src={South.src} alt="" />
         }
         {router.query.id === "5" &&
-          <img src={Central.src} alt="" />
+          <motion.img
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }} src={Central.src} alt="" />
         }
         {router.query.id === "6" &&
-          <img src={Western.src} alt="" />
+          <motion.img
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }} src={Western.src} alt="" />
         }
 
       </div>

@@ -10,7 +10,6 @@ import { LeftArrow, CloseIcon } from '@/assets/svgsComponents'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion';
 import PoetsSlider from '../PoetsSlider';
-import Image from 'next/image';
 
 
 
@@ -56,6 +55,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
 
 
   const handleBoxClick = (poetID) => {
+    setCityData(null);
     setActivePoet(poetID);
     setActiveIndex(poetID); // Set the active index
     seIsPointsActive(false)
@@ -80,14 +80,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
     ));
   };
 
-  // adjust image
-  const adjustImageUrl = (imageUrl) => {
-    if (imageUrl?.startsWith('https')) {
-      return imageUrl;
-    } else {
-      return `https://zamakan.suwa.io${imageUrl}`;
-    }
-  };
+
 
 
   const [cityData, setCityData] = useState(null)
@@ -122,6 +115,27 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
 
     setPlaces(dataPoetPlaces)
   }
+
+
+  const popUpRef = useRef(null);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      console.log(event.target, "cityData")
+      console.log(popUpRef.current, "cityData")
+      if (popUpRef.current && !popUpRef.current.contains(event.target)) {
+        setCityData(null);
+      }
+    }
+
+    // Attach the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Clean up the event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [popUpRef]);
+
 
 
   return (
@@ -284,6 +298,8 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
                     transition={{ duration: 0.5 }}
                     className={styles.custom_box}
                     dir='rtl'
+                    ref={popUpRef}
+
                   >
 
                     <div className={styles.box_container}>

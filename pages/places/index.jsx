@@ -164,6 +164,26 @@ const Places = ({ dataAllCitiesMap,
     }
   };
 
+
+  const popUpRef = useRef(null);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      console.log(event.target, "cityData")
+      if (popUpRef.current && !popUpRef.current.contains(event.target)) {
+        setCityData(null);
+      }
+    }
+
+    // Attach the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Clean up the event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [popUpRef]);
+
+
   return (
 
     <>
@@ -183,34 +203,45 @@ const Places = ({ dataAllCitiesMap,
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
 
         < section id='Places' className={styles.Places} dir='rtl'>
-          <div className={styles.sec_container}>
+          <motion.div
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }}
+
+            className={styles.sec_container}>
 
             <div className={styles.slider_container}>
               <Swiper
-                dir="rtl"
                 breakpoints={{
                   300: {
-                    slidesPerView: 4,
-                    spaceBetween: 14,
+                    slidesPerView: 2.4,
+                    spaceBetween: 10,
                   },
                   400: {
-                    slidesPerView: 4,
-                    spaceBetween: 14,
+                    slidesPerView: 2.4,
+                    spaceBetween: 10,
+                  },
+                  414: {
+                    slidesPerView: 2.4,
+                    spaceBetween: 11,
                   },
                   640: {
-                    slidesPerView: 5,
-                    spaceBetween: 20,
+                    slidesPerView: 4,
+                    spaceBetween: 10,
                   },
                   768: {
-                    slidesPerView: 4,
-                    spaceBetween: 40,
+                    slidesPerView: 6,
+                    spaceBetween: 10,
                   },
                   1024: {
-                    slidesPerView: 9.1,
-                    spaceBetween: 40,
+                    slidesPerView: 8.5,
+                    spaceBetween: 24,
 
                   },
                 }}
+                spaceBetween={24}
+                slidesPerView={8.5}
+                dir={'rtl'}
 
                 pagination={true} className="mySwiper">
                 {/* <SwiperSlide>
@@ -237,8 +268,9 @@ const Places = ({ dataAllCitiesMap,
                 </SwiperSlide> */}
                 {dataAllCitiesMap?.map((city, index) =>
                   <SwiperSlide key={index}>
-                    <Link href={`/places/${city.id}`} className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
-                      {/* <div className={styles.img_container}>
+                    <Link scroll={false}
+                      href={`/places/${city.id}`} className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
+                      <div className={styles.img_container}>
                         <svg
                           id="svg1"
                           width="858"
@@ -249,7 +281,7 @@ const Places = ({ dataAllCitiesMap,
                         >
                           <g dangerouslySetInnerHTML={{ __html: city.svgPath }} />
                         </svg>
-                      </div> */}
+                      </div>
                       <div className={styles.name}>
                         <Typography>{city.name}</Typography>
                       </div>
@@ -341,6 +373,7 @@ const Places = ({ dataAllCitiesMap,
                       transition={{ duration: 0.5 }}
                       className={styles.custom_box}
                       dir='rtl'
+                      ref={popUpRef}
                     >
 
                       <div className={styles.box_container}>
@@ -438,7 +471,7 @@ const Places = ({ dataAllCitiesMap,
               </div> */}
 
             </div>
-          </div>
+          </motion.div>
         </section >
       </Container>
 
