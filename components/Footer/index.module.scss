@@ -124,6 +124,8 @@
       }
     }
     .image_container {
+      overflow: hidden;
+
       @media screen and (max-width: 450px) {
         display: none;
       }
@@ -146,6 +148,8 @@
           display: none;
         }
         .image_container {
+          overflow: hidden;
+
           // width: 66.58px;
           // height: 66px;
           &:first-child {

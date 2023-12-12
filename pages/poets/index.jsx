@@ -5,23 +5,21 @@ import { styled } from '@mui/system';
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import SliderVerses from '../../components/PoetDetails/SliderVerses'
 import { Search } from '@/assets/svgsComponents';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import axios from 'axios';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import Head from 'next/head';
 
 const Poets = ({ erasAllEras, dataDefault }) => {
+  const router = useRouter();
   const [age, setAge] = useState(0);
-  const [city, setCity] = useState('all_cities');
   const [filtredPoets, setFiltredPoets] = useState(dataDefault);
-
+  const [poetsData, setPoetsData] = useState([]);
   const [searchString, setSearchString] = useState('');
-  const [poets, setPoets] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
 
-  const router = useRouter();
   const handleChange = async (event) => {
     const selectedValue = event.target.value;
 
@@ -143,11 +141,12 @@ const Poets = ({ erasAllEras, dataDefault }) => {
 
 
 
-  const [poetsData, setPoetsData] = useState([]);
 
   const handlePoetsData = (data) => {
     setPoetsData(data);
   };
+
+
 
 
 
@@ -252,7 +251,8 @@ const Poets = ({ erasAllEras, dataDefault }) => {
 }
 
 export default Poets
-export async function getStaticProps() {
+
+export async function getServerSideProps() {
   try {
     const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
     if (!resAllEras.ok) {
@@ -270,16 +270,15 @@ export async function getStaticProps() {
       props: {
         erasAllEras,
         dataDefault
-      },
-      revalidate: 10, // Regenerate the page every 10 seconds
+      }
     };
   } catch (error) {
     console.error(error);
     return {
       props: {
         error: error.message,
-      },
-      revalidate: 10,
+      }
     };
   }
 }
+

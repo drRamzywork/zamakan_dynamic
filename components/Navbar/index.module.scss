@@ -52,7 +52,7 @@
     background-color: #e6ddc6;
     @media screen and (max-width: 450px) {
       border-radius: 0;
-      top: 0px;
+      top: 72px;
       height: 100vh;
     }
     .links {
@@ -142,18 +142,13 @@
     cursor: pointer;
     width: 100px;
     height: 60px;
-    margin-right: 180px;
+    // margin-right: 180px;
+    margin-right: auto !important;
+    margin-left: auto;
 
-    @media screen and (max-width: 992px) {
-      width: 37.22px;
-      height: 23px;
-      margin-right: auto !important;
-      margin-left: 31px;
-    }
     @media screen and (max-width: 450px) {
-      width: 48px;
+      width: 60px;
       height: 100%;
-      margin-left: auto;
     }
 
     img {

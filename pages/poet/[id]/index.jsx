@@ -203,8 +203,6 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
 
           <div className={styles.navigation}>
             <ul>
-
-
               <li className={`${styles.list} ${1 === activeIndex ? styles.active : ''}`} onClick={() => setActiveIndex(1)}>
                 <button >
                   <span className={styles.iconWrapper}>

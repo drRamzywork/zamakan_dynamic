@@ -145,13 +145,13 @@ const Navbar = () => {
               >
                 <div className={styles.links} onClick={() => setNavMenu(false)}>
                   <div className={styles.link}>
-                    <Link href='/places'>مناطق المملكة </Link>
+                    <a href='/places'>مناطق المملكة </a>
                   </div>
                   <div className={styles.link}>
-                    <Link href='/literary-eras'>العصور الأدبية</Link>
+                    <a href='/literary-eras'>العصور الأدبية</a>
                   </div>
                   <div className={styles.link}>
-                    <Link href='/poets'>الشعراء </Link>
+                    <a href='/poets'>الشعراء </a>
                   </div>
                 </div>
                 {/* <div className={styles.soical_links} onClick={() => setNavMenu(false)}>
