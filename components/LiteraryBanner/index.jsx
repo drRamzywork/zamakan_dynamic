@@ -58,17 +58,14 @@ const LiteraryBanner = (props) => {
             dir="rtl"
             breakpoints={{
               300: {
-                slidesPerView: 2.1,
+                slidesPerView: 1.8,
                 spaceBetween: 24,
               },
               400: {
                 slidesPerView: 2.3,
                 spaceBetween: 24,
               },
-              450: {
-                slidesPerView: 2.3,
-                spaceBetween: 24,
-              },
+
               640: {
                 slidesPerView: 2.5,
                 spaceBetween: 24,

@@ -285,6 +285,9 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     width: fit-content;
+    @media screen and (max-width: 450px) {
+      width: 120px;
+    }
     .img_container {
       width: 130px;
       height: 130px;
@@ -293,12 +296,14 @@
       z-index: 1;
       user-select: none !important;
       border-radius: 50%;
-      background-color: #ffffff;
       padding: 8px;
       overflow: hidden;
-      box-shadow: 0px 4px 6px #00000070;
-      border: 3px solid var(--main-beige-color);
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4392156863);
+      border: 3px solid #ffffff;
+
       transition: all 0.3s ease-in-out;
+      background-color: var(--main-beige-color);
+
       @media screen and (max-width: 450px) {
         width: 90px;
         height: 90px;
@@ -306,7 +311,9 @@
         justify-content: center;
       }
       &:hover {
-        background-color: var(--main-beige-color);
+        background-color: #ffffff;
+        border: 3px solid var(--main-beige-color);
+
         transform: scale(1.1);
       }
       // @media screen and (max-width: 450px) {
@@ -355,8 +362,9 @@
   }
   .slider.active {
     .img_container {
-      background-color: var(--main-beige-color);
       transform: scale(1.1);
+      background-color: #ffffff;
+      border: 3px solid var(--main-beige-color);
     }
 
     .name {

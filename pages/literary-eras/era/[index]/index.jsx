@@ -25,7 +25,6 @@ const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAl
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
         transition={{ duration: 1, }}
-
       >
 
         <LiteraryBanner eraDetails={eraDetails} dataAllEras={dataAllEras} />
