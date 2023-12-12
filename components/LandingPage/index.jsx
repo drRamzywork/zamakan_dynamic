@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import SmallSaudiMap from '@/assets/svgsComponents/SmallSaudiMap';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
+import { FaCalendarAlt } from "react-icons/fa";
 
 import localFont from 'next/font/local'
 
@@ -67,7 +68,11 @@ const LandingPage = () => {
               <h1>
                 زمكان الشعر
                 {/* شُعراء العصور الأَدبيّة في */}
-                <span>  الزمان والمكان  في  المملكة العربية السُّعوديّة</span>
+                <span>  زمان ومكان الشعر العربي
+                  {` `}
+                  <br />
+
+                  في  المملكة العربية السُّعوديّة</span>
               </h1>
 
 
@@ -99,11 +104,11 @@ const LandingPage = () => {
           className={styles.boxes_container}>
           <Link href='/literary-eras' className={styles.box}>
             <div className={styles.icon_container}>
-              <Feather />
+              <FaCalendarAlt />
             </div>
             <div className={styles.title}>
               <Typography variant='h4'>
-                الزمان
+                زمان الشعر
               </Typography>
             </div>
             <div className={styles.arrow}>
@@ -117,7 +122,7 @@ const LandingPage = () => {
             </div>
             <div className={styles.title}>
               <Typography variant='h4'>
-                المكان
+                مكان الشعر
               </Typography>
             </div>
             <div className={styles.arrow}>

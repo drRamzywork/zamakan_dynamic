@@ -30,26 +30,30 @@ section.LiteraryEras {
       h1 {
         font-family: var(--req3a-font);
         font-size: 80px;
-        font-weight: 700;
-        line-height: 96px;
+        // font-weight: 700;
+        line-height: 60px;
         letter-spacing: 1px;
 
         text-align: right;
-        color: rgba(61, 85, 63, 1);
+        color: var(--main-blue-color);
 
-        @media screen and (max-width: 992px) {
-          font-size: 48px;
-          line-height: 46px;
-        }
-        @media screen and (max-width: 450px) {
-          font-size: 38px;
-          line-height: 46px;
+        // @media screen and (max-width: 992px) {
+        //   font-size: 48px;
+        //   line-height: 46px;
+        // }
+        // @media screen and (max-width: 450px) {
+        //   font-size: 38px;
+        //   line-height: 46px;
+        // }
+
+        span {
+          color: #713540;
         }
 
         br {
-          @media screen and (min-width: 992px) {
-            display: none;
-          }
+          // @media screen and (min-width: 992px) {
+          //   display: none;
+          // }
         }
       }
     }
@@ -208,6 +212,7 @@ section.LiteraryEras {
         object-fit: cover;
         border-radius: 24px;
         transition: transform 0.5s ease;
+        filter: grayscale(100%);
       }
     }
 

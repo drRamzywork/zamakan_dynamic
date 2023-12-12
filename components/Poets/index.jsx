@@ -180,8 +180,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                 dir={'rtl'}
                 className={styles.swiper_container}
               >
-
-
                 {
                   Array.isArray(dataPoetsByEra) &&
                   dataPoetsByEra?.map((poet, index) => (
@@ -210,12 +208,14 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                   <Typography variant='h3'>
                     {dataPoetsByEra[activePoet]?.name}
                   </Typography>
-
-                  <div className={styles.tag}>
-                    <Typography>
-                      {dataPoetsByEra[activePoet]?.nickname}
-                    </Typography>
-                  </div>
+                  {
+                    dataPoetsByEra[activePoet]?.nickname !== null &&
+                    <div className={styles.tag}>
+                      <Typography>
+                        {dataPoetsByEra[activePoet]?.nickname}
+                      </Typography>
+                    </div>
+                  }
                 </div>
 
                 <div className={styles.desc}>

@@ -78,7 +78,9 @@ const PageHeader = ({ dataAllCitiesMap }) => {
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
         <div className={styles.sec_title}>
           <Typography variant='h3'>
-            مناطق المملكة
+            استكشف الأماكن
+            <br />
+            عبر المناطق
           </Typography>
         </div>
       </Container>

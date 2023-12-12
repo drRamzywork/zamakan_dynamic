@@ -65,7 +65,12 @@ const LiteraryEras = ({ erasAllEras }) => {
             className={styles.sec_container}>
             <div className={styles.sec_title}>
               <Typography variant='h1'>
-                استكشف الشعراء عبر العصور
+                استكشف الشعراء
+
+                <br />
+                <span>
+                  عبر العصور
+                </span>
               </Typography>
             </div>
 

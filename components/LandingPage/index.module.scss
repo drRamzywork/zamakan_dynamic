@@ -64,8 +64,9 @@ section.landingPage {
           font-size: 90px;
           line-height: 80px;
         }
-        @media screen and (max-width: 400px) {
+        @media screen and (max-width: 450px) {
           // font-size: 60px;
+          line-height: 60px;
         }
 
         span {
@@ -74,9 +75,16 @@ section.landingPage {
           position: relative;
           width: fit-content;
           font-size: 80px;
+          margin-top: 24px;
           @media screen and (max-width: 992px) {
             font-size: 40px;
-            // line-height: 40px;
+            line-height: 24px;
+          }
+
+          br {
+            @media screen and (min-width: 450px) {
+              display: none;
+            }
           }
 
           &::after {
@@ -91,6 +99,7 @@ section.landingPage {
             @media screen and (max-width: 992px) {
               // bottom: -20px;
               bottom: 10px;
+              display: none;
             }
           }
         }
@@ -182,7 +191,7 @@ section.landingPage {
     border-radius: 16px;
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: space-around;
     transition: all 0.3s ease-in-out;
     &:hover {
       background-color: #e6ddc6;
@@ -202,22 +211,28 @@ section.landingPage {
     .title {
       h4 {
         font-family: var(--req3a-font) !important;
-        font-size: 80px;
+        font-size: 65px;
         // font-weight: 700;
-        line-height: 0px;
-        line-height: 0;
-
+        // line-height: 0px;
+        // line-height: 0px;
+        line-height: 11px !important;
         text-align: right;
         color: #713540;
 
-        @media screen and (max-width: 450px) {
-          font-size: 70px;
+        @media screen and (max-width: 992px) {
+          font-size: 45px;
+        }
+        @media screen and (max-width: 400px) {
+          font-size: 35px;
+          line-height: 22px !important;
         }
       }
     }
 
     .icon_container {
       svg {
+        width: 40px !important;
+        height: 40px !important;
         path {
           fill: #713540;
         }
@@ -244,10 +259,13 @@ section.landingPage {
 
     &:first-child {
       .title {
-        margin-right: -16px;
+        // margin-right: -16px;
       }
       .icon_container {
         // background-color: red;
+        svg {
+          width: 28px !important;
+        }
         // margin-right: 10px;
         // margin-right: 10px;
       }
