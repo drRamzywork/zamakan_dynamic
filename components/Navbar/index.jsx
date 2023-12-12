@@ -36,7 +36,6 @@ const Navbar = (props) => {
   const [navMenu, setNavMenu] = useState(false);
   const { Logo } = imgs;
 
-  console.log(props, "PROPS")
 
 
 

@@ -150,11 +150,11 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
               <Swiper
                 breakpoints={{
                   300: {
-                    slidesPerView: 2.4,
+                    slidesPerView: 2.3,
                     spaceBetween: 10,
                   },
                   400: {
-                    slidesPerView: 2.4,
+                    slidesPerView: 2.3,
                     spaceBetween: 10,
                   },
                   414: {

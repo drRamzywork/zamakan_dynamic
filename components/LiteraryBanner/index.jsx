@@ -49,10 +49,7 @@ const LiteraryBanner = (props) => {
               <Mountains />
             </div>
           </div>
-
-
         </div>
-
 
       </section >
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className={styles.leftSide}>
@@ -65,6 +62,10 @@ const LiteraryBanner = (props) => {
                 spaceBetween: 24,
               },
               400: {
+                slidesPerView: 2.3,
+                spaceBetween: 24,
+              },
+              450: {
                 slidesPerView: 2.3,
                 spaceBetween: 24,
               },
