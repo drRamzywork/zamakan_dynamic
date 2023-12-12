@@ -9,7 +9,6 @@ const Footer = () => {
     logo_mobile_footer,
     Literature, } = imgs;
   const router = useRouter()
-  console.log(router.pathname, 'router')
 
   return (
     <footer className={

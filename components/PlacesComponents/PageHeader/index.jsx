@@ -14,7 +14,6 @@ const PageHeader = ({ dataAllCitiesMap }) => {
   const filterCity = dataAllCitiesMap?.filter(city => city.id === Number(router.query.id));
 
 
-  console.log(filterCity, "filterCity")
   return (
     <div id='page-header' className={styles.page_header}>
       <div className={styles.img_container}>

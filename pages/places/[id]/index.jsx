@@ -127,7 +127,6 @@ const Places = ({ dataAllCitiesMap,
     setActiveIndex(landIndex);
     seIsPointsActive(false)
 
-    // console.log(landIndex, "landIndex")
     const scrollX = window.scrollX;
     const scrollY = window.scrollY;
 
@@ -221,15 +220,19 @@ const Places = ({ dataAllCitiesMap,
               <Swiper
                 breakpoints={{
                   300: {
-                    slidesPerView: 2.8,
+                    slidesPerView: 3.2,
                     spaceBetween: 10,
                   },
                   400: {
-                    slidesPerView: 2.8,
+                    slidesPerView: 3.2,
                     spaceBetween: 10,
                   },
                   414: {
-                    slidesPerView: 2.8,
+                    slidesPerView: 3.4,
+                    spaceBetween: 11,
+                  },
+                  450: {
+                    slidesPerView: 3.4,
                     spaceBetween: 11,
                   },
                   640: {
