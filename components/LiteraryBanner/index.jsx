@@ -33,8 +33,6 @@ const LiteraryBanner = (props) => {
     <>
       <section id='LiteraryBanner' className={styles.LiteraryBanner} >
         <div className={styles.sec_container}>
-
-
           <div className={styles.imags_container}>
             <div className={styles.right_branch}>
               <img src={right_branch.src} alt="" />

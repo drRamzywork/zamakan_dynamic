@@ -220,7 +220,7 @@ const Places = ({ dataAllCitiesMap,
               <Swiper
                 breakpoints={{
                   300: {
-                    slidesPerView: 3.2,
+                    slidesPerView: 2.8,
                     spaceBetween: 10,
                   },
                   400: {
