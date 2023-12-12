@@ -30,6 +30,8 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
       return `https://zamakan.suwa.io${imageUrl}`;
     }
   };
+
+  console.log(dataPoetry, "dataPoetry")
   return (
     <>
       <Head>
@@ -141,7 +143,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
               <hr />
               <Link href={`/poet/${dataPoetry.poetId}`} className={styles.poet_info}>
                 <div className={styles.img_container}>
-                  <img src={adjustImageUrl(dataPoetry.poetIcon)} alt={dataPoetry.poetName} />
+                  <img src={dataPoetry.poetIcon} alt={dataPoetry.poetName} />
                 </div>
                 <div className={styles.text_container}>
                   <div className={styles.name}>

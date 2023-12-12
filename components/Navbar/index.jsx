@@ -96,7 +96,7 @@ const Navbar = () => {
   return (
     <>
       <AppBar style={{
-        background: `#062a30`
+        background: `#062a30`,
       }} elevation={0} >
 
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} dir='rtl' className={styles.navbar}>
