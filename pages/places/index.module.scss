@@ -285,6 +285,7 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     width: fit-content;
+
     @media screen and (max-width: 450px) {
       width: 120px;
     }
@@ -339,6 +340,7 @@
       @media screen and (max-width: 450px) {
         margin-top: 22px;
       }
+      transition: all 0.3s ease-in-out;
 
       p {
         font-family: var(--effra-font);
@@ -370,11 +372,6 @@
     .name {
       p {
         color: #713540;
-        font-size: 28px;
-
-        @media screen and (max-width: 450px) {
-          font-size: 22px;
-        }
       }
     }
   }

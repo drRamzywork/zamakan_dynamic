@@ -238,7 +238,6 @@ section.landingPage {
           font-size: 45px;
         }
         @media screen and (max-width: 400px) {
-          font-size: 35px;
           line-height: 22px !important;
         }
       }
@@ -248,12 +247,15 @@ section.landingPage {
       svg {
         width: 40px !important;
         height: 40px !important;
+        @media screen and (max-width: 450px) {
+          width: 38px !important;
+        }
         path {
           fill: #713540;
         }
         @media screen and (max-width: 450px) {
           width: 33px;
-          height: 33px;
+          // height: 33px;
         }
       }
     }
