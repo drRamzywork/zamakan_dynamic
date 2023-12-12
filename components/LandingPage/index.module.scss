@@ -56,10 +56,11 @@ section.landingPage {
         font-size: 118.32px;
         line-height: 75.73px;
         font-weight: 500;
-
+        position: relative;
+        z-index: 2222;
         @media screen and (max-width: 992px) {
-          font-size: 60px;
-          line-height: 38.4px;
+          font-size: 68px;
+          line-height: 30px;
         }
         @media screen and (max-width: 400px) {
           font-size: 56px;
