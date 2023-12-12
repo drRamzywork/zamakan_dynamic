@@ -88,10 +88,7 @@ const LiteraryEras = ({ erasAllEras }) => {
                 <Mountains />
               </div>
             </div>
-
-
           </motion.div>
-
         </Container>
       </section >
 
@@ -107,11 +104,11 @@ const LiteraryEras = ({ erasAllEras }) => {
             dir="rtl"
             breakpoints={{
               300: {
-                slidesPerView: 1.3,
+                slidesPerView: 1.2,
                 spaceBetween: 24,
               },
               400: {
-                slidesPerView: 1.3,
+                slidesPerView: 1.2,
                 spaceBetween: 24,
               },
               607: {
