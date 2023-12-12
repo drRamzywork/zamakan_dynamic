@@ -163,6 +163,7 @@ const Places = ({ dataAllCitiesMap,
       return `https://zamakan.suwa.io${imageUrl}`;
     }
   };
+
   return (
 
     <>
@@ -236,7 +237,7 @@ const Places = ({ dataAllCitiesMap,
                 </SwiperSlide> */}
                 {dataAllCitiesMap?.map((city, index) =>
                   <SwiperSlide key={index}>
-                    <div className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
+                    <Link href={`/places/${city.id}`} className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       {/* <div className={styles.img_container}>
                         <svg
                           id="svg1"
@@ -252,7 +253,7 @@ const Places = ({ dataAllCitiesMap,
                       <div className={styles.name}>
                         <Typography>{city.name}</Typography>
                       </div>
-                    </div>
+                    </Link>
 
                   </SwiperSlide >
                 )}

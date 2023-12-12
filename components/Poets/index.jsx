@@ -178,7 +178,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
                       <div onClick={() => handleBoxClick(index)} className={`${styles.box_container} `}>
                         <div className={`${styles.box} ${activePoet === index ? styles.active : ''}`}>
                           <div className={styles.img_container}>
-                            <img src={adjustImageUrl(poet.icon)} alt={poet.name} />
+                            <img src={poet.icon} alt={poet.name} />
                           </div>
                           <div className={styles.name}>
                             <Typography>{poet.name}</Typography>
@@ -289,7 +289,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
                     <div className={styles.box_container}>
                       <div className={styles.box_header}>
                         <div className={styles.img_container}>
-                          <img src={adjustImageUrl(cityData.icon)} alt={""} />
+                          <img src={cityData.icon} alt={""} />
 
                         </div>
                         <div className={styles.title}>

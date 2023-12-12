@@ -23,6 +23,12 @@ import mapPiece3 from "../mapPiece3.png";
 import mapPiece4 from "../mapPiece4.png";
 import mapPiece5 from "../mapPiece5.png";
 import mapPiece6 from "../mapPiece6.png";
+import Central from "../Central.jpg";
+import Eastern from "../Eastern.jpg";
+import North from "../North.jpg";
+import Northwest from "../Northwest.jpg";
+import South from "../South.jpg";
+import Western from "../Western.jpg";
 import mapPiece7 from "../mapPiece7.png";
 import Ministry_of_Culture from "../Ministry_of_Culture.png";
 import Literature from "../Literature.png";
@@ -75,4 +81,10 @@ export default {
   Ministry_of_Culture,
   Literature,
   logo_mobile_footer,
+  Central,
+  Eastern,
+  North,
+  Northwest,
+  South,
+  Western,
 };
