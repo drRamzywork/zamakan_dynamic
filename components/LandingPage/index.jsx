@@ -92,45 +92,46 @@ const LandingPage = () => {
           </div>
 
         </motion.div>
+        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
+          <motion.div
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }}
+
+            className={styles.boxes_container}>
+            <Link href='/literary-eras' className={styles.box}>
+              <div className={styles.icon_container}>
+                <FaCalendarAlt />
+              </div>
+              <div className={styles.title}>
+                <Typography variant='h4'>
+                  زمان الشعر
+                </Typography>
+              </div>
+              <div className={styles.arrow}>
+                <LeftArrow />
+              </div>
+            </Link>
+            <Link href='/places' className={styles.box}>
+              <div className={styles.icon_container}>
+                <SmallSaudiMap />
+
+              </div>
+              <div className={styles.title}>
+                <Typography variant='h4'>
+                  مكان الشعر
+                </Typography>
+              </div>
+              <div className={styles.arrow}>
+                <LeftArrow />
+              </div>
+            </Link>
+          </motion.div>
+        </Container >
 
       </section >
 
-      <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className='disable_container' >
-        <motion.div
-          animate={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
-          transition={{ duration: 1, }}
 
-          className={styles.boxes_container}>
-          <Link href='/literary-eras' className={styles.box}>
-            <div className={styles.icon_container}>
-              <FaCalendarAlt />
-            </div>
-            <div className={styles.title}>
-              <Typography variant='h4'>
-                زمان الشعر
-              </Typography>
-            </div>
-            <div className={styles.arrow}>
-              <LeftArrow />
-            </div>
-          </Link>
-          <Link href='/places' className={styles.box}>
-            <div className={styles.icon_container}>
-              <SmallSaudiMap />
-
-            </div>
-            <div className={styles.title}>
-              <Typography variant='h4'>
-                مكان الشعر
-              </Typography>
-            </div>
-            <div className={styles.arrow}>
-              <LeftArrow />
-            </div>
-          </Link>
-        </motion.div>
-      </Container >
 
     </>
 

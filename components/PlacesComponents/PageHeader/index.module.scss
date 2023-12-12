@@ -13,9 +13,10 @@
     // background-size: cover;
     // background-position: 20%;
     // background-position-y: 20%;
-    height: 159px;
-    padding-top: 20px;
+    height: 180px;
+    padding-top: 16px;
     // border-radius: 40px 0px 40px 40px;
+    margin-top: 34px;
   }
 
   .img_container {
@@ -66,7 +67,8 @@
     // color: ;
 
     @media screen and (max-width: 450px) {
-      font-size: 30px;
+      font-size: 60px;
+      line-height: 40px;
     }
   }
 }

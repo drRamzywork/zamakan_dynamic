@@ -1,23 +1,23 @@
 import React from 'react';
-import { Box, Container, Grid, Typography, IconButton } from '@mui/material';
+import { Box, Container, Grid, Typography, } from '@mui/material';
 import styles from './index.module.scss';
-import {
-  burgerIcon, Rectangle, Search, CloseIcon,
-  Twitter,
-  Instagram,
-  LinkedIn,
-  Youtube,
-  Phone,
-} from '../../assets/svgsComponents';
+
 import imgs from '../../assets/constants/imgs'
-import Link from 'next/link'
-import Image from 'next/image';
+import { useRouter } from 'next/router';
 const Footer = () => {
-  const { Vision2030, Ministry_of_Culture,
+  const { Ministry_of_Culture,
     logo_mobile_footer,
-    Literature, Logo, } = imgs;
+    Literature, } = imgs;
+  const router = useRouter()
+  console.log(router.pathname, 'router')
+
   return (
-    <footer className={styles.footer} dir='ltr'>
+    <footer className={
+      router.pathname === '/' ?
+        styles.Landingfooter :
+        styles.footer
+
+    } dir='ltr'>
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
         <Grid container justifyContent="center" alignItems="center">
           {/*
