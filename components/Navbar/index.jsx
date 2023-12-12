@@ -10,36 +10,12 @@ import {
 
 } from '../../assets/svgsComponents';
 
-import localFont from 'next/font/local'
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
-const Effra = localFont({
-  src: [
-    {
-      path: '../../fonts/Effra_Md.ttf',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra_Heavy.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra_Rg.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Effra-Bold.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-})
 
-const Navbar = (props) => {
+
+const Navbar = () => {
   const [navMenu, setNavMenu] = useState(false);
 
   function HideOnScroll(props) {
@@ -122,7 +98,7 @@ const Navbar = (props) => {
         background: ` #f6f8fc`
       }} elevation={0} >
 
-        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} style={...Effra.style} dir='rtl' className={styles.navbar}>
+        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} dir='rtl' className={styles.navbar}>
           <div className={styles.sec_container}
             ref={navMenuRef}
 
@@ -201,9 +177,9 @@ const Navbar = (props) => {
               <Search />
             </Button>
 
-            <Link className={styles.logo} href={'/'}>
+            <a className={styles.logo} href={'/'}>
               <Logo />
-            </Link>
+            </a>
 
 
             <div className={styles.discover}>

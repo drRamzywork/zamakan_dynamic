@@ -185,7 +185,7 @@ export default function SliderVerses({ filtredPoets, onPoetsDataChange }) {
             initial={{ opacity: 0 }}
             transition={{ duration: 1, }}
             className={styles.box}>
-            <Link href={`/poet/${poet.id}`}>
+            <a href={`/poet/${poet.id}`}>
               <div className={styles.poet_info}>
                 <div className={styles.img_container}>
                   <img src={adjustImageUrl(poet.icon)} alt={poet.name} />
@@ -206,7 +206,6 @@ export default function SliderVerses({ filtredPoets, onPoetsDataChange }) {
                   </div>
                 </div>
               </div>
-
               <hr />
 
               <div className={styles.desc}>
@@ -215,7 +214,7 @@ export default function SliderVerses({ filtredPoets, onPoetsDataChange }) {
                 </Typography>
               </div>
 
-            </Link>
+            </a>
 
           </motion.div>
         ))}
