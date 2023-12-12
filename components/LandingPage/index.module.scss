@@ -58,7 +58,7 @@ section.landingPage {
         line-height: 90px;
         font-weight: 500;
         position: relative;
-        z-index: 2222;
+        z-index: 222;
         font-family: var(--req3a-font) !important;
 
         @media screen and (max-width: 992px) {
@@ -164,6 +164,7 @@ section.landingPage {
       @media screen and (max-width: 450px) {
         bottom: -7px;
       }
+
       img {
         @media screen and (max-width: 450px) {
           object-fit: contain;
@@ -183,6 +184,8 @@ section.landingPage {
   margin-top: 48px;
   background-color: transparent;
   display: flex;
+  position: relative;
+  z-index: 222;
 
   @media screen and (max-width: 450px) {
     flex-direction: column;
