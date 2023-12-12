@@ -1,7 +1,7 @@
 section.landingPage {
   // background-color: #e6ddc657;
-  margin-top: 20px;
-  border-radius: 129px 0px 40px 40px;
+  margin-top: 30px;
+  // border-radius: 129px 0px 40px 40px;
   background-image: url("../../assets/Grain_Texture.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -12,7 +12,8 @@ section.landingPage {
   overflow: hidden;
   @media screen and (max-width: 450px) {
     padding-top: 16px;
-    border-radius: 40px 0px 40px 40px;
+    margin-top: -5px;
+    // border-radius: 40px 0px 40px 40px;
   }
   position: relative;
   z-index: 1;
@@ -139,7 +140,7 @@ section.landingPage {
     justify-content: space-between;
     transition: all 0.3s ease-in-out;
     &:hover {
-      background-color: var(--main-beige-color);
+      background-color: #e6ddc6;
     }
 
     &:last-child {
@@ -158,7 +159,7 @@ section.landingPage {
         line-height: 24px;
         letter-spacing: 0px;
         text-align: right;
-        color: rgba(187, 113, 101, 1);
+        color: #713540;
 
         @media screen and (max-width: 450px) {
           font-size: 18px;
@@ -168,6 +169,9 @@ section.landingPage {
 
     .icon_container {
       svg {
+        path {
+          fill: #713540;
+        }
         @media screen and (max-width: 450px) {
           width: 33px;
           height: 33px;
@@ -180,6 +184,9 @@ section.landingPage {
         align-self: center;
       }
       svg {
+        path {
+          stroke: #11292f;
+        }
         @media screen and (max-width: 450px) {
           width: 10px;
           height: 10px;

@@ -1,16 +1,21 @@
 .footer {
-  background-color: #ffffff;
   padding: 39px 0;
   margin-top: 61px;
   border-top: 1px solid rgba(229, 230, 242, 1);
   padding-bottom: 0;
+  background-color: var(--main-blue-color);
+
   @media screen and (max-width: 992px) {
+    background-color: #ffffff;
     padding: 26px 0;
     margin-top: 32px;
   }
 
   .logo {
     // Add styles for your logo here
+    img {
+      width: 100px;
+    }
   }
   .socialLinks {
     // Center the icons if needed
@@ -95,11 +100,11 @@
   .footerBottom {
     margin-top: 20px;
     color: #000; // Example color
-    border-top: 1px solid #ddd; // Example color
-    padding-top: 20px;
+    // border-top: 1px solid #ddd;
+    // padding-top: 20px;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: flex-start;
     @media screen and (max-width: 992px) {
       flex-direction: column;
@@ -107,30 +112,53 @@
     }
 
     .img_container {
-      width: 66.58px;
-      height: 46px;
+      width: 220px;
+      height: 70px;
+      @media screen and (max-width: 450px) {
+        display: none;
+      }
       img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
+      }
+    }
+    .image_container {
+      @media screen and (max-width: 450px) {
+        display: none;
       }
     }
 
     .box_container {
       display: flex;
-      align-items: flex-start;
+      align-items: flex-end;
       flex-direction: column;
+
+      @media screen and (max-width: 450px) {
+        display: none;
+        width: 100%;
+      }
       .images_box {
         display: flex;
+        // align-items: c;
+        justify-content: space-between;
+        @media screen and (max-width: 450px) {
+          display: none;
+        }
         .image_container {
           // width: 66.58px;
           // height: 66px;
+          &:first-child {
+            margin-right: 16px;
+          }
           &:last-child {
-            margin-left: 16px;
+            // margin-left: 16px;
+            width: 150px;
           }
           img {
-            width: 100px;
-            height: 66.58px;
+            width: 220px;
+            height: 70px;
+            object-fit: cover;
           }
         }
       }
@@ -141,7 +169,29 @@
         font-size: 12px;
         font-weight: 400;
         text-align: left;
-        color: #686c85 !important;
+        color: #ffffff !important;
+
+        @media screen and (max-width: 992px) {
+          color: #686c85 !important;
+        }
+      }
+    }
+    .logo_mobile_footer_container {
+      @media screen and (max-width: 450px) {
+        width: 100%;
+      }
+
+      .logo_mobile_footer {
+        width: 100%;
+        display: none;
+        @media screen and (max-width: 450px) {
+          display: block;
+        }
+
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
       }
     }
   }

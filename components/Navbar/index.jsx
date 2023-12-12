@@ -12,12 +12,13 @@ import {
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-
+import { imgs } from '@/assets/constants';
+import Image from 'next/image';
 
 
 const Navbar = () => {
   const [navMenu, setNavMenu] = useState(false);
-
+  const { Logo } = imgs;
   function HideOnScroll(props) {
     const { children, window } = props;
     const trigger = useScrollTrigger({
@@ -95,7 +96,7 @@ const Navbar = () => {
   return (
     <>
       <AppBar style={{
-        background: ` #f6f8fc`
+        background: `#062a30`
       }} elevation={0} >
 
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} dir='rtl' className={styles.navbar}>
@@ -153,7 +154,7 @@ const Navbar = () => {
                     <Link href='/poets'>الشعراء </Link>
                   </div>
                 </div>
-                <div className={styles.soical_links} onClick={() => setNavMenu(false)}>
+                {/* <div className={styles.soical_links} onClick={() => setNavMenu(false)}>
                   <Link href='https://www.twitter.com'>
                     <Twitter />
                   </Link>
@@ -169,7 +170,7 @@ const Navbar = () => {
                   <Link href='https://www.youtube.com'>
                     <Youtube />
                   </Link>
-                </div>
+                </div> */}
               </motion.div>
             }
 
@@ -178,7 +179,7 @@ const Navbar = () => {
             </Button>
 
             <a className={styles.logo} href={'/'}>
-              <Logo />
+              <img src={Logo.src} alt="" />
             </a>
 
 

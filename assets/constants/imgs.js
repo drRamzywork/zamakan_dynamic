@@ -1,7 +1,7 @@
 import burgerIcon from "../burgerIcon.svg";
-import Logo from "../Logo.svg";
+import Logo from "../logo.png";
+import logo_mobile_footer from "../logo_mobile_footer.png";
 import Search from "../Search.svg";
-import bg_map from "../bg_map.svg";
 import texture from "../texture.png";
 import ra3y from "../ra3y.png";
 import ra3y1 from "../ra3y1.png";
@@ -74,4 +74,5 @@ export default {
   place,
   Ministry_of_Culture,
   Literature,
+  logo_mobile_footer,
 };

@@ -122,7 +122,7 @@ const LiteraryBanner = (props) => {
                 <Link href={`/literary-eras/era/${era.id}`} className={`${styles.box} ${eraIndex === era.id ? styles.active : ''}`}>
                   <div className={styles.img_container}>
                     {/* <img src={pre_Islamic.src} alt="" /> */}
-                    <img src={adjustImageUrl(era.icon)} alt={era.desc} />
+                    <img src={era.icon} alt={era.desc} />
 
                   </div>
 

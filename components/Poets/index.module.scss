@@ -75,6 +75,7 @@ section.Poets {
       .box_container {
         // width: 85px;
         // height: 141px;
+
         user-select: none !important;
 
         .box * {
@@ -93,7 +94,7 @@ section.Poets {
           border-radius: 16px;
           border: 1px solid transparent;
           cursor: pointer;
-
+          width: fit-content;
           @media screen and (max-width: 650px) {
             padding: 12.98px;
           }

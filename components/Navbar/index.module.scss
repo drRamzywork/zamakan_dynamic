@@ -8,7 +8,6 @@
 
   .burger_icon {
     cursor: pointer;
-
     border: 0.8px solid #11292f;
     width: 48px;
     height: 48px;
@@ -16,9 +15,26 @@
     border-radius: 50%;
     transform: 0.3s ease-in-out !important;
     min-width: inherit !important;
-
     img {
       margin: auto;
+    }
+
+    transition: all 0.3s ease-in-out;
+    svg {
+      path {
+        stroke: var(--main-white-color);
+      }
+    }
+
+    &:hover {
+      background-color: var(--main-white-color);
+
+      svg {
+        path,
+        line {
+          stroke: rgba(17, 41, 47, 1) !important;
+        }
+      }
     }
   }
 
@@ -26,7 +42,6 @@
     position: absolute;
     top: 90px;
     right: 0%;
-    background-color: #ffffff;
     width: 100%;
     height: 528px;
     z-index: -122;
@@ -34,7 +49,7 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    border-radius: 139px 0px 0px 0px;
+    background-color: #e6ddc6;
     @media screen and (max-width: 450px) {
       border-radius: 0;
       top: 0px;
@@ -45,10 +60,10 @@
         min-width: 394px;
         padding-bottom: 34px;
         padding-top: 34px;
-
-        border-bottom: 1px solid var(--main-blue-color);
         text-align: center;
-
+        &:not(:last-child) {
+          border-bottom: 1px solid var(--main-blue-color);
+        }
         a {
           width: 100%;
 
@@ -92,6 +107,7 @@
   }
 
   .search_icon_mobile {
+    // background-color: var(--main-white-color);
     @media screen and (max-width: 992px) {
       margin-right: 10px;
       margin-left: 10px;
@@ -100,12 +116,32 @@
     @media screen and (min-width: 992px) {
       display: none !important;
     }
+    svg {
+      path,
+      line {
+        stroke: var(--main-white-color);
+        transition: all 0.3s ease-in-out;
+      }
+    }
+
+    color: var(--main-white-color);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: var(--main-white-color);
+      svg {
+        path,
+        line {
+          stroke: rgba(17, 41, 47, 1) !important;
+        }
+      }
+    }
   }
 
   .logo {
     cursor: pointer;
-    width: 77.39px;
-    height: 48.08px;
+    width: 100px;
+    height: 60px;
     margin-right: 180px;
 
     @media screen and (max-width: 992px) {
@@ -120,9 +156,10 @@
       margin-left: auto;
     }
 
-    svg {
+    img {
       width: 100%;
       height: 100%;
+      object-fit: contain;
     }
   }
 
@@ -131,18 +168,40 @@
     align-items: center;
     justify-content: center;
     flex-direction: row;
+
     .search_icon {
       cursor: pointer;
+      // background-color: var(--main-white-color);
+
       @media screen and (max-width: 992px) {
         display: none;
       }
-      .img {
+      svg {
+        path,
+        line {
+          stroke: var(--main-white-color);
+          transition: all 0.3s ease-in-out;
+        }
+      }
+
+      color: var(--main-white-color);
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: var(--main-white-color);
+        svg {
+          path,
+          line {
+            stroke: rgba(17, 41, 47, 1) !important;
+          }
+        }
       }
     }
 
     button.lang {
       margin-right: 24px;
       margin-left: 24px;
+
       @media screen and (max-width: 992px) {
         margin-right: 10px;
         margin-left: 10px;
@@ -152,10 +211,16 @@
       font-size: 18px;
       font-weight: 400;
       font-family: var(--effra-font);
-      color: rgba(17, 41, 47, 1) !important;
+      color: var(--main-white-color);
+      transition: all 0.3s ease-in-out;
       @media screen and (max-width: 992px) {
         font-size: 11.25px;
         padding-top: 0px;
+      }
+
+      &:hover {
+        background-color: var(--main-white-color);
+        color: rgba(17, 41, 47, 1) !important;
       }
     }
 
@@ -163,14 +228,14 @@
       button {
         width: 154px;
         height: 48px;
-        background-color: transparent;
-        color: #11292f;
+        color: var(--main-white-color);
         font-size: 18px;
         font-weight: 700;
         font-family: var(--effra-font);
         border-radius: 33px;
         border: 1px solid var(--primary-dark-green, #11292f);
         line-height: 0;
+        transition: all 0.3s ease-in-out;
 
         @media screen and (max-width: 992px) {
           width: 98px;
@@ -179,8 +244,8 @@
         }
         &:hover {
           @media screen and (min-width: 992px) {
-            background-color: #11292f;
-            color: #f6f8fc;
+            color: #11292f;
+            background-color: var(--main-white-color);
           }
         }
 

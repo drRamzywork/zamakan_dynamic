@@ -118,14 +118,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
     };
   }, []);
 
-  // adjust image
-  const adjustImageUrl = (imageUrl) => {
-    if (imageUrl?.startsWith('https')) {
-      return imageUrl;
-    } else {
-      return `https://zamakan.suwa.io${imageUrl}`;
-    }
-  };
+
 
 
   return (
@@ -149,7 +142,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
       >
         <Container sx={{ maxWidth: "1400px" }} dir="rtl" maxWidth={false} className={styles.poetDetails}>
           <Box className={styles.headerImage} >
-            <div className={styles.text_container}>
+            {/* <div className={styles.text_container}>
               <ul>
                 <li>
                   <Link href="/">الرئيسية</Link>
@@ -161,12 +154,12 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                   <a >الشاعر {dataPoet.name}</a>
                 </li>
               </ul>
-            </div>
+            </div> */}
           </Box>
           <Grid container className={styles.profileSection}>
             <Grid item>
               <div className={styles.img_container}>
-                <Avatar src={adjustImageUrl(dataPoet.icon)} className={styles.avatar} />
+                <Avatar src={dataPoet.icon} className={styles.avatar} />
               </div>
 
             </Grid>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Container, Grid, Typography, IconButton } from '@mui/material';
 import styles from './index.module.scss';
 import {
-  burgerIcon, Logo, Rectangle, Search, CloseIcon,
+  burgerIcon, Rectangle, Search, CloseIcon,
   Twitter,
   Instagram,
   LinkedIn,
@@ -14,16 +14,21 @@ import Link from 'next/link'
 import Image from 'next/image';
 const Footer = () => {
   const { Vision2030, Ministry_of_Culture,
-    Literature } = imgs;
+    logo_mobile_footer,
+    Literature, Logo, } = imgs;
   return (
     <footer className={styles.footer} dir='ltr'>
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
         <Grid container justifyContent="center" alignItems="center">
+          {/*
+         
           <Grid item xs={12} style={{ textAlign: 'center' }}>
-            <Logo />
+            <Image width={77.39} height={48.08} src={Logo.src} alt="" />
           </Grid>
+
           <Grid item xs={6} style={{ textAlign: 'center' }}>
-            <div className={styles.socialLinks}>
+
+          <div className={styles.socialLinks}>
               <div className={styles.links_container}>
                 <Link href='https://www.twitter.com/' target='_blank'>
                   <IconButton aria-label="">
@@ -47,39 +52,41 @@ const Footer = () => {
                 <IconButton aria-label="phone">
                   <Phone />
                 </IconButton>
-              </Link> */}
-            </div>
-
+              </Link> 
+        </div>
 
           </Grid>
+*/}
+
         </Grid>
         <Box className={styles.footerBottom}>
-          <Box >
-            <div className={styles.img_container}>
-              <img src={Vision2030.src} alt="" />
-            </div>
-          </Box>
-          <Box className={styles.box_container}>
-            <div className={styles.image_container}>
-              <Image width={300} height={80} src={Literature.src} alt="" />
-
-            </div>
-          </Box>
-
 
           <Box className={styles.box_container}>
             <div className={styles.images_box}>
               <div className={styles.image_container}>
-                <Image width={100} height={60} src={Ministry_of_Culture.src} alt="" />
+                <img src={Literature.src} alt="" />
 
               </div>
-
+              <hr />
+              <div className={styles.image_container}>
+                <img src={Ministry_of_Culture.src} alt="" />
+              </div>
             </div>
 
             <Typography >
               جميع الحقوق محفوظة © 2023
             </Typography>
           </Box>
+
+          <Box className={styles.logo_mobile_footer_container}>
+            <div className={styles.logo_mobile_footer}>
+              <img src={logo_mobile_footer.src} alt="" />
+            </div>
+
+
+          </Box>
+
+
 
         </Box>
       </Container>

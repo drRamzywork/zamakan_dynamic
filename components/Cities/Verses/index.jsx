@@ -28,43 +28,8 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
     }));
   };
 
-  const [isMoreButtonVisible, setIsMoreButtonVisible] = useState([]);
-  // const textRefs = useRef(dataCityPoetry.map(() => React.createRef()));
-
-  // useEffect(() => {
-  //   const lineHeights = textRefs.current.map(ref => {
-  //     if (ref.current) {
-  //       const style = window.getComputedStyle(ref.current);
-  //       const lineHeight = parseInt(style.lineHeight, 10);
-  //       const height = ref.current.clientHeight;
-  //       return Math.ceil(height / lineHeight);
-  //     }
-  //     return 0;
-  //   });
-
-  //   console.log(lineHeights, "lineHeights"); // This array will have the approximate line counts
-  // }, []);
-
-  // const textRefs = useRef(dataCityPoetry.map(() => React.createRef()));
-  // const [lineCountResult, setLineCountResult] = useState();
-  // useEffect(() => {
-  //   const newIsMoreButtonVisible = textRefs.current.map(ref => {
-  //     if (ref.current) {
-  //       const style = window.getComputedStyle(ref.current);
-  //       const lineHeight = parseInt(style.lineHeight, 10);
-  //       const height = ref.current.clientHeight;
-  //       const lineCount = Math.ceil(height / lineHeight);
-  //       return lineCount <= 5; // isMoreButton is not visible if lineCount is more than 5
-  //     }
-  //     return true; // Default to true if no ref
-  //   });
-
-  //   setIsMoreButtonVisible(newIsMoreButtonVisible);
-  // }, [dataCityPoetry]); // Make sure to include dependencies
 
 
-
-  // const CHAR_LIMIT = 300;
 
   return (
     <>
