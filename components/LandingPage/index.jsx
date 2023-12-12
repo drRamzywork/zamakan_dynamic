@@ -66,8 +66,9 @@ const LandingPage = () => {
 
 
             <h1>
-              شُعراء العصور الأَدبيّة في
-              <span> المملكة العربيّة السُّعوديّة</span>
+              زمكان الشعر
+              {/* شُعراء العصور الأَدبيّة في */}
+              <span>  الزمان والمكان  في  المملكة العربية السُّعوديّة</span>
             </h1>
 
 
@@ -90,7 +91,7 @@ const LandingPage = () => {
 
     </section >
 
-      <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className='disable_container'>
+      <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className='disable_container' style={...Custom.style}>
         <motion.div
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}
@@ -103,9 +104,7 @@ const LandingPage = () => {
             </div>
             <div className={styles.title}>
               <Typography variant='h4'>
-                استكشف الشعراء
-                <br />
-                عبر العصور
+                الزمان
               </Typography>
             </div>
             <div className={styles.arrow}>
@@ -119,9 +118,7 @@ const LandingPage = () => {
             </div>
             <div className={styles.title}>
               <Typography variant='h4'>
-                استكشف الشعراء
-                <br />
-                عبر المناطق
+                المكان
               </Typography>
             </div>
             <div className={styles.arrow}>
@@ -129,7 +126,7 @@ const LandingPage = () => {
             </div>
           </Link>
         </motion.div>
-      </Container>
+      </Container >
 
     </>
 

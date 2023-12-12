@@ -29,6 +29,8 @@ import North from "../North.jpg";
 import Northwest from "../Northwest.jpg";
 import South from "../South.jpg";
 import Western from "../Western.jpg";
+import KSA from "../KSA.jpg";
+
 import mapPiece7 from "../mapPiece7.png";
 import Ministry_of_Culture from "../Ministry_of_Culture.png";
 import Literature from "../Literature.png";
@@ -87,4 +89,5 @@ export default {
   Northwest,
   South,
   Western,
+  KSA,
 };

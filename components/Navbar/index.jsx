@@ -193,9 +193,9 @@ const Navbar = () => {
                 EN
               </Button> */}
 
-              <Link href='/poets' className={styles.btn_container}>
+              {/* <Link href='/poets' className={styles.btn_container}>
                 <Button>استكشف الشعراء</Button>
-              </Link>
+              </Link> */}
             </div>
 
           </div>

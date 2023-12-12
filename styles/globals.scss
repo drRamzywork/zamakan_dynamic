@@ -27,6 +27,9 @@ body {
 body {
   // color: rgb(var(--foreground-rgb));
   background-color: rgb(238 228 184 / 25%);
+  // user-select: red;
+}
+::selection {
 }
 
 a {
@@ -82,11 +85,24 @@ header {
 }
 
 #Places {
+  .swiper {
+    transform: translatey(-120px) !important;
+    overflow: unset;
+  }
   .swiper-wrapper {
     @media screen and (min-width: 992px) {
       align-items: center;
       justify-content: center;
+      overflow: unset !important;
     }
+  }
+
+  .swiper-horizontal {
+    overflow: unset !important;
+  }
+
+  .swiper-backface-hidden .swiper-slide {
+    // transform: translatey(-82px) !important;
   }
 }
 

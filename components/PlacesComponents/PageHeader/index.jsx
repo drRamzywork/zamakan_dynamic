@@ -6,19 +6,15 @@ import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 
 const PageHeader = ({ dataAllCitiesMap }) => {
-  const { Central,
-    Eastern,
-    North,
-    Northwest,
-    South,
-    Western,
+  const {
+    KSA,
   } = imgs
   const router = useRouter();
 
   const filterCity = dataAllCitiesMap?.filter(city => city.id === Number(router.query.id));
 
 
-
+  console.log(filterCity, "filterCity")
   return (
     <div id='page-header' className={styles.page_header}>
       <div className={styles.img_container}>
@@ -27,7 +23,6 @@ const PageHeader = ({ dataAllCitiesMap }) => {
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
             transition={{ duration: 1, }}
-
             src={filterCity[0]?.images} alt="" />
         }
 
@@ -37,7 +32,7 @@ const PageHeader = ({ dataAllCitiesMap }) => {
             initial={{ opacity: 0 }}
             transition={{ duration: 1, }}
 
-            src={Central.src} alt="" />
+            src={KSA.src} alt="" />
         }
 
         {/* {router.query.id === "1" &&

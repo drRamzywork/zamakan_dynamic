@@ -206,6 +206,7 @@ const Places = ({ dataAllCitiesMap,
       </Head>
 
       <PageHeader dataAllCitiesMap={dataAllCitiesMap} />
+
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
 
         <section id='Places' className={styles.Places} dir='rtl'>
