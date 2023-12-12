@@ -22,26 +22,12 @@ const LiteraryBanner = (props) => {
     left_branch,
     right_branch,
     horse,
-    pre_Islamic,
-    Islamic_era,
-    Abbasid_era,
-    Mamluk_era,
-    Umayyad_era,
-    modern_era
   } = imgs
 
 
   const eraIndex = query.index ? Number(query.index) : 0;
 
-  const adjustImageUrl = (imageUrl) => {
 
-
-    if (imageUrl?.startsWith('https')) {
-      return imageUrl;
-    } else {
-      return `https://zamakan.suwa.io${imageUrl}`;
-    }
-  };
   return (
 
     <>
@@ -75,11 +61,11 @@ const LiteraryBanner = (props) => {
             dir="rtl"
             breakpoints={{
               300: {
-                slidesPerView: 2,
+                slidesPerView: 2.1,
                 spaceBetween: 24,
               },
               400: {
-                slidesPerView: 2,
+                slidesPerView: 2.3,
                 spaceBetween: 24,
               },
               640: {
@@ -107,8 +93,6 @@ const LiteraryBanner = (props) => {
             }}
             slidesPerView={4.5}
             spaceBetween={24}
-
-
             pagination={true} className={"swiper"}>
             {props?.dataAllEras?.map((era) => (
               <SwiperSlide key={era.id} className={styles.swiper_slide_box}>
