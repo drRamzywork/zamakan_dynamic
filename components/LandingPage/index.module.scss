@@ -59,11 +59,11 @@ section.landingPage {
         position: relative;
         z-index: 2222;
         @media screen and (max-width: 992px) {
-          font-size: 70px;
-          line-height: 40px;
+          font-size: 90px;
+          line-height: 80px;
         }
         @media screen and (max-width: 400px) {
-          font-size: 60px;
+          // font-size: 60px;
         }
 
         span {
@@ -72,6 +72,10 @@ section.landingPage {
           position: relative;
           width: fit-content;
           font-size: 80px;
+          @media screen and (max-width: 992px) {
+            font-size: 40px;
+            // line-height: 40px;
+          }
 
           &::after {
             content: "";
@@ -83,7 +87,8 @@ section.landingPage {
             z-index: -1;
             background-color: var(--main-white-color);
             @media screen and (max-width: 992px) {
-              bottom: -20px;
+              // bottom: -20px;
+              bottom: 10px;
             }
           }
         }
@@ -179,13 +184,16 @@ section.landingPage {
     transition: all 0.3s ease-in-out;
     &:hover {
       background-color: #e6ddc6;
+      .arrow {
+        animation: moveLeft 1.5s infinite;
+      }
     }
 
     &:last-child {
       margin-right: 24px;
     }
     @media screen and (max-width: 450px) {
-      width: 264px;
+      // width: 264px;
       padding: 10px;
       align-items: flex-start;
     }
@@ -201,7 +209,7 @@ section.landingPage {
         color: #713540;
 
         @media screen and (max-width: 450px) {
-          font-size: 18px;
+          font-size: 70px;
         }
       }
     }
@@ -242,5 +250,17 @@ section.landingPage {
         // margin-right: 10px;
       }
     }
+  }
+}
+
+// Animation key frames
+@keyframes moveLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(
+      -10px
+    ); /* Change this value to control the distance */
   }
 }
