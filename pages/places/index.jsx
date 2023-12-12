@@ -13,40 +13,15 @@ import Head from 'next/head';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CloseIcon, LeftArrow } from '@/assets/svgsComponents';
 import PoetsSlider from '@/components/PoetsSlider';
+import { useRouter } from 'next/router';
 
 
 
 const Places = ({ dataAllCitiesMap,
   dataAllPlacesMap }) => {
-  const {
-    ra3y,
-    saudiAllPieces,
-    mapPiece1,
-    mapPiece2,
-    mapPiece3,
-    mapPiece4,
-    mapPiece5,
-    mapPiece6,
-    mapPiece7,
-
-  } = imgs
+  const router = useRouter()
 
 
-  const landData = [
-    { name: 'الرياض', image: mapPiece1 },
-    { name: 'مكة المكرمة', image: mapPiece2 },
-    { name: 'المدينة المنورة', image: mapPiece3 },
-    { name: 'الشرقية', image: mapPiece4 },
-    { name: 'القصيم', image: mapPiece5 },
-    { name: 'عسير', image: mapPiece6 },
-    { name: 'حائل', image: mapPiece7 },
-    { name: 'حائل', image: mapPiece7 },
-    { name: 'حائل', image: mapPiece7 },
-    { name: 'حائل', image: mapPiece7 },
-    { name: 'حائل', image: mapPiece7 },
-    { name: 'حائل', image: mapPiece7 },
-    { name: 'حائل', image: mapPiece7 },
-  ];
 
   const [landElments, setLandElemnts] = useState([])
   const [activeIndex, setActiveIndex] = useState(null);
@@ -118,6 +93,18 @@ const Places = ({ dataAllCitiesMap,
     }
     setActiveIndex(landIndex);
     seIsPointsActive(false)
+
+    // console.log(landIndex, "landIndex")
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+
+    // Navigate to the new route
+    router.push(`/places/${landIndex}`).then(() => {
+      // Restore the scroll position
+      window.scrollTo(scrollX, scrollY);
+    });
+
+
   };
 
   const [cityData, setCityData] = useState(null)
@@ -168,7 +155,6 @@ const Places = ({ dataAllCitiesMap,
   const popUpRef = useRef(null);
   useEffect(() => {
     function handleClickOutside(event) {
-      console.log(event.target, "cityData")
       if (popUpRef.current && !popUpRef.current.contains(event.target)) {
         setCityData(null);
       }
@@ -182,6 +168,25 @@ const Places = ({ dataAllCitiesMap,
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [popUpRef]);
+
+
+  const svgRef = useRef(null);
+  useEffect(() => {
+    if (svgRef.current) {
+      const lands = svgRef.current.querySelectorAll('.land');
+      lands.forEach(land => {
+        const bbox = land.getBBox();
+        const centerX = bbox.x + bbox.width / 1.9;
+        const centerY = bbox.y + bbox.height / 1.7;
+
+        const text = land.querySelector('text');
+        text.setAttribute('x', centerX);
+        text.setAttribute('y', centerY);
+
+      });
+    }
+  }, [dataAllCitiesMap]);
+
 
 
   return (
@@ -207,7 +212,6 @@ const Places = ({ dataAllCitiesMap,
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
             transition={{ duration: 1, }}
-
             className={styles.sec_container}>
 
             <div className={styles.slider_container}>
@@ -266,21 +270,13 @@ const Places = ({ dataAllCitiesMap,
 
                   </div>
                 </SwiperSlide> */}
+
                 {dataAllCitiesMap?.map((city, index) =>
                   <SwiperSlide key={index}>
                     <Link scroll={false}
                       href={`/places/${city.id}`} className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       <div className={styles.img_container}>
-                        <svg
-                          id="svg1"
-                          width="858"
-                          height="724"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 758 624"
-                        >
-                          <g dangerouslySetInnerHTML={{ __html: city.svgPath }} />
-                        </svg>
+                        <img src={city.icon} alt={city.name} />
                       </div>
                       <div className={styles.name}>
                         <Typography>{city.name}</Typography>
@@ -292,6 +288,7 @@ const Places = ({ dataAllCitiesMap,
 
               </Swiper>
             </div>
+
             <div className={styles.map_container}>
               <div className={styles.map} dir='ltr'>
                 <TransformWrapper
@@ -324,37 +321,14 @@ const Places = ({ dataAllCitiesMap,
                             xmlns="http://www.w3.org/2000/svg"
                             className={`${isSafari ? "saudi-map safari" : "saudi-map"}`}
                             viewBox="90 90 758 624"
+                            ref={svgRef}
                           >
                             {dataAllCitiesMap?.map((land, index) => (
-                              <g className="land" key={index} id={land.svgPathId} >
+                              <g className="land" key={index} id={land.svgPathId} onClick={() => handleZoomToLand(index)}>
                                 {convertSVGPathsToJSX(land.svgPath)}
-                                {land.places.map((place, index) =>
-                                  <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
-                                    <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
-                                      <div onClick={() => handlePlaceWindow(place.id)}
-
-                                        className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
-
-                                        <div>
-                                          <p>{place.name}</p>
-                                          <svg
-                                            width="15"
-                                            height="6"
-                                            viewBox="0 0 15 6"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                          >
-                                            <path
-                                              d="M0.956299 0.882812H14.8405H12.9973C11.8578 0.882812 10.8162 1.52659 10.3066 2.54573L9.14027 4.87844C8.6286 5.90177 7.16825 5.90178 6.65658 4.87844L5.49023 2.54573C4.98065 1.52659 3.939 0.882812 2.79956 0.882812H0.956299Z"
-                                              fill="white"
-                                            />
-                                          </svg>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </foreignObject>
-                                )}
-
+                                <text text-anchor="middle" alignment-baseline="middle" fill="red">
+                                  <tspan>{land.name}</tspan>
+                                </text>
                               </g>
                             ))}
                           </svg>

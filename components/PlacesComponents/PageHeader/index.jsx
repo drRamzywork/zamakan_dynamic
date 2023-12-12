@@ -5,7 +5,7 @@ import { imgs } from '@/assets/constants'
 import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 
-const PageHeader = () => {
+const PageHeader = ({ dataAllCitiesMap }) => {
   const { Central,
     Eastern,
     North,
@@ -14,10 +14,22 @@ const PageHeader = () => {
     Western,
   } = imgs
   const router = useRouter();
-  console.log(router.query.id, "Router")
+
+  const filterCity = dataAllCitiesMap?.filter(city => city.id === Number(router.query.id));
+
+
+
   return (
     <div id='page-header' className={styles.page_header}>
       <div className={styles.img_container}>
+        {filterCity &&
+          <motion.img
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }}
+
+            src={filterCity[0]?.images} alt="" />
+        }
 
         {router.query.id === undefined &&
           <motion.img
@@ -27,7 +39,8 @@ const PageHeader = () => {
 
             src={Central.src} alt="" />
         }
-        {router.query.id === "1" &&
+
+        {/* {router.query.id === "1" &&
           <motion.img
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
@@ -64,7 +77,7 @@ const PageHeader = () => {
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
             transition={{ duration: 1, }} src={Western.src} alt="" />
-        }
+        } */}
 
       </div>
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>

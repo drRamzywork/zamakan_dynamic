@@ -5,14 +5,12 @@ import 'swiper/css';
 import { HiArrowLeft } from "react-icons/hi2";
 import { HiArrowRight } from "react-icons/hi2";
 import styles from './index.module.scss'
-import imgs from '@/assets/constants/imgs';
 import Link from 'next/link';
 
 
 
 
 const PoetsSlider = ({ poetriesData }) => {
-  const { ra3y, Feather_big, place } = imgs;
 
 
   const adjustImageUrl = (imageUrl) => {
@@ -35,19 +33,19 @@ const PoetsSlider = ({ poetriesData }) => {
               spaceBetween={24}
               breakpoints={{
                 300: {
-                  slidesPerView: 1,
-                  spaceBetween: 24,
+                  slidesPerView: 1.2,
+                  spaceBetween: 16,
                 },
                 400: {
-                  slidesPerView: 1,
-                  spaceBetween: 24,
+                  slidesPerView: 1.2,
+                  spaceBetween: 16,
                 },
                 640: {
-                  slidesPerView: 1,
-                  spaceBetween: 24,
+                  slidesPerView: 1.2,
+                  spaceBetween: 16,
                 },
                 768: {
-                  slidesPerView: 1,
+                  slidesPerView: 1.4,
                   spaceBetween: 24,
                 },
                 1024: {

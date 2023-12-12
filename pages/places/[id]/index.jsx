@@ -116,6 +116,8 @@ const Places = ({ dataAllCitiesMap,
 
   }, [activeIndex, activeLand])
 
+
+
   const handleZoomToLand = (landIndex) => {
     const elementId = `land-${landIndex}`;
     if (transformComponentRef.current) {
@@ -124,7 +126,20 @@ const Places = ({ dataAllCitiesMap,
     }
     setActiveIndex(landIndex);
     seIsPointsActive(false)
+
+    // console.log(landIndex, "landIndex")
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+
+    // Navigate to the new route
+    router.push(`/places/${landIndex}`).then(() => {
+      // Restore the scroll position
+      window.scrollTo(scrollX, scrollY);
+    });
+
+
   };
+
   const resetTransformRef = useRef(null);
 
 
@@ -153,6 +168,27 @@ const Places = ({ dataAllCitiesMap,
       <g key={index} dangerouslySetInnerHTML={{ __html: path + "</path>" }} />
     ));
   };
+
+
+  const svgRef = useRef(null);
+  useEffect(() => {
+    if (svgRef.current) {
+      const lands = svgRef.current.querySelectorAll('.land');
+      lands.forEach(land => {
+        const bbox = land.getBBox();
+        const centerX = bbox.x + bbox.width / 1.9;
+        const centerY = bbox.y + bbox.height / 1.8;
+
+
+        const text = land.querySelector('text');
+        text.setAttribute('x', centerX);
+        text.setAttribute('y', centerY);
+
+      });
+    }
+  }, []);
+
+
   return (
 
     <>
@@ -169,7 +205,7 @@ const Places = ({ dataAllCitiesMap,
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <PageHeader />
+      <PageHeader dataAllCitiesMap={dataAllCitiesMap} />
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
 
         <section id='Places' className={styles.Places} dir='rtl'>
@@ -242,18 +278,7 @@ const Places = ({ dataAllCitiesMap,
                       scroll={false}
                       href={`/places/${city.id}`} className={`${styles.slider} ${city.id === placeID ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       <div className={styles.img_container}>
-                        <svg
-                          id="svg1"
-                          width="858"
-                          height="724"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 758 624"
-                        >
-                          <g dangerouslySetInnerHTML={{ __html: city.svgPath }} />
-                        </svg>
-
-
+                        <img src={city.icon} alt={city.name} />
                       </div>
                       <div className={styles.name}>
                         <Typography>{city.name}</Typography>
@@ -299,9 +324,10 @@ const Places = ({ dataAllCitiesMap,
                             xmlns="http://www.w3.org/2000/svg"
                             className={`${isSafari ? "saudi-map safari" : "saudi-map"}`}
                             viewBox="90 90 758 624"
+                            ref={svgRef}
                           >
                             {dataAllCitiesMap?.map((land, index) => (
-                              <g className="land" key={index} id={land.svgPathId} >
+                              <g className="land" key={index} id={land.svgPathId} onClick={() => handleZoomToLand(index)}>
                                 {convertSVGPathsToJSX(land.svgPath)}
                                 {land.places.map((place, index) =>
                                   <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
@@ -328,6 +354,12 @@ const Places = ({ dataAllCitiesMap,
                                       </div>
                                     </div>
                                   </foreignObject>
+                                )}
+
+                                {land.id !== router.query.id && (
+                                  <text text-anchor="middle" alignment-baseline="middle" fill="red">
+                                    <tspan>{land.name}</tspan>
+                                  </text>
                                 )}
 
                               </g>

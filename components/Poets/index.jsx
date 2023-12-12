@@ -13,7 +13,7 @@ import PoetsSlider from '../PoetsSlider';
 
 
 
-const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
+const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
   const [activePoet, setActivePoet] = useState(null);
   const { ra3y1, smallCity } = imgs;
 
@@ -120,8 +120,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
   const popUpRef = useRef(null);
   useEffect(() => {
     function handleClickOutside(event) {
-      console.log(event.target, "cityData")
-      console.log(popUpRef.current, "cityData")
       if (popUpRef.current && !popUpRef.current.contains(event.target)) {
         setCityData(null);
       }
@@ -135,7 +133,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlacesMap }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [popUpRef]);
-
 
 
   return (

@@ -6,6 +6,8 @@ import { Navigation, } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import styles from './index.module.scss'
 import {
   LeftArrow,
@@ -22,7 +24,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
   const { ra3y, Feather_big, place } = imgs;
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-  const [beforeDots, afterDots] = dataPoetry.poetryParts.split('...')
+  const [beforeDots, afterDots] = dataPoetry?.poetryParts?.split('...')
   const adjustImageUrl = (imageUrl) => {
     if (imageUrl?.startsWith('https')) {
       return imageUrl;
@@ -31,7 +33,6 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
     }
   };
 
-  console.log(dataPoetry, "dataPoetry")
   return (
     <>
       <Head>
@@ -60,11 +61,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
               <div className={styles.slider}>
                 <Swiper
                   modules={[Navigation,]}
-
-                  navigation={{
-                    prevEl: prevRef.current,
-                    nextEl: nextRef.current,
-                  }}
+                  navigation={{ nextEl: styles.nextbtn, prevEl: styles.prevbtn }}
                   onSwiper={(swiper) => {
                     swiper.params.navigation.prevEl = prevRef.current;
                     swiper.params.navigation.nextEl = nextRef.current;
@@ -133,10 +130,10 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
 
 
                 </Swiper>
-                <Box ref={nextRef} className={styles.prevbtn} id={styles.swiperbtn}>
+                <Box className={styles.prevbtn} id={styles.swiperbtn}>
                   <RightArrow />
                 </Box>
-                <Box ref={prevRef} className={styles.nextbtn} id={styles.swiperbtn}>
+                <Box className={styles.nextbtn} id={styles.swiperbtn}>
                   <RightArrow />
                 </Box>
               </div>
@@ -160,6 +157,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                 </div>
               </Link>
             </div>
+
             <div className={styles.info_container}>
               <div className={styles.poet_info}  >
                 <section className={styles.timelineSection}>
@@ -327,6 +325,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                 </div>
               </div>
             </div>
+
           </Container>
 
         </motion.div>
