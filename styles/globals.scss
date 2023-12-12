@@ -96,12 +96,12 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 13px;
+  width: 10px;
 }
 
 body::-webkit-scrollbar-thumb {
   background-color: var(--main-blue-color) !important;
-  border-radius: 0px;
+  border-radius: 5px;
 }
 
 body::-webkit-scrollbar-track {
@@ -120,7 +120,7 @@ body::-webkit-scrollbar-track {
 
 .tools::-webkit-scrollbar-thumb {
   background-color: #979bb6; /* Change the background color */
-  border-radius: 5px; /* Add rounded corners */
+  border-radius: 5px;
 }
 
 .tools::-webkit-scrollbar-track {

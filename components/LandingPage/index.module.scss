@@ -61,6 +61,9 @@ section.landingPage {
           font-size: 60px;
           line-height: 38.4px;
         }
+        @media screen and (max-width: 400px) {
+          font-size: 56px;
+        }
 
         span {
           display: block;
