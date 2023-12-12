@@ -189,9 +189,9 @@ const Navbar = () => {
                 <Search />
               </Button>
 
-              <Button className={styles.lang}>
+              {/* <Button className={styles.lang}>
                 EN
-              </Button>
+              </Button> */}
 
               <Link href='/poets' className={styles.btn_container}>
                 <Button>استكشف الشعراء</Button>

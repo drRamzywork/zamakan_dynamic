@@ -1,6 +1,6 @@
 section.landingPage {
   // background-color: #e6ddc657;
-  margin-top: 30px;
+  margin-top: 40px;
   // border-radius: 129px 0px 40px 40px;
   background-image: url("../../assets/Grain_Texture.png");
   background-repeat: no-repeat;
@@ -34,7 +34,7 @@ section.landingPage {
 
   .sec_container {
     .sec_title {
-      padding-top: 123px;
+      padding-top: 100px;
       @media screen and (max-width: 450px) {
         padding-top: 50px;
       }
@@ -48,6 +48,38 @@ section.landingPage {
         }
         @media screen and (max-width: 992px) {
           width: 450px;
+        }
+      }
+
+      h1 {
+        color: var(--main-blue-color);
+        font-size: 118.32px;
+        line-height: 75.73px;
+        font-weight: 500;
+
+        @media screen and (max-width: 992px) {
+          font-size: 60px;
+          line-height: 38.4px;
+        }
+
+        span {
+          display: block;
+          color: #713540;
+          position: relative;
+          width: fit-content;
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            right: 0;
+            width: 100%;
+            height: 20px;
+            z-index: -1;
+            background-color: var(--main-white-color);
+            @media screen and (max-width: 992px) {
+              bottom: -20px;
+            }
+          }
         }
       }
     }

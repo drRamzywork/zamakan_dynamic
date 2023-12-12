@@ -3,6 +3,7 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 import localFont from 'next/font/local'
 
+
 const Effra = localFont({
   src: [
     {
@@ -27,15 +28,15 @@ const Effra = localFont({
     },
   ],
 })
-
 export default function Layout({ children }) {
 
   return (
     <>
       <Navbar />
       <main style={...Effra.style}>
-        {children?.filter(str => str != ';')}
-      </main>
+      {/* {children?.filter(str => str != ';')} */}
+      {children}
+    </main >
       <Footer />
     </>
   )

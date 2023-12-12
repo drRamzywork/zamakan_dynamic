@@ -12,6 +12,19 @@ import SmallSaudiMap from '@/assets/svgsComponents/SmallSaudiMap';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
 
+import localFont from 'next/font/local'
+
+
+const Custom = localFont({
+  src: [
+    {
+      path: '../../fonts/custom.otf',
+      weight: '500',
+      style: 'normal',
+    },
+
+  ],
+})
 
 const LandingPage = () => {
   const router = useRouter();
@@ -41,33 +54,41 @@ const LandingPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      < section id='landingPage' className={styles.landingPage} >
-        <motion.div
-          animate={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
-          transition={{ duration: 1, }}
-          className={styles.sec_container}>
-          <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
-            <div className={styles.sec_title}>
-              <img src={Landing_Banner_text.src} alt="" />
-            </div>
-          </Container>
+      < section id='landingPage' className={styles.landingPage} style={...Custom.style}>
+      <motion.div
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ duration: 1, }}
+        className={styles.sec_container}>
+        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
+          <div className={styles.sec_title}>
+            {/* <img src={Landing_Banner_text.src} alt="" /> */}
 
-          {/* <div className={styles.img_container}>
+
+            <h1>
+              شُعراء العصور الأَدبيّة في مَناطِق
+              <span> المملكة العربيّة السُّعوديّة</span>
+            </h1>
+
+
+          </div>
+        </Container>
+
+        {/* <div className={styles.img_container}>
             <img src={land_banner.src} alt="" />
           </div> */}
 
-          <div className={styles.palm}>
-            <PalmSvg />
-          </div>
+        <div className={styles.palm}>
+          <PalmSvg />
+        </div>
 
-          <div className={styles.palm_left}>
-            <img src={Palm.src} alt="" />
-          </div>
+        <div className={styles.palm_left}>
+          <img src={Palm.src} alt="" />
+        </div>
 
-        </motion.div>
+      </motion.div>
 
-      </section >
+    </section >
 
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className='disable_container'>
         <motion.div
