@@ -28,16 +28,32 @@ const Effra = localFont({
     },
   ],
 })
+
+const Custom = localFont({
+  src: [
+    {
+      path: '../../fonts/custom.otf',
+      weight: '500',
+      style: 'normal',
+    },
+
+  ],
+})
 export default function Layout({ children }) {
+  const combinedStyles = {
+    ...Effra.style,
+    ...Custom.style,
+  };
+
 
   return (
     <>
       <Navbar />
-      <main style={...Effra.style}>
-      {/* {children?.filter(str => str != ';')} */}
-      {children}
-      <SpeedInsights />
-    </main >
+      <main style={combinedStyles}>
+        {/* {children?.filter(str => str != ';')} */}
+        {children}
+        <SpeedInsights />
+      </main >
       <Footer />
     </>
   )

@@ -1,4 +1,4 @@
-import { Container, FormControl, MenuItem, Select, Typography } from '@mui/material'
+import { Box, Container, FormControl, MenuItem, Select, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import styles from './index.module.scss'
 import { styled } from '@mui/system';
@@ -54,8 +54,6 @@ const Poets = ({ erasAllEras, dataDefault }) => {
       setIsLoading(false);
     }
   };
-
-
 
   const selectBoxStyles = {
     m: 1,
@@ -149,8 +147,6 @@ const Poets = ({ erasAllEras, dataDefault }) => {
 
 
 
-
-
   return (
     <>
       <Head>
@@ -177,7 +173,7 @@ const Poets = ({ erasAllEras, dataDefault }) => {
                 <div className={styles.filter_sec}>
                   <div className={styles.shows}>
                     <Typography dir='ltr'>
-                      <span>{filtredPoets.length}</span> يتم عرض <span>{poetsData.length}</span> من
+                      <span>{filtredPoets?.length}</span> يتم عرض <span>{poetsData.length}</span> من
                     </Typography>
                   </div>
                   <div className={styles.filter_methods}>
@@ -236,6 +232,13 @@ const Poets = ({ erasAllEras, dataDefault }) => {
                 <div className="slider">
                   <SliderVerses filtredPoets={filtredPoets} onPoetsDataChange={handlePoetsData} />
                 </div>
+
+                {filtredPoets?.length === 0 &&
+                  <Box sx={{ textAlign: 'center' }}>
+
+                    <h1>لا توجد نتيجة عن {searchString}</h1>
+                  </Box>
+                }
               </div>
             </section>
 

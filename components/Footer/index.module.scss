@@ -163,20 +163,8 @@
           }
         }
       }
-
-      p {
-        margin-top: 16px;
-        font-family: var(--effra-font);
-        font-size: 12px;
-        font-weight: 400;
-        text-align: left;
-        color: #ffffff !important;
-
-        @media screen and (max-width: 992px) {
-          color: #686c85 !important;
-        }
-      }
     }
+
     .logo_mobile_footer_container {
       @media screen and (max-width: 450px) {
         width: 100%;
@@ -194,6 +182,18 @@
           object-fit: cover;
         }
       }
+    }
+  }
+
+  p {
+    margin-top: 16px;
+    font-family: var(--effra-font);
+    font-size: 12px;
+    font-weight: 400;
+    color: #ffffff !important;
+    text-align: center;
+    @media screen and (max-width: 992px) {
+      color: #686c85 !important;
     }
   }
 }

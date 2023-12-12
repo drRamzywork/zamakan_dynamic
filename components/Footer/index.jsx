@@ -73,11 +73,14 @@ const Footer = () => {
               </div>
             </div>
 
-            <Typography >
-              جميع الحقوق محفوظة © 2023
-            </Typography>
+
+
           </Box>
 
+
+          <Box>
+
+          </Box>
           <Box className={styles.logo_mobile_footer_container}>
             <div className={styles.logo_mobile_footer}>
               <img src={logo_mobile_footer.src} alt="" />
@@ -89,6 +92,11 @@ const Footer = () => {
 
 
         </Box>
+
+        <Typography >
+          جميع الحقوق محفوظة © 2023
+        </Typography>
+
       </Container>
     </footer >
   );

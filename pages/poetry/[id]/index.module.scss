@@ -501,7 +501,13 @@ section.poetry_page {
       }
       .container {
         margin: 24px;
+        a {
+          text-decoration: none !important;
+        }
         .sec_title {
+          h3 {
+            color: var(--main-blue-color);
+          }
         }
         .desc {
           margin-top: 10px;

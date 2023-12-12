@@ -243,11 +243,11 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
 
               <div className={styles.place_info}>
                 <div className={styles.container}>
-                  <div className={styles.sec_title}>
+                  <Link href={`/city/${dataPlace?.id}`} className={styles.sec_title}>
                     <Typography variant='h3'>
                       {dataPoetry.placeName}
                     </Typography>
-                  </div>
+                  </Link>
                   <div className={styles.desc}>
                     <Typography>
 
@@ -323,7 +323,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div >
             </div>
 
           </Container>

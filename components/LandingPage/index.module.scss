@@ -58,6 +58,8 @@ section.landingPage {
         font-weight: 500;
         position: relative;
         z-index: 2222;
+        font-family: var(--req3a-font) !important;
+
         @media screen and (max-width: 992px) {
           font-size: 90px;
           line-height: 80px;
@@ -199,7 +201,7 @@ section.landingPage {
     }
     .title {
       h4 {
-        font-family: "__Custom_1194e3", "__Custom_Fallback_1194e3";
+        font-family: var(--req3a-font) !important;
         font-size: 80px;
         // font-weight: 700;
         line-height: 0px;

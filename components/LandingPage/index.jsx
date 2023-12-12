@@ -38,7 +38,6 @@ const LandingPage = () => {
 
 
 
-
   return (
 
     <>
@@ -54,44 +53,44 @@ const LandingPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      < section id='landingPage' className={styles.landingPage} style={...Custom.style}>
-      <motion.div
-        animate={{ opacity: 1 }}
-        initial={{ opacity: 0 }}
-        transition={{ duration: 1, }}
-        className={styles.sec_container}>
-        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
-          <div className={styles.sec_title}>
-            {/* <img src={Landing_Banner_text.src} alt="" /> */}
+      < section id='landingPage' className={styles.landingPage} >
+        <motion.div
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          transition={{ duration: 1, }}
+          className={styles.sec_container}>
+          <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
+            <div className={styles.sec_title}>
+              {/* <img src={Landing_Banner_text.src} alt="" /> */}
 
 
-            <h1>
-              زمكان الشعر
-              {/* شُعراء العصور الأَدبيّة في */}
-              <span>  الزمان والمكان  في  المملكة العربية السُّعوديّة</span>
-            </h1>
+              <h1>
+                زمكان الشعر
+                {/* شُعراء العصور الأَدبيّة في */}
+                <span>  الزمان والمكان  في  المملكة العربية السُّعوديّة</span>
+              </h1>
 
 
-          </div>
-        </Container>
+            </div>
+          </Container>
 
-        {/* <div className={styles.img_container}>
+          {/* <div className={styles.img_container}>
             <img src={land_banner.src} alt="" />
           </div> */}
 
-        <div className={styles.palm}>
-          <PalmSvg />
-        </div>
+          <div className={styles.palm}>
+            <PalmSvg />
+          </div>
 
-        <div className={styles.palm_left}>
-          <img src={Palm.src} alt="" />
-        </div>
+          <div className={styles.palm_left}>
+            <img src={Palm.src} alt="" />
+          </div>
 
-      </motion.div>
+        </motion.div>
 
-    </section >
+      </section >
 
-      <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className='disable_container' style={...Custom.style}>
+      <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className='disable_container' >
         <motion.div
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}
