@@ -169,23 +169,7 @@ const Places = ({ dataAllCitiesMap,
   };
 
 
-  const svgRef = useRef(null);
-  useEffect(() => {
-    if (svgRef.current) {
-      const lands = svgRef.current.querySelectorAll('.land');
-      lands.forEach(land => {
-        const bbox = land.getBBox();
-        const centerX = bbox.x + bbox.width / 1.9;
-        const centerY = bbox.y + bbox.height / 1.8;
 
-
-        const text = land.querySelector('text');
-        text.setAttribute('x', centerX);
-        text.setAttribute('y', centerY);
-
-      });
-    }
-  }, []);
 
 
   return (
@@ -328,7 +312,6 @@ const Places = ({ dataAllCitiesMap,
                             xmlns="http://www.w3.org/2000/svg"
                             className={`${isSafari ? "saudi-map safari" : "saudi-map"}`}
                             viewBox="90 90 758 624"
-                            ref={svgRef}
                           >
                             {dataAllCitiesMap?.map((land, index) => (
                               <g className="land" key={index} id={land.svgPathId} onClick={() => handleZoomToLand(index)}>
@@ -359,13 +342,6 @@ const Places = ({ dataAllCitiesMap,
                                     </div>
                                   </foreignObject>
                                 )}
-
-                                {land.id !== router.query.id && (
-                                  <text text-anchor="middle" alignment-baseline="middle" fill="red">
-                                    <tspan>{land.name}</tspan>
-                                  </text>
-                                )}
-
                               </g>
                             ))}
                           </svg>

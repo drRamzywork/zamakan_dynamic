@@ -205,10 +205,11 @@
             margin-bottom: 24px;
             h3 {
               margin-bottom: 8px !important;
+              font-family: var(--effra-font) !important;
             }
             .desc {
               p {
-                font-family: var(--effra-bold);
+                font-family: var(--effra-font) !important;
                 font-size: 16px;
                 font-weight: 400;
                 line-height: 22px;
@@ -220,7 +221,7 @@
                 margin-right: 8px;
                 span {
                   color: rgba(187, 113, 101, 1);
-                  font-family: var(--effra-bold);
+                  font-family: var(--effra-font) !important;
                   font-size: 20px;
                   font-weight: 700;
                   line-height: 24px;

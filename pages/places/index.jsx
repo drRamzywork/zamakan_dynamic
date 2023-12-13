@@ -169,23 +169,6 @@ const Places = ({ dataAllCitiesMap,
   }, [popUpRef]);
 
 
-  const svgRef = useRef(null);
-  useEffect(() => {
-    if (svgRef.current) {
-      const lands = svgRef.current.querySelectorAll('.land');
-      lands.forEach(land => {
-        const bbox = land.getBBox();
-        const centerX = bbox.x + bbox.width / 1.9;
-        const centerY = bbox.y + bbox.height / 1.7;
-
-        const text = land.querySelector('text');
-        text.setAttribute('x', centerX);
-        text.setAttribute('y', centerY);
-
-      });
-    }
-  }, [dataAllCitiesMap]);
-
 
 
   return (
@@ -314,7 +297,6 @@ const Places = ({ dataAllCitiesMap,
                     return (
                       <>
                         <TransformComponent>
-
                           <xml version="1.0" encoding="UTF-8" standalone="no" />
                           <svg
                             id="svg1"
@@ -324,14 +306,11 @@ const Places = ({ dataAllCitiesMap,
                             xmlns="http://www.w3.org/2000/svg"
                             className={`${isSafari ? "saudi-map safari" : "saudi-map"}`}
                             viewBox="90 90 758 624"
-                            ref={svgRef}
                           >
                             {dataAllCitiesMap?.map((land, index) => (
                               <g className="land" key={index} id={land.svgPathId} onClick={() => handleZoomToLand(index)}>
                                 {convertSVGPathsToJSX(land.svgPath)}
-                                <text text-anchor="middle" alignment-baseline="middle" fill="red">
-                                  <tspan>{land.name}</tspan>
-                                </text>
+
                               </g>
                             ))}
                           </svg>
