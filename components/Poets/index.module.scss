@@ -267,21 +267,25 @@ section.Poets {
   display: flex;
   margin-left: 20px;
   foreignObject {
-    width: 20px;
-    height: 20px;
+    width: 20px !important;
+    height: 20px !important;
     border-radius: 50%;
     background-color: var(--main-blue-color);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 
-    &.active {
-      background-color: #713540;
-      animation: heartbeat 2s infinite;
-      transform: scale(1.2);
+    @media screen and (max-width: 450px) {
     }
   }
 
   .city_point {
+    &.active {
+      background-color: #713540;
+      animation: heartbeat 2s infinite !important;
+      // transform: scale(1.2);
+      width: 25px !important;
+      height: 25px !important;
+    }
   }
 
   @media screen and (max-width: 450px) {

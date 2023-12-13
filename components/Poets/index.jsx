@@ -109,7 +109,11 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
 
 
 
+  const handlePlaceActive = async (placeId) => {
+    setActiveCity(placeId);
 
+    setIsCityLoading(false)
+  };
 
   const handlePoetData = async (poetID) => {
     const resPoetPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?poet=${poetID}&lang=2&pagenum=1&pagesize=50`);
@@ -264,11 +268,12 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                   ))}
                   {
                     places?.map((place, index) =>
-                      <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}
-                        onClick={() => handlePlaceWindow(place.id)}
+                      <foreignObject x={place.svgX} y={place.svgY} width="25" height="25" id="1" key={place.id}
+                        onClick={() => handlePlaceActive(place.id)}
                         className={`${styles.city_point} ${activeCity === place.id ? `${styles.active} 'active' ` : ''}`}
 
                       >
+
                         <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
                           <div id="p1">
 
@@ -332,7 +337,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
             </div>
 
             {places !== null &&
-              <ErasPlacesSlider places={places} activeCity={activeCity} />
+              <ErasPlacesSlider places={places} activeCity={activeCity} onPlaceClick={handlePlaceWindow} />
             }
 
           </motion.div>

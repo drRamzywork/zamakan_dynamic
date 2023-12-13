@@ -1,15 +1,31 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import styles from './index.module.scss'
 import { Typography } from '@mui/material';
 
-const ErasPlacesSlider = ({ places, activeCity }) => {
-  console.log(activeCity, "activeCity")
+const ErasPlacesSlider = ({ places, activeCity, onPlaceClick }) => {
+  const swiperRef = useRef(null);
+
+  useEffect(() => {
+    if (activeCity != null && swiperRef.current) {
+      const index = places.findIndex(city => city.id === activeCity);
+      if (index !== -1) {
+        swiperRef.current.swiper.slideTo(index);
+      }
+    }
+  }, [activeCity, places]);
+
+
+  console.log(places, "placesssss")
+
+  const filteredPlaces = places.filter(place => place.svgX !== null && place.svgY !== null);
+
   return (
     <>
       <div className={styles.swiper_container}>
         <Swiper
+          ref={swiperRef}
           breakpoints={{
             300: {
               slidesPerView: 2.8,
@@ -28,21 +44,19 @@ const ErasPlacesSlider = ({ places, activeCity }) => {
               spaceBetween: 11,
             },
             640: {
-              slidesPerView: 4,
+              slidesPerView: 2.5,
               spaceBetween: 10,
             },
             768: {
-              slidesPerView: 6,
+              slidesPerView: 2.5,
               spaceBetween: 10,
             },
-            1024: {
-              slidesPerView: 4.5,
-              spaceBetween: 24,
-
+            1204: {
+              slidesPerView: 3.5,
+              spaceBetween: 16,
             },
+
           }}
-          spaceBetween={24}
-          slidesPerView={3}
           dir={'rtl'}
           pagination={true} className="places-swiper">
 
@@ -60,9 +74,8 @@ const ErasPlacesSlider = ({ places, activeCity }) => {
             </SwiperSlide >
           )} */}
 
-          {console.log(activeCity, "activeCityactiveCity")}
-          {places?.map((city, index) =>
-            <SwiperSlide className={styles.places_container} key={city.id}>
+          {filteredPlaces?.map((city, index) =>
+            <SwiperSlide className={styles.places_container} key={city.id} onClick={() => onPlaceClick(city.id)}>
               <div className={`${styles.places} ${city.id === activeCity ? styles.active : ''}`} key={index} >
                 <div className={styles.img_container}>
                   <img src={city.icon} alt={city.name} />
