@@ -42,6 +42,11 @@
           height: 150px;
           border: 1px solid transparent;
           object-fit: fill;
+
+          @media screen and (max-width: 450px) {
+            width: 150px;
+            height: 100px;
+          }
         }
       }
       .name {

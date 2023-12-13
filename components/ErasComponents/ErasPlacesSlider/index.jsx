@@ -35,11 +35,11 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick }) => {
               spaceBetween: 10,
             },
             414: {
-              slidesPerView: 2.1,
+              slidesPerView: 2.5,
               spaceBetween: 11,
             },
             450: {
-              slidesPerView: 2.1,
+              slidesPerView: 2.5,
               spaceBetween: 11,
             },
             640: {
