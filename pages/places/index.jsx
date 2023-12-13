@@ -290,8 +290,6 @@ const Places = ({ dataAllCitiesMap,
                           >
                             {dataAllCitiesMap?.map((land, index) => (
                               <g className="land" key={index} id={land.svgPathId} onClick={() => handleZoomToLand(index)}>
-                                {convertSVGPathsToJSX(land.svgPath)}
-
                                 {activeIndex !== null &&
                                   land.places.map((place, index) =>
                                     <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
@@ -320,6 +318,8 @@ const Places = ({ dataAllCitiesMap,
                                     </foreignObject>
                                   )
                                 }
+                                {convertSVGPathsToJSX(land.svgPath)}
+
 
                               </g>
                             ))}
