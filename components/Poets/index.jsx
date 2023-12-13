@@ -174,12 +174,9 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                   },
                   1024: {
                     slidesPerView: 8.5,
-                    spaceBetween: 24,
-
+                    spaceBetween: 10,
                   },
                 }}
-                spaceBetween={24}
-                slidesPerView={8.5}
                 dir={'rtl'}
                 className={styles.swiper_container}
               >

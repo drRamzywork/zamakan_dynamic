@@ -17,14 +17,6 @@ const LiteraryEras = ({ erasAllEras }) => {
     left_branch,
     right_branch,
     horse,
-    pre_Islamic,
-    Islamic_era,
-    Abbasid_era,
-    Mamluk_era,
-    Umayyad_era,
-    modern_era
-
-
   } = imgs
 
 
@@ -128,8 +120,6 @@ const LiteraryEras = ({ erasAllEras }) => {
                 spaceBetween: 24,
               },
             }}
-            slidesPerView={4.5}
-            spaceBetween={24}
 
             pagination={true} className={"swiper"}>
             {erasAllEras?.map((era) => (
