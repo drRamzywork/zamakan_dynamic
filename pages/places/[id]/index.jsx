@@ -342,6 +342,9 @@ const Places = ({ dataAllCitiesMap,
                                   </foreignObject>
                                 )}
                               </g>
+
+
+
                             ))}
                           </svg>
                         </TransformComponent>
@@ -392,80 +395,7 @@ const Places = ({ dataAllCitiesMap,
                   )}
                 </AnimatePresence>
               </div >
-              {/* <div className={styles.text_container}>
-                <div className={styles.sec_title}>
-                  <Typography variant='h3'>
-                    أبرز ما قيل في   {cityId === null ? "المملكة" : cityId[0].name}
-                  </Typography>
-                </div>
 
-                <div className={styles.sec_info}>
-                  <div className={styles.inner_info}>
-                    <div className={styles.tag}>
-                      <Typography>
-                        {cityId === null ? "المملكة" : cityId[0].name}
-                      </Typography>
-                    </div>
-                    <div className={styles.desc}>
-                      <Typography>
-                        {dataPlacePoetry.length > 0 ? dataPlacePoetry[0]?.poetryParts :
-                          dataDefaultPlacePoetry[0].poetryParts
-                        }
-                      </Typography>
-                    </div>
-                    <hr />
-                    <div className={styles.poet_info}>
-                      <div className={styles.img_container}>
-                        <img src={dataPlacePoetry.length > 0 ? dataPlacePoetry[0]?.poetIcon :
-                          dataDefaultPlacePoetry[0].poetIcon
-                        } alt="" />
-                      </div>
-
-                      <div className={styles.text_container}>
-                        <Link href={`/poet/${dataPlacePoetry[0]?.poetId}`} className={styles.name}>
-                          <Typography>
-
-                            {dataPlacePoetry.length > 0 ? dataPlacePoetry[0]?.poetName :
-                              dataDefaultPlacePoetry[0].poetName
-                            }
-
-                          </Typography>
-                        </Link>
-                        <div className={styles.tag}>
-                          <Typography>
-                            {dataPlacePoetry.length > 0 ? dataPlacePoetry[0]?.zamanName :
-                              dataDefaultPlacePoetry[0].zamanName
-                            }
-                          </Typography>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className={styles.explore}>
-
-                  <div className={styles.sec_title}>
-                    <Typography variant='h3'>
-                      مناطق  {cityId === null ? "المملكة" : cityId[0].name}
-                    </Typography>
-                  </div>
-                  <div className={styles.tags_container}>
-                    {dataAllPlacesMap.map((city, idx) => (
-                      <Button key={idx}>
-                        <Link href={`/city/${city.id}`}>
-                          {city.name}
-                        </Link>
-                      </Button>
-                    ))}
-
-
-                  </div>
-                </div>
-
-
-              </div> */}
             </div>
           </motion.div>
         </section >

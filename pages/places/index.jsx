@@ -293,7 +293,6 @@ const Places = ({ dataAllCitiesMap,
                                 {convertSVGPathsToJSX(land.svgPath)}
 
                                 {activeIndex !== null &&
-
                                   land.places.map((place, index) =>
                                     <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
                                       <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">

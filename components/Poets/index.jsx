@@ -262,25 +262,28 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                   viewBox="90 90 758 624"
                 >
                   {dataAllCitiesMap?.map((land, index) => (
-                    <g className="land" key={index} id={land.svgPathId} >
+                    <g key={index} id={land.svgPathId} >
                       {convertSVGPathsToJSX(land.svgPath)}
+
+                      {activeIndex !== null &&
+                        places?.map((place, index) =>
+                          <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}
+                            onClick={() => handlePlaceActive(place.id)}
+                            className={`${styles.city_point} ${activeCity === place.id ? `${styles.active} 'active' ` : ''}`}
+
+                          >
+
+                            {/* <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
+                              <div id="p1">
+
+                              </div>
+                            </div> */}
+                          </foreignObject>
+                        )
+                      }
                     </g>
                   ))}
-                  {
-                    places?.map((place, index) =>
-                      <foreignObject x={place.svgX} y={place.svgY} width="25" height="25" id="1" key={place.id}
-                        onClick={() => handlePlaceActive(place.id)}
-                        className={`${styles.city_point} ${activeCity === place.id ? `${styles.active} 'active' ` : ''}`}
 
-                      >
-
-                        <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
-                          <div id="p1">
-
-                          </div>
-                        </div>
-                      </foreignObject>
-                    )}
                 </svg>
 
               </div >
