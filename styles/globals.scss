@@ -31,6 +31,8 @@ body {
   // user-select: red;
 }
 ::selection {
+  background-color: var(--main-beige-color);
+  color: var(--main-blue-color);
 }
 
 a {

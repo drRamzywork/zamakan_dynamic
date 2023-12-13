@@ -171,7 +171,6 @@ const Places = ({ dataAllCitiesMap,
 
 
 
-
   return (
 
     <>

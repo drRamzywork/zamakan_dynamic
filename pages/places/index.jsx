@@ -47,15 +47,7 @@ const Places = ({ dataAllCitiesMap,
 
   const resetTransformRef = useRef(null);
 
-  const handleBoxClick = (index) => {
-    const elementId = `land-${index}`;
-    if (transformComponentRef.current) {
-      const { zoomToElement } = transformComponentRef.current;
-      zoomToElement(elementId);
-    }
-    setActiveIndex(index); // Set the active index
-    seIsPointsActive(false)
-  };
+
 
   useEffect(() => {
     const dataIndex = document.querySelectorAll(`#land-${activeIndex}`)[0];
@@ -93,17 +85,6 @@ const Places = ({ dataAllCitiesMap,
     }
     setActiveIndex(landIndex);
     seIsPointsActive(false)
-
-    const scrollX = window.scrollX;
-    const scrollY = window.scrollY;
-
-    // Navigate to the new route
-    router.push(`/places/${landIndex}`).then(() => {
-      // Restore the scroll position
-      window.scrollTo(scrollX, scrollY);
-    });
-
-
   };
 
   const [cityData, setCityData] = useState(null)
@@ -168,7 +149,7 @@ const Places = ({ dataAllCitiesMap,
     };
   }, [popUpRef]);
 
-
+  console.log(dataAllCitiesMap[activeIndex], "dataAllCitiesMap")
 
 
   return (
@@ -186,7 +167,7 @@ const Places = ({ dataAllCitiesMap,
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <PageHeader />
+      <PageHeader dataAllCitiesMap={dataAllCitiesMap[activeIndex]} />
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
 
         < section id='Places' className={styles.Places} dir='rtl'>
@@ -259,15 +240,15 @@ const Places = ({ dataAllCitiesMap,
 
                 {dataAllCitiesMap?.map((city, index) =>
                   <SwiperSlide key={index}>
-                    <Link scroll={false}
-                      href={`/places/${city.id}`} className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
+                    {console.log(city.id, "activeIndexID")}
+                    <div className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       <div className={styles.img_container}>
                         <img src={city.icon} alt={city.name} />
                       </div>
                       <div className={styles.name}>
                         <Typography>{city.name}</Typography>
                       </div>
-                    </Link>
+                    </div>
 
                   </SwiperSlide >
                 )}
@@ -310,6 +291,36 @@ const Places = ({ dataAllCitiesMap,
                             {dataAllCitiesMap?.map((land, index) => (
                               <g className="land" key={index} id={land.svgPathId} onClick={() => handleZoomToLand(index)}>
                                 {convertSVGPathsToJSX(land.svgPath)}
+
+                                {activeIndex !== null &&
+
+                                  land.places.map((place, index) =>
+                                    <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
+                                      <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
+                                        <div onClick={() => handlePlaceWindow(place.id)}
+
+                                          className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
+
+                                          <div>
+                                            <p>{place.name}</p>
+                                            <svg
+                                              width="15"
+                                              height="6"
+                                              viewBox="0 0 15 6"
+                                              fill="none"
+                                              xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                              <path
+                                                d="M0.956299 0.882812H14.8405H12.9973C11.8578 0.882812 10.8162 1.52659 10.3066 2.54573L9.14027 4.87844C8.6286 5.90177 7.16825 5.90178 6.65658 4.87844L5.49023 2.54573C4.98065 1.52659 3.939 0.882812 2.79956 0.882812H0.956299Z"
+                                                fill="white"
+                                              />
+                                            </svg>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </foreignObject>
+                                  )
+                                }
 
                               </g>
                             ))}

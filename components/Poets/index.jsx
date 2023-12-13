@@ -10,6 +10,7 @@ import { LeftArrow, CloseIcon } from '@/assets/svgsComponents'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion';
 import PoetsSlider from '../PoetsSlider';
+import { ErasPlacesSlider } from '../ErasComponents';
 
 
 
@@ -56,6 +57,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
 
   const handleBoxClick = (poetID) => {
     setCityData(null);
+    setActiveCity(null)
     setActivePoet(poetID);
     setActiveIndex(poetID); // Set the active index
     seIsPointsActive(false)
@@ -122,6 +124,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
     function handleClickOutside(event) {
       if (popUpRef.current && !popUpRef.current.contains(event.target)) {
         setCityData(null);
+        setActiveCity(null)
       }
     }
 
@@ -139,7 +142,12 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
     <>
       < section id='Poets' className={styles.Poets} dir='rtl'>
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
-          <div className={styles.sec_container}>
+          <motion.div
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }}
+
+            className={styles.sec_container}>
             <div className={styles.sec_title}>
               <Typography variant='h3'>
                 شعراء العصر
@@ -256,27 +264,14 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                   ))}
                   {
                     places?.map((place, index) =>
-                      <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
+                      <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}
+                        onClick={() => handlePlaceWindow(place.id)}
+                        className={`${styles.city_point} ${activeCity === place.id ? `${styles.active} 'active' ` : ''}`}
+
+                      >
                         <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
-                          <div onClick={() => handlePlaceWindow(place.id)}
+                          <div id="p1">
 
-                            className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
-
-                            <div>
-                              <p>{place.name}</p>
-                              <svg
-                                width="15"
-                                height="6"
-                                viewBox="0 0 15 6"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M0.956299 0.882812H14.8405H12.9973C11.8578 0.882812 10.8162 1.52659 10.3066 2.54573L9.14027 4.87844C8.6286 5.90177 7.16825 5.90178 6.65658 4.87844L5.49023 2.54573C4.98065 1.52659 3.939 0.882812 2.79956 0.882812H0.956299Z"
-                                  fill="white"
-                                />
-                              </svg>
-                            </div>
                           </div>
                         </div>
                       </foreignObject>
@@ -322,7 +317,10 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
 
                       <PoetsSlider poetriesData={poetriesData} />
 
-                      <div className={styles.close_btn} onClick={() => setCityData(null)}>
+                      <div className={styles.close_btn} onClick={() => {
+                        setCityData(null)
+                        setActiveCity(null)
+                      }}>
                         <CloseIcon />
                       </div>
                     </div>
@@ -333,8 +331,11 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
 
             </div>
 
-          </div>
+            {places !== null &&
+              <ErasPlacesSlider places={places} activeCity={activeCity} />
+            }
 
+          </motion.div>
         </Container>
       </section >
 

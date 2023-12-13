@@ -266,6 +266,23 @@ section.Poets {
   margin-top: 60px;
   display: flex;
   margin-left: 20px;
+  foreignObject {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--main-blue-color);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &.active {
+      background-color: #713540;
+      animation: heartbeat 2s infinite;
+      transform: scale(1.2);
+    }
+  }
+
+  .city_point {
+  }
 
   @media screen and (max-width: 450px) {
     padding-top: 0;
@@ -395,5 +412,23 @@ section.Poets {
   }
   100% {
     transform: scale(1.1); /* Adjust scale as needed */
+  }
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
   }
 }
