@@ -263,7 +263,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                 >
                   {dataAllCitiesMap?.map((land, index) => (
                     <g key={index} id={land.svgPathId} >
-                      {convertSVGPathsToJSX(land.svgPath)}
 
                       {activeIndex !== null &&
                         places?.map((place, index) =>
@@ -276,6 +275,8 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                           </foreignObject>
                         )
                       }
+                      {convertSVGPathsToJSX(land.svgPath)}
+
                     </g>
                   ))}
 
