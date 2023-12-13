@@ -17,7 +17,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick }) => {
   }, [activeCity, places]);
 
 
-  console.log(places, "placesssss")
 
   const filteredPlaces = places.filter(place => place.svgX !== null && place.svgY !== null);
 
@@ -28,19 +27,19 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick }) => {
           ref={swiperRef}
           breakpoints={{
             300: {
-              slidesPerView: 2.8,
+              slidesPerView: 1.8,
               spaceBetween: 10,
             },
             400: {
-              slidesPerView: 3.2,
+              slidesPerView: 2.1,
               spaceBetween: 10,
             },
             414: {
-              slidesPerView: 3.4,
+              slidesPerView: 2.1,
               spaceBetween: 11,
             },
             450: {
-              slidesPerView: 3.4,
+              slidesPerView: 2.1,
               spaceBetween: 11,
             },
             640: {
@@ -59,20 +58,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick }) => {
           }}
           dir={'rtl'}
           pagination={true} className="places-swiper">
-
-          {/* {places?.map((city, index) =>
-            <SwiperSlide className={styles.places_container} key={city.id}>
-              <div className={`${styles.places} ${city.id === activeCity ? styles.active : ''}`} key={index} >
-                <div className={styles.img_container}>
-                  <img src={city.icon} alt={city.name} />
-                </div>
-                <div className={styles.name}>
-                  <Typography>{city.name}</Typography>
-                </div>
-              </div>
-
-            </SwiperSlide >
-          )} */}
 
           {filteredPlaces?.map((city, index) =>
             <SwiperSlide className={styles.places_container} key={city.id} onClick={() => onPlaceClick(city.id)}>

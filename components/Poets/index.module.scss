@@ -278,8 +278,6 @@ section.Poets {
   .city_point {
     &.active {
       background-color: #713540;
-      animation: heartbeat 2s infinite;
-      // transform: scale(1.2);
       width: 25px !important;
       height: 25px !important;
     }
