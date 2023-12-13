@@ -12,14 +12,20 @@
       align-items: center;
       justify-content: center;
       margin: 10px;
-      width: fit-content;
       cursor: pointer;
+
       &.active {
         .img_container {
           transform: scale(1.2);
-          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
           img {
-            border: 1px solid var(--main-blue-color);
+            border: 1px solid #713540;
+          }
+        }
+
+        .name {
+          margin-top: 24px;
+          p {
+            color: #713540;
           }
         }
       }

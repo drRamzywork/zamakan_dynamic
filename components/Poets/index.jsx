@@ -269,8 +269,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                           <foreignObject x={place.svgX} y={place.svgY} key={place.id}
                           >
                             <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
-                              <div onClick={() => handlePlaceWindow(place.id)}
-
+                              <div
                                 className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
 
                                 <div>
