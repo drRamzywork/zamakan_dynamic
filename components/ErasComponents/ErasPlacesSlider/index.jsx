@@ -58,7 +58,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick }) => {
           }}
           dir={'rtl'}
           pagination={true} className="places-swiper">
-
           {filteredPlaces?.map((city, index) =>
             <SwiperSlide className={styles.places_container} key={city.id} onClick={() => onPlaceClick(city.id)}>
               <div className={`${styles.places} ${city.id === activeCity ? styles.active : ''}`} key={index} >
@@ -71,8 +70,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick }) => {
               </div>
             </SwiperSlide>
           )}
-
-
         </Swiper>
       </div>
     </>

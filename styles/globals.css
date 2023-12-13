@@ -18,12 +18,12 @@
 
 html,
 body {
-  background-color: #f6f8fc;
+  background-color: rgb(238 228 184 / 25%) !important;
+  background: rgb(238 228 184 / 25%) !important;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: #f6f8fc;
 }
 
 a {
@@ -45,8 +45,8 @@ section h3 {
 #Poets,
 #Verses {
   -webkit-user-select: none !important;
-     -moz-user-select: none !important;
-          user-select: none !important;
+  -moz-user-select: none !important;
+  user-select: none !important;
 }
 #LiteraryEras .rtl.react-multiple-carousel__arrow--right,
 #Poets .rtl.react-multiple-carousel__arrow--right,
@@ -560,4 +560,4 @@ svg.saudi-map.safari .city-name > div {
 
 svg.saudi-map.safari .city-name > div:hover {
   margin-bottom: 10px;
-}/*# sourceMappingURL=globals.css.map */
+} /*# sourceMappingURL=globals.css.map */

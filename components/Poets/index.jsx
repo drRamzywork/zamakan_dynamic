@@ -82,13 +82,8 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
     ));
   };
 
-
-
-
   const [cityData, setCityData] = useState(null)
   const [poetriesData, setPoetriesData] = useState(null)
-
-
 
   const handlePlaceWindow = async (placeId) => {
     setActiveCity(placeId);
@@ -107,8 +102,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
     setIsCityLoading(false)
   };
 
-
-
   const handlePlaceActive = async (placeId) => {
     setActiveCity(placeId);
 
@@ -121,7 +114,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
 
     setPlaces(dataPoetPlaces)
   }
-
 
   const popUpRef = useRef(null);
   useEffect(() => {
@@ -140,7 +132,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [popUpRef]);
-
 
   return (
     <>
