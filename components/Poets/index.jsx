@@ -254,35 +254,34 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                 >
                   {dataAllCitiesMap?.map((land, index) => (
                     <g key={index} id={land.svgPathId} >
-
-                      {activeIndex !== null &&
-                        places?.map((place, index) =>
-                          <foreignObject x={place.svgX} y={place.svgY} key={place.id}
-                          >
-                            <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
-                              <div
-                                className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
-
-                                <div>
-
-                                  <div
-                                    onClick={() => handlePlaceActive(place.id)}
-                                    className={`${styles.city_point} ${activeCity === place.id ? `${styles.active} 'active' ` : ''}`}
-
-                                  ></div>
-
-                                </div>
-                              </div>
-                            </div>
-
-
-                          </foreignObject>
-                        )
-                      }
                       {convertSVGPathsToJSX(land.svgPath)}
-
                     </g>
+
                   ))}
+                  {activeIndex !== null &&
+                    places?.map((place, index) =>
+                      <foreignObject x={place.svgX} y={place.svgY} key={place.id}
+                      >
+                        <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
+                          <div
+                            className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
+
+                            <div>
+
+                              <div
+                                onClick={() => handlePlaceActive(place.id)}
+                                className={`${styles.city_point} ${activeCity === place.id ? `${styles.active} 'active' ` : ''}`}
+
+                              ></div>
+
+                            </div>
+                          </div>
+                        </div>
+
+
+                      </foreignObject>
+                    )
+                  }
 
                 </svg>
 

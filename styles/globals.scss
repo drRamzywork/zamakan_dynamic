@@ -23,11 +23,13 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background: rgb(238 228 184 / 25%) !important;
+  background-color: rgb(238 228 184 / 25%) !important;
 }
 
 body {
   // color: rgb(var(--foreground-rgb));
-  background-color: rgb(238 228 184 / 25%);
+  background-color: rgb(238 228 184 / 25%) !important;
   // user-select: red;
 }
 ::selection {
