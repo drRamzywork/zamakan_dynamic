@@ -268,10 +268,24 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                         places?.map((place, index) =>
                           <foreignObject x={place.svgX} y={place.svgY} key={place.id}
                           >
-                            <circle
-                              onClick={() => handlePlaceActive(place.id)}
-                              className={`${styles.city_point} ${activeCity === place.id ? `${styles.active} 'active' ` : ''}`}
-                            ></circle>
+                            <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
+                              <div onClick={() => handlePlaceWindow(place.id)}
+
+                                className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
+
+                                <div>
+
+                                  <div
+                                    onClick={() => handlePlaceActive(place.id)}
+                                    className={`${styles.city_point} ${activeCity === place.id ? `${styles.active} 'active' ` : ''}`}
+
+                                  ></div>
+
+                                </div>
+                              </div>
+                            </div>
+
+
                           </foreignObject>
                         )
                       }

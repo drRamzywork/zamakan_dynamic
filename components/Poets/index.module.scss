@@ -273,14 +273,12 @@ section.Poets {
     background-color: var(--main-blue-color);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    position: absolute !important;
-    z-index: 222222222;
   }
 
   .city_point {
     &.active {
       background-color: #713540;
-      // animation: heartbeat 2s infinite;
+      animation: heartbeat 2s infinite;
       // transform: scale(1.2);
       width: 25px !important;
       height: 25px !important;
