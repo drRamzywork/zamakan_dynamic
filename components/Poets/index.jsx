@@ -266,12 +266,12 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
 
                       {activeIndex !== null &&
                         places?.map((place, index) =>
-                          <foreignObject x={place.svgX} y={place.svgY} width="25" height="25" id="1" key={place.id}
-                            onClick={() => handlePlaceActive(place.id)}
-                            className={`${styles.city_point} ${activeCity === place.id ? `${styles.active} 'active' ` : ''}`}
-
+                          <foreignObject x={place.svgX} y={place.svgY} key={place.id}
                           >
-
+                            <circle
+                              onClick={() => handlePlaceActive(place.id)}
+                              className={`${styles.city_point} ${activeCity === place.id ? `${styles.active} 'active' ` : ''}`}
+                            ></circle>
                           </foreignObject>
                         )
                       }
