@@ -258,13 +258,14 @@
   .search_icon_mobile,
   .lang {
     cursor: pointer;
+    background-color: transparent;
 
     border: 0.8px solid #11292f;
     width: 48px;
     height: 48px;
     display: flex;
     border-radius: 50%;
-    transform: 0.3s ease-in-out !important;
+    transition: all 0.3s ease-in-out !important;
     min-width: inherit !important;
 
     @media screen and (max-width: 992px) {

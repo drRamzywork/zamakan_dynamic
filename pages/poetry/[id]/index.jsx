@@ -93,50 +93,14 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
 
                     </div>
                   </SwiperSlide>
-
-
-                  <SwiperSlide>
-                    <div className={styles.box}>
-                      <div className={styles.content_container}>
-
-                        <div className={styles.img_container}>
-                          <img src={Feather_big.src} alt="" />
-                        </div>
-                        <div className={styles.text_container}>
-                          <Typography>مقيم على  <span>بنبان</span>    يمنع ماءه</Typography>
-                          <span>... </span>
-                          <Typography>وماء وشيع ماء عطشان مرمل</Typography>
-                        </div>
-                      </div>
-
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className={styles.box}>
-                      <div className={styles.content_container}>
-
-                        <div className={styles.img_container}>
-                          <img src={Feather_big.src} alt="" />
-                        </div>
-                        <div className={styles.text_container}>
-                          <Typography>مقيم على  <span>بنبان</span>    يمنع ماءه</Typography>
-                          <span>... </span>
-                          <Typography>وماء وشيع ماء عطشان مرمل</Typography>
-                        </div>
-                      </div>
-
-                    </div>
-                  </SwiperSlide>
-
-
-
                 </Swiper>
-                <Box className={styles.prevbtn} id={styles.swiperbtn}>
+
+                {/* <Box className={styles.prevbtn} id={styles.swiperbtn}>
                   <RightArrow />
                 </Box>
                 <Box className={styles.nextbtn} id={styles.swiperbtn}>
                   <RightArrow />
-                </Box>
+                </Box> */}
 
 
                 {/* {prevId && (
@@ -329,7 +293,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                   </ul>
 
 
-                  <div className={styles.imgs_container}>
+                  {/* <div className={styles.imgs_container}>
                     <div className={styles.img_container}>
                       <img src={dataPlace?.icon} alt="" />
                     </div>
@@ -339,7 +303,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                     <div className={styles.img_container}>
                       <img src={dataPlace?.icon} alt="" />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div >
             </div>
