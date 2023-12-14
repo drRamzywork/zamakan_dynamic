@@ -13,13 +13,12 @@
     height: 48px;
     display: flex;
     border-radius: 50%;
-    transform: 0.3s ease-in-out !important;
+    // transition: all 0.3s ease-in-out ;
     min-width: inherit !important;
     img {
       margin: auto;
     }
 
-    transition: all 0.3s ease-in-out;
     svg {
       path {
         stroke: var(--main-white-color);
@@ -78,9 +77,11 @@
           display: block;
           border-radius: 30px;
 
-          &:hover {
-            color: var(--main-white-color);
-            background-color: var(--main-red-color);
+          @media screen and (min-width: 992px) {
+            &:hover {
+              color: var(--main-white-color);
+              background-color: var(--main-red-color);
+            }
           }
         }
       }
@@ -120,12 +121,12 @@
       path,
       line {
         stroke: var(--main-white-color);
-        transition: all 0.3s ease-in-out;
+        // transition: all 0.3s ease-in-out;
       }
     }
 
     color: var(--main-white-color);
-    transition: all 0.3s ease-in-out;
+    // transition: all 0.3s ease-in-out;
 
     &:hover {
       background-color: var(--main-white-color);
@@ -140,14 +141,10 @@
 
   .logo {
     cursor: pointer;
-    // width: 180px;
-    // height: 100%;
-    // margin-right: 180px;
     margin-right: auto !important;
     margin-left: auto;
 
     @media screen and (max-width: 450px) {
-      // width: 60px;
       height: 60px;
     }
 
@@ -179,12 +176,12 @@
         path,
         line {
           stroke: var(--main-white-color);
-          transition: all 0.3s ease-in-out;
+          // transition: all 0.3s ease-in-out;
         }
       }
 
       color: var(--main-white-color);
-      transition: all 0.3s ease-in-out;
+      // transition: all 0.3s ease-in-out;
 
       &:hover {
         background-color: var(--main-white-color);
@@ -266,7 +263,7 @@
     height: 48px;
     display: flex;
     border-radius: 50%;
-    transition: all 0.3s ease-in-out !important;
+    // transition: all 0.3s ease-in-out !important;
     min-width: inherit !important;
 
     @media screen and (max-width: 992px) {
