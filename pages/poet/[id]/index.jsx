@@ -274,56 +274,63 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                           </div>
                         </div>
 
-                        <section className={styles.timelineSection}>
-                          <div className={styles.sec_title}>
-                            <Typography variant='h3'>ما يتميز به الشاعر:</Typography>
-                          </div>
 
-                          <div className={styles.sec_container}>
-                            <div className={styles.desc}>
-                              <Typography>
-                                {dataPoet.specialist}
-                              </Typography>
-                            </div>
-                          </div>
-                        </section>
-
-                        <section className={styles.timelineSection}>
-                          <div className={styles.sec_title}>
-                            <Typography variant='h3'>ما اشتهر به الشاعر:</Typography>
-                          </div>
-
-                          <div className={styles.sec_container}>
-                            <div className={styles.desc}>
-                              <Typography>
-                                {dataPoet.storySayEvent}
-                              </Typography>
-                            </div>
-                          </div>
-                        </section>
-                      </motion.div>
-
+                      </div>
                     </div>
+                  </section>
+
+
+
+                  <section className={styles.timelineSection}>
+                    <div className={styles.sec_title}>
+                      <Typography variant='h3'>ما يتميز به الشاعر:</Typography>
+                    </div>
+
+                    <div className={styles.sec_container}>
+                      <div className={styles.desc}>
+                        <Typography>
+                          {dataPoet.specialist}
+                        </Typography>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section className={styles.timelineSection}>
+                    <div className={styles.sec_title}>
+                      <Typography variant='h3'>ما اشتهر به الشاعر:</Typography>
+                    </div>
+
+                    <div className={styles.sec_container}>
+                      <div className={styles.desc}>
+                        <Typography>
+                          {dataPoet.storySayEvent}
+                        </Typography>
+                      </div>
+                    </div>
+                  </section>
+                </motion.div>
+
+              </div>
             )}
-                    {activeIndex === 0 && (
-                      <div
-                        className={styles.tabContent_container} dir='rtl'>
-                        <motion.div
-                          animate={{ opacity: 1 }}
-                          initial={{ opacity: 0 }}
-                          transition={{ duration: 1, }}
-                        >
-                          <section className={styles.timelineSection}>
-                            <div className={styles.slider_container}>
-                              <div className={styles.filter_sec}>
-                                <div className={styles.shows}>
-                                  <Typography dir='ltr'>
-                                    <span>{results.length}</span> يتم عرض <span>{results.length}</span> من
-                                  </Typography>
-                                </div>
-                                <div className={styles.filter_methods}>
-                                  <div className={styles.box}>
-                                    {/* <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            {activeIndex === 0 && (
+              <div
+                className={styles.tabContent_container} dir='rtl'>
+                <motion.div
+                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 1, }}
+                >
+                  <section className={styles.timelineSection}>
+                    <div className={styles.slider_container}>
+                      <div className={styles.filter_sec}>
+                        <div className={styles.shows}>
+                          <Typography dir='ltr'>
+                            <span>{results.length}</span> يتم عرض <span>{results.length}</span> من
+                          </Typography>
+                        </div>
+                        <div className={styles.filter_methods}>
+                          <div className={styles.box}>
+                            {/* <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
                             <Select
                               labelId="demo-select-small-label"
                               id="demo-select-small"
@@ -340,87 +347,87 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                               ))}
                             </Select>
                           </FormControl> */}
-                                  </div>
-                                  <div className={styles.box}>
-                                    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                                      <Select
-                                        labelId="demo-select-small-label"
-                                        id="demo-select-small"
-                                        value={age}
-                                        sx={selectBoxStyles}
-                                        onChange={handleChange}
-                                        IconComponent={CustomArrowIcon}
+                          </div>
+                          <div className={styles.box}>
+                            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+                              <Select
+                                labelId="demo-select-small-label"
+                                id="demo-select-small"
+                                value={age}
+                                sx={selectBoxStyles}
+                                onChange={handleChange}
+                                IconComponent={CustomArrowIcon}
 
-                                      >
-                                        <MenuItem value={0}>المملكة</MenuItem>
-                                        {dataPlaces?.map((place, index) => (
-                                          <MenuItem key={place.id} value={place.id}>
-                                            {place.name}
-                                          </MenuItem>
-                                        ))}
+                              >
+                                <MenuItem value={0}>المملكة</MenuItem>
+                                {dataPlaces?.map((place, index) => (
+                                  <MenuItem key={place.id} value={place.id}>
+                                    {place.name}
+                                  </MenuItem>
+                                ))}
 
-                                      </Select>
-                                    </FormControl>
-                                  </div>
-                                </div>
-
-                              </div>
-                              <div className="slider">
-                                <SliderVerses results={results} />
-                              </div>
-                            </div>
-                          </section>
-                        </motion.div>
+                              </Select>
+                            </FormControl>
+                          </div>
+                        </div>
 
                       </div>
-                    )}
-                  </div>
-                </Container >
-              </motion.div>
+                      <div className="slider">
+                        <SliderVerses results={results} />
+                      </div>
+                    </div>
+                  </section>
+                </motion.div>
+
+              </div>
+            )}
+          </div>
+        </Container >
+      </motion.div>
 
     </>
 
-          );
+  );
 }
 
 
-          export async function getStaticProps(context) {
-  const {id} = context.params;
+export async function getStaticProps(context) {
+  const { id } = context.params;
 
-          const resPoet = await fetch(`https://api4z.suwa.io/api/Poets/GetPoetFullData?id=${id}&lang=2`);
-          const dataPoet = await resPoet.json();
+  const resPoet = await fetch(`https://api4z.suwa.io/api/Poets/GetPoetFullData?id=${id}&lang=2`);
+  const dataPoet = await resPoet.json();
 
-          const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${id}&lang=2&pagenum=1&pagesize=50`);
-          const dataPoetry = await resPoetry.json();
+  const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${id}&lang=2&pagenum=1&pagesize=50`);
+  const dataPoetry = await resPoetry.json();
 
-          const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
-          const dataAllEras = await resAllEras.json();
+  const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
+  const dataAllEras = await resAllEras.json();
 
-          const resPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&poet=${id}&lang=2&pagenum=1&pagesize=50`);
-          const dataPlaces = await resPlaces.json();
+  const resPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&poet=${id}&lang=2&pagenum=1&pagesize=50`);
+  const dataPlaces = await resPlaces.json();
 
-          return {
-            props: {
-            dataPoet,
-            dataPoetry,
-            dataAllEras,
-            dataPlaces
-          },
-          revalidate: 10
+  return {
+    props: {
+      dataPoet,
+      dataPoetry,
+      dataAllEras,
+      dataPlaces
+    },
+    revalidate: 10
   };
 }
 
 
-          export async function getStaticPaths() {
+export async function getStaticPaths() {
   const response = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoetsIds`);
-          const placeIds = await response.json();
+  const placeIds = await response.json();
 
   const paths = placeIds.map((id) => ({
-            params: {id: id.toString() },
+    params: { id: id.toString() },
   }));
-          return {
-            paths,
-            fallback: 'blocking'
+  return {
+    paths,
+    fallback: 'blocking'
   };
 }
 
