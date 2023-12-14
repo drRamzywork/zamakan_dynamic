@@ -123,7 +123,7 @@ const Navbar = (props) => {
               ref={navMenuRef}
 
             >
-              <button className={styles.burger_icon} onClick={() => setNavMenu(!navMenu)}>
+              <div className={styles.burger_icon} onClick={() => setNavMenu(!navMenu)}>
                 <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   {/* Top line */}
                   <motion.path
@@ -153,7 +153,7 @@ const Navbar = (props) => {
                     animate={navMenu ? "cross" : "burger"}
                   />
                 </svg>
-              </button>
+              </div>
               {navMenu &&
                 <motion.div
                   initial="closed"
@@ -203,9 +203,9 @@ const Navbar = (props) => {
 
 
               <div className={styles.discover}>
-                <button className={styles.search_icon}>
+                <div className={styles.search_icon}>
                   <Search />
-                </button>
+                </div>
 
                 {/* <Button className={styles.lang}>
                   EN
