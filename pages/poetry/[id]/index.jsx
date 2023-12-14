@@ -28,7 +28,7 @@ const Poetry = ({ ids, dataPoetry, dataPlace, additionalData }) => {
   // const [beforeDots, afterDots] = dataPoetry?.poetryParts?.split('...')
   const [beforeDots, afterDots] = (dataPoetry?.poetryParts || '').split('...');
 
-  const currentIndex = ids.findIndex(item => item.id === dataPoetry.id);
+  // const currentIndex = ids.findIndex(item => item.id === dataPoetry.id);
 
   // // Check if currentIndex is found and not the first item
   // const prevId = currentIndex > 0 ? ids[currentIndex - 1].id : null;
