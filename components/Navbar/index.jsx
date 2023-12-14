@@ -22,15 +22,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 //     </Slide>
 //   );
 // }
-
 function HideOnScroll(props) {
-  const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-  });
+  const { children } = props;
+  const trigger = useScrollTrigger();
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
@@ -38,6 +32,8 @@ function HideOnScroll(props) {
     </Slide>
   );
 }
+
+
 
 
 
@@ -122,63 +118,62 @@ const Navbar = (props) => {
         <AppBar style={{
           background: `#062a30`,
         }} elevation={0} >
-          <Toolbar>
-            <Container sx={{ maxWidth: "1400px" }} maxWidth={false} dir='rtl' className={styles.navbar}>
-              <div className={styles.sec_container}
-                ref={navMenuRef}
+          <Container sx={{ maxWidth: "1400px" }} maxWidth={false} dir='rtl' className={styles.navbar}>
+            <div className={styles.sec_container}
+              ref={navMenuRef}
 
-              >
-                <button className={styles.burger_icon} onClick={() => setNavMenu(!navMenu)}>
-                  <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    {/* Top line */}
-                    <motion.path
-                      d="M1.39014 1H17.3901"
-                      stroke="#11292F"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      variants={lineVariants}
-                      animate={navMenu ? "cross" : "burger"}
-                    />
-                    {/* Middle line */}
-                    <motion.path
-                      d="M1.39014 7H17.3901"
-                      stroke="#11292F"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      variants={middleLineVariants}
-                      animate={navMenu ? "cross" : "burger"}
-                    />
-                    {/* Bottom line */}
-                    <motion.path
-                      d="M1.39014 13H17.3901"
-                      stroke="#11292F"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      variants={bottomLineVariants}
-                      animate={navMenu ? "cross" : "burger"}
-                    />
-                  </svg>
-                </button>
-                {navMenu &&
-                  <motion.div
-                    initial="closed"
-                    animate={navMenu ? "open" : "closed"}
-                    variants={variants}
-                    transition={{ duration: 0.5, type: "tween" }}
-                    className={styles.nav_menu_container}
-                  >
-                    <div className={styles.links} onClick={() => setNavMenu(false)}>
-                      <div className={styles.link}>
-                        <a href='/literary-eras'>زمان الشعر</a>
-                      </div>
-                      <div className={styles.link}>
-                        <a href='/places'>مكان الشعر</a>
-                      </div>
-                      <div className={styles.link}>
-                        <a href='/poets'>الشعراء </a>
-                      </div>
+            >
+              <button className={styles.burger_icon} onClick={() => setNavMenu(!navMenu)}>
+                <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Top line */}
+                  <motion.path
+                    d="M1.39014 1H17.3901"
+                    stroke="#11292F"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    variants={lineVariants}
+                    animate={navMenu ? "cross" : "burger"}
+                  />
+                  {/* Middle line */}
+                  <motion.path
+                    d="M1.39014 7H17.3901"
+                    stroke="#11292F"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    variants={middleLineVariants}
+                    animate={navMenu ? "cross" : "burger"}
+                  />
+                  {/* Bottom line */}
+                  <motion.path
+                    d="M1.39014 13H17.3901"
+                    stroke="#11292F"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    variants={bottomLineVariants}
+                    animate={navMenu ? "cross" : "burger"}
+                  />
+                </svg>
+              </button>
+              {navMenu &&
+                <motion.div
+                  initial="closed"
+                  animate={navMenu ? "open" : "closed"}
+                  variants={variants}
+                  transition={{ duration: 0.5, type: "tween" }}
+                  className={styles.nav_menu_container}
+                >
+                  <div className={styles.links} onClick={() => setNavMenu(false)}>
+                    <div className={styles.link}>
+                      <a href='/literary-eras'>زمان الشعر</a>
                     </div>
-                    {/* <div className={styles.soical_links} onClick={() => setNavMenu(false)}>
+                    <div className={styles.link}>
+                      <a href='/places'>مكان الشعر</a>
+                    </div>
+                    <div className={styles.link}>
+                      <a href='/poets'>الشعراء </a>
+                    </div>
+                  </div>
+                  {/* <div className={styles.soical_links} onClick={() => setNavMenu(false)}>
                     <Link href='https://www.twitter.com'>
                       <Twitter />
                     </Link>
@@ -195,38 +190,38 @@ const Navbar = (props) => {
                       <Youtube />
                     </Link>
                   </div> */}
-                  </motion.div>
-                }
+                </motion.div>
+              }
 
-                <button className={styles.search_icon_mobile}>
+              <button className={styles.search_icon_mobile}>
+                <Search />
+              </button>
+
+              <a className={styles.logo} href={'/'}>
+                <img src={Logo.src} alt="" />
+              </a>
+
+
+              <div className={styles.discover}>
+
+                <button className={styles.search_icon}>
                   <Search />
                 </button>
 
-                <a className={styles.logo} href={'/'}>
-                  <img src={Logo.src} alt="" />
-                </a>
-
-
-                <div className={styles.discover}>
-
-                  <button className={styles.search_icon}>
-                    <Search />
-                  </button>
-
-                  {/* <Button className={styles.lang}>
+                {/* <Button className={styles.lang}>
                   EN
                 </Button> */}
 
-                  {/* <Link href='/poets' className={styles.btn_container}>
+                {/* <Link href='/poets' className={styles.btn_container}>
                   <Button>استكشف الشعراء</Button>
                 </Link> */}
-                </div>
-
               </div>
-            </Container>
-          </Toolbar>
+
+            </div>
+          </Container>
         </AppBar>
       </HideOnScroll>
+      <Toolbar />
     </>
   );
 };
