@@ -135,7 +135,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
 
   return (
     <>
-      < section id='Poets' className={styles.Poets} dir='rtl'>
+      <section id='Poets' className={styles.Poets} dir='rtl'>
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
           <motion.div
             animate={{ opacity: 1 }}
