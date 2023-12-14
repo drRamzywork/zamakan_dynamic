@@ -3,8 +3,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
 
   .burger_icon {
     cursor: pointer;
@@ -41,7 +41,7 @@
     position: absolute;
     top: 120px;
     right: 0%;
-    width: 100%;
+    width: 90vw;
     height: 528px;
     z-index: -122;
     display: flex;

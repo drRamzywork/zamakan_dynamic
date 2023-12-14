@@ -136,6 +136,10 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
   return (
     <>
       <section id='Poets' className={styles.Poets} dir='rtl'>
+        {cityData && (
+          <div className={styles.layer} />
+        )}
+
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
           <motion.div
             animate={{ opacity: 1 }}
@@ -293,47 +297,52 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
 
               <AnimatePresence >
                 {cityData && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -50 }}
-                    transition={{ duration: 0.5 }}
-                    className={styles.custom_box}
-                    dir='rtl'
-                    ref={popUpRef}
+                  <>
+                    <motion.div
+                      initial={{ opacity: 0, y: -50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -50 }}
+                      transition={{ duration: 0.5 }}
+                      className={styles.custom_box}
+                      dir='rtl'
+                      ref={popUpRef}
 
-                  >
-                    <div className={styles.box_container}>
-                      <div className={styles.box_header}>
-                        <div className={styles.img_container}>
-                          <img src={cityData.icon} alt={""} />
+                    >
 
-                        </div>
-                        <div className={styles.title}>
-                          <h3>{cityData?.name}</h3>
+                      <div className={styles.box_container}>
+                        <div className={styles.box_header}>
+                          <div className={styles.img_container}>
+                            <img src={cityData.icon} alt={""} />
 
-                          <div className={styles.desc}>
-                            <p>
-                              {cityData?.descriptionShort}
-                              <Link href={`/city/${cityData?.id}`} className={styles.more}>
-                                <span>المزيد عن {cityData?.name}</span>
-                                <LeftArrow />
-                              </Link>
-                            </p>
+                          </div>
+                          <div className={styles.title}>
+                            <h3>{cityData?.name}</h3>
+
+                            <div className={styles.desc}>
+                              <p>
+                                {cityData?.descriptionShort}
+                                <Link href={`/city/${cityData?.id}`} className={styles.more}>
+                                  <span>المزيد عن {cityData?.name}</span>
+                                  <LeftArrow />
+                                </Link>
+                              </p>
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      <PoetsSlider poetriesData={poetriesData} />
+                        <PoetsSlider poetriesData={poetriesData} />
 
-                      <div className={styles.close_btn} onClick={() => {
-                        setCityData(null)
-                        setActiveCity(null)
-                      }}>
-                        <CloseIcon />
+                        <div className={styles.close_btn} onClick={() => {
+                          setCityData(null)
+                          setActiveCity(null)
+                        }}>
+                          <CloseIcon />
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+
+                  </>
+
                 )}
               </AnimatePresence>
 

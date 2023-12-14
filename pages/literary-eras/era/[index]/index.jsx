@@ -3,7 +3,7 @@ import LiteraryBanner from '@/components/LiteraryBanner'
 import Poets from '@/components/Poets'
 import Head from 'next/head';
 import { motion } from 'framer-motion';
-
+import styles from '../../index.module.scss'
 const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAllCitiesMap }) => {
 
 
@@ -26,6 +26,7 @@ const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAl
         initial={{ opacity: 0 }}
         transition={{ duration: 1, }}
       >
+
 
         <LiteraryBanner eraDetails={eraDetails} dataAllEras={dataAllEras} />
         <Poets dataPoetsByEra={dataPoetsByEra} dataAllCitiesMap={dataAllCitiesMap} dataAllPlacesMap={dataAllPlacesMap} />

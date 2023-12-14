@@ -38,8 +38,8 @@ const Navbar = (props) => {
 
 
   const variants = {
-    open: { opacity: 1, y: 0 },
-    closed: { opacity: 0, y: "100%" },
+    open: { opacity: 1, x: 0 },
+    closed: { opacity: 0, x: "100%" },
   };
 
 
@@ -100,14 +100,38 @@ const Navbar = (props) => {
     <>
       <CssBaseline />
       <HideOnScroll {...props}>
-        <AppBar style={{
+
+        <AppBar className={styles.navbarHeader} style={{
           background: `#062a30`,
         }} elevation={0} >
+
           <Container sx={{ maxWidth: "1400px" }} maxWidth={false} dir='rtl' className={styles.navbar}>
             <div className={styles.sec_container}
-              ref={navMenuRef}
+              ref={navMenuRef}>
+              {navMenu &&
+                <motion.div
+                  initial="closed"
+                  animate={navMenu ? "open" : "closed"}
+                  variants={variants}
+                  transition={{ duration: 0.5, type: "tween" }}
+                  className={styles.nav_menu_container}
+                >
+                  <div className={styles.links} onClick={() => setNavMenu(false)}>
+                    <div className={styles.link}>
+                      <a href='/literary-eras'>زمان الشعر</a>
+                    </div>
+                    <div className={styles.link}>
+                      <a href='/places'>مكان الشعر</a>
+                    </div>
+                    <div className={styles.link}>
+                      <a href='/poets'>الشعراء </a>
+                    </div>
+                  </div>
 
-            >
+                </motion.div>
+              }
+
+
               <div className={styles.burger_icon} onClick={() => setNavMenu(!navMenu)}>
                 <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                   {/* Top line */}
@@ -139,28 +163,7 @@ const Navbar = (props) => {
                   />
                 </svg>
               </div>
-              {/* {navMenu &&
-                <motion.div
-                  initial="closed"
-                  animate={navMenu ? "open" : "closed"}
-                  variants={variants}
-                  transition={{ duration: 0.5, type: "tween" }}
-                  className={styles.nav_menu_container}
-                >
-                  <div className={styles.links} onClick={() => setNavMenu(false)}>
-                    <div className={styles.link}>
-                      <a href='/literary-eras'>زمان الشعر</a>
-                    </div>
-                    <div className={styles.link}>
-                      <a href='/places'>مكان الشعر</a>
-                    </div>
-                    <div className={styles.link}>
-                      <a href='/poets'>الشعراء </a>
-                    </div>
-                  </div>
 
-                </motion.div>
-              } */}
 
 
               <a className={styles.logo} href={'/'}>
@@ -176,9 +179,11 @@ const Navbar = (props) => {
 
             </div>
           </Container>
+
         </AppBar>
       </HideOnScroll>
       <Toolbar />
+
     </>
   );
 };
