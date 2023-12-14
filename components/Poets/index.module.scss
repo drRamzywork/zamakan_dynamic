@@ -266,20 +266,31 @@ section.Poets {
   margin-top: 60px;
   display: flex;
   margin-left: 20px;
+
   .city_point {
     width: 20px !important;
     height: 20px !important;
     border-radius: 50%;
-    background-color: var(--main-blue-color);
+    background-color: #3d553f;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
   }
 
   .city_point {
     &.active {
-      background-color: #713540;
+      background-color: #e6ddc6;
       width: 25px !important;
       height: 25px !important;
+    }
+  }
+
+  .icon_container {
+    transform: translate(1px, 17px);
+
+    svg {
+      color: #713540;
+      width: 30px;
+      height: 30px;
     }
   }
 

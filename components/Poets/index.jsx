@@ -11,7 +11,7 @@ import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion';
 import PoetsSlider from '../PoetsSlider';
 import { ErasPlacesSlider } from '../ErasComponents';
-
+import { MdLocationPin } from "react-icons/md";
 
 
 const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
@@ -253,7 +253,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                     <g key={index} id={land.svgPathId} >
                       {convertSVGPathsToJSX(land.svgPath)}
                     </g>
-
                   ))}
                   {activeIndex !== null &&
                     places?.map((place, index) =>
@@ -262,14 +261,21 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                         <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
                           <div
                             className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
-
                             <div>
+                              {activeCity === place.id
+                                &&
+                                <div className={styles.icon_container}>
+                                  <MdLocationPin />
 
+                                </div>
+                              }
                               <div
                                 onClick={() => handlePlaceActive(place.id)}
                                 className={`${styles.city_point} ${activeCity === place.id ? `${styles.active} 'active' ` : ''}`}
 
-                              ></div>
+                              >
+
+                              </div>
 
                             </div>
                           </div>

@@ -311,14 +311,14 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                           <Typography>المدينة المنورة</Typography>
                         </div>
                       </div> */}
-                        <div className={styles.box}>
+                        {/* <div className={styles.box}>
                           <div className={styles.title}>
                             <Typography>عمره عند الوفاة</Typography>
                           </div>
                           <div className={styles.name}>
                             <Typography>79 عام</Typography>
                           </div>
-                        </div>
+                        </div> */}
 
                       </div>
                     </div>

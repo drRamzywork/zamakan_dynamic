@@ -302,7 +302,6 @@
       overflow: hidden;
       box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4392156863);
       border: 3px solid #ffffff;
-
       transition: all 0.3s ease-in-out;
       background-color: var(--main-beige-color);
 
@@ -337,6 +336,7 @@
         }
       }
     }
+
     .name {
       margin-top: 28px;
       @media screen and (max-width: 450px) {
@@ -364,6 +364,7 @@
       }
     }
   }
+
   .slider.active {
     .img_container {
       transform: scale(1.1);
