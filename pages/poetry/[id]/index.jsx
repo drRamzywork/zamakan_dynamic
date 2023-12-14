@@ -20,7 +20,7 @@ import Slider from '@/components/PoetryPageComponents/Slider'
 import Head from 'next/head';
 import { motion } from 'framer-motion';
 
-const Poetry = ({ ids, dataPoetry, dataPlace, additionalData }) => {
+const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
   const { Feather_big, } = imgs;
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -467,11 +467,6 @@ export async function getStaticProps({ params }) {
     };
   }
 }
-
-
-
-
-
 
 export async function getStaticPaths() {
   const response = await fetch('https://api4z.suwa.io/api/Poetries/GetAllPoetriesIds');
