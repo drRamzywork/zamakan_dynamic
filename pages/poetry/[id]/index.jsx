@@ -1,5 +1,5 @@
 import { Box, Container, Link, Typography } from '@mui/material'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import imgs from '../../../assets/constants/imgs';
 import { Navigation, } from 'swiper/modules';
 
@@ -20,18 +20,19 @@ import Slider from '@/components/PoetryPageComponents/Slider'
 import Head from 'next/head';
 import { motion } from 'framer-motion';
 
-const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
-  const { ra3y, Feather_big, place } = imgs;
+const Poetry = ({ ids, dataPoetry, dataPlace, additionalData }) => {
+  const { Feather_big, } = imgs;
   const prevRef = useRef(null);
   const nextRef = useRef(null);
-  const [beforeDots, afterDots] = dataPoetry?.poetryParts?.split('...')
-  const adjustImageUrl = (imageUrl) => {
-    if (imageUrl?.startsWith('https')) {
-      return imageUrl;
-    } else {
-      return `https://zamakan.suwa.io${imageUrl}`;
-    }
-  };
+
+  // const [beforeDots, afterDots] = dataPoetry?.poetryParts?.split('...')
+  const [beforeDots, afterDots] = (dataPoetry?.poetryParts || '').split('...');
+
+  const currentIndex = ids.findIndex(item => item.id === dataPoetry.id);
+
+  // Check if currentIndex is found and not the first item
+  const prevId = currentIndex > 0 ? ids[currentIndex - 1].id : null;
+  const nextId = currentIndex < ids.length - 1 ? ids[currentIndex + 1].id : null;
 
   return (
     <>
@@ -130,28 +131,45 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
 
 
                 </Swiper>
-                <Box className={styles.prevbtn} id={styles.swiperbtn}>
+                {/* <Box className={styles.prevbtn} id={styles.swiperbtn}>
                   <RightArrow />
                 </Box>
                 <Box className={styles.nextbtn} id={styles.swiperbtn}>
                   <RightArrow />
-                </Box>
+                </Box> */}
+
+
+                {prevId && (
+                  <Link href={`/poetry/${prevId}`} passHref>
+                    <Box className={styles.prevbtn} id={styles.swiperbtn}>
+                      <RightArrow />
+                    </Box>
+                  </Link>
+                )}
+                {nextId && (
+                  <Link href={`/poetry/${nextId}`} passHref>
+                    <Box className={styles.nextbtn} id={styles.swiperbtn}>
+                      <RightArrow />
+                    </Box>
+                  </Link>
+                )}
+
               </div>
               <hr />
-              <Link href={`/poet/${dataPoetry.poetId}`} className={styles.poet_info}>
+              <Link href={`/poet/${dataPoetry?.poetId}`} className={styles.poet_info}>
                 <div className={styles.img_container}>
-                  <img src={dataPoetry.poetIcon} alt={dataPoetry.poetName} />
+                  <img src={dataPoetry?.poetIcon} alt={dataPoetry?.poetName} />
                 </div>
                 <div className={styles.text_container}>
                   <div className={styles.name}>
                     <Typography>
-                      {dataPoetry.poetName}
+                      {dataPoetry?.poetName}
                     </Typography>
 
                   </div>
                   <div className={styles.tag}>
                     <Typography>
-                      {dataPoetry.zamanName}
+                      {dataPoetry?.zamanName}
                     </Typography>
                   </div>
                 </div>
@@ -174,7 +192,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                           <Typography >العصر الأدبي </Typography>
                         </div>
                         <div className={styles.name}>
-                          <Typography>{dataPoetry.zamanName}</Typography>
+                          <Typography>{dataPoetry?.zamanName}</Typography>
                         </div>
                       </div>
                       {/* <div className={styles.box}>
@@ -190,7 +208,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                           <Typography>المكان المذكور ببيت الشعر</Typography>
                         </div>
                         <div className={styles.name}>
-                          <Typography>{dataPoetry.placeName}</Typography>
+                          <Typography>{dataPoetry?.placeName}</Typography>
                         </div>
                       </div>
                     </div>
@@ -203,7 +221,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                   <div className={styles.sec_container}>
                     <div className={styles.desc}>
                       <Typography>
-                        {dataPoetry.entrance}
+                        {dataPoetry?.entrance}
                       </Typography>
                     </div>
                   </div>
@@ -216,7 +234,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                   <div className={styles.sec_container}>
                     <div className={styles.desc}>
                       <Typography>
-                        {dataPoetry.meaning}
+                        {dataPoetry?.meaning}
                       </Typography>
                     </div>
                   </div>
@@ -231,7 +249,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                   <div className={styles.sec_container}>
                     <div className={styles.desc}>
                       <Typography>
-                        {dataPoetry.reason}
+                        {dataPoetry?.reason}
                       </Typography>
                     </div>
                   </div>
@@ -245,7 +263,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                 <div className={styles.container}>
                   <Link href={`/city/${dataPlace?.id}`} className={styles.sec_title}>
                     <Typography variant='h3'>
-                      {dataPoetry.placeName}
+                      {dataPoetry?.placeName}
                     </Typography>
                   </Link>
                   <div className={styles.desc}>
@@ -313,13 +331,13 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
 
                   <div className={styles.imgs_container}>
                     <div className={styles.img_container}>
-                      <img src={dataPlace.icon} alt="" />
+                      <img src={dataPlace?.icon} alt="" />
                     </div>
                     <div className={styles.img_container}>
-                      <img src={dataPlace.icon} alt="" />
+                      <img src={dataPlace?.icon} alt="" />
                     </div>
                     <div className={styles.img_container}>
-                      <img src={dataPlace.icon} alt="" />
+                      <img src={dataPlace?.icon} alt="" />
                     </div>
                   </div>
                 </div>
@@ -341,11 +359,70 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
 
 export default Poetry
 
-export async function getServerSideProps(context) {
-  const { id } = context.query;
+// export async function getServerSideProps(context) {
+//   const { id } = context.query;
 
+
+//   try {
+//     // Fetch data from the poetry API
+//     const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetPoetryFullData?id=${id}&lang=2`);
+//     if (!resPoetry.ok) {
+//       throw new Error(`Error fetching poetry data: ${resPoetry.status}`);
+//     }
+//     const dataPoetry = await resPoetry.json();
+
+//     let dataPlace = null;
+//     let additionalData = null;  // Initialize additional data
+
+//     // Check if placeId is available
+//     if (dataPoetry?.placeId) {
+//       // Second API request using placeId
+
+//       const resPlace = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${dataPoetry?.placeId}&lang=2`);
+//       if (!resPlace.ok) {
+//         throw new Error(`Error fetching place data: ${resPlace.status}`);
+//       }
+//       dataPlace = await resPlace.json();
+
+//       // Third API request using placeId
+//       const resAdditional = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${dataPoetry?.placeId}&lang=2&pagenum=1&pagesize=50`);
+//       if (!resAdditional.ok) {
+//         throw new Error(`Error fetching additional data: ${resAdditional.status}`);
+//       }
+//       additionalData = await resAdditional.json();
+//     }
+
+//     return {
+//       props: {
+//         dataPoetry,
+//         dataPlace,
+//         additionalData,
+//       },
+//     };
+//   } catch (error) {
+//     console.error(error);
+//     return {
+//       props: {
+//         error: error.message,
+//       },
+//     };
+//   }
+// }
+
+export async function getStaticProps({ params }) {
+  const { id } = params;
 
   try {
+
+    const response = await fetch('https://api4z.suwa.io/api/Poetries/GetAllPoetriesIds');
+
+    if (!response.ok) {
+      throw new Error(`API call failed: ${response.status}`);
+    }
+
+    const ids = await response.json();
+
+
     // Fetch data from the poetry API
     const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetPoetryFullData?id=${id}&lang=2`);
     if (!resPoetry.ok) {
@@ -357,17 +434,16 @@ export async function getServerSideProps(context) {
     let additionalData = null;  // Initialize additional data
 
     // Check if placeId is available
-    if (dataPoetry.placeId) {
+    if (dataPoetry?.placeId) {
       // Second API request using placeId
-
-      const resPlace = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${dataPoetry.placeId}&lang=2`);
+      const resPlace = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${dataPoetry?.placeId}&lang=2`);
       if (!resPlace.ok) {
         throw new Error(`Error fetching place data: ${resPlace.status}`);
       }
       dataPlace = await resPlace.json();
 
       // Third API request using placeId
-      const resAdditional = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${dataPoetry.placeId}&lang=2&pagenum=1&pagesize=50`);
+      const resAdditional = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${dataPoetry?.placeId}&lang=2&pagenum=1&pagesize=50`);
       if (!resAdditional.ok) {
         throw new Error(`Error fetching additional data: ${resAdditional.status}`);
       }
@@ -379,6 +455,7 @@ export async function getServerSideProps(context) {
         dataPoetry,
         dataPlace,
         additionalData,
+        ids
       },
     };
   } catch (error) {
@@ -389,4 +466,26 @@ export async function getServerSideProps(context) {
       },
     };
   }
+}
+
+
+
+
+
+
+export async function getStaticPaths() {
+  const response = await fetch('https://api4z.suwa.io/api/Poetries/GetAllPoetriesIds');
+
+  if (!response.ok) {
+    throw new Error(`API call failed: ${response.status}`);
+  }
+
+  const ids = await response.json();
+
+  // Generate the paths
+  const paths = ids.map(id => ({
+    params: { id: id.toString() },
+  }));
+
+  return { paths, fallback: 'blocking' };
 }

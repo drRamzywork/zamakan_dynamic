@@ -20,8 +20,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick }) => {
       const index = filteredPlaces.findIndex(city => city.id === activeCity);
       if (index !== -1) {
         swiperRef.current.swiper.slideTo(index);
-        console.log(swiperRef.current.swiper.activeIndex, 'activeIndex')
-        console.log(index, 'indexxx')
       }
     }
   }, [activeCity, places]);

@@ -149,7 +149,6 @@ const Places = ({ dataAllCitiesMap,
     };
   }, [popUpRef]);
 
-  console.log(dataAllCitiesMap[activeIndex], "dataAllCitiesMap")
 
 
   return (
@@ -240,7 +239,7 @@ const Places = ({ dataAllCitiesMap,
 
                 {dataAllCitiesMap?.map((city, index) =>
                   <SwiperSlide key={index}>
-                    {console.log(city.id, "activeIndexID")}
+
                     <div className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       <div className={styles.img_container}>
                         <img src={city.icon} alt={city.name} />
