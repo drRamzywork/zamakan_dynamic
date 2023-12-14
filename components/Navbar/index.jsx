@@ -193,9 +193,9 @@ const Navbar = (props) => {
                 </motion.div>
               }
 
-              <button className={styles.search_icon_mobile}>
+              {/* <button className={styles.search_icon_mobile}>
                 <Search />
-              </button>
+              </button> */}
 
               <a className={styles.logo} href={'/'}>
                 <img src={Logo.src} alt="" />
@@ -203,7 +203,6 @@ const Navbar = (props) => {
 
 
               <div className={styles.discover}>
-
                 <button className={styles.search_icon}>
                   <Search />
                 </button>
@@ -214,7 +213,7 @@ const Navbar = (props) => {
 
                 {/* <Link href='/poets' className={styles.btn_container}>
                   <Button>استكشف الشعراء</Button>
-                </Link> */}
+                </Link>  */}
               </div>
 
             </div>
