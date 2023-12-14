@@ -109,26 +109,31 @@ const Navbar = (props) => {
             <div className={styles.sec_container}
               ref={navMenuRef}>
               {navMenu &&
-                <motion.div
-                  initial="closed"
-                  animate={navMenu ? "open" : "closed"}
-                  variants={variants}
-                  transition={{ duration: 0.5, type: "tween" }}
-                  className={styles.nav_menu_container}
-                >
-                  <div className={styles.links} onClick={() => setNavMenu(false)}>
-                    <div className={styles.link}>
-                      <a href='/literary-eras'>زمان الشعر</a>
-                    </div>
-                    <div className={styles.link}>
-                      <a href='/places'>مكان الشعر</a>
-                    </div>
-                    <div className={styles.link}>
-                      <a href='/poets'>الشعراء </a>
-                    </div>
-                  </div>
+                <>
+                  <div className={styles.layer} />
 
-                </motion.div>
+                  <motion.div
+                    initial="closed"
+                    animate={navMenu ? "open" : "closed"}
+                    variants={variants}
+                    transition={{ duration: 0.5, type: "tween" }}
+                    className={styles.nav_menu_container}
+                  >
+                    <div className={styles.links} onClick={() => setNavMenu(false)}>
+                      <div className={styles.link}>
+                        <a href='/literary-eras'>زمان الشعر</a>
+                      </div>
+                      <div className={styles.link}>
+                        <a href='/places'>مكان الشعر</a>
+                      </div>
+                      <div className={styles.link}>
+                        <a href='/poets'>الشعراء </a>
+                      </div>
+                    </div>
+
+                  </motion.div>
+                </>
+
               }
 
 

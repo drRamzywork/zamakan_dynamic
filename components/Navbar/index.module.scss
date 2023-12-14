@@ -49,14 +49,17 @@
     flex-direction: column;
     justify-content: center;
     background-color: #e6ddc6;
+    border-radius: 16px;
+
     @media screen and (max-width: 450px) {
       border-radius: 0;
       top: 80px;
       // height: 100vh;
     }
     .links {
+      width: 100%;
       .link {
-        min-width: 394px;
+        // min-width: 394px;
         padding-bottom: 34px;
         padding-top: 34px;
         text-align: center;
