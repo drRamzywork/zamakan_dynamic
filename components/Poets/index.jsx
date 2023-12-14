@@ -342,7 +342,9 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
             </div>
 
             {places !== null &&
-              <ErasPlacesSlider places={places} activeCity={activeCity} onPlaceClick={handlePlaceWindow} />
+              <ErasPlacesSlider places={places}
+                setActiveCity={setActiveCity}
+                activeCity={activeCity} onPlaceClick={handlePlaceWindow} />
             }
 
           </motion.div>

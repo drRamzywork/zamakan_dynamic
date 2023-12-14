@@ -293,17 +293,17 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                   </ul>
 
 
-                  {/* <div className={styles.imgs_container}>
+                  <div className={styles.imgs_container}>
                     <div className={styles.img_container}>
+                      <img src={dataPlace?.icon} alt="" />
+                    </div>
+                    {/* <div className={styles.img_container}>
                       <img src={dataPlace?.icon} alt="" />
                     </div>
                     <div className={styles.img_container}>
                       <img src={dataPlace?.icon} alt="" />
-                    </div>
-                    <div className={styles.img_container}>
-                      <img src={dataPlace?.icon} alt="" />
-                    </div>
-                  </div> */}
+                    </div> */}
+                  </div>
                 </div>
               </div >
             </div>
