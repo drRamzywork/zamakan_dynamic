@@ -180,11 +180,11 @@ const Places = ({ dataAllCitiesMap,
               <Swiper
                 breakpoints={{
                   300: {
-                    slidesPerView: 2.8,
+                    slidesPerView: 3.4,
                     spaceBetween: 10,
                   },
                   400: {
-                    slidesPerView: 3.2,
+                    slidesPerView: 3.4,
                     spaceBetween: 10,
                   },
                   414: {
@@ -251,7 +251,6 @@ const Places = ({ dataAllCitiesMap,
 
                   </SwiperSlide >
                 )}
-
               </Swiper>
             </div>
 
@@ -273,7 +272,6 @@ const Places = ({ dataAllCitiesMap,
 
                   {({ zoomIn, zoomOut, resetTransform }) => {
                     resetTransformRef.current = resetTransform;
-
                     return (
                       <>
                         <TransformComponent>
@@ -436,6 +434,7 @@ const Places = ({ dataAllCitiesMap,
               </div> */}
 
             </div>
+
           </motion.div>
         </section >
       </Container>
