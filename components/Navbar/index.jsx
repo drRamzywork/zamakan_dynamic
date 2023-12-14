@@ -110,7 +110,6 @@ const Navbar = (props) => {
               ref={navMenuRef}>
               {navMenu &&
                 <>
-                  <div className={styles.layer} />
 
                   <motion.div
                     initial="closed"

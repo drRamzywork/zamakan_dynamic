@@ -1,22 +1,20 @@
 import { Container, Typography, Button } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
-import localFont from 'next/font/local'
 import styles from './index.module.scss'
 import imgs from '../../assets/constants/imgs';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import Svg from '../SVGParts/Svg'
-import { LeftArrow, CloseIcon } from '@/assets/svgsComponents'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion';
 import PoetsSlider from '../PoetsSlider';
 import { ErasPlacesSlider } from '../ErasComponents';
 import { MdLocationPin } from "react-icons/md";
+import { CloseIcon, LeftArrow } from '@/assets/svgsComponents';
 
 
-const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
+const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
+  , setIsLayerActive }) => {
   const [activePoet, setActivePoet] = useState(null);
-  const { ra3y1, smallCity } = imgs;
 
   const [activeCity, setActiveCity] = useState(null);
 
@@ -57,6 +55,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
 
   const handleBoxClick = (poetID) => {
     setCityData(null);
+    setIsLayerActive(false)
     setActiveCity(null)
     setActivePoet(poetID);
     setActiveIndex(poetID); // Set the active index
@@ -95,6 +94,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
       const { cityData, poetryData } = await response.json();
 
       setCityData(cityData);
+      setIsLayerActive(true)
       setPoetriesData(poetryData);
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -120,6 +120,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
     function handleClickOutside(event) {
       if (popUpRef.current && !popUpRef.current.contains(event.target)) {
         setCityData(null);
+        setIsLayerActive(false)
         setActiveCity(null)
       }
     }
@@ -136,9 +137,9 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
   return (
     <>
       <section id='Poets' className={styles.Poets} dir='rtl'>
-        {cityData && (
+        {/* {cityData && (
           <div className={styles.layer} />
-        )}
+        )} */}
 
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
           <motion.div
@@ -334,6 +335,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
 
                         <div className={styles.close_btn} onClick={() => {
                           setCityData(null)
+                          setIsLayerActive(false)
                           setActiveCity(null)
                         }}>
                           <CloseIcon />

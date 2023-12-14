@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LiteraryBanner from '@/components/LiteraryBanner'
 import Poets from '@/components/Poets'
 import Head from 'next/head';
 import { motion } from 'framer-motion';
 import styles from '../../index.module.scss'
 const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAllCitiesMap }) => {
-
-
+  const [isLayerActive, setIsLayerActive] = useState(false);
+  console.log(isLayerActive, "layer")
 
   return (
     <>
@@ -25,11 +25,15 @@ const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAl
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
         transition={{ duration: 1, }}
+        className={styles.layer_wrap}
       >
-
+        {isLayerActive && (
+          <div className={styles.layer} />
+        )}
 
         <LiteraryBanner eraDetails={eraDetails} dataAllEras={dataAllEras} />
-        <Poets dataPoetsByEra={dataPoetsByEra} dataAllCitiesMap={dataAllCitiesMap} dataAllPlacesMap={dataAllPlacesMap} />
+        <Poets isLayerActive={isLayerActive}
+          setIsLayerActive={setIsLayerActive} dataPoetsByEra={dataPoetsByEra} dataAllCitiesMap={dataAllCitiesMap} dataAllPlacesMap={dataAllPlacesMap} />
       </motion.div>
 
     </>

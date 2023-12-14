@@ -257,3 +257,18 @@ section.LiteraryEras {
     }
   }
 }
+
+.layer_wrap {
+  position: relative;
+  // z-index: 22222;
+  .layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(16, 1, 1, 0.099);
+    // background-color: red;
+    z-index: 1;
+  }
+}
