@@ -1,30 +1,43 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+
 import styles from './index.module.scss'
 import { Typography } from '@mui/material';
+
 
 const ErasPlacesSlider = ({ places, activeCity, onPlaceClick }) => {
   const swiperRef = useRef(null);
 
+  const filteredPlaces = places.filter(place => place.svgX !== null && place.svgY !== null);
+
+
+
   useEffect(() => {
     if (activeCity != null && swiperRef.current) {
-      const index = places.findIndex(city => city.id === activeCity);
+      const index = filteredPlaces.findIndex(city => city.id === activeCity);
       if (index !== -1) {
         swiperRef.current.swiper.slideTo(index);
+        console.log(swiperRef.current.swiper.activeIndex, 'activeIndex')
+        console.log(index, 'indexxx')
       }
     }
   }, [activeCity, places]);
 
 
 
-  const filteredPlaces = places.filter(place => place.svgX !== null && place.svgY !== null);
+
+
 
   return (
     <>
       <div className={styles.swiper_container}>
         <Swiper
           ref={swiperRef}
+          centeredSlides={true}
+
           breakpoints={{
             300: {
               slidesPerView: 1.8,
@@ -57,7 +70,7 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick }) => {
 
           }}
           dir={'rtl'}
-          pagination={true} className="places-swiper">
+          className="places-swiper">
           {filteredPlaces?.map((city, index) =>
             <SwiperSlide className={styles.places_container} key={city.id} onClick={() => onPlaceClick(city.id)}>
               <div className={`${styles.places} ${city.id === activeCity ? styles.active : ''}`} key={index} >

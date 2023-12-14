@@ -2,7 +2,6 @@
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import localFont from 'next/font/local'
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const Effra = localFont({
   src: [
@@ -52,7 +51,6 @@ export default function Layout({ children }) {
       <main style={combinedStyles}>
         {/* {children?.filter(str => str != ';')} */}
         {children}
-        <SpeedInsights />
       </main >
       <Footer />
     </>
