@@ -303,7 +303,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                     ref={popUpRef}
 
                   >
-
                     <div className={styles.box_container}>
                       <div className={styles.box_header}>
                         <div className={styles.img_container}>
@@ -334,7 +333,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                         <CloseIcon />
                       </div>
                     </div>
-
                   </motion.div>
                 )}
               </AnimatePresence>

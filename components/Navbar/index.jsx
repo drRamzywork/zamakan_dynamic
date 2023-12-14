@@ -102,7 +102,7 @@ const Navbar = (props) => {
 
   return (
     <>
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <HideOnScroll {...props}>
         <AppBar style={{
           background: `#062a30`,
@@ -164,22 +164,22 @@ const Navbar = (props) => {
                     </div>
                   </div>
                   {/* <div className={styles.soical_links} onClick={() => setNavMenu(false)}>
-                  <Link href='https://www.twitter.com'>
-                    <Twitter />
-                  </Link>
+                    <Link href='https://www.twitter.com'>
+                      <Twitter />
+                    </Link>
 
-                  <Link href='https://www.instagram.com'>
-                    <Instagram />
-                  </Link>
+                    <Link href='https://www.instagram.com'>
+                      <Instagram />
+                    </Link>
 
-                  <Link href='https://www.linkedIn.com'>
-                    <LinkedIn />
-                  </Link>
+                    <Link href='https://www.linkedIn.com'>
+                      <LinkedIn />
+                    </Link>
 
-                  <Link href='https://www.youtube.com'>
-                    <Youtube />
-                  </Link>
-                </div> */}
+                    <Link href='https://www.youtube.com'>
+                      <Youtube />
+                    </Link>
+                  </div> */}
                 </motion.div>
               }
 
@@ -199,19 +199,19 @@ const Navbar = (props) => {
                 </button>
 
                 {/* <Button className={styles.lang}>
-                EN
-              </Button> */}
+                  EN
+                </Button> */}
 
                 {/* <Link href='/poets' className={styles.btn_container}>
-                <Button>استكشف الشعراء</Button>
-              </Link> */}
+                  <Button>استكشف الشعراء</Button>
+                </Link> */}
               </div>
 
             </div>
           </Container>
         </AppBar>
       </HideOnScroll>
-      <Toolbar />
+      {/* <Toolbar /> */}
 
     </>
   );

@@ -9,7 +9,6 @@ import { Typography } from '@mui/material';
 
 const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) => {
   const swiperRef = useRef(null);
-  const [localActiveCity, setLocalActiveCity] = useState(null);
 
   const filteredPlaces = places.filter(place => place.svgX !== null && place.svgY !== null);
 
@@ -32,7 +31,7 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
     const swiper = swiperRef.current.swiper;
     const newIndex = swiper.realIndex;
     const newActiveCity = filteredPlaces[newIndex].id;
-    setActiveCity(newActiveCity); // Use the function passed from the parent component
+    setActiveCity(newActiveCity);
   };
 
 
