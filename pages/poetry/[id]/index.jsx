@@ -30,9 +30,9 @@ const Poetry = ({ ids, dataPoetry, dataPlace, additionalData }) => {
 
   const currentIndex = ids.findIndex(item => item.id === dataPoetry.id);
 
-  // Check if currentIndex is found and not the first item
-  const prevId = currentIndex > 0 ? ids[currentIndex - 1].id : null;
-  const nextId = currentIndex < ids.length - 1 ? ids[currentIndex + 1].id : null;
+  // // Check if currentIndex is found and not the first item
+  // const prevId = currentIndex > 0 ? ids[currentIndex - 1].id : null;
+  // const nextId = currentIndex < ids.length - 1 ? ids[currentIndex + 1].id : null;
 
   return (
     <>
@@ -131,15 +131,15 @@ const Poetry = ({ ids, dataPoetry, dataPlace, additionalData }) => {
 
 
                 </Swiper>
-                {/* <Box className={styles.prevbtn} id={styles.swiperbtn}>
+                <Box className={styles.prevbtn} id={styles.swiperbtn}>
                   <RightArrow />
                 </Box>
                 <Box className={styles.nextbtn} id={styles.swiperbtn}>
                   <RightArrow />
-                </Box> */}
+                </Box>
 
 
-                {prevId && (
+                {/* {prevId && (
                   <Link href={`/poetry/${prevId}`} passHref>
                     <Box className={styles.prevbtn} id={styles.swiperbtn}>
                       <RightArrow />
@@ -152,7 +152,7 @@ const Poetry = ({ ids, dataPoetry, dataPlace, additionalData }) => {
                       <RightArrow />
                     </Box>
                   </Link>
-                )}
+                )} */}
 
               </div>
               <hr />
