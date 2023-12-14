@@ -261,7 +261,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap }) => {
                         <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
                           <div
                             className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
-                            <div>
+                            <div className={styles.wrapper}>
                               {activeCity === place.id
                                 &&
                                 <div className={styles.icon_container}>

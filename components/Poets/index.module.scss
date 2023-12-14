@@ -267,6 +267,10 @@ section.Poets {
   display: flex;
   margin-left: 20px;
 
+  .wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+  }
   .city_point {
     width: 20px !important;
     height: 20px !important;
@@ -285,7 +289,10 @@ section.Poets {
   }
 
   .icon_container {
-    transform: translate(1px, 17px);
+    // transform: translate(1px, 17px);
+    // margin-bottom: -8px;
+    margin-left: -27px;
+    margin-top: -22px;
 
     svg {
       color: #713540;
