@@ -3,25 +3,12 @@ import styles from './index.module.scss'
 import { useScrollTrigger, Slide, AppBar, Toolbar, Button, Container, Typography } from '@mui/material';
 import { Search, } from '../../assets/svgsComponents';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { imgs } from '@/assets/constants';
-import Image from 'next/image';
 import CssBaseline from '@mui/material/CssBaseline';
 
 
-// function HideOnScroll(props) {
-//   const { children, window } = props;
-//   const trigger = useScrollTrigger({
-//     target: window ? window() : undefined,
-//   });
 
-//   return (
-//     <Slide appear={false} direction="down" in={!trigger}>
-//       {children}
-//     </Slide>
-//   );
-// }
 function HideOnScroll(props) {
   const { children } = props;
   const trigger = useScrollTrigger();
@@ -73,7 +60,6 @@ const Navbar = (props) => {
     },
   };
 
-  // Animation for the middle line disappearing
   const middleLineVariants = {
     burger: {
       opacity: 1,
@@ -83,7 +69,6 @@ const Navbar = (props) => {
     },
   };
 
-  // Animation for the bottom line in SVG
   const bottomLineVariants = {
     burger: {
       rotate: 0,
@@ -154,7 +139,7 @@ const Navbar = (props) => {
                   />
                 </svg>
               </div>
-              {navMenu &&
+              {/* {navMenu &&
                 <motion.div
                   initial="closed"
                   animate={navMenu ? "open" : "closed"}
@@ -173,29 +158,10 @@ const Navbar = (props) => {
                       <a href='/poets'>الشعراء </a>
                     </div>
                   </div>
-                  {/* <div className={styles.soical_links} onClick={() => setNavMenu(false)}>
-                    <Link href='https://www.twitter.com'>
-                      <Twitter />
-                    </Link>
 
-                    <Link href='https://www.instagram.com'>
-                      <Instagram />
-                    </Link>
-
-                    <Link href='https://www.linkedIn.com'>
-                      <LinkedIn />
-                    </Link>
-
-                    <Link href='https://www.youtube.com'>
-                      <Youtube />
-                    </Link>
-                  </div> */}
                 </motion.div>
-              }
+              } */}
 
-              {/* <button className={styles.search_icon_mobile}>
-                <Search />
-              </button> */}
 
               <a className={styles.logo} href={'/'}>
                 <img src={Logo.src} alt="" />
@@ -206,14 +172,6 @@ const Navbar = (props) => {
                 <div className={styles.search_icon}>
                   <Search />
                 </div>
-
-                {/* <Button className={styles.lang}>
-                  EN
-                </Button> */}
-
-                {/* <Link href='/poets' className={styles.btn_container}>
-                  <Button>استكشف الشعراء</Button>
-                </Link>  */}
               </div>
 
             </div>
