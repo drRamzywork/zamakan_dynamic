@@ -58,7 +58,6 @@ const LiteraryEras = ({ erasAllEras }) => {
             <div className={styles.sec_title}>
               <Typography variant='h1'>
                 استكشف الشعراء
-
                 <br />
                 <span>
                   عبر العصور

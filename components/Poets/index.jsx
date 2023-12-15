@@ -146,12 +146,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
             transition={{ duration: 1, }}
 
             className={styles.sec_container}>
-            <div className={styles.sec_title}>
-              <Typography variant='h3'>
-                شعراء العصر
-              </Typography>
-            </div>
-
             <div className={styles.tags_slider} id='carosuel'>
               <Swiper
                 breakpoints={{
@@ -207,19 +201,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
 
             {activePoet !== null &&
               <div className={styles.poetInfo}>
-                <div className={styles.title}>
-                  <Typography variant='h3'>
-                    {dataPoetsByEra[activePoet]?.name}
-                  </Typography>
-                  {
-                    dataPoetsByEra[activePoet]?.nickname !== null &&
-                    <div className={styles.tag}>
-                      <Typography>
-                        {dataPoetsByEra[activePoet]?.nickname}
-                      </Typography>
-                    </div>
-                  }
-                </div>
+
 
                 <div className={styles.desc}>
                   <Typography>

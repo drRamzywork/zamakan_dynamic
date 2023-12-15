@@ -33,6 +33,15 @@ const LiteraryBanner = (props) => {
     <>
       <section id='LiteraryBanner' className={styles.LiteraryBanner} >
         <div className={styles.sec_container}>
+
+          <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className={styles.leftSide}>
+            <div className={styles.sec_title}>
+              <Typography variant='h1'>
+                شعراء العصر
+
+              </Typography>
+            </div>
+          </Container>
           <div className={styles.imags_container}>
             <div className={styles.right_branch}>
               <img src={right_branch.src} alt="" />

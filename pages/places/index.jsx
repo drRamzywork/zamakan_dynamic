@@ -230,28 +230,6 @@ const Places = ({ dataAllCitiesMap }) => {
                 dir={'rtl'}
 
                 pagination={true} className="mySwiper">
-                {/* <SwiperSlide>
-                  <div className={`${styles.slider} ${activeIndex === null ? styles.active : ''}`} onClick={() => {
-                    resetTransformRef.current && resetTransformRef.current()
-                    setActiveIndex(null);
-                    setActiveLand(null);
-                    seIsPointsActive(false);
-
-                    landElments.forEach((element) => {
-                      element.classList.remove('activeLand', 'hiddenPoints');
-                    });
-                  }} >
-
-                    <div className={styles.img_container}>
-                      <img src={saudiAllPieces.src} alt='المملكة' />
-                    </div>
-
-                    <div className={styles.name}>
-                      <Typography>المملكة</Typography>
-                    </div>
-
-                  </div>
-                </SwiperSlide> */}
 
                 {dataAllCitiesMap?.map((city, index) =>
                   <SwiperSlide key={index}>
