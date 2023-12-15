@@ -282,10 +282,6 @@ const Places = ({ dataAllCitiesMap }) => {
                             {dataAllCitiesMap?.map((land, index) => (
                               <g className="land" key={index} id={land.svgPathId} onClick={() => handleZoomToLand(index)}>
                                 {convertSVGPathsToJSX(land.svgPath)}
-
-
-
-
                               </g>
                             ))}
 
@@ -378,6 +374,7 @@ const Places = ({ dataAllCitiesMap }) => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -50 }}
                       transition={{ duration: 0.5 }}
+                      className={styles.slider_wrap}
 
                     >
                       <ErasPlacesSlider places={places}
