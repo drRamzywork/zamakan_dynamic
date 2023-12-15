@@ -26,10 +26,9 @@ section.Poets {
     background-color: #ffffff;
     padding-top: 16px;
     @media screen and (max-width: 450px) {
-      padding: 24px 0px 24px 20px;
+      padding: 16px 0;
       padding-left: 0;
       margin-bottom: 0;
-      // padding-right: 20px;
     }
 
     .sec_title {
@@ -179,6 +178,7 @@ section.Poets {
       @media screen and (max-width: 450px) {
         padding-right: 20px;
         padding-left: 20px;
+        margin-top: -23px;
       }
 
       .title {
