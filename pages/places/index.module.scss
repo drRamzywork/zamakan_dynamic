@@ -141,6 +141,34 @@
       }
     }
 
+    .land_name {
+      width: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      // padding: 5px;
+      border-radius: 5px;
+      background-color: #ffffff;
+      height: 20px !important;
+      overflow: hidden;
+      text-align: center;
+      border-radius: 0px 5px 5px 0px;
+      .name {
+        p {
+          // margin: auto;
+          // width: 100%;
+        }
+      }
+      .count {
+        span {
+          // width: 10px;
+          text-align: center;
+          font-size: 20px;
+          background-color: red;
+          color: white;
+        }
+      }
+    }
     .icon_container {
       svg {
         color: #713540;

@@ -402,6 +402,9 @@ body::-webkit-scrollbar-track {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 150px;
+  margin-left: -69px;
+  margin-top: -39px;
 }
 .city-name:hover {
   -webkit-transform: translateY(-5px) !important;
@@ -425,6 +428,10 @@ body::-webkit-scrollbar-track {
   path {
     stroke-width: 2 !important;
     stroke: #ffffff !important;
+    fill: #f8a340 !important;
+    &:last-child {
+      stroke: none !important;
+    }
   }
 }
 

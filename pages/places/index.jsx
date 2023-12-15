@@ -161,6 +161,25 @@ const Places = ({ dataAllCitiesMap }) => {
 
   };
 
+  const svgRef = useRef(null);
+  const [landCenters, setLandCenters] = useState([]);
+
+  useEffect(() => {
+    if (svgRef.current) {
+      const lands = svgRef.current.querySelectorAll('.land');
+      const centers = Array.from(lands).map(land => {
+        const bbox = land.getBBox();
+        return {
+          x: bbox.x + bbox.width / 2,
+          y: bbox.y + bbox.height / 2,
+          name: land.getAttribute('data-name') // assuming each land has a data-name attribute
+        };
+      });
+      setLandCenters(centers);
+    }
+  }, []);
+
+
   return (
 
     <>
@@ -177,7 +196,6 @@ const Places = ({ dataAllCitiesMap }) => {
       </Head>
 
       <PageHeader dataAllCitiesMap={dataAllCitiesMap[activeIndex]} />
-
       < section id='Places' className={styles.Places} dir='rtl'>
         {cityData && (
 
@@ -278,12 +296,46 @@ const Places = ({ dataAllCitiesMap }) => {
                             xmlns="http://www.w3.org/2000/svg"
                             className={`${isSafari ? "saudi-map safari" : "saudi-map"}`}
                             viewBox="90 90 758 624"
+                            ref={svgRef}
                           >
                             {dataAllCitiesMap?.map((land, index) => (
-                              <g className="land" key={index} id={land.svgPathId} onClick={() => handleZoomToLand(index)}>
+                              <g className="land" data-name={land.name} key={index} id={land.svgPathId} onClick={() => handleZoomToLand(index)}>
                                 {convertSVGPathsToJSX(land.svgPath)}
                               </g>
                             ))}
+
+
+                            {
+                              activeIndex === null &&
+                              landCenters.map((land, index) => (
+                                <foreignObject key={index} x={land.x} y={land.y}>
+                                  {/* <div className={styles.land_name}>
+                                  <div className={styles.count}>
+                                    <span>
+                                      {index + 1}
+                                    </span>
+                                  </div>
+
+                                  <div className={styles.name}>
+                                    <p >
+                                      {land.name}
+                                    </p>
+                                  </div>
+                                </div> */}
+
+                                  <div className="city-container" xmlns="http://www.w3.org/1999/xhtml" onClick={() => handleZoomToLand(index)}>
+                                    <div
+
+                                      className={`city-name`} id="p1">
+                                      <div>
+                                        <p>{land.name}</p>
+
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </foreignObject>
+                              ))}
 
                             {activeIndex !== null &&
                               places?.map((place, index) =>
@@ -366,7 +418,6 @@ const Places = ({ dataAllCitiesMap }) => {
                   )}
                 </AnimatePresence>
 
-
                 {places !== null &&
                   <AnimatePresence >
                     <motion.div
@@ -383,7 +434,6 @@ const Places = ({ dataAllCitiesMap }) => {
                     </motion.div>
 
                   </AnimatePresence>
-
                 }
               </div >
 
@@ -394,9 +444,6 @@ const Places = ({ dataAllCitiesMap }) => {
         </Container>
 
       </section >
-
-
-
 
     </>
 
