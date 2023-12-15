@@ -309,38 +309,51 @@ const Places = ({ dataAllCitiesMap }) => {
 
 
                             {
+                              activeIndex === null || typeof activeIndex === 'number'
+                              &&
+                              landCenters.map((land, index) => (
+                                <foreignObject key={index} x={land.x} y={land.y}>
+
+
+                                  {activeIndex !== index &&
+
+                                    <div className="city-container" xmlns="http://www.w3.org/1999/xhtml" onClick={() => handleZoomToLand(index)}>
+                                      <div
+                                        className={`city-name `} id="p1">
+                                        <div>
+                                          <p>
+
+                                            {land.name}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  }
+
+                                </foreignObject>
+                              ))}
+
+
+                            {
                               activeIndex === null &&
                               landCenters.map((land, index) => (
                                 <foreignObject key={index} x={land.x} y={land.y}>
-                                  {/* <div className={styles.land_name}>
-                                  <div className={styles.count}>
-                                    <span>
-                                      {index + 1}
-                                    </span>
-                                  </div>
-
-                                  <div className={styles.name}>
-                                    <p >
-                                      {land.name}
-                                    </p>
-                                  </div>
-                                </div> */}
-
-                                  <div className="city-container" xmlns="http://www.w3.org/1999/xhtml" onClick={() => handleZoomToLand(index)}>
-                                    <div
-
-                                      className={`city-name`} id="p1">
-                                      <div>
-                                        <p>
-                                          <span>
-                                            {toArabicNumerals(index + 1)}
-                                          </span>
 
 
-                                          {land.name}</p>
+                                  {activeIndex !== index &&
+
+                                    <div className="city-container" xmlns="http://www.w3.org/1999/xhtml" onClick={() => handleZoomToLand(index)}>
+                                      <div
+                                        className={`city-name `} id="p1">
+                                        <div>
+                                          <p>
+
+                                            {land.name}
+                                          </p>
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
+                                  }
 
                                 </foreignObject>
                               ))}
