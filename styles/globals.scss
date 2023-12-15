@@ -727,6 +727,12 @@ foreignObject {
   font-size: 16px;
   padding: 2px 11px;
 }
+
+.city-name {
+  span {
+    margin-left: 4px;
+  }
+}
 .city-name.active {
   p {
     background: rgba(187, 113, 101, 1);

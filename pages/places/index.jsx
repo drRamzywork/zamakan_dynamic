@@ -179,7 +179,10 @@ const Places = ({ dataAllCitiesMap }) => {
     }
   }, []);
 
-
+  const toArabicNumerals = (num) => {
+    const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    return num.toString().split('').map(digit => arabicNumbers[digit]).join('');
+  };
   return (
 
     <>
@@ -328,8 +331,13 @@ const Places = ({ dataAllCitiesMap }) => {
 
                                       className={`city-name`} id="p1">
                                       <div>
-                                        <p>{land.name}</p>
+                                        <p>
+                                          <span>
+                                            {toArabicNumerals(index + 1)}
+                                          </span>
 
+
+                                          {land.name}</p>
                                       </div>
                                     </div>
                                   </div>
