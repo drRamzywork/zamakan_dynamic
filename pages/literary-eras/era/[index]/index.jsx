@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import styles from '../../index.module.scss'
 const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAllCitiesMap }) => {
   const [isLayerActive, setIsLayerActive] = useState(false);
-  console.log(isLayerActive, "layer")
 
   return (
     <>

@@ -12,9 +12,6 @@ import Link from 'next/link';
 
 
 const Slider = ({ additionalData }) => {
-  const { ra3y, Feather_big, place } = imgs;
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
   return (
     <>
       <section id='simlar_poets' className={styles.simlar_poets}>
@@ -62,7 +59,6 @@ const Slider = ({ additionalData }) => {
                 {additionalData?.map((poet, index) =>
                   <SwiperSlide key={index}>
                     <div className={styles.box}>
-
                       <div className={styles.tag}>
                         <Typography>
                           {poet.placeName}
@@ -104,19 +100,10 @@ const Slider = ({ additionalData }) => {
                           </div>
                         </div>
                       </div>
-
-
-
-
-
                     </div>
                   </SwiperSlide>
                 )}
-
-
-
               </Swiper>
-
             </div>
           </div>
         </Container>

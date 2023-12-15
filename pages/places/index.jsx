@@ -14,11 +14,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { CloseIcon, LeftArrow } from '@/assets/svgsComponents';
 import PoetsSlider from '@/components/PoetsSlider';
 import { useRouter } from 'next/router';
+import { ErasPlacesSlider } from '@/components/ErasComponents';
+import { MdLocationPin } from 'react-icons/md';
 
 
 
-const Places = ({ dataAllCitiesMap,
-  dataAllPlacesMap }) => {
+const Places = ({ dataAllCitiesMap }) => {
   const router = useRouter()
 
 
@@ -26,10 +27,17 @@ const Places = ({ dataAllCitiesMap,
   const [landElments, setLandElemnts] = useState([])
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeLand, setActiveLand] = useState(null);
-
+  const [places, setPlaces] = useState(null);
   const [isPointsActive, seIsPointsActive] = useState(false);
-
   const [cityNames, setCityNames] = useState([]);
+
+  useEffect(() => {
+    if (activeIndex !== null) {
+      setPlaces(dataAllCitiesMap[activeIndex]?.places)
+    }
+  }, [activeIndex])
+
+
   useEffect(() => {
     // Select all elements with the class name .land
     const elements = document.querySelectorAll('.land');
@@ -46,8 +54,6 @@ const Places = ({ dataAllCitiesMap,
   const transformComponentRef = useRef(null);
 
   const resetTransformRef = useRef(null);
-
-
 
   useEffect(() => {
     const dataIndex = document.querySelectorAll(`#land-${activeIndex}`)[0];
@@ -76,6 +82,7 @@ const Places = ({ dataAllCitiesMap,
     }
 
   }, [activeIndex, activeLand])
+
 
   const handleZoomToLand = (landIndex) => {
     const elementId = `land-${landIndex}`;
@@ -149,7 +156,10 @@ const Places = ({ dataAllCitiesMap,
     };
   }, [popUpRef]);
 
+  const handlePlaceActive = async (placeId) => {
+    setActiveCity(placeId);
 
+  };
 
   return (
 
@@ -167,9 +177,15 @@ const Places = ({ dataAllCitiesMap,
       </Head>
 
       <PageHeader dataAllCitiesMap={dataAllCitiesMap[activeIndex]} />
-      <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
 
-        < section id='Places' className={styles.Places} dir='rtl'>
+      < section id='Places' className={styles.Places} dir='rtl'>
+        {cityData && (
+
+          <div className={styles.layer} />
+        )}
+        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
+
+
           <motion.div
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
@@ -265,7 +281,7 @@ const Places = ({ dataAllCitiesMap,
                   maxScale={1.5}
                   initialScale={1}
                   doubleClick={{ disabled: false, mode: "reset" }}
-                  wrapperStyle={{ maxWidth: "100%", maxHeight: "calc(100vh - 50px)", overflow: 'unset !important' }}
+                  wrapperStyle={{ width: "100%", }}
                   panning={{ disabled: true }}
 
                 >
@@ -289,37 +305,43 @@ const Places = ({ dataAllCitiesMap,
                               <g className="land" key={index} id={land.svgPathId} onClick={() => handleZoomToLand(index)}>
                                 {convertSVGPathsToJSX(land.svgPath)}
 
-                                {activeIndex !== null &&
-                                  land.places.map((place, index) =>
-                                    <foreignObject x={place.svgX} y={place.svgY} width="100" height="100" id="1" key={place.id}>
-                                      <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
-                                        <div onClick={() => handlePlaceWindow(place.id)}
 
-                                          className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
 
-                                          <div>
-                                            <p>{place.name}</p>
-                                            <svg
-                                              width="15"
-                                              height="6"
-                                              viewBox="0 0 15 6"
-                                              fill="none"
-                                              xmlns="http://www.w3.org/2000/svg"
-                                            >
-                                              <path
-                                                d="M0.956299 0.882812H14.8405H12.9973C11.8578 0.882812 10.8162 1.52659 10.3066 2.54573L9.14027 4.87844C8.6286 5.90177 7.16825 5.90178 6.65658 4.87844L5.49023 2.54573C4.98065 1.52659 3.939 0.882812 2.79956 0.882812H0.956299Z"
-                                                fill="white"
-                                              />
-                                            </svg>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </foreignObject>
-                                  )
-                                }
 
                               </g>
                             ))}
+
+                            {activeIndex !== null &&
+                              places?.map((place, index) =>
+                                <foreignObject x={place.svgX} y={place.svgY} key={place.id}
+                                >
+                                  <div className="city-container" xmlns="http://www.w3.org/1999/xhtml">
+                                    <div
+                                      className={`city-name ${activeCity === place.id ? 'active' : ''}`} id="p1">
+                                      <div className={styles.wrapper}>
+                                        {activeCity === place.id
+                                          &&
+                                          <div className={styles.icon_container}>
+                                            <MdLocationPin />
+
+                                          </div>
+                                        }
+                                        <div
+                                          onClick={() => handlePlaceActive(place.id)}
+                                          className={`${styles.city_point} ${activeCity === place.id ? `${styles.active} 'active' ` : ''}`}
+
+                                        >
+
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+                                </foreignObject>
+                              )
+                            }
                           </svg>
                         </TransformComponent>
                       </>
@@ -371,73 +393,35 @@ const Places = ({ dataAllCitiesMap,
                 </AnimatePresence>
 
 
+                {places !== null &&
+                  <AnimatePresence >
+                    <motion.div
+                      initial={{ opacity: 0, y: -50 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -50 }}
+                      transition={{ duration: 0.5 }}
+
+                    >
+                      <ErasPlacesSlider places={places}
+                        setActiveCity={setActiveCity}
+                        activeCity={activeCity} onPlaceClick={handlePlaceWindow} />
+                    </motion.div>
+
+                  </AnimatePresence>
+
+                }
               </div >
 
-              {/* 
-              <div className={styles.text_container}>
-                <div className={styles.sec_title}>
-                  <Typography variant='h3'>
-                    أبرز ما قيل في {activeIndex !== null && dataAllCitiesMap[activeIndex]?.name}  {activeIndex === null && "المملكة"}
-                  </Typography>
-                </div>
-
-                <div className={styles.sec_info}>
-                  <div className={styles.inner_info}>
-                    <div className={styles.tag}>
-                      <Typography>{activeIndex !== null && dataAllCitiesMap[activeIndex]?.name}  {activeIndex === null && "المملكة"}</Typography>
-                    </div>
-                    <div className={styles.desc}>
-                      <Typography>
-                        مقـــــيم على
-                        {` `}
-                        <span>
-                          بنبــــــان
-                        </span>
-                        {` `}
-                        يمنــــع مـــــاءه
-                        وماء وشيع ماء عطشان مرمل
-                      </Typography>
-                    </div>
-                    <hr />
-                    <div className={styles.poet_info}>
-                      <div className={styles.img_container}>
-                        <img src={ra3y.src} alt="" />
-                      </div>
-
-                      <div className={styles.text_container}>
-                        <Link href='/poet' className={styles.name}>
-                          <Typography>الراعي</Typography>
-                        </Link>
-                        <div className={styles.tag}>
-                          <Typography>
-                            العصر الأموي
-                          </Typography>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className={styles.explore}>
-
-                  <div className={styles.sec_title}>
-                    <Typography variant='h3'>
-                      مناطق {activeIndex !== null && dataAllCitiesMap[activeIndex]?.name}  {activeIndex === null && "المملكة"}
-                    </Typography>
-                  </div>
-
-               
-                </div>
-
-
-              </div> */}
 
             </div>
 
           </motion.div>
-        </section >
-      </Container>
+        </Container>
+
+      </section >
+
+
+
 
     </>
 
@@ -455,17 +439,10 @@ export async function getStaticProps() {
     }
     const dataAllCitiesMap = await resAllCitiesMap.json();
 
-    // Ensure the URL is correct and different from resAllCitiesMap if they are supposed to fetch different data
-    const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50`);
-    if (!resAllPlacesMap.ok) {
-      throw new Error(`HTTP error! Status: ${resAllPlacesMap.status}`);
-    }
-    const dataAllPlacesMap = await resAllPlacesMap.json();
 
     return {
       props: {
         dataAllCitiesMap,
-        dataAllPlacesMap
       },
       revalidate: 10,
     };
@@ -475,7 +452,6 @@ export async function getStaticProps() {
     return {
       props: {
         dataAllCitiesMap: [],
-        dataAllPlacesMap: [],
         error: 'API fetch failed',
       },
       revalidate: 10,

@@ -137,9 +137,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
   return (
     <>
       <section id='Poets' className={styles.Poets} dir='rtl'>
-        {/* {cityData && (
-          <div className={styles.layer} />
-        )} */}
+
 
         <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
           <motion.div

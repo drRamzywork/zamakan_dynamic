@@ -763,11 +763,15 @@ svg.saudi-map.safari .city-name > div:hover {
 // map pages
 #Places {
   .react-transform-wrapper {
-    overflow: unset !important;
+    width: 100%;
     @media screen and (max-width: 450px) {
       overflow: hidden !important;
       margin-bottom: 0 !important;
     }
+  }
+
+  .react-transform-component {
+    width: 100% !important;
   }
 }
 

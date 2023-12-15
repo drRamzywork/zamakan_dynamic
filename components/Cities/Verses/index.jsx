@@ -39,22 +39,11 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
 
             <div className={styles.info_sec}>
               <div className={styles.sec_title}>
-                <Typography variant='h3'>عن المكان</Typography>
+                <Typography variant='h3'>عن {dataCityData?.name}</Typography>
               </div>
               <div className={styles.boxes_container}>
 
-                {/* <div className={styles.box}>
-                  <div className={styles.title}>
-                    <Typography >الاسم السابق</Typography>
-                  </div>
-                  <div className={styles.name}>
-                    <Typography>
-                      {
-                        dataCityData.otherNames === null || dataCityData.otherNames === "" ? "------" : dataCityData.otherNames
-                      }
-                    </Typography>
-                  </div>
-                </div> */}
+
                 <div className={styles.box}>
                   <div className={styles.title}>
                     <Typography>الاسم الحالي</Typography>

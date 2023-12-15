@@ -9,19 +9,18 @@ import { Typography } from '@mui/material';
 
 const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) => {
   const swiperRef = useRef(null);
-
   const filteredPlaces = places.filter(place => place.svgX !== null && place.svgY !== null);
 
 
   useEffect(() => {
     if (activeCity != null && swiperRef.current) {
       const index = filteredPlaces.findIndex(city => city.id === activeCity);
-      console.log(index, "index")
       if (index !== -1) {
         swiperRef.current.swiper.slideTo(index);
       }
     }
   }, [activeCity, places]);
+
 
 
 
@@ -78,18 +77,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
           }}
           dir={'rtl'}
           className="places-swiper">
-          {/* {filteredPlaces?.map((city, index) =>
-            <SwiperSlide className={styles.places_container} key={city.id} onClick={() => onPlaceClick(city.id)}>
-              <div className={`${styles.places} ${city.id === activeCity ? styles.active : ''}`} key={index} >
-                <div className={styles.img_container}>
-                  <img src={city.icon} alt={city.name} />
-                </div>
-                <div className={styles.name}>
-                  <Typography>{city.name}</Typography>
-                </div>
-              </div>
-            </SwiperSlide>
-          )} */}
 
 
           {filteredPlaces?.map((city, index) =>
