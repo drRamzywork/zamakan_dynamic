@@ -10,7 +10,6 @@ const PageHeader = ({ dataAllCitiesMap }) => {
     KSA,
   } = imgs
 
-
   return (
     <div id='page-header' className={styles.page_header}>
       <div className={styles.img_container}>
@@ -33,26 +32,11 @@ const PageHeader = ({ dataAllCitiesMap }) => {
       </div>
       <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
         <div className={styles.sec_title}>
-
-          {dataAllCitiesMap === undefined ?
-
-
-            <Typography variant='h3'>
-              استكشف الأماكن
-              < br />
-              عبر المناطق
-            </Typography>
-
-            :
-
-            <Typography variant='h3'>
-              استكشف الأماكن
-              < br />
-              عبر {dataAllCitiesMap?.name}
-            </Typography>
-
-
-          }
+          <Typography variant='h3'>
+            استكشف الأماكن
+            < br />
+            عبر المناطق
+          </Typography>
         </div>
       </Container>
     </div>
