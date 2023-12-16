@@ -15,17 +15,18 @@ import { CloseIcon, LeftArrow } from '@/assets/svgsComponents';
 const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
   , setIsLayerActive }) => {
   const [activePoet, setActivePoet] = useState(null);
-
   const [activeCity, setActiveCity] = useState(null);
-
-
   const [landElments, setLandElemnts] = useState([])
   const [activeIndex, setActiveIndex] = useState(null);
   const [isPointsActive, seIsPointsActive] = useState(false);
   const [cityNames, setCityNames] = useState([]);
   const [places, setPlaces] = useState(null);
   const [isCityLoading, setIsCityLoading] = useState(false);
+  const [showMore, setShowMore] = useState(false);
 
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
 
   useEffect(() => {
     // Select all elements with the class name .land
@@ -201,14 +202,12 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
 
             {activePoet !== null &&
               <div className={styles.poetInfo}>
-
-
-                <div className={styles.desc}>
+                <div className={`${styles.desc} ${showMore ? styles.showFull : ''}`}>
                   <Typography>
                     {dataPoetsByEra[activePoet]?.descShort}
                     <Link href={`/poet/${dataPoetsByEra[activePoet]?.id}`} className={styles.more}>
                       <Typography>
-                        المزيد عن {dataPoetsByEra[activePoet]?.name}
+                        البطاقة التعريفية بالشاعر
                         <div className={styles.icon_container}>
                           <LeftArrow />
                         </div>
@@ -217,6 +216,14 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
                     </Link>
                   </Typography>
 
+                </div>
+                <div className={styles.show_more} onClick={toggleShowMore}>
+                  <Typography>
+                    عرض
+                    {` `}
+                    {showMore ? "أقل" : "المزيد"}
+
+                  </Typography>
                 </div>
               </div>
             }
