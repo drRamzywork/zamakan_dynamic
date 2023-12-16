@@ -252,6 +252,7 @@ section.Poets {
             @media screen and (max-width: 450px) {
               display: flex;
               margin-right: 0;
+              margin-top: 8px;
             }
             p {
               font-family: var(--effra-font);
@@ -317,7 +318,7 @@ section.Poets {
     width: 20px !important;
     height: 20px !important;
     border-radius: 50%;
-    background-color: #daceaf;
+    background-color: #bfb59c;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
   }
@@ -442,6 +443,7 @@ section.Poets {
 
             .more {
               margin-right: 8px;
+
               span {
                 color: rgba(187, 113, 101, 1);
                 font-family: var(--effra-font);

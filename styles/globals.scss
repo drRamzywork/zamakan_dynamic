@@ -397,7 +397,7 @@ body::-webkit-scrollbar-track {
   cursor: pointer;
   opacity: 1;
 }
-.city-name > div {
+.city-name > #name {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -428,7 +428,7 @@ body::-webkit-scrollbar-track {
   path {
     stroke-width: 2 !important;
     stroke: #ffffff !important;
-    fill: #f8a340 !important;
+    fill: #e6ddc6 !important;
     &:last-child {
       stroke: none !important;
     }

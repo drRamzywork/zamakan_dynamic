@@ -345,9 +345,8 @@ const Places = ({ dataAllCitiesMap }) => {
                                     <div className="city-container" xmlns="http://www.w3.org/1999/xhtml" onClick={() => handleZoomToLand(index)}>
                                       <div
                                         className={`city-name `} id="p1">
-                                        <div>
+                                        <div id='name' >
                                           <p>
-
                                             {land.name}
                                           </p>
                                         </div>
@@ -370,13 +369,11 @@ const Places = ({ dataAllCitiesMap }) => {
                                           &&
                                           <div className={styles.icon_container}>
                                             <MdLocationPin />
-
                                           </div>
                                         }
                                         <div
                                           onClick={() => handlePlaceActive(place.id)}
                                           className={`${styles.city_point} ${activeCity === place.id ? `${styles.active} 'active' ` : ''}`}
-
                                         >
 
                                         </div>
