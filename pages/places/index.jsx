@@ -1,13 +1,10 @@
 import { Container, Typography, } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './index.module.scss'
-import imgs from '../../assets/constants/imgs'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
-import Svg from '@/components/SVGParts/Svg';
 import Link from 'next/link'
-import { Button } from '@mui/base'
 import { PageHeader } from '@/components/PlacesComponents'
 import Head from 'next/head';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -16,14 +13,14 @@ import PoetsSlider from '@/components/PoetsSlider';
 import { useRouter } from 'next/router';
 import { ErasPlacesSlider } from '@/components/ErasComponents';
 import { MdLocationPin } from 'react-icons/md';
+import Image from 'next/image';
+import { RotatingLines } from 'react-loader-spinner';
 
 
 
 const Places = ({ dataAllCitiesMap }) => {
-  const router = useRouter()
-
-
-
+  const [isImageLoading, setIsImageLoading] = useState(true);
+  console.log(isImageLoading)
   const [landElments, setLandElemnts] = useState([])
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeLand, setActiveLand] = useState(null);
@@ -36,7 +33,6 @@ const Places = ({ dataAllCitiesMap }) => {
       setPlaces(dataAllCitiesMap[activeIndex]?.places)
     }
   }, [activeIndex])
-
 
   useEffect(() => {
     // Select all elements with the class name .land
@@ -82,7 +78,6 @@ const Places = ({ dataAllCitiesMap }) => {
     }
 
   }, [activeIndex, activeLand])
-
 
   const handleZoomToLand = (landIndex) => {
     const elementId = `land-${landIndex}`;
@@ -172,17 +167,14 @@ const Places = ({ dataAllCitiesMap }) => {
         return {
           x: bbox.x + bbox.width / 2,
           y: bbox.y + bbox.height / 2,
-          name: land.getAttribute('data-name') // assuming each land has a data-name attribute
+          name: land.getAttribute('data-name')
         };
       });
       setLandCenters(centers);
     }
   }, []);
 
-  const toArabicNumerals = (num) => {
-    const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-    return num.toString().split('').map(digit => arabicNumbers[digit]).join('');
-  };
+
   return (
 
     <>
@@ -257,7 +249,18 @@ const Places = ({ dataAllCitiesMap }) => {
 
                     <div className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       <div className={styles.img_container}>
-                        <img src={city.icon} alt={city.name} />
+                        <Image width={200} height={200} src={city.icon} alt={city.name}
+                          onLoadingComplete={() => setIsImageLoading(false)}
+                        />
+                        {isImageLoading === true ? < RotatingLines
+                          strokeColor="grey"
+                          strokeWidth="5"
+                          animationDuration="0.75"
+                          width="96"
+                          visible={true}
+                        /> :
+                          ""
+                        }
                       </div>
                       <div className={styles.name}>
                         <Typography>{city.name}</Typography>
@@ -407,8 +410,7 @@ const Places = ({ dataAllCitiesMap }) => {
                       <div className={styles.box_container}>
                         <div className={styles.box_header}>
                           <div className={styles.img_container}>
-                            <img src={adjustImageUrl(cityData.icon)} alt={""} />
-
+                            <Image width={200} height={200} src={cityData.icon} alt={cityData.name} />
                           </div>
                           <div className={styles.title}>
                             <h3>{cityData?.name}</h3>

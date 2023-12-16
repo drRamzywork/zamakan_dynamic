@@ -2,31 +2,30 @@ import React from 'react'
 import styles from './index.module.scss'
 import { Container, Typography } from '@mui/material'
 import { imgs } from '@/assets/constants'
-import { useRouter } from 'next/router'
-import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const PageHeader = ({ dataAllCitiesMap }) => {
   const {
     KSA,
   } = imgs
 
+  console.log(dataAllCitiesMap?.images)
+
   return (
     <div id='page-header' className={styles.page_header}>
       <div className={styles.img_container}>
         {dataAllCitiesMap &&
-          <motion.img
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            transition={{ duration: 1, }}
-            src={dataAllCitiesMap?.images} alt="" />
+          <Image
+            quality={100}
+
+            width={900} height={200} src={dataAllCitiesMap.images} alt=" مناطق المملة العربية السعودية" />
         }
 
         {dataAllCitiesMap === undefined &&
-          <motion.img
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            transition={{ duration: 1, }}
-            src={KSA.src} alt="" />
+          <Image
+            quality={100}
+
+            width={500} height={500} src={KSA.src} alt=" مناطق المملة العربية السعودية" />
         }
 
       </div>

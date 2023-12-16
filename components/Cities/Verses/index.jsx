@@ -1,15 +1,12 @@
 import { Container, Typography, } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './index.module.scss'
-import { imgs } from '@/assets/constants'
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 const Verses = ({ dataCityPoetry, dataCityData }) => {
-  const { ra3y } = imgs;
   const [expandedStates, setExpandedStates] = useState({});
 
   const adjustImageUrl = (imageUrl) => {

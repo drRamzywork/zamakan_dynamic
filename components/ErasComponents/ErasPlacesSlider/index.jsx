@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
 import styles from './index.module.scss'
 import { Typography } from '@mui/material';
+import Image from 'next/image';
 
 
 const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) => {
@@ -83,7 +83,7 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
             <SwiperSlide className={styles.places_container} key={city.id} onClick={() => onPlaceClick(city.id)}>
               <div className={`${styles.places} ${city.id === activeCity ? styles.active : ''}`} key={index} >
                 <div className={styles.img_container}>
-                  <img src={city.icon} alt={city.name} />
+                  <Image width={200} height={200} src={city.icon} alt={city.name} />
                 </div>
                 <div className={styles.name}>
                   <Typography>{city.name}</Typography>

@@ -210,7 +210,7 @@ const Poets = ({ erasAllEras, dataDefault }) => {
                         <Select
                           labelId="demo-select-small-label"
                           id="demo-select-small"
-                          value={age}  // Use the 'value' prop instead of 'defaultValue'
+                          value={age}
                           sx={selectBoxStyles}
                           onChange={handleChange}
                           IconComponent={CustomArrowIcon}

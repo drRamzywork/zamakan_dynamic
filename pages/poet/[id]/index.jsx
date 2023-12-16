@@ -6,7 +6,6 @@ import Profile from '../../../assets/svgsComponents/Profile'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { styled } from '@mui/system';
 import { motion } from 'framer-motion'
-import { imgs } from '@/assets/constants';
 import SliderVerses from '@/components/PoetsDetailsComponents/SliderVerses';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -16,7 +15,6 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
   const [selectedTab, setSelectedTab] = useState(0);
   const [activeIndex, setActiveIndex] = useState(1);
   const router = useRouter();
-  const { ra3y, } = imgs;
   const handleTabChange = (event, newValue) => {
     setSelectedTab(newValue);
   };

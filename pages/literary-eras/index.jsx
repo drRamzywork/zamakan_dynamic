@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Mountains } from '@/assets/svgsComponents';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import Image from 'next/image'
 import Head from 'next/head'
 import { motion } from 'framer-motion'
@@ -20,18 +19,9 @@ const LiteraryEras = ({ erasAllEras }) => {
   } = imgs
 
 
-  const toArabicNumerals = (num) => {
-    const arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-    return num.toString().split('').map(digit => arabicNumbers[digit]).join('');
-  };
 
-  const adjustImageUrl = (imageUrl) => {
-    if (imageUrl?.startsWith('https')) {
-      return imageUrl;
-    } else {
-      return `https://zamakan.suwa.io${imageUrl}`;
-    }
-  };
+
+
 
   return (
     <>
@@ -67,13 +57,16 @@ const LiteraryEras = ({ erasAllEras }) => {
 
             <div className={styles.imags_container}>
               <div className={styles.right_branch}>
-                <img src={right_branch.src} alt="" />
+                <img src={right_branch.src} objectFit='contain' alt='' />
+
               </div>
               <div className={styles.left_branch}>
-                <img src={left_branch.src} alt="" />
+                <img src={left_branch.src} objectFit='contain' alt='' />
+
               </div>
               <div className={styles.horse}>
-                <img src={horse.src} alt="" />
+                <img src={horse.src} objectFit='contain' alt='' />
+
               </div>
               <div className={styles.mountains}>
                 <Mountains />
@@ -125,13 +118,10 @@ const LiteraryEras = ({ erasAllEras }) => {
               <SwiperSlide key={era.id} className={styles.swiper_slide_box}>
                 <Link href={`/literary-eras/era/${era.id}`} className={styles.box}>
                   <div className={styles.img_container}>
-                    <img src={adjustImageUrl(era.icon)} alt={era.desc} />
+                    <Image width={277} height={326} src={era.icon} alt={era.name} />
                   </div>
 
-                  {/* <div className={styles.date_container}>
-                    <Typography>  {toArabicNumerals(era.fromH)} - {toArabicNumerals(era.toH)}</Typography>
 
-                  </div> */}
 
                   <div className={styles.title}>
                     <Typography variant='h4'>
