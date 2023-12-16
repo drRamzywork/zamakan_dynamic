@@ -26,14 +26,11 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
-  // const [beforeDots, afterDots] = dataPoetry?.poetryParts?.split('...')
+  if (!dataPoetry || !dataPoetry.poetryParts) {
+    return <div>Loading or Error...</div>;
+  }
+
   const [beforeDots, afterDots] = (dataPoetry?.poetryParts || '').split('...');
-
-  // const currentIndex = ids.findIndex(item => item.id === dataPoetry.id);
-
-  // // Check if currentIndex is found and not the first item
-  // const prevId = currentIndex > 0 ? ids[currentIndex - 1].id : null;
-  // const nextId = currentIndex < ids.length - 1 ? ids[currentIndex + 1].id : null;
 
   return (
     <>
@@ -96,28 +93,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                   </SwiperSlide>
                 </Swiper>
 
-                {/* <Box className={styles.prevbtn} id={styles.swiperbtn}>
-                  <RightArrow />
-                </Box>
-                <Box className={styles.nextbtn} id={styles.swiperbtn}>
-                  <RightArrow />
-                </Box> */}
 
-
-                {/* {prevId && (
-                  <Link href={`/poetry/${prevId}`} passHref>
-                    <Box className={styles.prevbtn} id={styles.swiperbtn}>
-                      <RightArrow />
-                    </Box>
-                  </Link>
-                )}
-                {nextId && (
-                  <Link href={`/poetry/${nextId}`} passHref>
-                    <Box className={styles.nextbtn} id={styles.swiperbtn}>
-                      <RightArrow />
-                    </Box>
-                  </Link>
-                )} */}
 
               </div>
               <hr />
@@ -160,14 +136,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                           <Typography>{dataPoetry?.zamanName}</Typography>
                         </div>
                       </div>
-                      {/* <div className={styles.box}>
-                      <div className={styles.title}>
-                        <Typography>مطلع القصيدة</Typography>
-                      </div>
-                      <div className={styles.name}>
-                        <Typography>شكيسنتبا</Typography>
-                      </div>
-                    </div> */}
+
                       <div className={styles.box}>
                         <div className={styles.title}>
                           <Typography>المكان المذكور ببيت الشعر</Typography>
@@ -318,58 +287,11 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
 
 export default Poetry
 
-// export async function getServerSideProps(context) {
-//   const { id } = context.query;
 
-
-//   try {
-//     // Fetch data from the poetry API
-//     const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetPoetryFullData?id=${id}&lang=2`);
-//     if (!resPoetry.ok) {
-//       throw new Error(`Error fetching poetry data: ${resPoetry.status}`);
-//     }
-//     const dataPoetry = await resPoetry.json();
-
-//     let dataPlace = null;
-//     let additionalData = null;  // Initialize additional data
-
-//     // Check if placeId is available
-//     if (dataPoetry?.placeId) {
-//       // Second API request using placeId
-
-//       const resPlace = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${dataPoetry?.placeId}&lang=2`);
-//       if (!resPlace.ok) {
-//         throw new Error(`Error fetching place data: ${resPlace.status}`);
-//       }
-//       dataPlace = await resPlace.json();
-
-//       // Third API request using placeId
-//       const resAdditional = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${dataPoetry?.placeId}&lang=2&pagenum=1&pagesize=50`);
-//       if (!resAdditional.ok) {
-//         throw new Error(`Error fetching additional data: ${resAdditional.status}`);
-//       }
-//       additionalData = await resAdditional.json();
-//     }
-
-//     return {
-//       props: {
-//         dataPoetry,
-//         dataPlace,
-//         additionalData,
-//       },
-//     };
-//   } catch (error) {
-//     console.error(error);
-//     return {
-//       props: {
-//         error: error.message,
-//       },
-//     };
-//   }
-// }
 
 export async function getStaticProps({ params }) {
   const { id } = params;
+  console.log(`Requesting data for poetry ID: ${id}`);
 
   try {
 
@@ -416,9 +338,10 @@ export async function getStaticProps({ params }) {
         additionalData,
         ids
       },
+      revalidate: 10,
     };
   } catch (error) {
-    console.error(error);
+    console.error(error, "HHHH");
     return {
       props: {
         error: error.message,
