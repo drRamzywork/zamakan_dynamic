@@ -97,7 +97,9 @@ const LiteraryBanner = (props) => {
             pagination={true} className={"swiper"}>
             {props?.dataAllEras?.map((era) => (
               <SwiperSlide key={era.id} className={styles.swiper_slide_box}>
-                <Link href={`/literary-eras/era/${era.id}`} className={`${styles.box} ${eraIndex === era.id ? styles.active : ''}`}>
+                <Link
+                  scroll={false}
+                  href={`/literary-eras/era/${era.id}`} className={`${styles.box} ${eraIndex === era.id ? styles.active : ''}`}>
                   <div className={styles.img_container}>
                     <Image width={277} height={115} quality={100} src={era.icon} alt={era.name} />
                   </div>
