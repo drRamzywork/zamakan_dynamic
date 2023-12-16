@@ -34,13 +34,14 @@
         }
         .poet_tag,
         .tag {
-          background: rgba(29, 200, 128, 0.1);
+          background-color: #9ec7df73;
           width: fit-content;
           padding: 2.21px 7.07px 5.31px 7.07px;
           border-radius: 14.15px;
           padding-bottom: 0;
           p {
-            color: rgba(29, 200, 128, 1);
+            color: #22345b;
+
             font-family: var(--effra-font);
             font-size: 11px;
             font-weight: 400;
@@ -79,18 +80,20 @@
         .link_container {
           display: flex;
           align-items: center;
-          color: #e6ddc6;
+          color: #afa895;
 
           p {
             font-family: var(--effra-font);
             font-size: 14px;
             font-weight: 400;
             text-align: right;
+            color: #afa895;
           }
           .icon_container {
             margin-right: 13px;
             svg {
               font-size: 16px;
+              color: #afa895;
             }
           }
         }
