@@ -248,11 +248,11 @@ section.poetry_page {
         }
         .tag {
           background-color: #9ec7df73;
-          padding: 2.5px 8px 6px 8px;
+          // padding: 2.5px 8px 6px 8px;
           border-radius: 16px;
           color: #22345b;
           width: fit-content;
-          padding-bottom: 0;
+          padding: 3px;
           p {
             font-family: var(--effra-font);
             font-size: 12px;

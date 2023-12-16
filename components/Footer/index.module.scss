@@ -5,7 +5,7 @@
   border-top: 1px solid rgba(229, 230, 242, 1);
   padding-bottom: 0;
   background-color: var(--main-blue-color);
-
+  position: relative;
   @media screen and (max-width: 992px) {
     background-color: #ffffff;
     padding: 0;
@@ -192,7 +192,13 @@
   p {
     margin-top: 16px;
     @media screen and (max-width: 450px) {
-      margin-top: -52px;
+      // margin-top: -52px;
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      right: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
     }
     font-family: var(--effra-font);
     font-size: 12px;

@@ -31,6 +31,11 @@ section.simlar_poets {
           width: 336px;
         }
 
+        @media screen and (max-width: 400px) {
+          width: 296px !important;
+          padding: 13px !important;
+        }
+
         .poet_tag {
           background: rgba(187, 113, 101, 0.1) !important;
           margin-top: 5px;

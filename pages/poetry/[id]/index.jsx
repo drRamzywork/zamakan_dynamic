@@ -277,7 +277,6 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
         </motion.div>
 
       </section >
-
       <Slider additionalData={additionalData} />
 
     </>

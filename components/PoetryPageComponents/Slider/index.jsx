@@ -23,7 +23,7 @@ const Slider = ({ additionalData }) => {
           </div>
         </Container>
 
-        <Container maxWidth={false} className='disable_container'>
+        <Container maxWidth={false} >
           <div className={styles.slider_container}>
             <div className={styles.slider}>
               <Swiper
