@@ -13,12 +13,13 @@ import {
   LeftArrow,
   RightArrow,
   Check,
-  Checked,
+  // HiPencilSquare,
   Location
 } from '@/assets/svgsComponents';
 import Slider from '@/components/PoetryPageComponents/Slider'
 import Head from 'next/head';
 import { motion } from 'framer-motion';
+import { HiPencilSquare } from "react-icons/hi2";
 
 const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
   const { Feather_big, } = imgs;
@@ -240,7 +241,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                   <ul className={styles.list_container}>
                     <li>
                       <div className={styles.icon_container}>
-                        <Checked />
+                        <HiPencilSquare />
                       </div>
                       <div className={styles.text_container}>
                         <div className={styles.name}>
@@ -253,7 +254,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                     </li>
                     <li>
                       <div className={styles.icon_container}>
-                        <Checked />
+                        <HiPencilSquare />
                       </div>
                       <div className={styles.text_container}>
                         <div className={styles.name}>
@@ -266,7 +267,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                     </li>
                     <li>
                       <div className={styles.icon_container}>
-                        <Check />
+                        <HiPencilSquare />
                       </div>
                       <div className={styles.text_container}>
                         <div className={styles.name}>
@@ -297,12 +298,6 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
                     <div className={styles.img_container}>
                       <img src={dataPlace?.icon} alt="" />
                     </div>
-                    {/* <div className={styles.img_container}>
-                      <img src={dataPlace?.icon} alt="" />
-                    </div>
-                    <div className={styles.img_container}>
-                      <img src={dataPlace?.icon} alt="" />
-                    </div> */}
                   </div>
                 </div>
               </div >

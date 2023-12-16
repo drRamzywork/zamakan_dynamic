@@ -346,12 +346,15 @@
         align-items: center;
         justify-content: center;
       }
-      &:hover {
-        background-color: #ffffff;
-        border: 3px solid var(--main-beige-color);
+      @media screen and (min-width: 500px) {
+        &:hover {
+          background-color: #ffffff;
+          border: 3px solid var(--main-beige-color);
 
-        transform: scale(1.1);
+          transform: scale(1.1);
+        }
       }
+
       // @media screen and (max-width: 450px) {
       //   width: 42.42px;
       //   height: 35.51px;
@@ -367,6 +370,10 @@
           margin: auto;
           object-fit: contain;
           transform: translatey(-10px);
+        }
+
+        @media screen and (min-width: 992px) {
+          transform: scale(1.3);
         }
       }
     }
