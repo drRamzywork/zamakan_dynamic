@@ -12,7 +12,6 @@ import Link from 'next/link';
 
 
 const Slider = ({ additionalData }) => {
-  console.log(additionalData, "additionalData")
   return (
     <>
       <section id='simlar_poets' className={styles.simlar_poets}>

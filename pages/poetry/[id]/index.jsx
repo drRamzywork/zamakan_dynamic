@@ -291,7 +291,6 @@ export default Poetry
 
 export async function getStaticProps({ params }) {
   const { id } = params;
-  console.log(`Requesting data for poetry ID: ${id}`);
 
   try {
 
