@@ -140,7 +140,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
       <section id='Poets' className={styles.Poets} dir='rtl'>
 
 
-        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
+        <Container maxWidth={false} >
           <motion.div
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}

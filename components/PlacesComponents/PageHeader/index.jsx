@@ -30,7 +30,7 @@ const PageHeader = ({ dataAllCitiesMap }) => {
         }
 
       </div>
-      <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
+      <Container maxWidth={false}>
         <div className={styles.sec_title}>
           <Typography variant='h3'>
             استكشف الأماكن

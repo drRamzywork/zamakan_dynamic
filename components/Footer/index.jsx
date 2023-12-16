@@ -17,7 +17,7 @@ const Footer = () => {
         styles.footer
 
     } dir='ltr'>
-      <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
+      <Container maxWidth={false}>
         <Grid container justifyContent="center" alignItems="center">
           {/*
          

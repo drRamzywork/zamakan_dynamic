@@ -12,18 +12,19 @@ import Link from 'next/link';
 
 
 const Slider = ({ additionalData }) => {
+  console.log(additionalData, "additionalData")
   return (
     <>
       <section id='simlar_poets' className={styles.simlar_poets}>
-        <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
+        <Container maxWidth={false}>
           <div className={styles.sec_title}>
             <Typography variant='h3'>
-              شعراء آخرون تحدثوا عن المكان
+              شعراء آخرون تحدثوا عن {additionalData[0]?.placeName}
             </Typography>
           </div>
         </Container>
 
-        <Container maxWidth={false} sx={{ maxWidth: "1400px" }} className='disable_container'>
+        <Container maxWidth={false} className='disable_container'>
           <div className={styles.slider_container}>
             <div className={styles.slider}>
               <Swiper

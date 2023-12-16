@@ -116,12 +116,14 @@
       @media screen and (max-width: 992px) {
         display: none;
       }
+
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
     }
+
     .image_container {
       overflow: hidden;
 
@@ -189,6 +191,9 @@
 
   p {
     margin-top: 16px;
+    @media screen and (max-width: 450px) {
+      margin-top: -52px;
+    }
     font-family: var(--effra-font);
     font-size: 12px;
     font-weight: 400;
@@ -202,7 +207,7 @@
 
 .Landingfooter {
   padding-top: 0 !important;
-  margin-top: 16px !important;
+  margin-top: 0px !important;
   padding-bottom: 40px;
   margin-bottom: 0;
 }

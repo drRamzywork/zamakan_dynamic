@@ -49,7 +49,7 @@ const LiteraryEras = ({ erasAllEras }) => {
 
 
       < section id='LiteraryEras' className={styles.LiteraryEras} >
-        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
+        <Container maxWidth={false} >
           <motion.div
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
@@ -90,7 +90,7 @@ const LiteraryEras = ({ erasAllEras }) => {
         initial={{ opacity: 0 }}
         transition={{ duration: 1, }}
         className={styles.swiper_container}>
-        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className={styles.leftSide}>
+        <Container maxWidth={false} className={styles.leftSide}>
           <Swiper
             dir="rtl"
             breakpoints={{

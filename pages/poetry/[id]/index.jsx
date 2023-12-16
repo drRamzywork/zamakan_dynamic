@@ -55,7 +55,7 @@ const Poetry = ({ dataPoetry, dataPlace, additionalData }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
+          <Container maxWidth={false}>
             <div className={styles.slider_container} >
               <div className={styles.sec_title}>
                 <Typography variant='h3'>بيت الشعر</Typography>

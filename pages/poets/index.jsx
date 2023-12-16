@@ -162,7 +162,7 @@ const Poets = ({ erasAllEras, dataDefault }) => {
       </Head>
 
       <section id='poets' className='poets'>
-        <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
+        <Container maxWidth={false}>
 
           <div className={styles.tabContent_container} dir='rtl'>
             <section className={styles.timelineSection}>

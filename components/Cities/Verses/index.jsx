@@ -35,7 +35,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
     <>
       <section id='Verses' className={styles.Verses} dir='rtl' >
         <div className={styles.sec_container}>
-          <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
+          <Container maxWidth={false} >
 
             <div className={styles.info_sec}>
               <div className={styles.sec_title}>
@@ -142,14 +142,14 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
 
 
 
-          <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className='disable_container_mobile'>
+          <Container maxWidth={false} className='disable_container_mobile'>
 
-            <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
+            <Container maxWidth={false} >
               <div className={styles.sec_title}>
                 <Typography variant='h3'>أبيات قيلت في {dataCityData.name}</Typography>
               </div>
             </Container>
-            <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className={styles.slider_container}>
+            <Container maxWidth={false} className={styles.slider_container}>
               <div className={styles.slider_sec}>
                 <Swiper
                   breakpoints={{

@@ -8,7 +8,7 @@ const PageHeader = ({ dataCityData }) => {
 
   return (
     <header id={styles.cities} dir='rtl'>
-      <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
+      <Container maxWidth={false}>
         <div className={styles.sec_container}>
           <div className={styles.img_container}>
             {/* <div className={styles.text_container}>

@@ -204,7 +204,7 @@ const Places = ({ dataAllCitiesMap }) => {
 
           <div className={styles.layer} />
         )}
-        <Container sx={{ maxWidth: "1400px" }} maxWidth={false} >
+        <Container maxWidth={false} >
 
 
           <motion.div

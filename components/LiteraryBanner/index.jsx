@@ -34,7 +34,7 @@ const LiteraryBanner = (props) => {
       <section id='LiteraryBanner' className={styles.LiteraryBanner} >
         <div className={styles.sec_container}>
 
-          <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className={styles.leftSide}>
+          <Container maxWidth={false} className={styles.leftSide}>
             <div className={styles.sec_title}>
               <Typography variant='h1'>
                 شعراء العصر
@@ -59,7 +59,7 @@ const LiteraryBanner = (props) => {
         </div>
 
       </section >
-      <Container sx={{ maxWidth: "1400px" }} maxWidth={false} className={styles.leftSide}>
+      <Container maxWidth={false} className={styles.leftSide}>
         <div className={styles.swiper_container}>
           <Swiper
             dir="rtl"

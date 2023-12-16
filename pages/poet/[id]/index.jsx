@@ -140,7 +140,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <Container sx={{ maxWidth: "1400px" }} dir="rtl" maxWidth={false} className={styles.poetDetails}>
+        <Container dir="rtl" maxWidth={false} className={styles.poetDetails}>
           <Box className={styles.headerImage} >
             {/* <div className={styles.text_container}>
               <ul>
