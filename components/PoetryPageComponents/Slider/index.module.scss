@@ -32,27 +32,25 @@ section.simlar_poets {
         }
 
         @media screen and (max-width: 400px) {
-          width: 296px !important;
+          width: auto !important;
           padding: 13px !important;
         }
 
         .poet_tag {
-          background: rgba(187, 113, 101, 0.1) !important;
           margin-top: 5px;
           p {
-            color: rgba(187, 113, 101, 1) !important;
           }
         }
         .poet_tag,
         .tag {
-          background: rgba(29, 200, 128, 0.1);
           width: fit-content;
-          padding: 2.21px 7.07px 5.31px 7.07px;
           border-radius: 14.15px;
-          padding-bottom: 0;
-
+          background-color: #9ec7df73;
+          padding: 3px;
+          padding-right: 8px;
+          padding-left: 8px;
           p {
-            color: rgba(29, 200, 128, 1);
+            color: #22345b;
             font-family: var(--effra-font);
             font-size: 11px;
             font-weight: 400;
