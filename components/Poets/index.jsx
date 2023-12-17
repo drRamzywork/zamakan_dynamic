@@ -10,6 +10,7 @@ import PoetsSlider from '../PoetsSlider';
 import { ErasPlacesSlider } from '../ErasComponents';
 import { MdLocationPin } from "react-icons/md";
 import { CloseIcon, LeftArrow } from '@/assets/svgsComponents';
+import { RotatingLines } from 'react-loader-spinner';
 
 
 const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
@@ -21,7 +22,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
   const [isPointsActive, seIsPointsActive] = useState(false);
   const [cityNames, setCityNames] = useState([]);
   const [places, setPlaces] = useState(null);
-  const [isCityLoading, setIsCityLoading] = useState(false);
+  const [isMapLoading, setIsMapLoading] = useState(false);
   const [showMore, setShowMore] = useState(false);
 
   const toggleShowMore = () => {
@@ -100,21 +101,27 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
-    setIsCityLoading(false)
   };
 
   const handlePlaceActive = async (placeId) => {
     setActiveCity(placeId);
 
-    setIsCityLoading(false)
   };
 
   const handlePoetData = async (poetID) => {
+    setIsMapLoading(true)
+
     const resPoetPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?poet=${poetID}&lang=2&pagenum=1&pagesize=50`);
     const dataPoetPlaces = await resPoetPlaces.json();
-
-    setPlaces(dataPoetPlaces)
+    if (resPoetPlaces.status === 200) {
+      setPlaces(dataPoetPlaces)
+      setIsMapLoading(false)
+    } else {
+      setPlaces(null)
+    }
   }
+
+  console.log(isMapLoading)
 
   const popUpRef = useRef(null);
   useEffect(() => {
@@ -229,8 +236,19 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
             }
 
             <div className={styles.svg_wrap} dir='ltr'>
-              <div id='map-boxes'>
-
+              <div id='map-boxes' className={styles.map_box}>
+                {isMapLoading &&
+                  <div className={styles.svg_layer}>
+                    <RotatingLines
+                      strokeColor="grey"
+                      strokeWidth="5"
+                      animationDuration="0.75"
+                      width="96"
+                      visible={true}
+                      className={styles.loader}
+                    />
+                  </div>
+                }
                 <xml version="1.0" encoding="UTF-8" standalone="no" />
                 <svg
                   id="svg1"

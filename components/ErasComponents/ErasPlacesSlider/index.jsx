@@ -21,7 +21,7 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
 
   const [imageLoadingStates, setImageLoadingStates] = useState(
     filteredPlaces.reduce((acc, city) => {
-      acc[city.id] = city.icon ? true : false; // Set to false if icon is empty
+      acc[city.id] = city.icon ? true : false;
       return acc;
     }, {})
   );
@@ -35,8 +35,12 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
         swiperRef.current.swiper.slideTo(index);
       }
     }
+
   }, [activeCity, places]);
 
+  useEffect(() => {
+    console.log(places, "Places changes")
+  }, [places])
 
 
 

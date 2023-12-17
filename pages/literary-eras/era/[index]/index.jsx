@@ -66,6 +66,7 @@ export async function getStaticProps({ params }) {
   const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&lang=2&pagenum=1&pagesize=50`);
   const dataAllPlacesMap = await resAllPlacesMap.json();
 
+
   return {
     props: {
       dataAllEras: dataAllEras,

@@ -122,7 +122,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
   return (
     <>
       <Head>
-        <title>الشاعر {dataPoet?.name} </title>
+        <title> {dataPoet?.name} </title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
