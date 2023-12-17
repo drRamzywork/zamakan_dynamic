@@ -132,7 +132,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
   };
 
 
-  console.log(isMapLoading)
 
   const popUpRef = useRef(null);
   useEffect(() => {

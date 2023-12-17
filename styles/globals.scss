@@ -788,6 +788,18 @@ svg.saudi-map.safari .city-name > div:hover {
   }
 }
 
+#PublicTreasury {
+  .swiper-button-prev,
+  .swiper-button-next {
+    &:after {
+      color: var(--main-blue-color);
+    }
+  }
+  .swiper-button-prev {
+    // right: 20% !important;
+  }
+}
+
 // Swiper pagination
 #swiperContainer {
   padding-bottom: 40px;

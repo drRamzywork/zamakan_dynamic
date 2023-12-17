@@ -3,9 +3,12 @@ import Logo from "../logo.png";
 import logo_mobile_footer from "../logo_mobile_footer.png";
 import Search from "../Search.svg";
 import texture from "../texture.png";
-import ra3y from "../ra3y.png";
-import ra3y1 from "../ra3y1.png";
 import place from "../place.png";
+import place1 from "../place.jpg";
+import star from "../star.png";
+import BrownDeer from "../BrownDeer.png";
+import redPlants from "../redPlants.png";
+import redBird from "../redBird.png";
 import Vision2030 from "../Vision2030.png";
 import Abbasid_era from "../Abbasid_era.png";
 import Islamic_era from "../Islamic_era.png";
@@ -49,8 +52,6 @@ export default {
   Logo,
   Search,
   texture,
-  ra3y,
-  ra3y1,
   smallMap,
   SaudiMap,
   backgroundCity,
@@ -90,4 +91,9 @@ export default {
   South,
   Western,
   KSA,
+  star,
+  redBird,
+  BrownDeer,
+  redPlants,
+  place1,
 };

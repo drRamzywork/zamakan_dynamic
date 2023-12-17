@@ -123,6 +123,27 @@ const LandingPage = () => {
                 </div>
               </Link>
             </motion.div>
+            <motion.div
+              animate={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
+              transition={{ duration: 1, }}
+
+              className={styles.boxes_container}>
+              <Link href='/public-treasury' className={styles.box1}>
+                <div className={styles.icon_container}>
+                  <SmallSaudiMap />
+
+                </div>
+                <div className={styles.title}>
+                  <Typography variant='h4'>
+                    خزانة العام
+                  </Typography>
+                </div>
+                <div className={styles.arrow}>
+                  <LeftArrow />
+                </div>
+              </Link>
+            </motion.div>
           </Container >
         </div>
 

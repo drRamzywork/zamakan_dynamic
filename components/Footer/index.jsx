@@ -12,50 +12,12 @@ const Footer = () => {
 
   return (
     <footer className={
-      router.pathname === '/' ?
-        styles.Landingfooter :
-        styles.footer
-
-    } dir='ltr'>
+      router.pathname === '/' || router.pathname === "/public-treasury" ?
+        styles.Landingfooter : styles.footer
+    } dir='ltr' >
       <Container maxWidth={false}>
         <Grid container justifyContent="center" alignItems="center">
-          {/*
-         
-          <Grid item xs={12} style={{ textAlign: 'center' }}>
-            <Image width={77.39} height={48.08} src={Logo.src} alt="" />
-          </Grid>
 
-          <Grid item xs={6} style={{ textAlign: 'center' }}>
-
-          <div className={styles.socialLinks}>
-              <div className={styles.links_container}>
-                <Link href='https://www.twitter.com/' target='_blank'>
-                  <IconButton aria-label="">
-                    <Twitter />
-                  </IconButton>
-                </Link>
-                <Link href='https://www.instagram.com/' target='_blank'>
-                  <IconButton aria-label="instagram">
-                    <Instagram />
-                  </IconButton>
-                </Link>
-                <Link href='https://www.linkedin.com/' target='_blank'>
-                  <IconButton aria-label="linkedin">
-                    <LinkedIn />
-                  </IconButton>
-                </Link>
-
-              </div>
-              {/* <Link href='tel:009668001189999' className={styles.contact}>
-                <Typography variant="body1">(009) 668001189999</Typography>
-                <IconButton aria-label="phone">
-                  <Phone />
-                </IconButton>
-              </Link> 
-        </div>
-
-          </Grid>
-*/}
 
         </Grid>
         <Box className={styles.footerBottom}>
