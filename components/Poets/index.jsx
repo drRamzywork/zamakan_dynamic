@@ -109,17 +109,28 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
   };
 
   const handlePoetData = async (poetID) => {
-    setIsMapLoading(true)
+    setIsMapLoading(true);
 
-    const resPoetPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?poet=${poetID}&lang=2&pagenum=1&pagesize=50`);
-    const dataPoetPlaces = await resPoetPlaces.json();
-    if (resPoetPlaces.status === 200) {
-      setPlaces(dataPoetPlaces)
-      setIsMapLoading(false)
-    } else {
-      setPlaces(null)
+    try {
+      const resPoetPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?poet=${poetID}&lang=2&pagenum=1&pagesize=50`);
+
+      if (resPoetPlaces.status === 200) {
+        const dataPoetPlaces = await resPoetPlaces.json();
+        setPlaces(dataPoetPlaces);
+      } else {
+        // Handle non-200 responses here
+        console.error('Failed to fetch. Status:', resPoetPlaces.status);
+        setPlaces(null);
+      }
+    } catch (error) {
+      // Handle errors in fetching or JSON parsing
+      console.error('Error fetching data or parsing JSON:', error);
+      setPlaces(null);
+    } finally {
+      setIsMapLoading(false);
     }
-  }
+  };
+
 
   console.log(isMapLoading)
 
