@@ -20,7 +20,6 @@ import { RotatingLines } from 'react-loader-spinner';
 
 const Places = ({ dataAllCitiesMap }) => {
   const [isImageLoading, setIsImageLoading] = useState(true);
-  console.log(isImageLoading)
   const [landElments, setLandElemnts] = useState([])
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeLand, setActiveLand] = useState(null);

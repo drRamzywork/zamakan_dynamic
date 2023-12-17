@@ -1,15 +1,31 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import styles from './index.module.scss'
 import { Typography } from '@mui/material';
 import Image from 'next/image';
+import { RotatingLines } from 'react-loader-spinner';
 
 
 const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) => {
   const swiperRef = useRef(null);
   const filteredPlaces = places.filter(place => place.svgX !== null && place.svgY !== null);
+
+  // const [imageLoadingStates, setImageLoadingStates] = useState(
+  //   filteredPlaces.reduce((acc, city) => {
+  //     acc[city.id] = true; // Initialize all images as loading
+  //     return acc;
+  //   }, {})
+  // );
+
+  const [imageLoadingStates, setImageLoadingStates] = useState(
+    filteredPlaces.reduce((acc, city) => {
+      acc[city.id] = city.icon ? true : false; // Set to false if icon is empty
+      return acc;
+    }, {})
+  );
+
 
 
   useEffect(() => {
@@ -32,6 +48,13 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
     const newActiveCity = filteredPlaces[newIndex].id;
     setActiveCity(newActiveCity);
   };
+
+
+  const handleImageLoad = cityId => {
+    setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
+  };
+
+
 
 
 
@@ -78,12 +101,31 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
           dir={'rtl'}
           className="places-swiper">
 
+          {console.log(filteredPlaces)}
 
           {filteredPlaces?.map((city, index) =>
             <SwiperSlide className={styles.places_container} key={city.id} onClick={() => onPlaceClick(city.id)}>
               <div className={`${styles.places} ${city.id === activeCity ? styles.active : ''}`} key={index} >
                 <div className={styles.img_container}>
-                  <Image width={200} height={200} src={city.icon} alt={city.name} />
+                  {imageLoadingStates[city.id] && (
+                    <RotatingLines
+                      strokeColor="grey"
+                      strokeWidth="5"
+                      animationDuration="0.75"
+                      width="96"
+                      visible={true}
+                    />
+                  )}
+
+                  <img
+                    style={{ display: imageLoadingStates[city.id] ? 'none' : 'block' }}
+                    width={200}
+                    height={200}
+                    src={city?.icon}
+                    alt={city?.name}
+                    onLoad={() => handleImageLoad(city.id)}
+                  />
+
                 </div>
                 <div className={styles.name}>
                   <Typography>{city.name}</Typography>
