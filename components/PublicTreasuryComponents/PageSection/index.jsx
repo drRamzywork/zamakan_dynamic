@@ -131,7 +131,7 @@ const PageSection = ({ title, data = [] }) => {
                 </div>
 
                 <div className={styles.img_container}>
-                  <Image width={318} height={183} src={item.img} alt={item.title} />
+                  <img src={item.img} alt={item.title} />
                 </div>
 
                 <div className={styles.title}>
@@ -177,13 +177,13 @@ const PageSection = ({ title, data = [] }) => {
                               visible={true}
                             />
                           )}
-                          <Image
+                          <img
                             style={{ display: imageLoadingStates[item.id] ? 'none' : 'block' }}
                             onLoad={() => handleImageLoad(item.id)}
                             onError={(e) => {
                               console.error(`Error loading image: ${item.img}`);
                               handleImageLoad(item.id); // Set the image as loaded to remove the loader
-                            }} width={318} height={183} src={item.img} alt={`Gallery Image ${index + 1}`} />
+                            }} src={item.img} alt={`Gallery Image ${index + 1}`} />
 
                         </div>
                       </div>
