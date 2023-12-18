@@ -31,6 +31,20 @@ section.section {
           top: 50px !important;
           right: 50px !important;
         }
+        background-color: #ffffff3b;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: rgb(255 255 255 / 39%);
+        }
+        svg {
+          width: 30px;
+          height: 30px;
+          color: var(--main-white-color);
+          transition: all 0.3s ease-in-out;
+          &:hover {
+            color: #ffffff;
+          }
+        }
       }
       .box {
         .img_container {

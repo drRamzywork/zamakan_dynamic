@@ -795,7 +795,13 @@ svg.saudi-map.safari .city-name > div:hover {
   .swiper-button-prev,
   .swiper-button-next {
     &:after {
-      color: #713540;
+      color: #ffffff;
+    }
+  }
+
+  .swiper-pagination {
+    span {
+      background-color: #ffffff;
     }
   }
 }

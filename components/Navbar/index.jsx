@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './index.module.scss'
-import { useScrollTrigger, Slide, AppBar, Toolbar, Button, Container, Typography } from '@mui/material';
+import { useScrollTrigger, Slide, AppBar, Toolbar, Container, } from '@mui/material';
 import { Search, } from '../../assets/svgsComponents';
 
 import { motion } from 'framer-motion';

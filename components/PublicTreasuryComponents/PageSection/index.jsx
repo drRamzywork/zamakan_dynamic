@@ -1,7 +1,7 @@
-import { Button, Typography } from '@mui/material'
+import { Button, Container, Typography } from '@mui/material'
 import React, { useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Thumbs, FreeMode } from 'swiper/modules';
+import { Navigation, Thumbs, FreeMode, Pagination } from 'swiper/modules';
 import styles from './index.module.scss'
 import Link from 'next/link';
 import Image from 'next/image';
@@ -10,18 +10,17 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
+import 'swiper/css/pagination';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { IoClose } from "react-icons/io5";
 
 
 const PageSection = ({ title, data = [] }) => {
   // Thumbs logic
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef(null);
-
-
 
 
   const closeGallery = () => {
@@ -145,30 +144,34 @@ const PageSection = ({ title, data = [] }) => {
               animate={{ opacity: 1 }}
               initial={{ opacity: 0 }}
               transition={{ duration: 1, }} className={styles.fullscreengallery}>
-              <Button onClick={closeGallery} className={styles.close_btn}>اغلاق</Button>
+              <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
+                <Button onClick={closeGallery} className={styles.close_btn}>
+                  <IoClose />
 
-              <Swiper
-                slidesPerView={1}
-                navigation={true}
-                // thumbs={{ swiper: thumbsSwiper }}
-                modules={[FreeMode, Navigation, Thumbs]}
-                className="mySwiper2"
-                // onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}s
-                // initialSlide={activeIndex}
-                dir="rtl"
-                onSlideChange={handleSlideChange}
-
-              >
-                {data && data.map((item, index) => (
-                  <SwiperSlide key={index}>
-                    <div className={styles.box}>
-                      <div className={styles.img_container}>
-                        <Image width={318} height={183} src={item.img} alt={item.title} />
+                </Button>
+                <Swiper
+                  slidesPerView={1}
+                  spaceBetween={16}
+                  navigation={true}
+                  modules={[FreeMode, Navigation, Thumbs, Pagination]} // 
+                  className="mySwiper2"
+                  pagination={{ clickable: true }}
+                  dir="rtl"
+                  centeredSlides={true}
+                  initialSlide={activeIndex}
+                >
+                  {data && data.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      <div className={styles.box}>
+                        <div className={styles.img_container}>
+                          <Image width={318} height={183} src={item.img} alt={item.title} />
+                        </div>
                       </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </Container>
+
             </motion.div>
 
 
