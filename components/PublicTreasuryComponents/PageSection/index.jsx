@@ -6,6 +6,7 @@ import 'swiper/css/navigation';
 import { Navigation, } from 'swiper/modules';
 import styles from './index.module.scss'
 import Link from 'next/link';
+import Image from 'next/image';
 const PageSection = ({ title, data }) => {
 
   return (
@@ -65,7 +66,7 @@ const PageSection = ({ title, data }) => {
             <SwiperSlide key={index}>
               <div className={styles.box}>
                 <div className={styles.img_container}>
-                  <img src={item.img} alt={item.title} />
+                  <Image width={318} height={183} src={item.img} alt={item.title} />
                 </div>
 
                 <div className={styles.title}>

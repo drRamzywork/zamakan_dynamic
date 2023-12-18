@@ -122,14 +122,8 @@ const LandingPage = () => {
                   <LeftArrow />
                 </div>
               </Link>
-            </motion.div>
-            <motion.div
-              animate={{ opacity: 1 }}
-              initial={{ opacity: 0 }}
-              transition={{ duration: 1, }}
 
-              className={styles.boxes_container}>
-              <Link href='/public-treasury' className={styles.box1}>
+              <Link href='/public-treasury' className={styles.box}>
                 <div className={styles.icon_container}>
                   <SmallSaudiMap />
 
@@ -144,6 +138,8 @@ const LandingPage = () => {
                 </div>
               </Link>
             </motion.div>
+
+
           </Container >
         </div>
 

@@ -3,7 +3,6 @@ import Logo from "../logo.png";
 import logo_mobile_footer from "../logo_mobile_footer.png";
 import Search from "../Search.svg";
 import texture from "../texture.png";
-import place from "../place.png";
 import place1 from "../place.jpg";
 import star from "../star.png";
 import BrownDeer from "../BrownDeer.png";
@@ -80,7 +79,6 @@ export default {
   mapPiece6,
   mapPiece7,
   Feather_big,
-  place,
   Ministry_of_Culture,
   Literature,
   logo_mobile_footer,

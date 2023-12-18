@@ -139,25 +139,10 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
         transition={{ duration: 1 }}
       >
         <Container dir="rtl" maxWidth={false} className={styles.poetDetails}>
-          <Box className={styles.headerImage} >
-            {/* <div className={styles.text_container}>
-              <ul>
-                <li>
-                  <Link href="/">الرئيسية</Link>
-                </li>
-                <li>
-                  <Link href="/literary-eras">العصور الأدبية</Link>
-                </li>
-                <li>
-                  <a >الشاعر {dataPoet.name}</a>
-                </li>
-              </ul>
-            </div> */}
-          </Box>
+
           <Grid container className={styles.profileSection}>
             <Grid item>
               <div className={styles.img_container}>
-                {/* <Avatar src={dataPoet.icon} className={styles.avatar} /> */}
                 <img src={dataPoet.icon} alt="" />
               </div>
 
@@ -173,14 +158,11 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                     {dataPoet.nickname}
                   </Typography>
                 </div>
-                {/* <div className={styles.tag}>
-                <Typography>{dataPoet.zamanName}</Typography>
-              </div> */}
+
               </div>
 
               <div className={styles.desc} dir='rtl'>
-                {/* <Typography>
-              </Typography> */}
+
 
                 <Typography>
                   {

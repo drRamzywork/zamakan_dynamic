@@ -20,7 +20,7 @@ const Footer = () => {
 
 
         </Grid>
-        <Box className={styles.footerBottom}>
+        <Box paddingBottom={'4px'} className={styles.footerBottom}>
 
           <Box className={styles.box_container}>
             <div className={styles.images_box}>
