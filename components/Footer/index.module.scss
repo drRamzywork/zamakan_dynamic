@@ -182,9 +182,21 @@
           display: block;
         }
 
+        @media screen and (max-width: 450px) {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
         img {
           width: 100%;
           object-fit: cover;
+
+          @media screen and (max-width: 450px) {
+            width: 73%;
+            object-fit: contain;
+            height: 245px;
+          }
         }
       }
     }

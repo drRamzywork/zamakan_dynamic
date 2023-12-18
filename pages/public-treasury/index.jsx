@@ -1,10 +1,10 @@
 import { imgs } from '@/assets/constants'
 import { PageSection } from '@/components/PublicTreasuryComponents';
 import { Container, Typography } from '@mui/material';
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from './index.module.scss'
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 const PublicTreasury = () => {
   const { BrownDeer, place1, redPlants, star, redBird } = imgs;
 
@@ -60,6 +60,7 @@ const PublicTreasury = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
+
         >
 
           <header id={styles.header}>
