@@ -82,6 +82,7 @@ const PageSection = ({ title, data = [] }) => {
           pagination={{ clickable: true }}
           dir='rtl'
           onSlideChange={handleSlideChange}
+          ref={swiperRef}
 
           breakpoints={{
             300: {
@@ -110,12 +111,12 @@ const PageSection = ({ title, data = [] }) => {
 
             },
             1400: {
-              slidesPerView: 4,
+              slidesPerView: 3,
               spaceBetween: 16,
 
             },
             1800: {
-              slidesPerView: 5,
+              slidesPerView: 3,
               spaceBetween: 16,
 
             },

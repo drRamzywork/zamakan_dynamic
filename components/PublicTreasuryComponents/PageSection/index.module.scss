@@ -1,12 +1,12 @@
 section.section {
   margin-top: 24px;
-  margin-bottom: 70px;
+  margin-bottom: 40px;
   .sec_title {
-    margin-bottom: 16px;
+    margin-bottom: 28px;
     h3 {
       color: #3e553f;
       font-family: var(--req3a-font) !important;
-      font-size: 60px !important;
+      font-size: 80px !important;
       text-align: center;
       font-weight: 500 !important;
     }
@@ -75,11 +75,13 @@ section.section {
       }
 
       .title {
+        margin-top: 28px;
         h4 {
           text-align: center;
-          font-family: var(--req3a-font) !important;
-          font-size: 30px;
+          font-family: var(--effra-font) !important;
+          font-size: 24px;
           font-weight: 500;
+          color: #3e553f;
         }
       }
 
@@ -87,8 +89,10 @@ section.section {
         border: 2px solid #e5ddc6;
         border-radius: 2px;
         box-shadow: 0px 4px 7px 0px #0000004f;
-        width: 318px;
-        height: 183px;
+        // width: 318px;
+        // height: 183px;
+        width: 416px;
+        height: 233px;
         overflow: hidden;
         transition: all 0.3s ease-in-out;
         @media screen and (max-width: 992px) {
