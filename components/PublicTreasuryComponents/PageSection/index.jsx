@@ -131,7 +131,7 @@ const PageSection = ({ title, data = [] }) => {
                 </div>
 
                 <div className={styles.img_container}>
-                  <Image width={318} height={183} src={"https://www.dropbox.com/scl/fi/krwp96ypec8l6itk7dmz0/DS-12-3-copy.webp?rlkey=7wymtzqxwet2rouq4n47002e7&dl=1"} alt={item.title} />
+                  <Image width={318} height={183} src={item.img} alt={item.title} />
                 </div>
 
                 <div className={styles.title}>
