@@ -33,12 +33,6 @@ const PageSection = ({ title, data = [] }) => {
     setGalleryOpen(true);
 
     const initialLoadStates = data[index].gallery.reduce((acc, img) => {
-      console.log(data[index].gallery)
-
-      console.log(img, 'ACCC')
-
-      console.log(`Initializing loading state for image ID: ${img.id}`);
-
       acc[img.id] = true;
       return acc;
     }, {});
@@ -61,22 +55,12 @@ const PageSection = ({ title, data = [] }) => {
 
 
 
-  // Image Loader
   const [imageLoadingStates, setImageLoadingStates] = useState({});
 
-  // useEffect(() => {
-  //   const initialLoadStates = data[index].gallery.reduce((acc, img) => {
-  //     acc[img.id] = true; // All images are initially loading
-  //     return acc;
-  //   }, {});
-  //   setImageLoadingStates(initialLoadStates);
-  // }, [activeIndex, data]);
 
   const handleImageLoad = cityId => {
     setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
   };
-
-  // console.log(imageLoadingStates)
 
 
   return (
@@ -143,7 +127,7 @@ const PageSection = ({ title, data = [] }) => {
             <SwiperSlide key={index} onClick={() => openGallery(index)}>
               <div className={styles.box}>
                 <div className={styles.rotated_img}>
-                  <Image width={318} height={183} src={item.img} alt={item.title} />
+                  <img src={item.img} alt={item.title} />
                 </div>
 
                 <div className={styles.img_container}>
@@ -174,12 +158,11 @@ const PageSection = ({ title, data = [] }) => {
                   slidesPerView={1}
                   spaceBetween={16}
                   navigation={true}
-                  modules={[FreeMode, Navigation, Thumbs, Pagination]} // 
+                  modules={[FreeMode, Navigation, Thumbs, Pagination]}
                   className="mySwiper2"
                   pagination={{ clickable: true }}
                   dir="rtl"
                   centeredSlides={true}
-                // initialSlide={activeIndex}
                 >
                   {data[activeIndex].gallery.map((item, index) => (
                     <SwiperSlide key={index}>

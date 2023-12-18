@@ -31,12 +31,14 @@ const PublicTreasury = () => {
     {
       key: 'التوثيق البصري',
       data: [
-        { id: 1, title: "الشاعر طرفة بن العبد", img: place1.src },
-        { id: 1, title: "الشاعر طرفة بن العبد", img: place1.src },
-        { id: 1, title: "الشاعر طرفة بن العبد", img: place1.src },
-        { id: 1, title: "الشاعر طرفة بن العبد", img: place1.src },
+        { id: 1, title: "امرؤ القيس", gallery: [{ id: 1, img: "https://www.dropbox.com/scl/fi/66c6nudglipq0q82y1aoh/1-1-copy.webp?rlkey=nvl10f04dqtfq15fxv7v0h633&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/f3n8y1c8yg4c5pf0xhu04/2-copy.webp?rlkey=nd81b430fjkxmcypbqtayqy1w&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/taf4cie2wh31yxkws82at/3-copy.webp?rlkey=z91qul4av4pczkouhyqw20mlv&dl=1" }], img: "https://www.dropbox.com/scl/fi/66c6nudglipq0q82y1aoh/1-1-copy.webp?rlkey=nvl10f04dqtfq15fxv7v0h633&dl=1" },
+        { id: 1, title: "حاتم الطائي", gallery: [{ id: 1, img: "https://www.dropbox.com/scl/fi/d9b0wcm79ibkgk06c5tdi/2-copy.webp?rlkey=wauwy1le46hck1a0v2ksb5pzh&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/ly2dkfc6ki2ckmbetah62/10-copy.webp?rlkey=sdffemqq48t1thir82svun4po&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/7wjhbw9pg6yipak38zypc/13-copy.webp?rlkey=h6nkmdf0h3nqykm0eyjlv2c1e&dl=1" }], img: "https://www.dropbox.com/scl/fi/d9b0wcm79ibkgk06c5tdi/2-copy.webp?rlkey=wauwy1le46hck1a0v2ksb5pzh&dl=1" },
+
+
+        { id: 1, title: "طرفة بن العبد", gallery: [{ id: 1, img: "https://www.dropbox.com/scl/fi/843kuqrd0zirawz0acmsn/2-1-copy.webp?rlkey=3p3lwulekewb1ber97s70bxfg&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/jlrp7qlpp0h6prtm29os8/5-1-copy.webp?rlkey=e7p6e9hg3rol7m4b9xly2no87&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/82m0eo85jql7wejpg75fu/8-copy.webp?rlkey=l33bp3imca59hh980wwqbde1l&dl=1" }], img: "https://www.dropbox.com/scl/fi/843kuqrd0zirawz0acmsn/2-1-copy.webp?rlkey=3p3lwulekewb1ber97s70bxfg&dl=1" },
       ]
     },
+
     {
       key: 'من أبيات الشعراء',
       data: [
