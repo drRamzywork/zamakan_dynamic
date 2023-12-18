@@ -127,11 +127,11 @@ const PageSection = ({ title, data = [] }) => {
             <SwiperSlide key={index} onClick={() => openGallery(index)}>
               <div className={styles.box}>
                 <div className={styles.rotated_img}>
-                  <img src={item.img} alt={item.title} />
+                  <Image width={318} height={183} src={item.img} alt={item.title} />
                 </div>
 
                 <div className={styles.img_container}>
-                  <img src={item.img} alt={item.title} />
+                  <Image width={318} height={183} src={"https://www.dropbox.com/scl/fi/krwp96ypec8l6itk7dmz0/DS-12-3-copy.webp?rlkey=7wymtzqxwet2rouq4n47002e7&dl=1"} alt={item.title} />
                 </div>
 
                 <div className={styles.title}>
@@ -177,13 +177,13 @@ const PageSection = ({ title, data = [] }) => {
                               visible={true}
                             />
                           )}
-                          <img
+                          <Image
                             style={{ display: imageLoadingStates[item.id] ? 'none' : 'block' }}
                             onLoad={() => handleImageLoad(item.id)}
                             onError={(e) => {
                               console.error(`Error loading image: ${item.img}`);
                               handleImageLoad(item.id); // Set the image as loaded to remove the loader
-                            }} src={item.img} alt={`Gallery Image ${index + 1}`} />
+                            }} width={318} height={183} src={item.img} alt={`Gallery Image ${index + 1}`} />
 
                         </div>
                       </div>

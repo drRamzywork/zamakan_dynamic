@@ -43,23 +43,16 @@ const PublicTreasury = () => {
       key: 'من أبيات الشعراء',
       data: [
         {
-          id: 1, title: "الشاعر امرؤ القيس", img: place1.src
+          id: 1, title: "امرؤ القيس", gallery: [{ id: 1, img: "https://www.dropbox.com/scl/fi/olhxk4oa4x9lyxgqph8j4/1.webp?rlkey=8j71hrjpihnwo3j9aogkdnfws&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/ga3pbdgdoniede98ta8vi/20.webp?rlkey=yosoul9hr04h6ip770ruppuwz&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/oqrbxm2yv9h0rkukv89vm/27.webp?rlkey=ud5qry0274qr0urqhto799vgz&dl=0" }, { id: 1, img: "https://www.dropbox.com/scl/fi/m2kx5sqfu6v61up5kfpzc/34-1.webp?rlkey=pv21yxl01948nlqcmeju2l18e&dl=0" }], img: "https://www.dropbox.com/scl/fi/olhxk4oa4x9lyxgqph8j4/1.webp?rlkey=8j71hrjpihnwo3j9aogkdnfws&dl=1"
         },
         {
-          id: 1, title: "الشاعر امرؤ القيس", img: place1.src
+          id: 1, title: "طرفة بن العبد", gallery: [{ id: 1, img: "https://www.dropbox.com/scl/fi/wnq1bb8jqbgun9tulaant/2.webp?rlkey=3xb4s5alhz1x182hwf2yb38g1&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/s9fsmp64a9sz4zx0sony3/7.webp?rlkey=2cvhxz8palo7m1f6hzodr9tyb&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/zmw8f5ail1l7o89gfaxri/9.webp?rlkey=hezhc7i57tgo2vad6n8k907p5&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/ijok9lb08usqsb17ta8l8/11.webp?rlkey=aoqdb58fg5ytc6f2abdyvwio2&dl=1" },], img: "https://www.dropbox.com/scl/fi/wnq1bb8jqbgun9tulaant/2.webp?rlkey=3xb4s5alhz1x182hwf2yb38g1&dl=1"
         },
+
         {
-          id: 1, title: "الشاعر امرؤ القيس", img: place1.src
+          id: 1, title: "حاتم الطائي", gallery: [{ id: 1, img: "https://www.dropbox.com/scl/fi/4q9hrz1s0pzg5rwf0r4tn/7.webp?rlkey=jdn5mhru5dayji4hhnwnmbybt&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/jytrbv4i0mwueti5iqol2/8.webp?rlkey=8mulfxiyyj5f2vfntm3y8vnqg&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/xkdap8ylhb1rt173aimvf/9.webp?rlkey=8n4vt8pqbjii38v826cv51agx&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/gceo7u1a82uc4lptxd1c4/10.webp?rlkey=57cti8l7w0tu9zqa1eguhu1fc&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/g6azhpw64hnuz8t3ir2io/18.webp?rlkey=q76uiuxmil2cz9lp2qja1aqsk&dl=1" }], img: "https://www.dropbox.com/scl/fi/4q9hrz1s0pzg5rwf0r4tn/7.webp?rlkey=jdn5mhru5dayji4hhnwnmbybt&dl=1"
         },
-        {
-          id: 1, title: "الشاعر امرؤ القيس", img: place1.src
-        },
-        {
-          id: 1, title: "الشاعر امرؤ القيس", img: place1.src
-        },
-        {
-          id: 1, title: "الشاعر امرؤ القيس", img: place1.src
-        },
+
       ]
     },
   ];
