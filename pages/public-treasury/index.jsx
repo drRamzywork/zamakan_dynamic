@@ -1,20 +1,20 @@
 import { imgs } from '@/assets/constants'
 import { LeftPlants, PageSection, RightPlants } from '@/components/PublicTreasuryComponents';
 import { Container, Typography } from '@mui/material';
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styles from './index.module.scss'
 import Image from 'next/image';
 import { motion, useAnimation, useInView } from 'framer-motion';
 const PublicTreasury = () => {
-  const { BrownDeer, place1, redPlants, star, redBird } = imgs;
+  const { BrownDeer, place1, redPlants, star, redBird, Eastern, Western } = imgs;
 
   const sections = [
     {
       key: 'التوثيق المكاني',
       data: [
         { id: 1, title: "الشاعر طرفة بن العبد", img: place1.src },
-        { id: 1, title: "الشاعر طرفة بن العبد", img: place1.src },
-        { id: 1, title: "الشاعر طرفة بن العبد", img: place1.src },
+        { id: 1, title: "الشاعر طرفة بن العبد", img: Western.src },
+        { id: 1, title: "الشاعر طرفة بن العبد", img: Eastern.src },
       ]
     },
     {
@@ -78,6 +78,9 @@ const PublicTreasury = () => {
   const rightPlantsRef = useRef(null);
   const leftPlantsRef = useRef(null);
 
+
+
+
   return (
     <>
 
@@ -94,7 +97,7 @@ const PublicTreasury = () => {
               </div>
 
               <Typography variant='h1'>
-                خزانة العام
+                خزانة الشعر
               </Typography>
 
               <div className={styles.img_container}>
@@ -109,9 +112,6 @@ const PublicTreasury = () => {
         </motion.div>
 
         <div id='PublicTreasury'>
-
-
-
           {sections.map((section, index) => (
             <PageSection key={index} title={section.key} data={section.data} />
           ))}

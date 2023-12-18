@@ -1,13 +1,68 @@
-import { Typography } from '@mui/material'
-import React from 'react'
+import { Button, Typography } from '@mui/material'
+import React, { useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation, } from 'swiper/modules';
+import { Navigation, Thumbs, FreeMode } from 'swiper/modules';
 import styles from './index.module.scss'
 import Link from 'next/link';
 import Image from 'next/image';
-const PageSection = ({ title, data }) => {
+import { useState } from 'react';
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
+
+
+const PageSection = ({ title, data = [] }) => {
+  // Thumbs logic
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [galleryOpen, setGalleryOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const swiperRef = useRef(null);
+
+
+
+
+  const closeGallery = () => {
+    setGalleryOpen(false);
+  };
+
+  const openGallery = (index) => {
+    setActiveIndex(index);
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideTo(index);
+    }
+    setGalleryOpen(true);
+  };
+
+
+  useEffect(() => {
+    if (activeIndex != null && swiperRef.current) {
+      const index = data.findIndex(city => city.id === activeIndex);
+      if (index !== -1) {
+        swiperRef.current.swiper.slideTo(index);
+      }
+    }
+  }, [activeIndex]);
+
+
+
+
+
+
+
+  const handleSlideChange = () => {
+    const swiper = swiperRef.current.swiper;
+    const newIndex = swiper.realIndex;
+    const newActiveCity = data[newIndex].id;
+    setActiveIndex(newActiveCity);
+  };
+
+
+
+
+
 
   return (
     <section id={title} className={styles.section}>
@@ -16,7 +71,10 @@ const PageSection = ({ title, data }) => {
           {title}
         </Typography>
       </div>
-      <div className={styles.swiper_container}>
+      <motion.div
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ duration: 1, }} className={styles.swiper_container}>
         <Swiper
           modules={[Navigation]}
           spaceBetween={16}
@@ -24,6 +82,8 @@ const PageSection = ({ title, data }) => {
           navigation
           pagination={{ clickable: true }}
           dir='rtl'
+          onSlideChange={handleSlideChange}
+
           breakpoints={{
             300: {
               slidesPerView: 1.2,
@@ -63,7 +123,8 @@ const PageSection = ({ title, data }) => {
           }}
         >
           {data.map((item, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} onClick={() => openGallery(index)}>
+
               <div className={styles.box}>
                 <div className={styles.img_container}>
                   <Image width={318} height={183} src={item.img} alt={item.title} />
@@ -77,11 +138,50 @@ const PageSection = ({ title, data }) => {
           ))}
         </Swiper>
 
+        {
+          galleryOpen &&
+          (
+            <motion.div
+              animate={{ opacity: 1 }}
+              initial={{ opacity: 0 }}
+              transition={{ duration: 1, }} className={styles.fullscreengallery}>
+              <Button onClick={closeGallery} className={styles.close_btn}>اغلاق</Button>
+
+              <Swiper
+                slidesPerView={1}
+                navigation={true}
+                // thumbs={{ swiper: thumbsSwiper }}
+                modules={[FreeMode, Navigation, Thumbs]}
+                className="mySwiper2"
+                // onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}s
+                // initialSlide={activeIndex}
+                dir="rtl"
+                onSlideChange={handleSlideChange}
+
+              >
+                {data && data.map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <div className={styles.box}>
+                      <div className={styles.img_container}>
+                        <Image width={318} height={183} src={item.img} alt={item.title} />
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </motion.div>
+
+
+
+          )}
         <div className={styles.more_btn}>
           <Link href='/' >المزيد</Link>
         </div>
 
-      </div>
+      </motion.div>
+
+
+
     </section>
   )
 }

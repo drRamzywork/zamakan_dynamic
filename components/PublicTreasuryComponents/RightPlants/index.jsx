@@ -22,7 +22,7 @@ const RightPlants = React.forwardRef(({ redPlants }, forwardedRef) => {
 
     if (inView) {
       animation.start({
-        y: "28vh",
+        y: "37vh",
         transition: {
           type: "spring",
           duration: 2,

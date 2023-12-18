@@ -1,6 +1,3 @@
-
-
-
 import React, { useEffect, useRef } from 'react';
 import styles from '../../../pages/public-treasury/index.module.scss';
 import Image from 'next/image';
@@ -25,7 +22,7 @@ const eftPlants = React.forwardRef(({ redPlants }, forwardedRef) => {
 
     if (inView) {
       animation.start({
-        y: "28vh",
+        y: "37vh",
         transition: {
           type: "spring",
           duration: 2,

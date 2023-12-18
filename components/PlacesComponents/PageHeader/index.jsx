@@ -9,7 +9,6 @@ const PageHeader = ({ dataAllCitiesMap }) => {
     KSA,
   } = imgs
 
-  console.log(dataAllCitiesMap?.images)
 
   return (
     <div id='page-header' className={styles.page_header}>

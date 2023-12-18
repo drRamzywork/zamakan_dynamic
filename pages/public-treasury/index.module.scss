@@ -42,6 +42,7 @@ header#header {
     right: 0;
     animation: HeartBeat infinite 4s ease-in-out;
     animation-delay: 4s;
+
     @media screen and (max-width: 450px) {
       bottom: 16px;
       right: -30px;

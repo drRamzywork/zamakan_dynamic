@@ -245,7 +245,6 @@ const Places = ({ dataAllCitiesMap }) => {
 
                 {dataAllCitiesMap?.map((city, index) =>
                   <SwiperSlide key={index}>
-
                     <div className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       <div className={styles.img_container}>
                         <Image width={200} height={200} src={city.icon} alt={city.name}
@@ -450,7 +449,6 @@ const Places = ({ dataAllCitiesMap }) => {
                         setActiveCity={setActiveCity}
                         activeCity={activeCity} onPlaceClick={handlePlaceWindow} />
                     </motion.div>
-
                   </AnimatePresence>
                 }
               </div >

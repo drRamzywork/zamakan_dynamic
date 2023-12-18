@@ -13,6 +13,38 @@ section.section {
   }
 
   .swiper_container {
+    .fullscreengallery {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: black;
+      z-index: 12299;
+
+      .close_btn {
+        position: absolute;
+        top: 100px;
+        right: 100px;
+        z-index: 1299;
+        @media screen and (max-width: 450px) {
+          top: 50px !important;
+          right: 50px !important;
+        }
+      }
+      .box {
+        .img_container {
+          border: none;
+          width: 100vw !important;
+          height: 100vh !important;
+
+          img {
+            object-fit: contain;
+            transform: scale(1) !important;
+          }
+        }
+      }
+    }
     .box {
       display: flex;
       align-items: center;

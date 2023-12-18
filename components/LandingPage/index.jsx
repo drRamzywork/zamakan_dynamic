@@ -130,7 +130,7 @@ const LandingPage = () => {
                 </div>
                 <div className={styles.title}>
                   <Typography variant='h4'>
-                    خزانة العام
+                    خزانة الشعر
                   </Typography>
                 </div>
                 <div className={styles.arrow}>

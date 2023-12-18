@@ -38,9 +38,7 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
 
   }, [activeCity, places]);
 
-  useEffect(() => {
-    console.log(places, "Places changes")
-  }, [places])
+
 
 
 
@@ -105,7 +103,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
           dir={'rtl'}
           className="places-swiper">
 
-          {console.log(filteredPlaces)}
 
           {filteredPlaces?.map((city, index) =>
             <SwiperSlide className={styles.places_container} key={city.id} onClick={() => onPlaceClick(city.id)}>
