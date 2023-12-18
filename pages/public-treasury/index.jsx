@@ -60,9 +60,7 @@ const PublicTreasury = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-
         >
-
           <header id={styles.header}>
             <Container maxWidth={false} >
               <div className={styles.sec_title}>

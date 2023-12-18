@@ -792,11 +792,8 @@ svg.saudi-map.safari .city-name > div:hover {
   .swiper-button-prev,
   .swiper-button-next {
     &:after {
-      color: var(--main-blue-color);
+      color: #713540;
     }
-  }
-  .swiper-button-prev {
-    // right: 20% !important;
   }
 }
 

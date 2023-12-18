@@ -7,10 +7,16 @@ header#header {
     align-items: flex-start;
     justify-content: center;
     .img_container {
+      animation: rotate infinite 4s ease-in-out;
+
       img {
         width: 100px;
         height: 100px;
         object-fit: contain;
+        @media screen and (max-width: 450px) {
+          width: 80px;
+          height: 80px;
+        }
       }
     }
     h1 {
@@ -19,6 +25,10 @@ header#header {
       font-size: 80px !important;
       font-weight: 500 !important;
       line-height: 50px !important;
+
+      @media screen and (max-width: 450px) {
+        font-size: 60px !important;
+      }
     }
   }
 
@@ -26,6 +36,15 @@ header#header {
     position: absolute;
     bottom: 0;
     right: 0;
+
+    animation: HeartBeat infinite 4s ease-in-out;
+    animation-delay: 4s;
+
+    @media screen and (max-width: 450px) {
+      bottom: 13px;
+      right: -20px;
+    }
+
     img {
       width: 80x;
       height: 80px;
@@ -44,6 +63,9 @@ section.section {
       font-size: 60px !important;
       text-align: center;
       font-weight: 500 !important;
+      @media screen and (max-width: 450px) {
+        font-size: 40px !important;
+      }
     }
   }
 
@@ -179,5 +201,29 @@ section.footer {
         }
       }
     }
+  }
+}
+
+// keyframes
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes HeartBeat {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px); // Adjust this value for more or less movement
   }
 }
