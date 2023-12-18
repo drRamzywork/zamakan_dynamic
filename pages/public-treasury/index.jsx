@@ -54,12 +54,13 @@ const PublicTreasury = () => {
 
   return (
     <>
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        <Container maxWidth={false} >
+
+      <Container maxWidth={false} >
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+        >
 
           <header id={styles.header}>
             <Container maxWidth={false} >
@@ -82,31 +83,31 @@ const PublicTreasury = () => {
               <Image width={100} height={100} src={redBird.src} alt="red bird" />
             </div>
           </header>
+        </motion.div>
 
-          <div id='PublicTreasury'>
+        <div id='PublicTreasury'>
 
 
 
-            {sections.map((section, index) => (
-              <PageSection key={index} title={section.key} data={section.data} />
-            ))}
-          </div >
-        </Container>
-        <section id='footer' className={styles.footer}>
-          <div className={styles.imgs_container}>
-            <div className={styles.leftPlants}>
-              <Image width={592} height={408} src={redPlants.src} alt="" />
-            </div>
-            <div className={styles.deer}>
-              <Image width={592} height={408} src={BrownDeer.src} alt="" />
-            </div>
-            <div className={styles.rightPlants}>
-              <Image width={592} height={408} src={redPlants.src} alt="" />
-            </div>
+          {sections.map((section, index) => (
+            <PageSection key={index} title={section.key} data={section.data} />
+          ))}
+        </div >
+      </Container>
+      <section id='footer' className={styles.footer}>
+        <div className={styles.imgs_container}>
+          <div className={styles.leftPlants}>
+            <Image width={592} height={408} src={redPlants.src} alt="" />
           </div>
+          <div className={styles.deer}>
+            <Image width={592} height={408} src={BrownDeer.src} alt="" />
+          </div>
+          <div className={styles.rightPlants}>
+            <Image width={592} height={408} src={redPlants.src} alt="" />
+          </div>
+        </div>
 
-        </section>
-      </motion.div>
+      </section>
     </>
 
   )
