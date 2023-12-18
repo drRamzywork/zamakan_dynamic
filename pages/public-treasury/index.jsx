@@ -1,10 +1,10 @@
 import { imgs } from '@/assets/constants'
-import { PageSection } from '@/components/PublicTreasuryComponents';
+import { LeftPlants, PageSection, RightPlants } from '@/components/PublicTreasuryComponents';
 import { Container, Typography } from '@mui/material';
 import React, { useEffect, useRef } from 'react'
 import styles from './index.module.scss'
 import Image from 'next/image';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, useInView } from 'framer-motion';
 const PublicTreasury = () => {
   const { BrownDeer, place1, redPlants, star, redBird } = imgs;
 
@@ -52,6 +52,32 @@ const PublicTreasury = () => {
   ];
 
 
+  const animation = useAnimation();
+
+  const ref = useRef(null)
+  const inView = useInView(ref)
+
+  useEffect(() => {
+    if (inView) {
+      animation.start({
+        x: 0,
+        transition: {
+          type: "spring",
+          duration: 2,
+          bounce: 0
+        }
+      })
+    }
+
+    if (!inView) {
+      animation.start({ x: '-100vw' })
+    }
+
+  }, [inView]);
+
+  const rightPlantsRef = useRef(null);
+  const leftPlantsRef = useRef(null);
+
   return (
     <>
 
@@ -93,17 +119,17 @@ const PublicTreasury = () => {
           ))}
         </div >
       </Container>
-      <section id='footer' className={styles.footer}>
+      <section id='footer' className={styles.footer} ref={ref}>
         <div className={styles.imgs_container}>
-          <div className={styles.leftPlants}>
-            <Image width={592} height={408} src={redPlants.src} alt="" />
-          </div>
-          <div className={styles.deer}>
+
+          <LeftPlants redPlants={redPlants} ref={leftPlantsRef} />
+
+          <motion.div
+            animate={animation} className={styles.deer} >
             <Image width={592} height={408} src={BrownDeer.src} alt="" />
-          </div>
-          <div className={styles.rightPlants}>
-            <Image width={592} height={408} src={redPlants.src} alt="" />
-          </div>
+          </motion.div>
+
+          <RightPlants redPlants={redPlants} ref={rightPlantsRef} />
         </div>
 
       </section>
