@@ -12,40 +12,51 @@ const PublicTreasury = () => {
     {
       key: 'التوثيق المكاني',
       data: [
-        { id: 1, title: "الشاعر طرفة بن العبد", img: place1.src },
-        { id: 1, title: "الشاعر طرفة بن العبد", img: Western.src },
-        { id: 1, title: "الشاعر طرفة بن العبد", img: Eastern.src },
+
+        {
+          id: 1,
+          gallery: [{ id: 1, img: "https://www.dropbox.com/scl/fi/wsw4e33vx26dn1x2jp2r3/is-04-1-copy.webp?rlkey=8ylk9r0kafeykxm4b4m19nylq&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/x3wtbdxco7w8a6jkccns9/DS-21-2-copy.webp?rlkey=l5oa8svfk7qewb5ikszwn4cl9&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/wsxwmvcowx3a7g6ittx4k/DS-18-3-copy.webp?rlkey=fvo179ttqag91fer611rqop9p&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/krwp96ypec8l6itk7dmz0/DS-12-3-copy.webp?rlkey=7wymtzqxwet2rouq4n47002e7&dl=1" }],
+
+          title: "الأحساء", img: "https://www.dropbox.com/scl/fi/wsw4e33vx26dn1x2jp2r3/is-04-1-copy.webp?rlkey=8ylk9r0kafeykxm4b4m19nylq&dl=1"
+        },
+
+        { id: 1, gallery: [{ id: 1, img: "https://www.dropbox.com/scl/fi/3jdf7kuovfc662qmhj5cp/IMG_4832-copy.webp?rlkey=ybc5k7gcpnezla2blhi5yvs8x&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/w4lqy0jxqnelqzncx4ms0/IMG_4861-copy.webp?rlkey=jrwm99zwaq76tsvqm4qsjekyi&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/xwpo2ouqpab6tme3hi22v/IMG_4947-copy.webp?rlkey=uqgj8lv5p4a7s2onjgjhp2m1k&dl=1" }], title: "الباحة", img: "https://www.dropbox.com/scl/fi/3jdf7kuovfc662qmhj5cp/IMG_4832-copy.webp?rlkey=ybc5k7gcpnezla2blhi5yvs8x&dl=1" },
+        { id: 1, gallery: [{ id: 1, img: "https://www.dropbox.com/scl/fi/q7gealoj7mctp2gzd8r93/20231203_132207000_iOS-copy.webp?rlkey=0sxgsc0dcmqblv16y1rmx6781&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/9k2njbnobi2v19tv9gq6x/20231203_131551000_iOS-copy.webp?rlkey=o42umk754bdgmivxbf8t000nf&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/q7gealoj7mctp2gzd8r93/20231203_132207000_iOS-copy.webp?rlkey=0sxgsc0dcmqblv16y1rmx6781&dl=1" }], title: "الطائف", img: "https://www.dropbox.com/scl/fi/q7gealoj7mctp2gzd8r93/20231203_132207000_iOS-copy.webp?rlkey=0sxgsc0dcmqblv16y1rmx6781&dl=1" },
+        { id: 1, gallery: [{ id: 1, img: "https://www.dropbox.com/scl/fi/ljwent9qxv2thejjn8ny5/6A2A7968-copy.webp?rlkey=ik47glifm32w0rwsx5efwqggm&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/nvtj01zkebehwj6319hrk/6A2A7996-copy.webp?rlkey=zc9o1fw4q8l8vnuvkx11rut2o&dl=1" }], title: "القصيم", img: "https://www.dropbox.com/scl/fi/ljwent9qxv2thejjn8ny5/6A2A7968-copy.webp?rlkey=ik47glifm32w0rwsx5efwqggm&dl=1" },
+        { id: 1, gallery: [{ id: 1, img: "https://www.dropbox.com/scl/fi/a9ha2ffk7s6rghbrc4obb/0P8A2926-copy.webp?rlkey=w5y5d5z2y2w96ewo3gg8nnnvh&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/6rm2ulhiwmdbvrsu7slxq/0P8A2954-copy.webp?rlkey=c0mrmhra9mx9c88tzgxsh06ey&dl=1" }], title: "المدينة", img: "https://www.dropbox.com/scl/fi/a9ha2ffk7s6rghbrc4obb/0P8A2926-copy.webp?rlkey=w5y5d5z2y2w96ewo3gg8nnnvh&dl=1" },
+        { id: 1, gallery: [{ id: 1, img: "https://www.dropbox.com/scl/fi/ddp4w63e6330733hznw2t/DSC_9501-copy.webp?rlkey=juhn06doo3068bhjiw1hsl34n&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/othmo211tw37wnqq8nlye/DSC_8890-copy.webp?rlkey=qj804uuvassj6se76tncd67it&dl=0" }], title: "حائل", img: "https://www.dropbox.com/scl/fi/ddp4w63e6330733hznw2t/DSC_9501-copy.webp?rlkey=juhn06doo3068bhjiw1hsl34n&dl=1" },
+        { id: 1, gallery: [{ id: 1, img: "https://www.dropbox.com/scl/fi/dppnmnzh68optxzz26vfl/IMG_5013-copy.webp?rlkey=b1qvelh15ieg7xq8o1pnpd2vc&dl=1" }, { id: 1, img: "https://www.dropbox.com/scl/fi/4pnu8gnyz3rmz9cxet367/IMG_5085-copy.webp?rlkey=kvh97kmlk7ptu5qmbwwiwpiba&dl=1" }], title: "عسير", img: "https://www.dropbox.com/scl/fi/dppnmnzh68optxzz26vfl/IMG_5013-copy.webp?rlkey=b1qvelh15ieg7xq8o1pnpd2vc&dl=1" },
       ]
     },
     {
       key: 'التوثيق البصري',
       data: [
-        { id: 2, title: "الشاعر طرفة بن العبد", img: place1.src },
-        { id: 2, title: "الشاعر طرفة بن العبد", img: place1.src },
-        { id: 2, title: "الشاعر طرفة بن العبد", img: place1.src },
-        { id: 2, title: "الشاعر طرفة بن العبد", img: place1.src },
+        { id: 1, title: "الشاعر طرفة بن العبد", img: place1.src },
+        { id: 1, title: "الشاعر طرفة بن العبد", img: place1.src },
+        { id: 1, title: "الشاعر طرفة بن العبد", img: place1.src },
+        { id: 1, title: "الشاعر طرفة بن العبد", img: place1.src },
       ]
     },
     {
       key: 'من أبيات الشعراء',
       data: [
         {
-          id: 3, title: "الشاعر امرؤ القيس", img: place1.src
+          id: 1, title: "الشاعر امرؤ القيس", img: place1.src
         },
         {
-          id: 3, title: "الشاعر امرؤ القيس", img: place1.src
+          id: 1, title: "الشاعر امرؤ القيس", img: place1.src
         },
         {
-          id: 3, title: "الشاعر امرؤ القيس", img: place1.src
+          id: 1, title: "الشاعر امرؤ القيس", img: place1.src
         },
         {
-          id: 3, title: "الشاعر امرؤ القيس", img: place1.src
+          id: 1, title: "الشاعر امرؤ القيس", img: place1.src
         },
         {
-          id: 3, title: "الشاعر امرؤ القيس", img: place1.src
+          id: 1, title: "الشاعر امرؤ القيس", img: place1.src
         },
         {
-          id: 3, title: "الشاعر امرؤ القيس", img: place1.src
+          id: 1, title: "الشاعر امرؤ القيس", img: place1.src
         },
       ]
     },

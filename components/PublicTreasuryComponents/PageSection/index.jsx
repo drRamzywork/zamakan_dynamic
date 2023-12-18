@@ -14,6 +14,7 @@ import 'swiper/css/pagination';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { IoClose } from "react-icons/io5";
+import { RotatingLines } from 'react-loader-spinner';
 
 
 const PageSection = ({ title, data = [] }) => {
@@ -29,38 +30,53 @@ const PageSection = ({ title, data = [] }) => {
 
   const openGallery = (index) => {
     setActiveIndex(index);
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideTo(index);
-    }
     setGalleryOpen(true);
+
+    const initialLoadStates = data[index].gallery.reduce((acc, img) => {
+      console.log(data[index].gallery)
+
+      console.log(img, 'ACCC')
+
+      console.log(`Initializing loading state for image ID: ${img.id}`);
+
+      acc[img.id] = true;
+      return acc;
+    }, {});
+    setImageLoadingStates(initialLoadStates);
   };
 
 
   useEffect(() => {
     if (activeIndex != null && swiperRef.current) {
-      const index = data.findIndex(city => city.id === activeIndex);
-      if (index !== -1) {
-        swiperRef.current.swiper.slideTo(index);
-      }
+      swiperRef.current.swiper.slideTo(activeIndex);
     }
-  }, [activeIndex]);
-
-
-
-
-
-
+  }, [activeIndex, galleryOpen]);
 
   const handleSlideChange = () => {
     const swiper = swiperRef.current.swiper;
     const newIndex = swiper.realIndex;
-    const newActiveCity = data[newIndex].id;
-    setActiveIndex(newActiveCity);
+    setActiveIndex(newIndex);
   };
 
 
 
 
+  // Image Loader
+  const [imageLoadingStates, setImageLoadingStates] = useState({});
+
+  // useEffect(() => {
+  //   const initialLoadStates = data[index].gallery.reduce((acc, img) => {
+  //     acc[img.id] = true; // All images are initially loading
+  //     return acc;
+  //   }, {});
+  //   setImageLoadingStates(initialLoadStates);
+  // }, [activeIndex, data]);
+
+  const handleImageLoad = cityId => {
+    setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
+  };
+
+  // console.log(imageLoadingStates)
 
 
   return (
@@ -86,19 +102,19 @@ const PageSection = ({ title, data = [] }) => {
 
           breakpoints={{
             300: {
-              slidesPerView: 1.2,
+              slidesPerView: 1,
               spaceBetween: 16,
             },
             400: {
-              slidesPerView: 1.2,
+              slidesPerView: 1,
               spaceBetween: 16,
             },
             640: {
-              slidesPerView: 2,
-              spaceBetween: 24,
+              slidesPerView: 1,
+              spaceBetween: 16,
             },
             768: {
-              slidesPerView: 2,
+              slidesPerView: 1,
               spaceBetween: 16,
             },
             992: {
@@ -122,10 +138,14 @@ const PageSection = ({ title, data = [] }) => {
             },
           }}
         >
+
           {data.map((item, index) => (
             <SwiperSlide key={index} onClick={() => openGallery(index)}>
-
               <div className={styles.box}>
+                <div className={styles.rotated_img}>
+                  <Image width={318} height={183} src={item.img} alt={item.title} />
+                </div>
+
                 <div className={styles.img_container}>
                   <Image width={318} height={183} src={item.img} alt={item.title} />
                 </div>
@@ -159,17 +179,36 @@ const PageSection = ({ title, data = [] }) => {
                   pagination={{ clickable: true }}
                   dir="rtl"
                   centeredSlides={true}
-                  initialSlide={activeIndex}
+                // initialSlide={activeIndex}
                 >
-                  {data && data.map((item, index) => (
+                  {data[activeIndex].gallery.map((item, index) => (
                     <SwiperSlide key={index}>
                       <div className={styles.box}>
                         <div className={styles.img_container}>
-                          <Image width={318} height={183} src={item.img} alt={item.title} />
+                          {imageLoadingStates[item.id] && (
+                            <RotatingLines
+                              strokeColor="grey"
+                              strokeWidth="5"
+                              animationDuration="0.75"
+                              width="96"
+                              visible={true}
+                            />
+                          )}
+                          <Image
+                            style={{ display: imageLoadingStates[item.id] ? 'none' : 'block' }}
+                            onLoad={() => handleImageLoad(item.id)}
+                            onError={(e) => {
+                              console.error(`Error loading image: ${item.img}`);
+                              handleImageLoad(item.id); // Set the image as loaded to remove the loader
+                            }} width={318} height={183} src={item.img} alt={`Gallery Image ${index + 1}`} />
+
                         </div>
                       </div>
                     </SwiperSlide>
                   ))}
+
+
+
                 </Swiper>
               </Container>
 

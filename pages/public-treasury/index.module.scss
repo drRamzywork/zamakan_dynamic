@@ -5,6 +5,9 @@ header#header {
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 450px) {
+    margin-top: 30px;
+  }
 
   .sec_title {
     display: flex;
@@ -44,8 +47,8 @@ header#header {
     animation-delay: 4s;
 
     @media screen and (max-width: 450px) {
-      bottom: 16px;
-      right: -30px;
+      bottom: -6px;
+      right: -25px;
     }
 
     img {
@@ -58,6 +61,7 @@ header#header {
 section.section {
   margin-top: 24px;
   margin-bottom: 70px;
+
   .sec_title {
     margin-bottom: 16px;
     h3 {
