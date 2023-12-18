@@ -2,6 +2,10 @@ header#header {
   width: 100%;
   margin-top: 60px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   .sec_title {
     display: flex;
     align-items: flex-start;
@@ -41,12 +45,12 @@ header#header {
     animation-delay: 4s;
 
     @media screen and (max-width: 450px) {
-      bottom: 13px;
-      right: -20px;
+      bottom: 16px;
+      right: -30px;
     }
 
     img {
-      width: 80x;
+      width: 80px;
       height: 80px;
     }
   }

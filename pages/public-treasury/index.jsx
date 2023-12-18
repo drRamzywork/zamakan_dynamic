@@ -88,21 +88,19 @@ const PublicTreasury = () => {
           transition={{ duration: 1 }}
         >
           <header id={styles.header}>
-            <Container maxWidth={false} >
-              <div className={styles.sec_title}>
-                <div className={styles.img_container}>
-                  <Image width={100} height={100} src={star.src} alt="star" />
-                </div>
-
-                <Typography variant='h1'>
-                  خزانة العام
-                </Typography>
-
-                <div className={styles.img_container}>
-                  <Image width={100} height={100} src={star.src} alt="star" />
-                </div>
+            <div className={styles.sec_title}>
+              <div className={styles.img_container}>
+                <Image width={100} height={100} src={star.src} alt="star" />
               </div>
-            </Container>
+
+              <Typography variant='h1'>
+                خزانة العام
+              </Typography>
+
+              <div className={styles.img_container}>
+                <Image width={100} height={100} src={star.src} alt="star" />
+              </div>
+            </div>
 
             <div className={styles.red_bird}>
               <Image width={100} height={100} src={redBird.src} alt="red bird" />

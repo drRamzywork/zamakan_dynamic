@@ -76,19 +76,25 @@
     }
   }
   .profileSection {
-    margin-top: -80px;
+    // margin-top: -80px;
+    margin-top: 80px;
     position: relative;
     z-index: 2;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    /* background: #ffffff; */
     padding-bottom: 30px;
+    padding-top: 30px;
     border-radius: 10px;
     border: 1px solid rgba(229, 230, 242, 1);
-    border-top: none;
-    box-shadow: 0px 21px 35px 0px rgba(0, 0, 0, 0.03);
+    background: #ffffff;
 
+    @media screen and (max-width: 992px) {
+      // margin-top: 100px;
+    }
+    @media screen and (max-width: 450px) {
+      // margin-top: 20px;
+    }
     .img_container {
       width: 150px;
       height: 150px;
