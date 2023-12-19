@@ -2,11 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      "www.dropbox.com",
-      "zamakan.suwa.io",
-      "dl.dropboxusercontent.com",
-      "zamakanweb1.suwa.io",
+    remotePatterns: [
+      { protocol: "https", hostname: "www.dropbox.com" },
+      { protocol: "https", hostname: "dl.dropboxusercontent.com" },
+      { protocol: "https", hostname: "zamakan.suwa.io" },
+      { protocol: "https", hostname: "zamakanweb1.suwa.io" },
     ],
   },
 };

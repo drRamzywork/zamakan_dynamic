@@ -119,13 +119,13 @@ const PageSection = ({ title, data = [] }) => {
         >
 
           {data.map((item, index) => (
-            <SwiperSlide key={index} onClick={() => openGallery(index)}>
+            <SwiperSlide key={index} >
               <div className={styles.box}>
                 <div className={styles.rotated_img}>
                   <img src={item.img} alt={item.title} />
                 </div>
 
-                <div className={styles.img_container}>
+                <div className={styles.img_container} onClick={() => openGallery(index)}>
                   <img src={item.img} alt={item.title} />
                 </div>
 

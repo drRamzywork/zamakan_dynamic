@@ -823,8 +823,10 @@ svg.saudi-map.safari .city-name > div:hover {
     }
     .swiper-button-prev,
     .swiper-button-next {
-      top: 50%;
-      color: #ffffff !important;
+      top: 50% !important;
+      &:after {
+        color: #ffffff !important;
+      }
     }
   }
 
