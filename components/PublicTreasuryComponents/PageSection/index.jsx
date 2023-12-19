@@ -25,7 +25,7 @@ const PageSection = ({ title, data = [] }) => {
   const swiperRef = useRef(null);
   const [backgroundImageUrl, setBackgroundImageUrl] = useState("");
 
-
+  const [activeImgURL, setActiveImgURL] = useState(false);
   const closeGallery = () => {
     setGalleryOpen(false);
   };
@@ -64,13 +64,11 @@ const PageSection = ({ title, data = [] }) => {
   useEffect(() => {
     if (swiperRef.current) {
       const swiperInstance = swiperRef.current.swiper;
-
       const onSlideChange = () => {
         const currentIndex = swiperInstance.activeIndex;
-        if (data && data.length > currentIndex && data[currentIndex].gallery.length > 0) {
-          console.log(data[activeIndex].gallery[0].img, "SSSSS")
-          setBackgroundImageUrl(data[currentIndex].gallery[0].img);
-        }
+        setActiveImgURL(data[activeIndex].gallery[0].img)
+        // if (data && data.length > currentIndex && data[currentIndex].gallery.length > 0) {
+        // }
       };
 
       swiperInstance.on('slideChange', onSlideChange);
@@ -80,9 +78,11 @@ const PageSection = ({ title, data = [] }) => {
         swiperInstance.off('slideChange', onSlideChange);
       };
     }
+
+    console.log(activeImgURL, "activeImgURL")
+
   }, [swiperRef, data]); // Add any other dependencies if needed
 
-  console.log(backgroundImageUrl)
   return (
     <section id={title} className={styles.section}>
       <div className={styles.sec_title}>
@@ -174,7 +174,7 @@ const PageSection = ({ title, data = [] }) => {
                   quality={10}
                   layout="fixed"
 
-                  src={backgroundImageUrl} alt='' />
+                  src={activeImgURL} alt='' />
               </div>
 
 
@@ -208,7 +208,9 @@ const PageSection = ({ title, data = [] }) => {
                               visible={true}
                             />
                           )}
-                          <img
+                          <Image
+                            width={300}
+                            height={300}
                             style={{ display: imageLoadingStates[item.id] ? 'none' : 'block' }}
                             onLoad={() => handleImageLoad(item.id)}
                             onError={(e) => {
