@@ -87,10 +87,8 @@ const Navbar = (props) => {
       }
     }
 
-    // Attach the event listener
     document.addEventListener("mousedown", handleClickOutside);
 
-    // Clean up the event listener
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };

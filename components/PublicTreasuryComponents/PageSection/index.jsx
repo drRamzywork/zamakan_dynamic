@@ -44,20 +44,31 @@ const PageSection = ({ title, data = [] }) => {
     console.log(cityId)
     setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
   };
+
   useEffect(() => {
     if (data[activeIndex] && data[activeIndex].gallery.length > 0) {
       setBackgroundImageUrl(data[activeIndex].gallery[0].img); // Assuming the first image is the default
     }
   }, [activeIndex, data]);
 
-  // useEffect(() => {
-  //   // Check if data is available and activeIndex is within the range
-  //   if (data && data.length > activeIndex && data[activeIndex].gallery.length > 0) {
-  //     // Set the background image URL to the image of the active slide
-  //     setBackgroundImageUrl(data[activeIndex].gallery[0].img);
-  //   }
-  // }, [activeIndex, data]);
+  const imgRef = useRef(null);
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (imgRef.current && !imgRef.current.contains(event.target)) {
+        setGalleryOpen(false);
+      }
+      console.log(imgRef.current, "imgRef")
+      console.log(event.target, "event")
+    }
 
+    // Attach the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Clean up the event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [imgRef]);
 
   return (
     <section id={title} className={styles.section}>
@@ -67,6 +78,7 @@ const PageSection = ({ title, data = [] }) => {
         </Typography>
       </div>
       <motion.div
+
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
         transition={{ duration: 1, }} className={styles.swiper_container}>
@@ -77,7 +89,6 @@ const PageSection = ({ title, data = [] }) => {
           navigation
           pagination={{ clickable: true }}
           dir='rtl'
-
           breakpoints={{
             300: {
               slidesPerView: 1,
@@ -119,7 +130,6 @@ const PageSection = ({ title, data = [] }) => {
 
           {data.map((item, index) => (
             <SwiperSlide key={index} >
-              {console.log(item)}
               <div className={styles.box}>
                 <div className={styles.rotated_img}>
                   <img src={item?.img} alt={item?.title} />
@@ -145,13 +155,17 @@ const PageSection = ({ title, data = [] }) => {
               initial={{ opacity: 0 }}
               transition={{ duration: 1 }}
               className={styles.fullscreengallery}
+
             >
               <div className={styles.gallery_wrap}>
                 <img src={backgroundImageUrl} alt='' />
               </div>
 
 
-              <Container className={styles.gallery_container} sx={{ maxWidth: "1400px" }} maxWidth={false}>
+              <Container
+                ref={imgRef}
+
+                className={styles.gallery_container} sx={{ maxWidth: "1400px" }} maxWidth={false}>
                 <Button onClick={closeGallery} className={styles.close_btn}>
                   <IoClose />
 
@@ -169,7 +183,8 @@ const PageSection = ({ title, data = [] }) => {
 
                 >
                   {data[activeIndex].gallery.map((item, index) => (
-                    <SwiperSlide key={index}>
+                    <SwiperSlide
+                      key={index}>
                       <div className={styles.box}>
                         <div className={styles.img_container}>
                           {imageLoadingStates[item.id] && (
@@ -182,7 +197,6 @@ const PageSection = ({ title, data = [] }) => {
                             />
                           )}
                           <img
-
                             style={{ display: imageLoadingStates[item.id] ? 'none' : 'block' }}
                             onLoad={() => handleImageLoad(item.id)}
                             onError={(e) => {
