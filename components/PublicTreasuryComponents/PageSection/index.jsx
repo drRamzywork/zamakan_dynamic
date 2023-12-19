@@ -19,6 +19,7 @@ import { RotatingLines } from 'react-loader-spinner';
 
 const PageSection = ({ title, data = [] }) => {
   // Thumbs logic
+  const [imageLoadingStates, setImageLoadingStates] = useState({});
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef(null);
@@ -40,25 +41,8 @@ const PageSection = ({ title, data = [] }) => {
   };
 
 
-  useEffect(() => {
-    if (activeIndex != null && swiperRef.current) {
-      swiperRef.current.swiper.slideTo(activeIndex);
-    }
-  }, [activeIndex, galleryOpen]);
-
-  const handleSlideChange = () => {
-    const swiper = swiperRef.current.swiper;
-    const newIndex = swiper.realIndex;
-    setActiveIndex(newIndex);
-  };
-
-
-
-
-  const [imageLoadingStates, setImageLoadingStates] = useState({});
-
-
   const handleImageLoad = cityId => {
+    console.log(cityId)
     setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
   };
 
@@ -81,7 +65,6 @@ const PageSection = ({ title, data = [] }) => {
           navigation
           pagination={{ clickable: true }}
           dir='rtl'
-          onSlideChange={handleSlideChange}
           ref={swiperRef}
 
           breakpoints={{
@@ -149,7 +132,9 @@ const PageSection = ({ title, data = [] }) => {
               animate={{ opacity: 1 }}
               initial={{ opacity: 0 }}
               transition={{ duration: 1, }} className={styles.fullscreengallery}>
-              <Container sx={{ maxWidth: "1400px" }} maxWidth={false}>
+
+
+              <Container className={styles.gallery_container} sx={{ maxWidth: "1400px" }} maxWidth={false}>
                 <Button onClick={closeGallery} className={styles.close_btn}>
                   <IoClose />
 
@@ -177,13 +162,13 @@ const PageSection = ({ title, data = [] }) => {
                               visible={true}
                             />
                           )}
-                          <Image
+                          <img
                             style={{ display: imageLoadingStates[item.id] ? 'none' : 'block' }}
                             onLoad={() => handleImageLoad(item.id)}
                             onError={(e) => {
                               console.error(`Error loading image: ${item.img}`);
                               handleImageLoad(item.id); // Set the image as loaded to remove the loader
-                            }} width={318} height={183} src={item.img} alt={`Gallery Image ${index + 1}`} />
+                            }} src={item.img} alt={`Gallery Image ${index + 1}`} />
 
                         </div>
                       </div>
