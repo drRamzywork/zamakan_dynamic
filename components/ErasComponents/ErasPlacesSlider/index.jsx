@@ -92,149 +92,144 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
 
   return (
     <>
-      {isMobileView ?
-        <div className={styles.swiper_container} dir='rtl'>
-          <Swiper
-            ref={swiperRef}
-            centeredSlides={true}
-            onSlideChange={handleSlideChange}
-            direction='horizontal'
-            breakpoints={{
-              300: {
-                slidesPerView: 'auto',
-                spaceBetween: 10,
-                centeredSlides: true,
-              },
-            }}
-            dir={'rtl'}
-            className="places-swiper" >
+      {isMobileView === true && <div className={styles.swiper_container} dir='rtl'>
+        <Swiper
+          ref={swiperRef}
+          centeredSlides={true}
+          onSlideChange={handleSlideChange}
+          direction='horizontal'
+          breakpoints={{
+            300: {
+              slidesPerView: 'auto',
+              spaceBetween: 10,
+              centeredSlides: true,
+            },
+          }}
+          dir={'rtl'}
+          className="places-swiper" >
 
 
-            {filteredPlaces?.map((city, index) =>
-              <SwiperSlide className={styles.places_container} key={city.id} >
-                <div className={`${styles.places} ${city.id === activeCity ? styles.active : ''}`} >
-                  <div className={styles.img_container} onClick={() => onPlaceClick(city.id)}>
-                    {imageLoadingStates[city.id] && (
-                      <RotatingLines
-                        strokeColor="grey"
-                        strokeWidth="5"
-                        animationDuration="0.75"
-                        width="96"
-                        visible={true}
+          {filteredPlaces?.map((city, index) =>
+            <SwiperSlide className={styles.places_container} key={city.id} >
+              <div className={`${styles.places} ${city.id === activeCity ? styles.active : ''}`} >
+                <div className={styles.img_container} onClick={() => onPlaceClick(city.id)}>
+                  {imageLoadingStates[city.id] && (
+                    <RotatingLines
+                      strokeColor="grey"
+                      strokeWidth="5"
+                      animationDuration="0.75"
+                      width="96"
+                      visible={true}
 
-                      />
-                    )}
-
-                    <img
-                      style={{ display: imageLoadingStates[city.id] ? 'none' : 'block' }}
-                      width={200}
-                      height={200}
-                      src={city?.icon}
-                      alt={city?.name}
-                      onLoad={() => handleImageLoad(city.id)}
                     />
+                  )}
 
-                  </div>
-                  <div className={styles.name}>
-                    <Typography>{city.name}</Typography>
-                  </div>
+                  <img
+                    style={{ display: imageLoadingStates[city.id] ? 'none' : 'block' }}
+                    width={200}
+                    height={200}
+                    src={city?.icon}
+                    alt={city?.name}
+                    onLoad={() => handleImageLoad(city.id)}
+                  />
+
                 </div>
-              </SwiperSlide>
-            )
-            }
-          </Swiper>
-        </div >
+                <div className={styles.name}>
+                  <Typography>{city.name}</Typography>
+                </div>
+              </div>
+            </SwiperSlide>
+          )
+          }
+        </Swiper>
+      </div >}
 
-        :
-        <div className={styles.swiper_container} dir='rtl'>
-
-
-          <Swiper
-            ref={swiperRef}
-            onSlideChange={handleVerticalSlideChange}
-            direction={"vertical"}
-
-            breakpoints={{
-              300: {
-                slidesPerView: 1.8,
-                spaceBetween: 10,
-              },
-              400: {
-                slidesPerView: 2.1,
-                spaceBetween: 10,
-              },
-              414: {
-                slidesPerView: 2.5,
-                spaceBetween: 11,
-              },
-              450: {
+      {isMobileView === false && <div className={styles.swiper_container} dir='rtl'>
 
 
-                slidesPerView: 2.5,
-                spaceBetween: 11,
-              },
-              640: {
+        <Swiper
+          ref={swiperRef}
+          onSlideChange={handleSlideChange}
+          direction={"vertical"}
+          breakpoints={{
+            300: {
+              slidesPerView: 1.8,
+              spaceBetween: 10,
+            },
+            400: {
+              slidesPerView: 2.1,
+              spaceBetween: 10,
+            },
+            414: {
+              slidesPerView: 2.5,
+              spaceBetween: 11,
+            },
+            450: {
 
 
-                slidesPerView: 2.5,
-                spaceBetween: 10,
-              },
-              768: {
+              slidesPerView: 2.5,
+              spaceBetween: 11,
+            },
+            640: {
 
 
-                slidesPerView: 2.5,
-                spaceBetween: 10,
-              },
-              1204: {
-                slidesPerView: 2.5,
-                spaceBetween: 16,
-              },
+              slidesPerView: 2.5,
+              spaceBetween: 10,
+            },
+            768: {
 
 
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[Pagination]}
-            centeredSlides={true}
-            className={styles.vertical_swiper}>
+              slidesPerView: 2.5,
+              spaceBetween: 10,
+            },
+            1204: {
+              slidesPerView: 2.5,
+              spaceBetween: 16,
+            },
 
 
-            {filteredPlaces?.map((city, index) =>
-              <SwiperSlide className={styles.places_container} key={city.id + 1} >
-                <div className={`${styles.places} ${city.id === activeCity ? styles.active : ''}`}>
-                  <div className={styles.img_container} onClick={() => onPlaceClick(city.id)}>
-                    {imageLoadingStates[city.id] && (
-                      <RotatingLines
-                        strokeColor="grey"
-                        strokeWidth="5"
-                        animationDuration="0.75"
-                        width="96"
-                        visible={true}
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}
+          centeredSlides={true}
+          className={styles.vertical_swiper}>
 
-                      />
-                    )}
+          {filteredPlaces?.map((city, index) =>
+            <SwiperSlide className={styles.places_container} key={city.id + 1} >
+              <div className={`${styles.places} ${city.id === activeCity ? styles.active : ''}`}>
+                <div className={styles.img_container} onClick={() => onPlaceClick(city.id)}>
+                  {imageLoadingStates[city.id] && (
+                    <RotatingLines
+                      strokeColor="grey"
+                      strokeWidth="5"
+                      animationDuration="0.75"
+                      width="96"
+                      visible={true}
 
-                    <img
-                      style={{ display: imageLoadingStates[city.id] ? 'none' : 'block' }}
-                      width={200}
-                      height={200}
-                      src={city?.icon}
-                      alt={city?.name}
-                      onLoad={() => handleImageLoad(city.id)}
                     />
+                  )}
 
-                  </div>
-                  <div className={styles.name}>
-                    <Typography>{city.name}</Typography>
-                  </div>
+                  <img
+                    style={{ display: imageLoadingStates[city.id] ? 'none' : 'block' }}
+                    width={200}
+                    height={200}
+                    src={city?.icon}
+                    alt={city?.name}
+                    onLoad={() => handleImageLoad(city.id)}
+                  />
+
                 </div>
-              </SwiperSlide>
-            )}
-          </Swiper>
-        </div>
+                <div className={styles.name}>
+                  <Typography>{city.name}</Typography>
+                </div>
+              </div>
+            </SwiperSlide>
+          )}
+        </Swiper>
+      </div >}
 
-      }
 
     </>
   )
