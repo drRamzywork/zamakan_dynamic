@@ -42,17 +42,7 @@ const LandingPage = () => {
   return (
 
     <>
-      <Head>
-        <title>زمكان</title>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <meta name="description" content="استكشف الشعراء
-عبر المناطق" />
-        <meta name="description" content="شُعراء العصور الأَدبيّة في مَناطِق المملكة العربيّة السُّعوديّة" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
       < section id='landingPage' className={styles.landingPage} >
         <div className={styles.sec_wrap}>
