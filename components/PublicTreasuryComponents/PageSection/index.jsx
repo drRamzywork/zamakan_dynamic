@@ -24,7 +24,6 @@ const PageSection = ({ title, data = [] }) => {
   const swiperRef = useRef(null);
   const [backgroundImageUrl, setBackgroundImageUrl] = useState("");
 
-  const [activeImgURL, setActiveImgURL] = useState(false);
   const closeGallery = () => {
     setGalleryOpen(false);
   };
@@ -120,9 +119,10 @@ const PageSection = ({ title, data = [] }) => {
 
           {data.map((item, index) => (
             <SwiperSlide key={index} >
+              {console.log(item)}
               <div className={styles.box}>
                 <div className={styles.rotated_img}>
-                  <img src={item.img} alt={item.title} />
+                  <img src={item?.img} alt={item?.title} />
                 </div>
 
                 <div className={styles.img_container} onClick={() => openGallery(index)}>
