@@ -792,6 +792,12 @@ svg.saudi-map.safari .city-name > div:hover {
 }
 
 #PublicTreasury {
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    @media screen and (max-width: 450px) {
+      font-size: 31px;
+    }
+  }
   .swiper-button-prev,
   .swiper-button-next {
     top: 41% !important;

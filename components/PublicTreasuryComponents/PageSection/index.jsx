@@ -23,6 +23,7 @@ const PageSection = ({ title, data = [] }) => {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef(null);
+  const [backgroundImageUrl, setBackgroundImageUrl] = useState("");
 
 
   const closeGallery = () => {
@@ -45,8 +46,43 @@ const PageSection = ({ title, data = [] }) => {
     console.log(cityId)
     setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
   };
+  // useEffect(() => {
+  //   if (data[activeIndex] && data[activeIndex].gallery.length > 0) {
+  //     setBackgroundImageUrl(data[activeIndex].gallery[0].img); // Assuming the first image is the default
+  //   }
+  // }, [activeIndex, data]);
+
+  // useEffect(() => {
+  //   // Check if data is available and activeIndex is within the range
+  //   if (data && data.length > activeIndex && data[activeIndex].gallery.length > 0) {
+  //     // Set the background image URL to the image of the active slide
+  //     setBackgroundImageUrl(data[activeIndex].gallery[0].img);
+  //   }
+  // }, [activeIndex, data]);
 
 
+  useEffect(() => {
+    if (swiperRef.current) {
+      const swiperInstance = swiperRef.current.swiper;
+
+      const onSlideChange = () => {
+        const currentIndex = swiperInstance.activeIndex;
+        if (data && data.length > currentIndex && data[currentIndex].gallery.length > 0) {
+          console.log(data[activeIndex].gallery[0].img, "SSSSS")
+          setBackgroundImageUrl(data[currentIndex].gallery[0].img);
+        }
+      };
+
+      swiperInstance.on('slideChange', onSlideChange);
+
+      return () => {
+        // Cleanup listener when component unmounts or dependencies change
+        swiperInstance.off('slideChange', onSlideChange);
+      };
+    }
+  }, [swiperRef, data]); // Add any other dependencies if needed
+
+  console.log(backgroundImageUrl)
   return (
     <section id={title} className={styles.section}>
       <div className={styles.sec_title}>
@@ -65,7 +101,6 @@ const PageSection = ({ title, data = [] }) => {
           navigation
           pagination={{ clickable: true }}
           dir='rtl'
-          ref={swiperRef}
 
           breakpoints={{
             300: {
@@ -131,7 +166,16 @@ const PageSection = ({ title, data = [] }) => {
             <motion.div
               animate={{ opacity: 1 }}
               initial={{ opacity: 0 }}
-              transition={{ duration: 1, }} className={styles.fullscreengallery}>
+              transition={{ duration: 1 }}
+              className={styles.fullscreengallery}
+            >
+              <div className={styles.gallery_wrap}>
+                <Image width={300} height={300}
+                  quality={10}
+                  layout="fixed"
+
+                  src={backgroundImageUrl} alt='' />
+              </div>
 
 
               <Container className={styles.gallery_container} sx={{ maxWidth: "1400px" }} maxWidth={false}>
@@ -148,6 +192,8 @@ const PageSection = ({ title, data = [] }) => {
                   pagination={{ clickable: true }}
                   dir="rtl"
                   centeredSlides={true}
+                  ref={swiperRef}
+
                 >
                   {data[activeIndex].gallery.map((item, index) => (
                     <SwiperSlide key={index}>

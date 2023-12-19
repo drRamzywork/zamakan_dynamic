@@ -36,6 +36,21 @@ section.section {
       background-color: black;
       z-index: 12299;
 
+      .gallery_wrap {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        img {
+          width: 100%;
+          height: 100%;
+
+          filter: blur(10px) grayscale(50%);
+          z-index: -2233;
+        }
+      }
+
       @media screen and (max-width: 450px) {
         display: flex;
         align-items: center;
@@ -43,16 +58,18 @@ section.section {
         flex-direction: column;
         height: 100%;
       }
+
       .gallery_container {
         position: relative;
+
         .close_btn {
           position: absolute;
-          top: 100px;
-          right: 25px;
+          top: 10px;
           z-index: 1299;
+          right: 0;
           @media screen and (max-width: 450px) {
-            top: 0px !important;
-            right: 15px !important;
+            top: 5px !important;
+            right: 14px !important;
           }
           background-color: #ffffff3b;
           transition: all 0.3s ease-in-out;
@@ -64,6 +81,11 @@ section.section {
             height: 30px;
             color: var(--main-white-color);
             transition: all 0.3s ease-in-out;
+
+            @media screen and (max-width: 450px) {
+              width: 20px;
+              height: 20px;
+            }
             &:hover {
               color: #ffffff;
             }
@@ -86,8 +108,12 @@ section.section {
           img {
             object-fit: contain;
             transform: scale(1) !important;
+            border-radius: 20px;
+            margin-top: 5px;
+            margin-bottom: 5px;
             @media screen and (max-width: 450px) {
               height: 100%;
+              border-radius: 10px;
             }
           }
         }
