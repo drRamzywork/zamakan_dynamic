@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Thumbs, FreeMode, Pagination } from 'swiper/modules';
 import styles from './index.module.scss'
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState } from 'react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -46,11 +45,11 @@ const PageSection = ({ title, data = [] }) => {
     console.log(cityId)
     setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
   };
-  // useEffect(() => {
-  //   if (data[activeIndex] && data[activeIndex].gallery.length > 0) {
-  //     setBackgroundImageUrl(data[activeIndex].gallery[0].img); // Assuming the first image is the default
-  //   }
-  // }, [activeIndex, data]);
+  useEffect(() => {
+    if (data[activeIndex] && data[activeIndex].gallery.length > 0) {
+      setBackgroundImageUrl(data[activeIndex].gallery[0].img); // Assuming the first image is the default
+    }
+  }, [activeIndex, data]);
 
   // useEffect(() => {
   //   // Check if data is available and activeIndex is within the range
@@ -60,28 +59,6 @@ const PageSection = ({ title, data = [] }) => {
   //   }
   // }, [activeIndex, data]);
 
-
-  useEffect(() => {
-    if (swiperRef.current) {
-      const swiperInstance = swiperRef.current.swiper;
-      const onSlideChange = () => {
-        const currentIndex = swiperInstance.activeIndex;
-        setActiveImgURL(data[activeIndex].gallery[0].img)
-        // if (data && data.length > currentIndex && data[currentIndex].gallery.length > 0) {
-        // }
-      };
-
-      swiperInstance.on('slideChange', onSlideChange);
-
-      return () => {
-        // Cleanup listener when component unmounts or dependencies change
-        swiperInstance.off('slideChange', onSlideChange);
-      };
-    }
-
-    console.log(activeImgURL, "activeImgURL")
-
-  }, [swiperRef, data]); // Add any other dependencies if needed
 
   return (
     <section id={title} className={styles.section}>
@@ -145,11 +122,11 @@ const PageSection = ({ title, data = [] }) => {
             <SwiperSlide key={index} onClick={() => openGallery(index)}>
               <div className={styles.box}>
                 <div className={styles.rotated_img}>
-                  <Image width={318} height={183} src={item.img} alt={item.title} />
+                  <img src={item.img} alt={item.title} />
                 </div>
 
                 <div className={styles.img_container}>
-                  <Image width={318} height={183} src={item.img} alt={item.title} />
+                  <img src={item.img} alt={item.title} />
                 </div>
 
                 <div className={styles.title}>
@@ -170,11 +147,7 @@ const PageSection = ({ title, data = [] }) => {
               className={styles.fullscreengallery}
             >
               <div className={styles.gallery_wrap}>
-                <Image width={300} height={300}
-                  quality={10}
-                  layout="fixed"
-
-                  src={activeImgURL} alt='' />
+                <img src={backgroundImageUrl} alt='' />
               </div>
 
 
@@ -188,7 +161,7 @@ const PageSection = ({ title, data = [] }) => {
                   spaceBetween={16}
                   navigation={true}
                   modules={[FreeMode, Navigation, Thumbs, Pagination]}
-                  className="mySwiper2"
+                  className="gallery-swiper"
                   pagination={{ clickable: true }}
                   dir="rtl"
                   centeredSlides={true}
@@ -208,9 +181,8 @@ const PageSection = ({ title, data = [] }) => {
                               visible={true}
                             />
                           )}
-                          <Image
-                            width={300}
-                            height={300}
+                          <img
+
                             style={{ display: imageLoadingStates[item.id] ? 'none' : 'block' }}
                             onLoad={() => handleImageLoad(item.id)}
                             onError={(e) => {

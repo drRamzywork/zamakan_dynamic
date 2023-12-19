@@ -798,6 +798,13 @@ svg.saudi-map.safari .city-name > div:hover {
       font-size: 31px;
     }
   }
+
+  .swiper-button-prev.swiper-button-disabled,
+  .swiper-button-next.swiper-button-disabled {
+    cursor: not-allowed !important;
+    pointer-events: visible !important;
+  }
+
   .swiper-button-prev,
   .swiper-button-next {
     top: 41% !important;
@@ -806,8 +813,23 @@ svg.saudi-map.safari .city-name > div:hover {
       color: #918872;
     }
   }
+
+  .gallery-swiper {
+    .swiper-button-prev {
+      right: 0px !important;
+    }
+    .swiper-button-next {
+      left: 0 !important;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+      top: 50%;
+      color: #ffffff !important;
+    }
+  }
+
   .swiper-button-prev {
-    right: 0 !important;
+    right: 0px !important;
   }
   .swiper-button-next {
     left: 0 !important;
