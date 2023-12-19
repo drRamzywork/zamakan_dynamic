@@ -15,7 +15,10 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
 
         {/* Open Graph Meta Tags */}
-        <meta property="og:title" content="Zamakan" />
+        <meta
+          property="og:title"
+          content="استكشف الشعراء عبر العصور التاريخية الأدبية"
+        />
         <meta property="og:description" content="عام الشعر العربي 2023" />
         <meta
           property="og:image"
@@ -26,7 +29,10 @@ function MyApp({ Component, pageProps }) {
 
         {/* Additional tags for Twitter (optional) */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Zamakan" />
+        <meta
+          name="twitter:title"
+          content="استكشف الشعراء عبر مناطق المملكة العربية السعودية"
+        />
         <meta name="twitter:description" content="عام الشعر العربي 2023" />
         <meta
           name="twitter:image"

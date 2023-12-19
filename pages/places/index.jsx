@@ -190,7 +190,7 @@ const Places = ({ dataAllCitiesMap }) => {
       </Head>
 
       <PageHeader dataAllCitiesMap={dataAllCitiesMap[activeIndex]} />
-      < section id='Places' className={styles.Places} dir='rtl'>
+      <section id='Places' className={styles.Places} dir='rtl'>
         {cityData && (
 
           <div className={styles.layer} />
