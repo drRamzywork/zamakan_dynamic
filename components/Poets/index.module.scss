@@ -25,6 +25,7 @@ section.Poets {
     box-shadow: 0px 16px 80px 0px rgba(70, 99, 120, 0.06);
     background-color: #ffffff;
     padding-top: 16px;
+
     @media screen and (max-width: 450px) {
       padding: 16px 0;
       padding-left: 0;
@@ -55,12 +56,6 @@ section.Poets {
 
       .swiper_slide_box {
         .box.active {
-          // border-color: rgba(230, 221, 198, 1) !important;
-          // box-shadow: 0px 8px 14px 0px rgba(0, 0, 0, 0.05) !important;
-          // animation: growBox 0.3s ease-in-out forwards;
-          // @media screen and (max-width: 450px) {
-          //   box-shadow: none;
-          // }
           .img_container {
             background-color: var(--main-beige-color) !important;
             transform: scale(1.1);
@@ -309,6 +304,10 @@ section.Poets {
   margin-top: 60px;
   display: flex;
   margin-left: 20px;
+  flex-direction: row-reverse;
+  @media screen and (max-width: 992px) {
+    flex-direction: column;
+  }
   .map_box {
     position: relative;
 

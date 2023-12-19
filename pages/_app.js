@@ -27,7 +27,6 @@ function MyApp({ Component, pageProps }) {
         <meta property="og:url" content="https://zamakanweb1.suwa.io" />
         <meta property="og:type" content="website" />
 
-        {/* Additional tags for Twitter (optional) */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:title"

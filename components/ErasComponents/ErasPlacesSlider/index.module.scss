@@ -2,10 +2,21 @@
   margin-top: 24px;
   transition: all 0.3s ease-in-out;
   margin-bottom: 16px;
+  height: 700px;
+
   @media screen and (max-width: 450px) {
     margin-top: -22px;
     margin-bottom: 0;
+    height: auto;
   }
+
+  .vertical_swiper {
+    @media screen and (min-width: 992px) {
+      height: 100%;
+      width: 500px;
+    }
+  }
+
   .places_container {
     transition: all 0.3s ease-in-out;
     .places {

@@ -10,7 +10,6 @@ import Head from 'next/head';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CloseIcon, LeftArrow } from '@/assets/svgsComponents';
 import PoetsSlider from '@/components/PoetsSlider';
-import { useRouter } from 'next/router';
 import { ErasPlacesSlider } from '@/components/ErasComponents';
 import { MdLocationPin } from 'react-icons/md';
 import Image from 'next/image';
@@ -124,13 +123,7 @@ const Places = ({ dataAllCitiesMap }) => {
     }
   };
 
-  const adjustImageUrl = (imageUrl) => {
-    if (imageUrl?.startsWith('https')) {
-      return imageUrl;
-    } else {
-      return `https://zamakan.suwa.io${imageUrl}`;
-    }
-  };
+
 
 
   const popUpRef = useRef(null);
@@ -152,7 +145,6 @@ const Places = ({ dataAllCitiesMap }) => {
 
   const handlePlaceActive = async (placeId) => {
     setActiveCity(placeId);
-
   };
 
   const svgRef = useRef(null);
@@ -408,7 +400,7 @@ const Places = ({ dataAllCitiesMap }) => {
                       <div className={styles.box_container}>
                         <div className={styles.box_header}>
                           <div className={styles.img_container}>
-                            <Image width={200} height={200} src={cityData.icon} alt={cityData.name} />
+                            <img src={cityData.icon} alt={cityData.name} />
                           </div>
                           <div className={styles.title}>
                             <h3>{cityData?.name}</h3>
@@ -435,31 +427,34 @@ const Places = ({ dataAllCitiesMap }) => {
                   )}
                 </AnimatePresence>
 
-                {places !== null &&
-                  <AnimatePresence >
-                    <motion.div
-                      initial={{ opacity: 0, y: -50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -50 }}
-                      transition={{ duration: 0.5 }}
-                      className={styles.slider_wrap}
 
-                    >
-                      <ErasPlacesSlider places={places}
-                        setActiveCity={setActiveCity}
-                        activeCity={activeCity} onPlaceClick={handlePlaceWindow} />
-                    </motion.div>
-                  </AnimatePresence>
-                }
               </div >
-
+              {places !== null &&
+                <AnimatePresence >
+                  <motion.div
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -50 }}
+                    transition={{ duration: 0.5 }}
+                    className={styles.slider_wrap}
+                  >
+                    <ErasPlacesSlider places={places}
+                      setActiveCity={setActiveCity}
+                      activeCity={activeCity} onPlaceClick={handlePlaceWindow} />
+                  </motion.div>
+                </AnimatePresence>
+              }
 
             </div>
 
           </motion.div>
+
         </Container>
 
       </section >
+
+
+
 
     </>
 

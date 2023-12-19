@@ -363,14 +363,12 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
                 )}
               </AnimatePresence>
 
+              {places !== null &&
+                <ErasPlacesSlider places={places}
+                  setActiveCity={setActiveCity}
+                  activeCity={activeCity} onPlaceClick={handlePlaceWindow} />
+              }
             </div>
-
-            {places !== null &&
-              <ErasPlacesSlider places={places}
-                setActiveCity={setActiveCity}
-                activeCity={activeCity} onPlaceClick={handlePlaceWindow} />
-            }
-
           </motion.div>
         </Container>
       </section >

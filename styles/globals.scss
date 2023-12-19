@@ -189,12 +189,13 @@ body::-webkit-scrollbar-track {
 
 #map-boxes {
   margin: auto;
-  width: 600px;
-  height: 487px;
+  width: 800px;
+  // height: 487px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   overflow: hidden;
+  margin-top: 0;
 
   @media screen and (max-width: 992px) {
     flex-direction: column;
@@ -327,10 +328,11 @@ body::-webkit-scrollbar-track {
     }
   }
   #map-boxes {
-    @media screen and (max-width: 450px) {
+    @media screen and (max-width: 992px) {
       align-items: flex-start !important;
       justify-content: flex-start;
       height: auto;
+      width: 100% !important;
     }
   }
 }
@@ -788,6 +790,18 @@ svg.saudi-map.safari .city-name > div:hover {
   .react-transform-component {
     width: 100% !important;
     // margin-bottom: 16px !important;
+  }
+}
+
+#Places,
+#Poets {
+  .swiper-pagination {
+    @media screen and (max-width: 450px) {
+      display: none !important;
+    }
+    span {
+      background-color: #bb7165;
+    }
   }
 }
 
