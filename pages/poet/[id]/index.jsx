@@ -312,23 +312,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                         </div>
                         <div className={styles.filter_methods}>
                           <div className={styles.box}>
-                            {/* <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                            <Select
-                              labelId="demo-select-small-label"
-                              id="demo-select-small"
-                              value={age}
-                              sx={selectBoxStyles}
-                              onChange={handleChange}
-                              IconComponent={CustomArrowIcon}
-                            >
-                              <MenuItem value={0}>المملكة</MenuItem>
-                              {dataPlaces?.map((place, index) => (
-                                <MenuItem key={place.id} value={place.id}>
-                                  {place.name}
-                                </MenuItem>
-                              ))}
-                            </Select>
-                          </FormControl> */}
+
                           </div>
                           <div className={styles.box}>
                             <FormControl sx={{ m: 1, minWidth: 120 }} size="small">

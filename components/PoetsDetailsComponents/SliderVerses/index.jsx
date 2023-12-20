@@ -1,22 +1,28 @@
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Grid } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/grid';
-import { HiArrowLeft } from "react-icons/hi2";
-
 import styles from './index.module.scss'; // Make sure this path is correct
-import { Box, Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import Link from 'next/link'
+import { motion } from 'framer-motion';
+
 export default function SliderVerses({ results }) {
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const [expandedStates, setExpandedStates] = useState({});
 
+  const toggleExpanded = (index) => {
+    setExpandedStates(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
   return (
     <>
 
@@ -61,12 +67,12 @@ export default function SliderVerses({ results }) {
         dir='rtl'
       >
 
-        {results.map((poetry, idx) => {
+        {results.map((poetry, index) => {
           const [beforeDots, afterDots] = poetry.poetryParts.split('...');
           return (
 
-            <SwiperSlide key={idx}>
-              <div className={styles.box}>
+            <SwiperSlide key={index}>
+              {/* <div className={styles.box}>
                 <div className={styles.tag}>
                   <Typography>{poetry.placeName}</Typography>
                 </div>
@@ -81,6 +87,53 @@ export default function SliderVerses({ results }) {
                 </div>
 
 
+              </div> */}
+
+              <div className={styles.box}>
+                <div className={styles.box_container}>
+                  <div className={styles.info}>
+                    <Link href={`/poet/${poetry.poetId}`} className={styles.img_container}>
+                      <img src={poetry.poetIcon} alt={poetry.poetName} />
+                    </Link>
+
+                    <div className={styles.text_container}>
+                      <div className={styles.name}>
+                        <Typography>{poetry.poetName}</Typography>
+                      </div>
+                      <Link href={`/city/${poetry.placeId}`} className={styles.type}>
+                        <Typography>{poetry.placeName}</Typography>
+                      </Link >
+                    </div>
+                  </div>
+
+                  <motion.div
+                    className={`${styles.desc_container} ${expandedStates[index] ? styles.expanded : ''}`}
+                    initial={{ height: '70px' }}
+                    animate={{ height: expandedStates[index] ? 'auto' : '70px' }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <Typography >{poetry.entrance}</Typography>
+                  </motion.div>
+                  <div className={styles.more_btn} onClick={() => toggleExpanded(index)}>
+                    <Typography>{expandedStates[index] ? 'أقل' : 'المزيد'}</Typography>
+                  </div>
+
+
+                  <Link href={`/poetry/${poetry.id}`} className={styles.said}>
+
+                    <div className={styles.desc}>
+                      <Typography>
+                        {beforeDots}
+                      </Typography>
+                      <br />
+                      <Typography>
+                        {afterDots}
+                      </Typography>
+
+                    </div>
+                  </Link>
+
+                </div>
               </div>
             </SwiperSlide>
           )

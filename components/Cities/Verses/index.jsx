@@ -9,24 +9,12 @@ import { motion } from 'framer-motion';
 const Verses = ({ dataCityPoetry, dataCityData }) => {
   const [expandedStates, setExpandedStates] = useState({});
 
-  const adjustImageUrl = (imageUrl) => {
-    if (imageUrl?.startsWith('https')) {
-      return imageUrl;
-    } else {
-      return `https://zamakan.suwa.io${imageUrl}`;
-    }
-  };
-
-
   const toggleExpanded = (index) => {
     setExpandedStates(prev => ({
       ...prev,
       [index]: !prev[index]
     }));
   };
-
-
-
 
   return (
     <>
@@ -187,7 +175,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                           <div className={styles.box_container}>
                             <Link href={`/poet/${poet.poetId}`} className={styles.info}>
                               <div className={styles.img_container}>
-                                <img src={adjustImageUrl(poet.poetIcon)} alt={poet.poetName} />
+                                <img src={poet.poetIcon} alt={poet.poetName} />
                               </div>
 
                               <div className={styles.text_container}>

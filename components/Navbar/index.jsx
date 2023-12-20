@@ -117,14 +117,16 @@ const Navbar = (props) => {
                     className={styles.nav_menu_container}
                   >
                     <div className={styles.links} onClick={() => setNavMenu(false)}>
-                      <div className={styles.link}>
-                        <a href='/public-treasury'>خزانة العام </a>
-                      </div>
+
                       <div className={styles.link}>
                         <a href='/literary-eras'>زمان الشعر</a>
                       </div>
                       <div className={styles.link}>
                         <a href='/places'>مكان الشعر</a>
+                      </div>
+
+                      <div className={styles.link}>
+                        <a href='/public-treasury'>خزانة الشعر </a>
                       </div>
                       <div className={styles.link}>
                         <a href='/poets'>الشعراء </a>
