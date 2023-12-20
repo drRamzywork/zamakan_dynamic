@@ -263,7 +263,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
 
                   <section className={styles.timelineSection}>
                     <div className={styles.sec_title}>
-                      <Typography variant='h3'>ما يتميز به الشاعر:</Typography>
+                      <Typography variant='h3'>مما تميز به الشاعر:</Typography>
                     </div>
 
                     <div className={styles.sec_container}>
@@ -277,7 +277,8 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
 
                   <section className={styles.timelineSection}>
                     <div className={styles.sec_title}>
-                      <Typography variant='h3'>ما اشتهر به الشاعر:</Typography>
+                      <Typography variant='h3'>مما اُشتهر به الشاعر:
+                      </Typography>
                     </div>
 
                     <div className={styles.sec_container}>
@@ -288,6 +289,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                       </div>
                     </div>
                   </section>
+
                 </motion.div>
 
               </div>

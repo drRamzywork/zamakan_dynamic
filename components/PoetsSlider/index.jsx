@@ -10,17 +10,12 @@ import Link from 'next/link';
 
 
 
-const PoetsSlider = ({ poetriesData }) => {
+const PoetsSlider = ({ poetriesData, poetID }) => {
+
+  const filteredPoetriesData = poetriesData.filter(poetry => poetry.poetId === poetID);
 
 
-  const adjustImageUrl = (imageUrl) => {
-    if (imageUrl?.startsWith('https')) {
-      return imageUrl;
-    } else {
-      return `https://zamakan.suwa.io${imageUrl}`;
-    }
-  };
-
+  console.log(filteredPoetriesData.map(test => test))
   return (
     <>
       <div id='simlar_poets' className={styles.simlar_poets}>
@@ -56,60 +51,103 @@ const PoetsSlider = ({ poetriesData }) => {
               }}
               dir='rtl'
               className={styles.swiper_container} >
-
-              {poetriesData?.map((poetry, index) => {
-                const [beforeDots, afterDots] = poetry.poetryParts.split('...');
-                return (
-                  <SwiperSlide key={poetry.id}>
-                    <div className={styles.box}>
-                      <div className={styles.tag}>
-                        <Typography>{poetry.placeName}</Typography>
-                      </div>
-
-                      <div className={styles.desc}>
-                        <Typography>
-                          {beforeDots}
-                        </Typography>
-                        <br />
-                        <Typography>
-                          {afterDots}
-                        </Typography>
-                      </div>
-
-                      <Link href={`/poetry/${poetry.id} `} className={styles.link_container}>
-                        <Typography>تفاصيل البيت</Typography>
-
-                        <div className={styles.icon_container}>
-                          <HiArrowLeft />
-                        </div>
-                      </Link>
-                      <hr />
-
-
-                      <div className={styles.poet_info}>
-                        <div className={styles.img_container}>
-                          <img src={adjustImageUrl(poetry.poetIcon)} alt={poetry.poetName} />
+              {
+                filteredPoetriesData?.map((poetry) => {
+                  const [beforeDots, afterDots] = poetry.poetryParts.split('...');
+                  return (
+                    < SwiperSlide key={poetry.id}>
+                      <div className={styles.box}>
+                        <div className={styles.tag}>
+                          <Typography>{poetry.placeName}</Typography>
                         </div>
 
-                        <div className={styles.text_container}>
-                          <Link href={`/poet/${poetry.poetId}`} className={styles.name}>
-                            <Typography>{poetry.poetName}</Typography>
-                          </Link>
-                          <div className={styles.poet_tag}>
-                            <Typography>
-                              {poetry.zamanName}
-                            </Typography>
+                        <div className={styles.desc}>
+                          <Typography>
+                            {beforeDots}
+                          </Typography>
+                          <br />
+                          <Typography>
+                            {afterDots}
+                          </Typography>
+                        </div>
 
+
+                        <hr />
+
+
+                        <div className={styles.poet_info}>
+                          <div className={styles.img_container}>
+                            <img src={poetry.poetIcon} alt={poetry.poetName} />
+                          </div>
+
+                          <div className={styles.text_container}>
+                            <Link href={`/poet/${poetry.poetId}`} className={styles.name}>
+                              <Typography>{poetry.poetName}</Typography>
+                            </Link>
+                            <div className={styles.poet_tag}>
+                              <Typography>
+                                {poetry.zamanName}
+                              </Typography>
+
+                            </div>
                           </div>
                         </div>
+
                       </div>
+                    </SwiperSlide>
+                  )
 
-                    </div>
-                  </SwiperSlide>
-
+                }
                 )
               }
-              )}
+              {poetriesData
+                .filter(poetry => poetry.poetId !== poetID)?.map((poetry, index) => {
+                  const [beforeDots, afterDots] = poetry.poetryParts.split('...');
+                  return (
+                    <SwiperSlide key={poetry.id}>
+                      <div className={styles.box}>
+                        <div className={styles.tag}>
+                          <Typography>{poetry.placeName}</Typography>
+                        </div>
+
+                        <div className={styles.desc}>
+                          <Typography>
+                            {beforeDots}
+                          </Typography>
+                          <br />
+                          <Typography>
+                            {afterDots}
+                          </Typography>
+                        </div>
+
+
+                        <hr />
+
+
+                        <div className={styles.poet_info}>
+                          <div className={styles.img_container}>
+                            <img src={poetry.poetIcon} alt={poetry.poetName} />
+                          </div>
+
+                          <div className={styles.text_container}>
+                            <Link href={`/poet/${poetry.poetId}`} className={styles.name}>
+                              <Typography>{poetry.poetName}</Typography>
+                            </Link>
+                            <div className={styles.poet_tag}>
+                              <Typography>
+                                {poetry.zamanName}
+                              </Typography>
+
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </SwiperSlide>
+
+                  )
+                }
+                )}
 
 
 

@@ -80,13 +80,7 @@ export default function SliderVerses({ results }) {
                   </Typography>
                 </div>
 
-                <Link href={`/poetry/${poetry.id}`} className={styles.link_container}>
-                  <Typography>تفاصيل البيت</Typography>
 
-                  <div className={styles.icon_container}>
-                    <HiArrowLeft />
-                  </div>
-                </Link>
               </div>
             </SwiperSlide>
           )

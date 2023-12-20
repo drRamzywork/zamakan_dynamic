@@ -118,6 +118,9 @@ const Navbar = (props) => {
                   >
                     <div className={styles.links} onClick={() => setNavMenu(false)}>
                       <div className={styles.link}>
+                        <a href='/public-treasury'>خزانة العام </a>
+                      </div>
+                      <div className={styles.link}>
                         <a href='/literary-eras'>زمان الشعر</a>
                       </div>
                       <div className={styles.link}>
@@ -126,6 +129,7 @@ const Navbar = (props) => {
                       <div className={styles.link}>
                         <a href='/poets'>الشعراء </a>
                       </div>
+
                     </div>
 
                   </motion.div>

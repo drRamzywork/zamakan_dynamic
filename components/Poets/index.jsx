@@ -85,7 +85,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
 
   const [cityData, setCityData] = useState(null)
   const [poetriesData, setPoetriesData] = useState(null)
-
+  const [poetID, setPoetID] = useState(0);
   const handlePlaceWindow = async (placeId) => {
     setActiveCity(placeId);
     try {
@@ -105,12 +105,12 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
 
   const handlePlaceActive = async (placeId) => {
     setActiveCity(placeId);
-
   };
+
 
   const handlePoetData = async (poetID) => {
     setIsMapLoading(true);
-
+    setPoetID(poetID)
     try {
       const resPoetPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?poet=${poetID}&lang=2&pagenum=1&pagesize=50`);
 
@@ -346,7 +346,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
                           </div>
                         </div>
 
-                        <PoetsSlider poetriesData={poetriesData} />
+                        <PoetsSlider poetriesData={poetriesData} poetID={poetID} />
 
                         <div className={styles.close_btn} onClick={() => {
                           setCityData(null)

@@ -2,39 +2,21 @@ import { Container, Typography, } from '@mui/material'
 import React from 'react'
 import styles from './index.module.scss'
 import imgs from '../../assets/constants/imgs'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/scrollbar';
-import { Feather, LeftArrow, PalmSvg, } from '@/assets/svgsComponents';
+import { LeftArrow, PalmSvg, } from '@/assets/svgsComponents';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import SmallSaudiMap from '@/assets/svgsComponents/SmallSaudiMap';
-import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { FaCalendarAlt } from "react-icons/fa";
 
-import localFont from 'next/font/local'
 
 
-const Custom = localFont({
-  src: [
-    {
-      path: '../../fonts/custom.otf',
-      weight: '500',
-      style: 'normal',
-    },
 
-  ],
-})
 
 const LandingPage = () => {
   const router = useRouter();
   const {
-    left_branch,
-    land_banner,
     Palm,
-    Landing_Banner_text
-
   } = imgs
 
 
@@ -113,20 +95,7 @@ const LandingPage = () => {
                 </div>
               </Link>
 
-              <Link href='/public-treasury' className={styles.box}>
-                <div className={styles.icon_container}>
-                  <SmallSaudiMap />
 
-                </div>
-                <div className={styles.title}>
-                  <Typography variant='h4'>
-                    خزانة الشعر
-                  </Typography>
-                </div>
-                <div className={styles.arrow}>
-                  <LeftArrow />
-                </div>
-              </Link>
             </motion.div>
 
 
