@@ -32,13 +32,6 @@ export default function SliderVerses({ filtredPoets, onPoetsDataChange }) {
   }, [poetsToShow, onPoetsDataChange]);
 
 
-  const adjustImageUrl = (imageUrl) => {
-    if (imageUrl?.startsWith('https')) {
-      return imageUrl;
-    } else {
-      return `https://zamakan.suwa.io${imageUrl}`;
-    }
-  };
 
 
   return (
@@ -55,15 +48,12 @@ export default function SliderVerses({ filtredPoets, onPoetsDataChange }) {
             <a href={`/poet/${poet.id}`}>
               <div className={styles.poet_info}>
                 <div className={styles.img_container}>
-                  <img src={adjustImageUrl(poet.icon)} alt={poet.name} />
+                  <img src={poet.icon} alt={poet.name} />
                 </div>
 
                 <div className={styles.text_container}>
                   <div className={styles.name}>
                     <Typography>{poet.name}</Typography>
-                    {/* <div className={styles.date}>
-                      <Typography>{poet.fromH} هـ - {poet.toH} هـ</Typography>
-                    </div> */}
                   </div>
                   <div className={styles.tag}>
                     <Typography>

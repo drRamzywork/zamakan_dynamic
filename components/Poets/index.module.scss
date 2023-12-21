@@ -300,13 +300,18 @@ section.Poets {
 }
 .svg_wrap {
   border-top: 1px solid rgba(229, 230, 242, 1);
-  padding-top: 46px;
-  margin-top: 60px;
   display: flex;
-  margin-left: 20px;
   flex-direction: row-reverse;
+  padding-top: 16px;
+
+  @media screen and (min-width: 992px) {
+    align-items: flex-start;
+    justify-content: center;
+  }
+
   @media screen and (max-width: 992px) {
     flex-direction: column;
+    justify-content: flex-end;
   }
   .map_box {
     position: relative;
@@ -322,6 +327,11 @@ section.Poets {
       & > svg {
         margin: auto;
       }
+    }
+
+    .zaman_map {
+      width: 100%;
+      height: fit-content;
     }
   }
 
@@ -363,10 +373,12 @@ section.Poets {
   }
 
   .custom_box {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 602px;
+    @media screen and (max-width: 450px) {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    width: 540px;
     height: auto;
     padding: 24px;
     background-color: rgb(255, 255, 255);

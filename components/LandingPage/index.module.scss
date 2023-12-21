@@ -167,7 +167,6 @@ section.landingPage {
       img {
         @media screen and (max-width: 450px) {
           object-fit: contain;
-          // height: 468px;
         }
       }
     }
@@ -192,12 +191,8 @@ section.landingPage {
     margin-top: 40px;
   }
 
-  // .box1 {
-  //   margin-right: 0 !important;
-  // }
-  .box1,
   .box {
-    width: 250px;
+    width: 300px;
     box-shadow: 0px 16px 80px 0px rgba(70, 99, 120, 0.1);
     background-color: rgba(255, 255, 255, 1);
     padding: 16px;
@@ -206,18 +201,27 @@ section.landingPage {
     align-items: flex-start;
     justify-content: space-around;
     transition: all 0.3s ease-in-out;
-
     &:hover {
-      background-color: #e6ddc6;
-      .arrow {
-        animation: moveLeft 1.5s infinite;
+      @media screen and (min-width: 992px) {
+        background-color: #e6ddc6;
+      }
+    }
+    .arrow {
+      animation: moveLeft 1.5s infinite;
+    }
+
+    &:last-child {
+      margin-right: 24px;
+
+      @media screen and (max-width: 650px) {
+        margin-right: 0;
+        margin-top: 16px;
       }
     }
 
-    margin-right: 24px;
     @media screen and (max-width: 450px) {
       margin-right: 0;
-      margin-top: 16px;
+      width: 250px;
     }
 
     @media screen and (max-width: 450px) {

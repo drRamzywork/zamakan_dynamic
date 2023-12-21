@@ -6,6 +6,7 @@ import { Search, } from '../../assets/svgsComponents';
 import { motion } from 'framer-motion';
 import { imgs } from '@/assets/constants';
 import CssBaseline from '@mui/material/CssBaseline';
+import Link from 'next/link';
 
 
 
@@ -180,9 +181,9 @@ const Navbar = (props) => {
 
 
               <div className={styles.discover}>
-                <div className={styles.search_icon}>
+                <Link href='/search' className={styles.search_icon}>
                   <Search />
-                </div>
+                </Link>
               </div>
 
             </div>

@@ -2,6 +2,7 @@
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import localFont from 'next/font/local'
+import { useRouter } from "next/router";
 
 const Effra = localFont({
   src: [
@@ -43,13 +44,14 @@ export default function Layout({ children }) {
     ...Effra.style,
     ...Custom.style,
   };
-
+  const router = useRouter();
 
   return (
     <>
-      <Navbar />
+      {router.pathname !== '/search' &&
+        <Navbar />
+      }
       <main style={combinedStyles}>
-        {/* {children?.filter(str => str != ';')} */}
         {children}
       </main >
       <Footer />

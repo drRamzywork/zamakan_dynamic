@@ -109,38 +109,6 @@
     }
   }
 
-  .search_icon_mobile {
-    // background-color: var(--main-white-color);
-    @media screen and (max-width: 992px) {
-      margin-right: 10px;
-      margin-left: 10px;
-    }
-
-    @media screen and (max-width: 992px) {
-      display: none !important;
-    }
-    svg {
-      path,
-      line {
-        stroke: var(--main-white-color);
-        // transition: all 0.3s ease-in-out;
-      }
-    }
-
-    color: var(--main-white-color);
-    // transition: all 0.3s ease-in-out;
-
-    &:hover {
-      background-color: var(--main-white-color);
-      svg {
-        path,
-        line {
-          stroke: rgba(17, 41, 47, 1) !important;
-        }
-      }
-    }
-  }
-
   .logo {
     cursor: pointer;
     margin-right: auto !important;
@@ -255,7 +223,6 @@
   // Groups
   .burger_icon,
   .search_icon,
-  .search_icon_mobile,
   .lang {
     cursor: pointer;
     background-color: transparent;

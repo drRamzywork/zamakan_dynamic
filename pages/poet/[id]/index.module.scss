@@ -10,74 +10,9 @@
     position: relative;
     z-index: 1;
     filter: sepia(40%);
-
-    .text_container {
-      position: absolute;
-      top: 0;
-      right: 0;
-      ul {
-        padding: 0;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 71px;
-        background: linear-gradient(
-          261.34deg,
-          #000000 4.96%,
-          rgba(17, 41, 47, 0) 88.55%
-        );
-
-        border-top-right-radius: 10px;
-
-        li {
-          padding: 0;
-          margin: 0;
-          list-style: none;
-          padding: 24px 30px;
-          position: relative;
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          @media screen and (max-width: 450px) {
-            padding: 0 16px;
-          }
-
-          &:not(:last-child):after {
-            position: absolute;
-            content: "";
-            width: 1px;
-            height: 12px;
-            top: 50%;
-            left: 0;
-            transform: translate(0, -50%);
-            z-index: 22222;
-            background-color: var(--main-white-color);
-          }
-
-          &:first-child {
-            a {
-              font-weight: 700;
-            }
-          }
-
-          a {
-            color: var(--main-white-color);
-            font-family: var(--effra-font);
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 23px;
-            letter-spacing: 0em;
-            text-align: right;
-          }
-        }
-      }
-    }
   }
   .profileSection {
-    // margin-top: -80px;
-    margin-top: 80px;
+    margin-top: -0px;
     position: relative;
     z-index: 2;
     align-items: center;
@@ -85,7 +20,7 @@
     flex-direction: column;
     padding-bottom: 30px;
     padding-top: 30px;
-    border-radius: 10px;
+    border-radius: 0px 0px 10px 10px;
     border: 1px solid rgba(229, 230, 242, 1);
     background: #ffffff;
 
@@ -111,6 +46,8 @@
       padding: 8px;
       overflow: hidden;
       box-shadow: 0px 4px 6px #00000070;
+      margin-top: -80px;
+      z-index: 2222;
       @media screen and (max-width: 450px) {
         width: 180px;
         height: 180px;

@@ -35,7 +35,7 @@ const LandingPage = () => {
             initial={{ opacity: 0 }}
             transition={{ duration: 1, }}
             className={styles.sec_container}>
-            <Container maxWidth={false} >
+            <Container sx={{ maxWidth: "1400" }} maxWidth={false}>
               <div className={styles.sec_title}>
                 <h1>
                   زمكان الشعر

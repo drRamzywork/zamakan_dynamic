@@ -1,12 +1,12 @@
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Grid } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/grid';
-import styles from './index.module.scss'; // Make sure this path is correct
+import styles from './index.module.scss';
 import { Typography } from '@mui/material';
 import Link from 'next/link'
 import { motion } from 'framer-motion';
@@ -16,6 +16,21 @@ export default function SliderVerses({ results }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [expandedStates, setExpandedStates] = useState({});
+  const [overflowStates, setOverflowStates] = useState({});
+  const contentRefs = useRef([]);
+
+
+
+  useEffect(() => {
+    const newOverflowStates = {};
+    contentRefs.current.forEach((ref, index) => {
+      if (ref) {
+        console.log(ref.scrollHeight, ref)
+        newOverflowStates[index] = ref.scrollHeight > 72;
+      }
+    });
+    setOverflowStates(newOverflowStates);
+  }, [results]);
 
   const toggleExpanded = (index) => {
     setExpandedStates(prev => ({
@@ -41,7 +56,7 @@ export default function SliderVerses({ results }) {
         }}
 
         spaceBetween={0}
-        slidesPerView={2}
+        // slidesPerView={2}
         grid={{
           rows: 5,
           fill: 'row',
@@ -53,12 +68,14 @@ export default function SliderVerses({ results }) {
         }}
 
         breakpoints={{
-          // when window width is >= 600px
           300: {
             slidesPerView: 1,
           },
           1200: {
-            slidesPerView: 2,
+            slidesPerView: 3,
+          },
+          1500: {
+            slidesPerView: 3,
           }
         }}
 
@@ -70,25 +87,7 @@ export default function SliderVerses({ results }) {
         {results.map((poetry, index) => {
           const [beforeDots, afterDots] = poetry.poetryParts.split('...');
           return (
-
             <SwiperSlide key={index}>
-              {/* <div className={styles.box}>
-                <div className={styles.tag}>
-                  <Typography>{poetry.placeName}</Typography>
-                </div>
-                <div className={styles.desc}>
-                  <Typography>
-                    {beforeDots}
-                  </Typography>
-                  <br />
-                  <Typography>
-                    {afterDots}
-                  </Typography>
-                </div>
-
-
-              </div> */}
-
               <div className={styles.box}>
                 <div className={styles.box_container}>
                   <div className={styles.info}>
@@ -97,9 +96,9 @@ export default function SliderVerses({ results }) {
                     </Link>
 
                     <div className={styles.text_container}>
-                      <div className={styles.name}>
+                      <Link href={`/poet/${poetry.poetId}`} className={styles.name}>
                         <Typography>{poetry.poetName}</Typography>
-                      </div>
+                      </Link>
                       <Link href={`/city/${poetry.placeId}`} className={styles.type}>
                         <Typography>{poetry.placeName}</Typography>
                       </Link >
@@ -111,15 +110,20 @@ export default function SliderVerses({ results }) {
                     initial={{ height: '70px' }}
                     animate={{ height: expandedStates[index] ? 'auto' : '70px' }}
                     transition={{ duration: 0.5 }}
+                    ref={(el) => (contentRefs.current[index] = el)}
                   >
                     <Typography >{poetry.entrance}</Typography>
                   </motion.div>
-                  <div className={styles.more_btn} onClick={() => toggleExpanded(index)}>
-                    <Typography>{expandedStates[index] ? 'أقل' : 'المزيد'}</Typography>
-                  </div>
+                  {overflowStates[index] && (
+                    <div className={styles.more_btn} onClick={() => toggleExpanded(index)}>
+                      <Typography>{expandedStates[index] ? 'أقل' : 'المزيد'}</Typography>
+
+                    </div>
+
+                  )}
 
 
-                  <Link href={`/poetry/${poetry.id}`} className={styles.said}>
+                  <div className={styles.said}>
 
                     <div className={styles.desc}>
                       <Typography>
@@ -131,7 +135,7 @@ export default function SliderVerses({ results }) {
                       </Typography>
 
                     </div>
-                  </Link>
+                  </div>
 
                 </div>
               </div>

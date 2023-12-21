@@ -22,7 +22,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
   );
 
   useEffect(() => {
-
     if (activeCity != null && swiperRef.current) {
       const index = filteredPlaces.findIndex(city => city.id === activeCity);
       console.log(activeCity, "current")
@@ -54,19 +53,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
       setActiveCity(newActiveCity);
     }
   }
-  const handleVerticalSlideChange = () => {
-    if (swiperVerticalRef.current && swiperVerticalRef.current.swiper) {
-
-      const swiper = swiperVerticalRef.current.swiper;
-      const newIndex = swiper.realIndex;
-      const newActiveCity = filteredPlaces[newIndex].id;
-      setActiveCity(newActiveCity);
-    }
-  };
-
-  // const handleImageLoad = cityId => {
-  //   setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
-  // };
 
   const handleImageLoad = cityId => {
     setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
@@ -98,13 +84,8 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
           centeredSlides={true}
           onSlideChange={handleSlideChange}
           direction='horizontal'
-          breakpoints={{
-            300: {
-              slidesPerView: 'auto',
-              spaceBetween: 10,
-              centeredSlides: true,
-            },
-          }}
+          slidesPerView={2.4}
+          spaceBetween={10}
           dir={'rtl'}
           className="places-swiper" >
 
@@ -145,8 +126,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
       </div >}
 
       {isMobileView === false && <div className={styles.swiper_container} dir='rtl'>
-
-
         <Swiper
           ref={swiperRef}
           onSlideChange={handleSlideChange}
@@ -213,8 +192,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
 
                   <img
                     style={{ display: imageLoadingStates[city.id] ? 'none' : 'block' }}
-                    width={200}
-                    height={200}
                     src={city?.icon}
                     alt={city?.name}
                     onLoad={() => handleImageLoad(city.id)}

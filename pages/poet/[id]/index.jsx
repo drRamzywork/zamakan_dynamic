@@ -140,12 +140,14 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
       >
         <Container dir="rtl" maxWidth={false} className={styles.poetDetails}>
 
+          <Box className={styles.headerImage} >
+
+          </Box>
           <Grid container className={styles.profileSection}>
             <Grid item>
               <div className={styles.img_container}>
                 <img src={dataPoet.icon} alt="" />
               </div>
-
             </Grid>
             <Grid spacing={0} item>
               <Typography variant="h5" className={styles.profileName}>
@@ -199,7 +201,8 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                   <span className={styles.iconWrapper}>
                     <Feather />
                   </span>
-                  <p>أبيات ذكرت فيها المملكة
+                  <p>
+                    أبيات ذُكرت فيها أماكن في المملكة
                   </p>
                 </button>
               </li>
@@ -325,7 +328,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                                 IconComponent={CustomArrowIcon}
 
                               >
-                                <MenuItem value={0}>المملكة</MenuItem>
+                                <MenuItem value={0}>الجميع</MenuItem>
                                 {dataPlaces?.map((place, index) => (
                                   <MenuItem key={place.id} value={place.id}>
                                     {place.name}
