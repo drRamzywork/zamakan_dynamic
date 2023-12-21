@@ -904,7 +904,7 @@ svg.saudi-map.safari .city-name > div:hover {
 // mui
 .MuiContainer-root {
   @media screen and (min-width: 1200px) {
-    padding-right: 59px;
-    padding-left: 59px;
+    padding-right: 59px !important;
+    padding-left: 59px !important;
   }
 }

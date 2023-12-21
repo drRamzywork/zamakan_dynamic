@@ -45,9 +45,10 @@
     height: 100vh;
     z-index: -122;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
+
     background-color: #e6ddc6;
     border-radius: 16px;
 
