@@ -53,7 +53,13 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
       setActiveCity(newActiveCity);
     }
   }
-
+  const adjustImageUrl = (imageUrl) => {
+    if (imageUrl?.startsWith('https')) {
+      return imageUrl;
+    } else {
+      return `https://zamakan.suwa.io${imageUrl}`;
+    }
+  };
   const handleImageLoad = cityId => {
     setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
     if (swiperRef.current && swiperRef.current.swiper) {
@@ -107,9 +113,7 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
 
                   <img
                     style={{ display: imageLoadingStates[city.id] ? 'none' : 'block' }}
-                    width={200}
-                    height={200}
-                    src={city?.icon}
+                    src={adjustImageUrl(city?.icon)}
                     alt={city?.name}
                     onLoad={() => handleImageLoad(city.id)}
                   />
@@ -192,7 +196,7 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
 
                   <img
                     style={{ display: imageLoadingStates[city.id] ? 'none' : 'block' }}
-                    src={city?.icon}
+                    src={adjustImageUrl(city?.icon)}
                     alt={city?.name}
                     onLoad={() => handleImageLoad(city.id)}
                   />

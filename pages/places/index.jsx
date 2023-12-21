@@ -285,7 +285,7 @@ const Places = ({ dataAllCitiesMap }) => {
                         <TransformComponent>
                           <xml version="1.0" encoding="UTF-8" standalone="no" />
                           <svg
-                            id="svg1"
+                            // id="svg1"
                             width="858"
                             height="724"
                             fill="none"
