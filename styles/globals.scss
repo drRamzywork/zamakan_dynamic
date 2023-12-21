@@ -590,91 +590,91 @@ body::-webkit-scrollbar-track {
 }
 
 .land.activeLand:nth-child(1) {
-  @media screen and (min-width: 500px) {
+  @media screen and (max-width: 500px) {
     -webkit-transform: scale(1.02) translate(-1%, -2%) !important;
     -ms-transform: scale(1.02) translate(-1%, -2%) !important;
     transform: scale(1.02) translate(-1%, -2%) !important;
   }
 }
 .land.activeLand:nth-child(2) {
-  @media screen and (min-width: 500px) {
+  @media screen and (max-width: 500px) {
     -webkit-transform: scale(1.02) translate(-1%, -2%) !important;
     -ms-transform: scale(1.02) translate(-1%, -2%) !important;
     transform: scale(1.02) translate(-1%, -2%) !important;
   }
 }
 .land.activeLand:nth-child(3) {
-  @media screen and (min-width: 500px) {
+  @media screen and (max-width: 500px) {
     -webkit-transform: scale(1.02) translate(-6px, -11px) !important;
     -ms-transform: scale(1.02) translate(-6px, -11px) !important;
     transform: scale(1.02) translate(-6px, -11px) !important;
   }
 }
 .land.activeLand:nth-child(4) {
-  @media screen and (min-width: 500px) {
+  @media screen and (max-width: 500px) {
     -webkit-transform: scale(1.02) translate(-5px, -11px) !important;
     -ms-transform: scale(1.02) translate(-5px, -11px) !important;
     transform: scale(1.02) translate(-5px, -11px) !important;
   }
 }
 .land.activeLand:nth-child(5) {
-  @media screen and (min-width: 500px) {
-    -webkit-transform: scale(1.02) translate(-1%, -2%) !important;
-    -ms-transform: scale(1.02) translate(-1%, -2%) !important;
-    transform: scale(1.02) translate(-1%, -2%) !important;
+  @media screen and (max-width: 500px) {
+    -webkit-transform: scale(1.05) translate(-21px, -27px) !important;
+    -ms-transform: scale(1.05) translate(-21px, -27px) !important;
+    transform: scale(1.05) translate(-21px, -27px) !important;
   }
 }
 .land.activeLand:nth-child(6) {
-  @media screen and (min-width: 500px) {
+  @media screen and (max-width: 500px) {
     -webkit-transform: scale(1.02) translate(-1%, -2%) !important;
     -ms-transform: scale(1.02) translate(-1%, -2%) !important;
     transform: scale(1.02) translate(-1%, -2%) !important;
   }
 }
 .land.activeLand:nth-child(7) {
-  @media screen and (min-width: 500px) {
+  @media screen and (max-width: 500px) {
     -webkit-transform: scale(1.02) translateX(-8px) translateY(-20px) !important;
     -ms-transform: scale(1.02) translateX(-8px) translateY(-20px) !important;
     transform: scale(1.02) translateX(-8px) translateY(-20px) !important;
   }
 }
 .land.activeLand:nth-child(8) {
-  @media screen and (min-width: 500px) {
+  @media screen and (max-width: 500px) {
     -webkit-transform: scale(1.02) translate(-1%, -2%) !important;
     -ms-transform: scale(1.02) translate(-1%, -2%) !important;
     transform: scale(1.02) translate(-1%, -2%) !important;
   }
 }
 .land.activeLand:nth-child(9) {
-  @media screen and (min-width: 500px) {
+  @media screen and (max-width: 500px) {
     -webkit-transform: scale(1.02) translate(-1%, -2%) !important;
     -ms-transform: scale(1.02) translate(-1%, -2%) !important;
     transform: scale(1.02) translate(-1%, -2%) !important;
   }
 }
 .land.activeLand:nth-child(10) {
-  @media screen and (min-width: 500px) {
+  @media screen and (max-width: 500px) {
     -webkit-transform: scale(1.2) translate(-66px, -119px) !important;
     -ms-transform: scale(1.2) translate(-66px, -119px) !important;
     transform: scale(1.2) translate(-66px, -119px) !important;
   }
 }
 .land.activeLand:nth-child(11) {
-  @media screen and (min-width: 500px) {
+  @media screen and (max-width: 500px) {
     -webkit-transform: scale(1.02) translate(-7px, -14px) !important;
     -ms-transform: scale(1.02) translate(-7px, -14px) !important;
     transform: scale(1.02) translate(-7px, -14px) !important;
   }
 }
 .land.activeLand:nth-child(12) {
-  @media screen and (min-width: 500px) {
+  @media screen and (max-width: 500px) {
     -webkit-transform: scale(1.02) translate(-1%, -2%) !important;
     -ms-transform: scale(1.02) translate(-1%, -2%) !important;
     transform: scale(1.02) translate(-1%, -2%) !important;
   }
 }
 .land.activeLand:nth-child(13) {
-  @media screen and (min-width: 500px) {
+  @media screen and (max-width: 500px) {
     -webkit-transform: scale(1.02) translate(-1%, -2%) !important;
     -ms-transform: scale(1.02) translate(-1%, -2%) !important;
     transform: scale(1.02) translate(-1%, -2%) !important;
@@ -789,7 +789,6 @@ svg.saudi-map.safari .city-name > div:hover {
 
   .react-transform-component {
     width: 100% !important;
-    // margin-bottom: 16px !important;
   }
 }
 

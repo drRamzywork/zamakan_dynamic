@@ -118,10 +118,15 @@
     align-items: center;
     overflow: hidden;
     flex-basis: 100%;
+
     @media screen and (max-width: 450px) {
       padding-top: 0;
       border-top: none;
       margin-left: 0;
+
+      & svg {
+        height: 347px;
+      }
     }
 
     .city_point {
@@ -216,6 +221,7 @@
             left: -2px;
           }
           svg {
+            height: auto;
             path {
               stroke: rgba(17, 41, 47, 1) !important;
             }

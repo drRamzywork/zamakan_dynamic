@@ -290,7 +290,7 @@ const Places = ({ dataAllCitiesMap }) => {
                             height="724"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
-                            className={`${isSafari ? "saudi-map safari" : "saudi-map"}`}
+                            // className={`${isSafari ? "saudi-map safari" : "saudi-map"}`}
                             viewBox="90 90 758 624"
                             ref={svgRef}
                           >
