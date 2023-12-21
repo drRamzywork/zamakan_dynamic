@@ -201,10 +201,8 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                             </div>
 
 
-                            <Link href={`/poetry/${poet.id}`} className={styles.said}>
-                              {/* <div className={styles.title}>
-                              <Typography>يقول</Typography>
-                            </div> */}
+                            <div className={styles.said}>
+
                               <div className={styles.desc}>
                                 <Typography>
                                   {beforeDots}
@@ -215,7 +213,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                                 </Typography>
 
                               </div>
-                            </Link>
+                            </div>
 
                           </div>
                         </div>

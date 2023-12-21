@@ -16,6 +16,7 @@ const PoetsSlider = ({ poetriesData, poetID }) => {
 
 
   console.log(filteredPoetriesData.map(test => test))
+  console.log(poetriesData, "poetriesData")
   return (
     <>
       <div id='simlar_poets' className={styles.simlar_poets}>

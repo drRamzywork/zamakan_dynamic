@@ -5,7 +5,7 @@ import { styled } from '@mui/system';
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import SliderVerses from '../../components/PoetDetails/SliderVerses'
 import { Search } from '@/assets/svgsComponents';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import Head from 'next/head';
@@ -235,7 +235,6 @@ const Poets = ({ erasAllEras, dataDefault }) => {
 
                 {filtredPoets?.length === 0 &&
                   <Box sx={{ textAlign: 'center' }}>
-
                     <h1>لا توجد نتيجة عن {searchString}</h1>
                   </Box>
                 }

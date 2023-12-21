@@ -24,18 +24,10 @@
     border: 1px solid rgba(229, 230, 242, 1);
     background: #ffffff;
 
-    @media screen and (max-width: 992px) {
-      // margin-top: 100px;
-    }
-    @media screen and (max-width: 450px) {
-      // margin-top: 20px;
-    }
     .img_container {
       width: 150px;
       height: 150px;
       border-radius: 89.6px;
-      // background-color: #e5e6f2;
-      // border: 10px solid var(--main-white-color);
       object-fit: cover;
       display: flex;
       position: relative;
@@ -43,7 +35,6 @@
       user-select: none !important;
       border-radius: 50%;
       background-color: #ffffff;
-      padding: 8px;
       overflow: hidden;
       box-shadow: 0px 4px 6px #00000070;
       margin-top: -80px;
@@ -171,6 +162,7 @@
         padding: 13px;
         font-size: 14px;
       }
+
       .iconWrapper {
         background-color: #e6ddc6;
         color: #bb7165;
@@ -206,14 +198,11 @@
       border: 1px solid #e5e6f2;
       border-radius: 10px;
       border-top-right-radius: 0;
-      // border-top: none;
       @media screen and (max-width: 450px) {
         margin: 10px;
         border-top-right-radius: 10px;
       }
 
-      .timelineSection {
-      }
       .timelineSection {
         position: relative;
         padding-left: 30px;
@@ -254,7 +243,6 @@
           }
         }
         .info_sec {
-          // border-bottom: 2px solid #e5e6f2;
           padding: 24px;
 
           @media screen and (max-width: 992px) {
@@ -278,16 +266,6 @@
               grid-auto-flow: dense;
               overflow: hidden;
             }
-
-            // @media screen and (max-width: 992px) {
-            //   .box:nth-child(-n + 5) {
-            //     grid-column: span 1;
-            //     grid-row: span 1;
-            //   }
-            //   .box:nth-child(n + 5) {
-            //     grid-column: span 2;
-            //   }
-            // }
 
             @media screen and (min-width: 992px) {
               &:after {
@@ -419,7 +397,6 @@
       }
     }
   }
-  // Add additional styles as necessary
 }
 
 .navigation {
@@ -429,13 +406,10 @@
   margin-top: 40px;
   ul {
     display: flex;
-    // width: 350px;
 
     li {
       position: relative;
       list-style: none;
-      // width: 70px;
-      // height: 70px;
       z-index: 1;
 
       button {
@@ -505,11 +479,6 @@
             }
           }
         }
-
-        // &:last-child img {
-        //   width: 16.67px;
-        //   height: 16.67px;
-        // }
       }
 
       &:last-child {
@@ -571,31 +540,6 @@
     @media screen and (max-width: 360px) {
       width: 50px;
     }
-
-    // &::before {
-    //   content: "";
-    //   position: absolute;
-    //   top: 4px;
-    //   left: -25.75px;
-    //   width: 20px;
-    //   height: 20px;
-    //   border-top-right-radius: 20px;
-    //   box-shadow: 4px -6px 0 2px var(--clr);
-    //   background-color: red;
-    // }
-
-    // &::after {
-    //   content: "";
-    //   position: absolute;
-    //   top: 4px;
-    //   right: -25.75px;
-    //   width: 20px;
-    //   height: 20px;
-    //   border-top-left-radius: 20px;
-    //   box-shadow: -4px -6px 0 2px var(--clr);
-    //   z-index: -1;
-    //   background-color: red;
-    // }
   }
 
   .indicator-0 {

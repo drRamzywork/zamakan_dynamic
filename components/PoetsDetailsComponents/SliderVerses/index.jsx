@@ -12,13 +12,14 @@ import Link from 'next/link'
 import { motion } from 'framer-motion';
 
 export default function SliderVerses({ results }) {
-
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [expandedStates, setExpandedStates] = useState({});
   const [overflowStates, setOverflowStates] = useState({});
   const contentRefs = useRef([]);
 
+
+  const filteredPlaces = results.filter(place => place.svgX !== null && place.svgY !== null);
 
 
   useEffect(() => {

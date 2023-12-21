@@ -54,7 +54,10 @@ export default function Layout({ children }) {
       <main style={combinedStyles}>
         {children}
       </main >
-      <Footer />
+      {router.pathname !== '/search' &&
+        <Footer />
+      }
+
     </>
   )
 }

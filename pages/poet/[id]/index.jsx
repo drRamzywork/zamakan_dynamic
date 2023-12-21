@@ -9,15 +9,10 @@ import { motion } from 'framer-motion'
 import SliderVerses from '@/components/PoetsDetailsComponents/SliderVerses';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import Link from 'next/link';
 
 export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
-  const [selectedTab, setSelectedTab] = useState(0);
   const [activeIndex, setActiveIndex] = useState(1);
   const router = useRouter();
-  const handleTabChange = (event, newValue) => {
-    setSelectedTab(newValue);
-  };
 
   const [age, setAge] = useState(0);
   const [results, setResults] = useState(dataPoetry);
@@ -139,9 +134,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
         transition={{ duration: 1 }}
       >
         <Container dir="rtl" maxWidth={false} className={styles.poetDetails}>
-
           <Box className={styles.headerImage} >
-
           </Box>
           <Grid container className={styles.profileSection}>
             <Grid item>

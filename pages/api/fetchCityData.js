@@ -1,6 +1,8 @@
 export default async function handler(req, res) {
   const { placeId } = req.query;
 
+  console.log(req.query, "reqqq");
+
   try {
     const resCityData = await fetch(
       `https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${placeId}&lang=2`
