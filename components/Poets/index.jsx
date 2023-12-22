@@ -1,7 +1,6 @@
 import { Container, Typography, Button } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './index.module.scss'
-import imgs from '../../assets/constants/imgs';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Link from 'next/link'
@@ -11,6 +10,7 @@ import { ErasPlacesSlider } from '../ErasComponents';
 import { MdLocationPin } from "react-icons/md";
 import { CloseIcon, LeftArrow } from '@/assets/svgsComponents';
 import { RotatingLines } from 'react-loader-spinner';
+import { FaCheck } from "react-icons/fa6";
 
 
 const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
@@ -149,6 +149,8 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
     };
   }, [popUpRef]);
 
+
+  console.log(dataPoetsByEra)
   return (
     <>
       <section id='Poets' className={styles.Poets} dir='rtl'>
@@ -158,6 +160,13 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
             initial={{ opacity: 0 }}
             transition={{ duration: 1, }}
             className={styles.sec_container}>
+            <div className={styles.filter_btn}>
+              <div className={styles.icon_container}>
+                <FaCheck />
+              </div>
+              <p>شعراء عاشوا في المملكة</p>
+            </div>
+
             <div className={styles.tags_slider} id='carosuel'>
               <Swiper
                 breakpoints={{

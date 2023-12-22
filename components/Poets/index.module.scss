@@ -32,6 +32,29 @@ section.Poets {
       margin-bottom: 0;
     }
 
+    .filter_btn {
+      display: flex;
+      cursor: pointer;
+      margin-right: 16px;
+      p {
+        margin-right: 10px;
+        color: var(--main-blue-color);
+        font-size: 18px;
+        font-weight: bold;
+        font-family: var(--effra-font);
+      }
+      .icon_container {
+        border: 1px solid #bfb59c;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        svg {
+          margin: auto;
+          color: #bfb59c;
+        }
+      }
+    }
     .sec_title {
       padding: 32px 40px 0px 40px;
       padding-right: 20px;

@@ -436,12 +436,17 @@
         cursor: pointer;
         @media screen and (max-width: 992px) {
           padding: 13px;
-          font-size: 14px;
+          font-size: 16px;
           margin-left: 0px;
         }
-        @media screen and (max-width: 360px) {
-          padding: 6px;
-          font-size: 12px;
+        @media screen and (max-width: 450px) {
+          padding: 6px !important;
+          // font-size: 12px;
+        }
+        p {
+          @media screen and (max-width: 390px) {
+            font-size: 14px;
+          }
         }
 
         .iconWrapper {
@@ -458,10 +463,10 @@
           @media screen and (max-width: 450px) {
             width: 30px;
             height: 30px;
-            margin-left: 24px;
-          }
-          @media screen and (max-width: 360px) {
             margin-left: 12px;
+          }
+          @media screen and (max-width: 400px) {
+            margin-left: 8px;
             margin-right: 0;
           }
 
@@ -534,9 +539,12 @@
       width: 80px;
     }
     @media screen and (max-width: 450px) {
-      width: 68.82px;
+      width: 45px;
       right: 7px;
+      border-radius: 50%;
+      height: 45px;
     }
+
     @media screen and (max-width: 360px) {
       width: 50px;
     }
@@ -549,16 +557,16 @@
     }
 
     @media screen and (max-width: 450px) {
-      transform: translateX(-136px);
+      transform: translateX(-124px);
     }
-    @media screen and (max-width: 360px) {
-      transform: translateX(-104px);
+    @media screen and (max-width: 390px) {
+      transform: translateX(-110px);
     }
   }
   .indicator-1 {
     transform: translateX(-1px);
     @media screen and (max-width: 450px) {
-      transform: translateX(-3px);
+      transform: translateX(-6px);
     }
   }
 }

@@ -41,10 +41,9 @@ const SearchPage = () => {
     }
   };
 
-  const filteredPlaces = placesData?.filter(place => place.svgX !== null && place.svgY !== null);
+  const filteredPlaces = placesData?.filter(place => place.icon !== null && place.icon !== '');
 
 
-  console.log(filteredPlaces, 'placesData')
   return (
     <>
       <nav id='search' className={styles.search} dir='rtl'>
@@ -178,7 +177,7 @@ const SearchPage = () => {
               poetsData?.length === 0 &&
               query !== '' &&
               <div className={styles.notfound}>
-                <Typography variant='h4'>لا توجد نتيجة عن <span>{query}</span></Typography>
+                <Typography variant='h4'>لا توجد نتيجة عن :<span>{query}</span></Typography>
               </div>
             }
 
