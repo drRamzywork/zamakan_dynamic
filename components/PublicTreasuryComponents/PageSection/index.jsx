@@ -16,13 +16,15 @@ import { IoClose } from "react-icons/io5";
 import { RotatingLines } from 'react-loader-spinner';
 
 
-const PageSection = ({ title, data = [] }) => {
+const PageSection = ({ title, AllMainTopics, link, data = [] }) => {
   // Thumbs logic
   const [imageLoadingStates, setImageLoadingStates] = useState({});
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef(null);
   const [backgroundImageUrl, setBackgroundImageUrl] = useState("");
+  const [backgroundFullScreen, setBackgroundFullScreen] = useState("");
+  const [ImagesGallery, setImagesGallery] = useState("");
 
   const closeGallery = () => {
     setGalleryOpen(false);
@@ -32,16 +34,13 @@ const PageSection = ({ title, data = [] }) => {
     setActiveIndex(index);
     setGalleryOpen(true);
 
-    const initialLoadStates = data[index].gallery.reduce((acc, img) => {
-      acc[img.id] = true;
-      return acc;
-    }, {});
-    setImageLoadingStates(initialLoadStates);
+    setBackgroundFullScreen(AllMainTopics[0].sliders[index].imagesVideos.split(',')[0])
+    setImagesGallery(AllMainTopics[0].sliders[index].imagesVideos.split(','))
   };
 
 
   const handleImageLoad = cityId => {
-    console.log(cityId)
+    console.log(cityId, "cityIdcityId")
     setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
   };
 
@@ -57,8 +56,6 @@ const PageSection = ({ title, data = [] }) => {
       if (imgRef.current && !imgRef.current.contains(event.target)) {
         setGalleryOpen(false);
       }
-      console.log(imgRef.current, "imgRef")
-      console.log(event.target, "event")
     }
 
     // Attach the event listener
@@ -70,164 +67,209 @@ const PageSection = ({ title, data = [] }) => {
     };
   }, [imgRef]);
 
+
+
+  const parseMedia = (mediaString) => {
+    return mediaString?.split(',')?.map(mediaUrl => {
+      const isVideo = mediaUrl.endsWith('.mp4');
+
+      return { url: mediaUrl, isVideo };
+    });
+
+
+  };
+  const getFirstMediaUrl = (mediaString) => {
+
+    return mediaString?.split(',')[0];
+  };
+
+
   return (
-    <section id={title} className={styles.section}>
-      <div className={styles.sec_title}>
-        <Typography variant="h3" >
-          {title}
-        </Typography>
-      </div>
-      <motion.div
+    <>
+      {AllMainTopics.map((topic, index) =>
+        <section id={title} className={styles.section} key={index}>
+          <div className={styles.sec_title}>
+            <Typography variant="h3" >
+              {topic.name}
+            </Typography>
+          </div>
+          <motion.div
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            transition={{ duration: 1, }} className={styles.swiper_container}>
+            <Swiper
+              modules={[Navigation]}
+              spaceBetween={16}
+              slidesPerView={1}
+              navigation
+              pagination={{ clickable: true }}
+              dir='rtl'
+              breakpoints={{
+                300: {
+                  slidesPerView: 1,
+                  spaceBetween: 16,
+                },
+                400: {
+                  slidesPerView: 1,
+                  spaceBetween: 16,
+                },
+                640: {
+                  slidesPerView: 1,
+                  spaceBetween: 16,
+                },
+                768: {
+                  slidesPerView: 1,
+                  spaceBetween: 16,
+                },
+                992: {
+                  slidesPerView: 2.5,
+                  spaceBetween: 16,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 16,
 
-        animate={{ opacity: 1 }}
-        initial={{ opacity: 0 }}
-        transition={{ duration: 1, }} className={styles.swiper_container}>
-        <Swiper
-          modules={[Navigation]}
-          spaceBetween={16}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          dir='rtl'
-          breakpoints={{
-            300: {
-              slidesPerView: 1,
-              spaceBetween: 16,
-            },
-            400: {
-              slidesPerView: 1,
-              spaceBetween: 16,
-            },
-            640: {
-              slidesPerView: 1,
-              spaceBetween: 16,
-            },
-            768: {
-              slidesPerView: 1,
-              spaceBetween: 16,
-            },
-            992: {
-              slidesPerView: 2.5,
-              spaceBetween: 16,
-            },
-            1024: {
-              slidesPerView: 3,
-              spaceBetween: 16,
+                },
+                1400: {
+                  slidesPerView: 3,
+                  spaceBetween: 16,
 
-            },
-            1400: {
-              slidesPerView: 3,
-              spaceBetween: 16,
+                },
+                1800: {
+                  slidesPerView: 3,
+                  spaceBetween: 16,
 
-            },
-            1800: {
-              slidesPerView: 3,
-              spaceBetween: 16,
-
-            },
-          }}
-        >
-
-          {data.map((item, index) => (
-            <SwiperSlide key={index} >
-              <div className={styles.box}>
-                <div className={styles.rotated_img}>
-                  <img src={item?.img} alt={item?.title} />
-                </div>
-
-                <div className={styles.img_container} onClick={() => openGallery(index)}>
-                  <img src={item.img} alt={item.title} />
-                </div>
-
-                <div className={styles.title}>
-                  <Typography variant="h4">{item.title}</Typography>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        {
-          galleryOpen &&
-          (
-            <motion.div
-              animate={{ opacity: 1 }}
-              initial={{ opacity: 0 }}
-              transition={{ duration: 1 }}
-              className={styles.fullscreengallery}
-
+                },
+              }}
             >
-              <div className={styles.gallery_wrap}>
-                <img src={backgroundImageUrl} alt='' />
-              </div>
+
+              {topic?.sliders?.map((item, index) => (
+                <SwiperSlide key={index} >
+                  <div className={styles.box_sec}>
+                    <div className={styles.rotated_img}>
+                      <img src={getFirstMediaUrl(item?.imagesVideos)} alt={item?.name} />
+                    </div>
+                    <div className={styles.img_container} onClick={() => openGallery(index)}>
+                      {parseMedia(item?.imagesVideos)?.map((media, mediaIndex) => (
+                        <div key={mediaIndex} className={media.isVideo ? styles.video_container : styles.img_container}>
+                          {media.isVideo ? (
+                            <>
+                              < video src={media.url} controls></video>
+                            </>
+                          ) : (
+                            <img src={media.url} alt={item.name} />
+                          )}
+                        </div>
+                      ))}
 
 
-              <Container
-                ref={imgRef}
+                    </div>
 
-                className={styles.gallery_container} sx={{ maxWidth: "1400px" }} maxWidth={false}>
-                <Button onClick={closeGallery} className={styles.close_btn}>
-                  <IoClose />
+                    <div className={styles.title}>
+                      <Typography variant="h4">{item.name}</Typography>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
 
-                </Button>
-                <Swiper
-                  slidesPerView={1}
-                  spaceBetween={16}
-                  navigation={true}
-                  modules={[FreeMode, Navigation, Thumbs, Pagination]}
-                  className="gallery-swiper"
-                  pagination={{ clickable: true }}
-                  dir="rtl"
-                  centeredSlides={true}
-                  ref={swiperRef}
+            {
+              galleryOpen &&
+              (
+                <motion.div
+                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 1 }}
+                  className={styles.fullscreengallery}
 
                 >
-                  {data[activeIndex].gallery.map((item, index) => (
-                    <SwiperSlide
-                      key={index}>
-                      <div className={styles.box}>
-                        <div className={styles.img_container}>
-                          {imageLoadingStates[item.id] && (
-                            <RotatingLines
-                              strokeColor="grey"
-                              strokeWidth="5"
-                              animationDuration="0.75"
-                              width="96"
-                              visible={true}
-                            />
-                          )}
-                          <img
-                            style={{ display: imageLoadingStates[item.id] ? 'none' : 'block' }}
-                            onLoad={() => handleImageLoad(item.id)}
-                            onError={(e) => {
-                              console.error(`Error loading image: ${item.img}`);
-                              handleImageLoad(item.id); // Set the image as loaded to remove the loader
-                            }} src={item.img} alt={`Gallery Image ${index + 1}`} />
-
-                        </div>
-                      </div>
-                    </SwiperSlide>
-                  ))}
+                  <div className={styles.gallery_wrap}>
+                    <img src={backgroundFullScreen} alt='' />
+                  </div>
 
 
+                  <Container
+                    ref={imgRef}
 
-                </Swiper>
-              </Container>
+                    className={styles.gallery_container} sx={{ maxWidth: "1400px" }} maxWidth={false}>
+                    <Button onClick={closeGallery} className={styles.close_btn}>
+                      <IoClose />
 
-            </motion.div>
+                    </Button>
+                    <Swiper
+                      slidesPerView={1}
+                      spaceBetween={16}
+                      navigation={true}
+                      modules={[FreeMode, Navigation, Thumbs, Pagination]}
+                      className="gallery-swiper"
+                      pagination={{ clickable: true }}
+                      dir="rtl"
+                      centeredSlides={true}
+                      ref={swiperRef}
+
+                    >
+                      {ImagesGallery?.map((item, index) => (
+                        <SwiperSlide key={index}>
+                          <div className={styles.box}>
+                            <div className={styles.img_container}>
+                              {/* Check if the item is a video or an image */}
+                              {item.endsWith('.mp4') ? (
+                                // Render a video tag for mp4 files
+                                <video
+                                  style={{ display: imageLoadingStates[item.id] ? 'none' : 'block' }}
+                                  onLoadedData={() => handleImageLoad(item.id)}
+                                  onError={(e) => {
+                                    console.error(`Error loading video: ${item}`);
+                                    handleImageLoad(item.id); // Set the video as loaded to remove the loader
+                                  }}
+                                  controls
+                                >
+                                  <source src={item} type="video/mp4" />
+                                </video>
+                              ) : (
+                                // Render an image tag for image files
+                                <img
+                                  style={{ display: imageLoadingStates[item.id] ? 'none' : 'block' }}
+                                  onLoad={() => handleImageLoad(item.id)}
+                                  onError={(e) => {
+                                    console.error(`Error loading image: ${item}`);
+                                    handleImageLoad(item.id);
+                                  }}
+                                  src={item}
+                                  alt={`Gallery Image ${index + 1}`}
+                                />
+                              )}
+                            </div>
+                          </div>
+                        </SwiperSlide>
+
+                      ))}
 
 
 
-          )}
-        <div className={styles.more_btn}>
-          <Link href='/' >المزيد</Link>
-        </div>
+                    </Swiper>
+                  </Container>
 
-      </motion.div>
+                </motion.div>
 
 
 
-    </section>
+              )}
+
+
+
+            <div className={styles.more_btn}>
+              <Link href={`/public-treasury/${topic.id}`} >المزيد</Link>
+            </div>
+
+          </motion.div>
+
+
+
+        </section >
+      )}
+    </>
+
   )
 }
 

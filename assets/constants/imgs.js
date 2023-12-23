@@ -4,6 +4,9 @@ import logo_mobile_footer from "../logo_mobile_footer.png";
 import Search from "../Search.svg";
 import texture from "../texture.png";
 import place1 from "../place.jpg";
+import docs_1 from "../docs_1.png";
+import docs_2 from "../docs_2.png";
+import docs_3 from "../docs_3.png";
 import star from "../star.png";
 import BrownDeer from "../BrownDeer.png";
 import redPlants from "../redPlants.png";
@@ -94,4 +97,7 @@ export default {
   BrownDeer,
   redPlants,
   place1,
+  docs_1,
+  docs_2,
+  docs_3,
 };

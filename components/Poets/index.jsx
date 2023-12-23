@@ -150,7 +150,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
   }, [popUpRef]);
 
 
-  console.log(dataPoetsByEra)
   return (
     <>
       <section id='Poets' className={styles.Poets} dir='rtl'>

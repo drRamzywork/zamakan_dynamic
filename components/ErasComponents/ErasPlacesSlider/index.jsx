@@ -90,8 +90,8 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
           centeredSlides={true}
           onSlideChange={handleSlideChange}
           direction='horizontal'
-          slidesPerView={2.4}
-          spaceBetween={10}
+          slidesPerView={2.5}
+          spaceBetween={16}
           dir={'rtl'}
           className="places-swiper" >
 

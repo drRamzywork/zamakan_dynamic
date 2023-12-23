@@ -181,9 +181,9 @@ const Navbar = (props) => {
 
 
               <div className={styles.discover}>
-                <Link href='/search' className={styles.search_icon}>
+                <a href='/search' className={styles.search_icon}>
                   <Search />
-                </Link>
+                </a>
               </div>
 
             </div>
