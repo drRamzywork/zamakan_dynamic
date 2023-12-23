@@ -40,7 +40,6 @@ const PageSection = ({ title, AllMainTopics, link, data = [] }) => {
 
 
   const handleImageLoad = cityId => {
-    console.log(cityId, "cityIdcityId")
     setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
   };
 

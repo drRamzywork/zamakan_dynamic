@@ -24,7 +24,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
   useEffect(() => {
     if (activeCity != null && swiperRef.current) {
       const index = filteredPlaces.findIndex(city => city.id === activeCity);
-      console.log(activeCity, "current")
 
       if (index !== -1) {
         swiperRef.current.swiper.slideTo(index);
@@ -44,7 +43,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
 
   const handleSlideChange = () => {
     if (swiperRef.current && swiperRef.current.swiper) {
-      console.log(swiperRef.current, "mobilees")
 
       const swiper = swiperRef.current.swiper;
       const newIndex = swiper.realIndex;

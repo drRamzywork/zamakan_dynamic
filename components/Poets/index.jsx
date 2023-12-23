@@ -24,6 +24,20 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
   const [places, setPlaces] = useState(null);
   const [isMapLoading, setIsMapLoading] = useState(false);
   const [showMore, setShowMore] = useState(false);
+  const [filteredPoets, setFilteredPoets] = useState(dataPoetsByEra);
+  const [isFilterActive, setIsFilterActive] = useState(false);
+
+  const toggleFilter = () => {
+    if (isFilterActive) {
+      // Show all poets if the filter is currently active
+      setFilteredPoets(dataPoetsByEra);
+    } else {
+      // Apply filter to show only poets born in Saudi
+      setFilteredPoets(dataPoetsByEra.filter(poet => poet.bornInSaudi));
+    }
+    setIsFilterActive(!isFilterActive);
+  };
+
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
@@ -53,7 +67,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
       });
     }
   }, [activePoet, cityNames]);
-
 
   const handleBoxClick = (poetID) => {
     setCityData(null);
@@ -149,7 +162,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
     };
   }, [popUpRef]);
 
-
   return (
     <>
       <section id='Poets' className={styles.Poets} dir='rtl'>
@@ -159,11 +171,13 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
             initial={{ opacity: 0 }}
             transition={{ duration: 1, }}
             className={styles.sec_container}>
-            <div className={styles.filter_btn}>
+            <div className={styles.filter_btn} onClick={toggleFilter}>
               <div className={styles.icon_container}>
                 <FaCheck />
               </div>
-              <p>شعراء عاشوا في المملكة</p>
+              <p>
+                {isFilterActive ? "كل الشعراء" : "شعراء عاشوا في المملكة"}
+              </p>
             </div>
 
             <div className={styles.tags_slider} id='carosuel'>
@@ -198,8 +212,8 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
                 className={styles.swiper_container}
               >
                 {
-                  Array.isArray(dataPoetsByEra) &&
-                  dataPoetsByEra?.map((poet, index) => (
+                  Array.isArray(filteredPoets) &&
+                  filteredPoets.map((poet, index) => (
                     <SwiperSlide key={index} onClick={() => handlePoetData(poet.id)} className={styles.swiper_slide_box}>
                       <div onClick={() => handleBoxClick(index)} className={`${styles.box_container} `}>
                         <div className={`${styles.box} ${activePoet === index ? styles.active : ''}`}>

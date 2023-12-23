@@ -26,7 +26,6 @@ export default function SliderVerses({ results }) {
     const newOverflowStates = {};
     contentRefs.current.forEach((ref, index) => {
       if (ref) {
-        console.log(ref.scrollHeight, ref)
         newOverflowStates[index] = ref.scrollHeight > 72;
       }
     });

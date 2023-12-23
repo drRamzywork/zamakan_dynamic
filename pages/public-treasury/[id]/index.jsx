@@ -28,7 +28,6 @@ const VisualDocs = ({ sectionData }) => {
     redPlants,
   } = imgs;
   const router = useRouter();
-  console.log(router.query.id, "routerrouter")
   const [imageLoadingStates, setImageLoadingStates] = useState({});
   const sectionPageData = sectionData[0];
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -105,10 +104,6 @@ const VisualDocs = ({ sectionData }) => {
     }
 
   }, [inView]);
-
-  const rightPlantsRef = useRef(null);
-  const leftPlantsRef = useRef(null);
-
 
   return (
     <>

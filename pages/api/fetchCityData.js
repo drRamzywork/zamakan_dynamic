@@ -1,7 +1,6 @@
 export default async function handler(req, res) {
   const { placeId } = req.query;
 
-  console.log(req.query, "reqqq");
 
   try {
     const resCityData = await fetch(
