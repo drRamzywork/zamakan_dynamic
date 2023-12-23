@@ -444,8 +444,9 @@
           // font-size: 12px;
         }
         p {
-          @media screen and (max-width: 390px) {
-            font-size: 14px;
+          @media screen and (max-width: 400px) {
+            font-size: 12px;
+            font-weight: bold;
           }
         }
 
@@ -545,6 +546,10 @@
       height: 45px;
     }
 
+    @media screen and (max-width: 400px) {
+      // top: -2px;
+    }
+
     @media screen and (max-width: 360px) {
       width: 50px;
     }
@@ -559,7 +564,7 @@
     @media screen and (max-width: 450px) {
       transform: translateX(-124px);
     }
-    @media screen and (max-width: 390px) {
+    @media screen and (max-width: 400px) {
       transform: translateX(-110px);
     }
   }
