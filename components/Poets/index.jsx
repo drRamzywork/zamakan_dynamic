@@ -25,7 +25,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
   const [isMapLoading, setIsMapLoading] = useState(false);
   const [showMore, setShowMore] = useState(false);
   const [filteredPoets, setFilteredPoets] = useState(dataPoetsByEra);
-  const [ === false, setIsFilterActive] = useState(false);
+  const [isFilterActive, setIsFilterActive] = useState(false);
 
   const toggleFilter = () => {
     if (isFilterActive) {
