@@ -20,15 +20,34 @@ const Poets = ({ erasAllEras, dataDefault }) => {
   const [error, setError] = useState(null);
 
 
+  // const handleChange = async (event) => {
+  //   const selectedValue = event.target.value;
+  //   const res = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?${selectedValue !== 0 ? `era=${selectedValue}` : ''}&lang=2&pagenum=1&pagesize=50`);
+
+  //   const filteredData = await res.json();
+
+  //   setAge(selectedValue);
+  //   setFiltredPoets(filteredData)
+  //   router.push(`/poets?place=${selectedValue}`, undefined, { shallow: true });
+  // };
+
   const handleChange = async (event) => {
     const selectedValue = event.target.value;
+    let url = `https://api4z.suwa.io/api/Poets/GetAllPoets?lang=2&pagenum=1&pagesize=50`;
 
-    const res = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?${selectedValue !== 0 ? `era=${selectedValue}` : ''}&lang=2&pagenum=1&pagesize=50`);
+    if (selectedValue === true) {
+      // When "شعراء عاشوا في المملكة" is selected
+      url += '&bornInSaudi=true';
+    } else if (selectedValue !== 0) {
+      // For any specific era
+      url += `&era=${selectedValue}`;
+    }
 
+    const res = await fetch(url);
     const filteredData = await res.json();
 
     setAge(selectedValue);
-    setFiltredPoets(filteredData)
+    setFiltredPoets(filteredData);
     router.push(`/poets?place=${selectedValue}`, undefined, { shallow: true });
   };
 
@@ -215,7 +234,8 @@ const Poets = ({ erasAllEras, dataDefault }) => {
                           onChange={handleChange}
                           IconComponent={CustomArrowIcon}
                         >
-                          <MenuItem value={0}>كل العصور</MenuItem>
+                          <MenuItem value={0}>جميع العصور</MenuItem>
+                          <MenuItem value={true}>شعراء عاشوا في المملكة</MenuItem>
                           {erasAllEras.map((era, index) => (
                             <MenuItem key={era.id} value={era.id}>
                               {era.name}

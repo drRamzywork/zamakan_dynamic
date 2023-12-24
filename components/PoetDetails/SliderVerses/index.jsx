@@ -15,12 +15,12 @@ import { motion } from 'framer-motion'
 export default function SliderVerses({ filtredPoets, onPoetsDataChange }) {
 
   const [currentPage, setCurrentPage] = useState(0);
-  const totalPages = Math.ceil(filtredPoets.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filtredPoets?.length / ITEMS_PER_PAGE);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
-  const poetsToShow = filtredPoets.slice(
+  const poetsToShow = filtredPoets?.slice(
     currentPage * ITEMS_PER_PAGE,
     (currentPage + 1) * ITEMS_PER_PAGE
   );
