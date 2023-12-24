@@ -24,19 +24,37 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
   const [places, setPlaces] = useState(null);
   const [isMapLoading, setIsMapLoading] = useState(false);
   const [showMore, setShowMore] = useState(false);
-  const [filteredPoets, setFilteredPoets] = useState(dataPoetsByEra);
+  const [filteredPoets, setFilteredPoets] = useState([]);
   const [isFilterActive, setIsFilterActive] = useState(false);
 
-  const toggleFilter = () => {
-    if (isFilterActive) {
-      // Show all poets if the filter is currently active
-      setFilteredPoets(dataPoetsByEra);
-    } else {
-      // Apply filter to show only poets born in Saudi
-      setFilteredPoets(dataPoetsByEra.filter(poet => poet.bornInSaudi));
+  // const toggleFilter = () => {
+  //   if (isFilterActive) {
+  //     // Show all poets if the filter is currently active
+  //     setFilteredPoets(dataPoetsByEra);
+  //   } else {
+  //     // Apply filter to show only poets born in Saudi
+  //     setFilteredPoets(dataPoetsByEra.filter(poet => poet.bornInSaudi));
+  //   }
+  //   setIsFilterActive(!isFilterActive);
+  // };
+
+
+  useEffect(() => {
+    if (dataPoetsByEra && dataPoetsByEra?.length > 0) {
+      if (isFilterActive) {
+        setFilteredPoets(dataPoetsByEra?.filter(poet => poet.bornInSaudi));
+
+      } else {
+        setFilteredPoets(dataPoetsByEra);
+      }
     }
-    setIsFilterActive(!isFilterActive);
+  }, [isFilterActive, dataPoetsByEra]);
+
+
+  const toggleFilter = () => {
+    setIsFilterActive(prev => !prev);
   };
+
 
 
   const toggleShowMore = () => {
