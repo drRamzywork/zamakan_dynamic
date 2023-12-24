@@ -172,11 +172,17 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
             transition={{ duration: 1, }}
             className={styles.sec_container}>
             <div className={styles.filter_btn} onClick={toggleFilter}>
-              <div className={styles.icon_container}>
-                <FaCheck />
-              </div>
+
+              {isFilterActive &&
+                <motion.div
+                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 1, }} className={styles.icon_container}>
+                  <FaCheck />
+                </motion.div>
+              }
               <p>
-                {isFilterActive ? "كل الشعراء" : "شعراء عاشوا في المملكة"}
+                شعراء عاشوا في المملكة
               </p>
             </div>
 
