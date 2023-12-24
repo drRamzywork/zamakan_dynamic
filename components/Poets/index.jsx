@@ -25,7 +25,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
   const [isMapLoading, setIsMapLoading] = useState(false);
   const [showMore, setShowMore] = useState(false);
   const [filteredPoets, setFilteredPoets] = useState(dataPoetsByEra);
-  const [isFilterActive, setIsFilterActive] = useState(false);
+  const [ === false, setIsFilterActive] = useState(false);
 
   const toggleFilter = () => {
     if (isFilterActive) {
@@ -173,7 +173,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
             className={styles.sec_container}>
             <div className={styles.filter_btn} onClick={toggleFilter}>
 
-              {isFilterActive &&
+              {isFilterActive === false &&
                 <motion.div
                   animate={{ opacity: 1 }}
                   initial={{ opacity: 0 }}
