@@ -9,6 +9,7 @@ import { motion } from 'framer-motion'
 import SliderVerses from '@/components/PoetsDetailsComponents/SliderVerses';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { FaUserLarge } from "react-icons/fa6";
 
 export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
   const [activeIndex, setActiveIndex] = useState(1);
@@ -182,7 +183,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
               <li className={`${styles.list} ${1 === activeIndex ? styles.active : ''}`} onClick={() => setActiveIndex(1)}>
                 <button >
                   <span className={styles.iconWrapper}>
-                    <Profile />
+                    <FaUserLarge />
                   </span>
                   <p>عن الشاعر</p>
                 </button>
@@ -303,7 +304,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                       <div className={styles.filter_sec}>
                         <div className={styles.shows}>
                           <Typography dir='ltr'>
-                            <span>{results.length}</span> يتم عرض <span>{results.length}</span> من
+                            <span>{results.length}</span> يتم عرض <span>{dataPoetry.length}</span> من
                           </Typography>
                         </div>
                         <div className={styles.filter_methods}>

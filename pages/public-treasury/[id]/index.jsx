@@ -18,7 +18,6 @@ import 'swiper/css/pagination'
 import Link from 'next/link';
 import { IoClose } from "react-icons/io5";
 import { useRouter } from 'next/router';
-import { LeftPlants, RightPlants } from '@/components/PublicTreasuryComponents';
 
 
 const VisualDocs = ({ sectionData }) => {

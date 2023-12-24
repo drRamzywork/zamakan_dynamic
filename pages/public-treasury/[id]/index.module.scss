@@ -275,3 +275,42 @@ section.section {
     }
   }
 }
+
+section.footer {
+  // margin-bottom: -80px;
+  // height: 276px;
+
+  .imgs_container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+    height: 100%;
+
+    .middle {
+      margin-bottom: -180px;
+      width: 100%;
+      @media screen and (max-width: 992px) {
+        margin-bottom: -100px;
+      }
+      @media screen and (max-width: 450px) {
+        margin-bottom: -53px;
+      }
+
+      img {
+        width: 100%;
+        object-fit: contain;
+
+        @media screen and (max-width: 992px) {
+          // width: 450px;
+          // height: 200px;
+        }
+
+        @media screen and (max-width: 450px) {
+          // width: 265px !important;
+          // height: 207px !important;
+        }
+      }
+    }
+  }
+}
