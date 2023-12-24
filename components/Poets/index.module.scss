@@ -42,6 +42,11 @@ section.Poets {
         font-size: 18px;
         font-weight: bold;
         font-family: var(--effra-font);
+        opacity: 50%;
+      }
+
+      p.active {
+        opacity: 100%;
       }
       .icon_container {
         border: 1px solid #bfb59c;
