@@ -156,16 +156,14 @@ const Poets = ({ erasAllEras, dataDefault }) => {
     color: ' #11292F',
   });
 
-
-
-
   const handlePoetsData = (data) => {
     setPoetsData(data);
   };
-
-
-
-
+  const menuItemStyle = {
+    fontFamily: 'var(--req3a-font)', // Replace with your desired font
+    direction: 'rtl', // Right-to-Left direction
+    textAlign: 'right' // Align text to the right
+  };
   return (
     <>
       <Head>
@@ -234,10 +232,10 @@ const Poets = ({ erasAllEras, dataDefault }) => {
                           onChange={handleChange}
                           IconComponent={CustomArrowIcon}
                         >
-                          <MenuItem value={0}>جميع العصور</MenuItem>
-                          <MenuItem value={true}>شعراء عاشوا في المملكة</MenuItem>
+                          <MenuItem value={0} sx={menuItemStyle}>جميع العصور</MenuItem>
+                          <MenuItem value={true} sx={menuItemStyle}>شعراء عاشوا في المملكة</MenuItem>
                           {erasAllEras.map((era, index) => (
-                            <MenuItem key={era.id} value={era.id}>
+                            <MenuItem key={era.id} value={era.id} sx={menuItemStyle}>
                               {era.name}
                             </MenuItem>
                           ))}
