@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { imgs } from '@/assets/constants';
 import CssBaseline from '@mui/material/CssBaseline';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 
 
@@ -26,6 +27,8 @@ function HideOnScroll(props) {
 
 
 const Navbar = (props) => {
+  const router = useRouter()
+
   const [window, setWindow] = useState(undefined);
 
   useEffect(() => {
@@ -95,6 +98,7 @@ const Navbar = (props) => {
     };
   }, [navMenuRef]);
 
+
   return (
     <>
       <CssBaseline />
@@ -119,18 +123,18 @@ const Navbar = (props) => {
                   >
                     <div className={styles.links} onClick={() => setNavMenu(false)}>
 
-                      <div className={styles.link}>
-                        <a href='/literary-eras'>زمان الشعر</a>
+                      <div className={`${styles.link} `}>
+                        <a href='/literary-eras' className={router.pathname.includes('/literary-eras') && styles.active}>زمان الشعر</a>
                       </div>
-                      <div className={styles.link}>
-                        <a href='/places'>مكان الشعر</a>
+                      <div className={`${styles.link}`}>
+                        <a href='/places' className={router.pathname.includes('/places') && styles.active}>مكان الشعر</a>
                       </div>
 
-                      <div className={styles.link}>
-                        <a href='/public-treasury'>خزانة الشعر </a>
+                      <div className={`${styles.link}`}>
+                        <a href='/public-treasury' className={router.pathname.includes('/public-treasury') && styles.active}>خزانة الشعر </a>
                       </div>
-                      <div className={styles.link}>
-                        <a href='/poets'>الشعراء </a>
+                      <div className={`${styles.link} `}>
+                        <a href='/poets' className={router.pathname.includes('/poets') && styles.active}>الشعراء </a>
                       </div>
 
                     </div>

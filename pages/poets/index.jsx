@@ -1,5 +1,5 @@
 import { Box, Container, FormControl, MenuItem, Select, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styles from './index.module.scss'
 import { styled } from '@mui/system';
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -18,28 +18,17 @@ const Poets = ({ erasAllEras, dataDefault }) => {
   const [searchString, setSearchString] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
 
-
-  // const handleChange = async (event) => {
-  //   const selectedValue = event.target.value;
-  //   const res = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?${selectedValue !== 0 ? `era=${selectedValue}` : ''}&lang=2&pagenum=1&pagesize=50`);
-
-  //   const filteredData = await res.json();
-
-  //   setAge(selectedValue);
-  //   setFiltredPoets(filteredData)
-  //   router.push(`/poets?place=${selectedValue}`, undefined, { shallow: true });
-  // };
 
   const handleChange = async (event) => {
     const selectedValue = event.target.value;
     let url = `https://api4z.suwa.io/api/Poets/GetAllPoets?lang=2&pagenum=1&pagesize=50`;
 
     if (selectedValue === true) {
-      // When "شعراء عاشوا في المملكة" is selected
       url += '&bornInSaudi=true';
     } else if (selectedValue !== 0) {
-      // For any specific era
+
       url += `&era=${selectedValue}`;
     }
 
@@ -51,7 +40,7 @@ const Poets = ({ erasAllEras, dataDefault }) => {
     router.push(`/poets?place=${selectedValue}`, undefined, { shallow: true });
   };
 
-  const handleSearch = async () => {
+  const handleSearch = useCallback(async () => {
     setIsLoading(true);
     setError(null);
 
@@ -68,11 +57,13 @@ const Poets = ({ erasAllEras, dataDefault }) => {
       );
       setFiltredPoets(response.data);
       setIsLoading(false);
+      setCurrentPage(0); // Resetting the currentPage to 0 when a new search is performed
     } catch (error) {
       setError(error);
       setIsLoading(false);
     }
-  };
+  }, [searchString]);
+
 
   const selectBoxStyles = {
     m: 1,
@@ -160,9 +151,10 @@ const Poets = ({ erasAllEras, dataDefault }) => {
     setPoetsData(data);
   };
   const menuItemStyle = {
-    fontFamily: 'var(--req3a-font)', // Replace with your desired font
-    direction: 'rtl', // Right-to-Left direction
-    textAlign: 'right' // Align text to the right
+    fontFamily: 'var(--effra-font)',
+    direction: 'rtl',
+    textAlign: 'right',
+    fontSize: '16px'
   };
   return (
     <>
@@ -248,7 +240,7 @@ const Poets = ({ erasAllEras, dataDefault }) => {
 
                 </div>
                 <div className="slider">
-                  <SliderVerses filtredPoets={filtredPoets} onPoetsDataChange={handlePoetsData} />
+                  <SliderVerses filtredPoets={filtredPoets} onPoetsDataChange={handlePoetsData} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                 </div>
 
                 {filtredPoets?.length === 0 &&

@@ -112,7 +112,12 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
     };
   }, []);
 
-
+  const menuItemStyle = {
+    fontFamily: 'var(--effra-font)',
+    direction: 'rtl',
+    textAlign: 'right',
+    fontSize: '16px'
+  };
 
 
   return (
@@ -322,9 +327,9 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                                 IconComponent={CustomArrowIcon}
 
                               >
-                                <MenuItem value={0}>الجميع</MenuItem>
+                                <MenuItem value={0} sx={menuItemStyle}>الجميع</MenuItem>
                                 {dataPlaces?.map((place, index) => (
-                                  <MenuItem key={place.id} value={place.id}>
+                                  <MenuItem key={place.id} value={place.id} sx={menuItemStyle}>
                                     {place.name}
                                   </MenuItem>
                                 ))}

@@ -86,6 +86,11 @@
               background-color: #daceaf;
             }
           }
+
+          &.active {
+            color: var(--main-white-color);
+            background-color: #daceaf;
+          }
         }
       }
     }
