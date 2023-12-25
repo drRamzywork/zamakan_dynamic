@@ -141,6 +141,8 @@ section.section {
 section.footer {
   margin-bottom: -80px;
   height: 276px;
+  position: relative;
+  z-index: -1;
 
   @media screen and (max-width: 992px) {
     margin-bottom: -40px;
