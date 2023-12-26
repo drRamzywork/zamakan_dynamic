@@ -17,6 +17,7 @@ const LandingPage = () => {
   const router = useRouter();
   const {
     Palm,
+    docs_3
   } = imgs
 
 
@@ -50,6 +51,14 @@ const LandingPage = () => {
 
             <div className={styles.palm_left}>
               <img src={Palm.src} alt="" />
+
+
+
+
+            </div>
+
+            <div className={styles.docs}>
+              <img src={docs_3.src} alt="" />
             </div>
 
           </motion.div>
@@ -58,21 +67,26 @@ const LandingPage = () => {
               animate={{ opacity: 1 }}
               initial={{ opacity: 0 }}
               transition={{ duration: 1, }}
-
               className={styles.boxes_container}>
+
               <Link href='/literary-eras' className={styles.box}>
+
                 <div className={styles.icon_container}>
                   <FaCalendarAlt />
                 </div>
+
                 <div className={styles.title}>
                   <Typography variant='h4'>
                     زمان الشعر
                   </Typography>
                 </div>
+
                 <div className={styles.arrow}>
                   <LeftArrow />
                 </div>
+
               </Link>
+
               <Link href='/places' className={styles.box}>
                 <div className={styles.icon_container}>
                   <SmallSaudiMap />
@@ -87,7 +101,6 @@ const LandingPage = () => {
                   <LeftArrow />
                 </div>
               </Link>
-
 
             </motion.div>
 

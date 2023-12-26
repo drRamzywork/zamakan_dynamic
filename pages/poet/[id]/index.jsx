@@ -137,8 +137,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
+        transition={{ duration: 1 }}>
         <Container dir="rtl" maxWidth={false} className={styles.poetDetails}>
           <Box className={styles.headerImage} >
           </Box>
@@ -173,8 +172,6 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                       </span>
                     ))}
                 </Typography>
-
-
               </div>
             </Grid>
           </Grid>
