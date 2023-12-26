@@ -51,6 +51,7 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
       setActiveCity(newActiveCity);
     }
   }
+
   const adjustImageUrl = (imageUrl) => {
     if (imageUrl?.startsWith('https')) {
       return imageUrl;
@@ -58,6 +59,7 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
       return `https://zamakan.suwa.io${imageUrl}`;
     }
   };
+
   const handleImageLoad = cityId => {
     setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
     if (swiperRef.current && swiperRef.current.swiper) {

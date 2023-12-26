@@ -27,17 +27,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
   const [filteredPoets, setFilteredPoets] = useState([]);
   const [isFilterActive, setIsFilterActive] = useState(false);
 
-  // const toggleFilter = () => {
-  //   if (isFilterActive) {
-  //     // Show all poets if the filter is currently active
-  //     setFilteredPoets(dataPoetsByEra);
-  //   } else {
-  //     // Apply filter to show only poets born in Saudi
-  //     setFilteredPoets(dataPoetsByEra.filter(poet => poet.bornInSaudi));
-  //   }
-  //   setIsFilterActive(!isFilterActive);
-  // };
-
 
   useEffect(() => {
     if (dataPoetsByEra && dataPoetsByEra?.length > 0) {
@@ -403,9 +392,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
                 </svg>
 
               </div >
-
-
-
 
               {places !== null &&
                 <ErasPlacesSlider places={places}

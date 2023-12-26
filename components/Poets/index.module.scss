@@ -331,6 +331,7 @@ section.Poets {
   display: flex;
   flex-direction: row-reverse;
   padding-top: 16px;
+  overflow: hidden;
 
   @media screen and (min-width: 992px) {
     align-items: flex-start;
