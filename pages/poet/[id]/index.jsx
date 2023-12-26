@@ -159,9 +159,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                     {dataPoet.nickname}
                   </Typography>
                 </div>
-
               </div>
-
               <div className={styles.desc} dir='rtl'>
 
 
@@ -210,14 +208,12 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
           </div>
           <div className={styles.tabsSection}>
             {activeIndex === 1 && (
-              <div
-                className={styles.tabContent_container} dir='rtl'>
+              <div className={styles.tabContent_container} dir='rtl'>
                 <motion.div
                   animate={{ opacity: 1 }}
                   initial={{ opacity: 0 }}
                   transition={{ duration: 1, }}
                 >
-
                   <section className={styles.timelineSection}>
                     <div className={styles.sec_title}>
                       <Typography variant='h3'>معلوماته الشخصية</Typography>
@@ -260,8 +256,6 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                       </div>
                     </div>
                   </section>
-
-
 
                   <section className={styles.timelineSection}>
                     <div className={styles.sec_title}>
@@ -306,7 +300,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                 >
                   <section className={styles.timelineSection}>
                     <div className={styles.slider_container}>
-                      <div className={styles.filter_sec}>
+                      {/* <div className={styles.filter_sec}>
                         <div className={styles.shows}>
                           <Typography dir='ltr'>
                             <span>{results.length}</span> يتم عرض <span>{dataPoetry.length}</span> من
@@ -339,7 +333,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                           </div>
                         </div>
 
-                      </div>
+                      </div> */}
                       <div className="slider">
                         <SliderVerses results={results} />
                       </div>

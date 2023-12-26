@@ -22,14 +22,9 @@ const LandingPage = () => {
 
 
   return (
-
     <>
-
-
-      < section id='landingPage' className={styles.landingPage} >
+      <section id='landingPage' className={styles.landingPage} >
         <div className={styles.sec_wrap}>
-
-
           <motion.div
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
@@ -44,8 +39,6 @@ const LandingPage = () => {
                     <br />
                     في  المملكة العربية السُّعوديّة</span>
                 </h1>
-
-
               </div>
             </Container>
 
