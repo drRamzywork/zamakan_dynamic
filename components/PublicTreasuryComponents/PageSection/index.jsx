@@ -29,35 +29,10 @@ const PageSection = ({ title, AllMainTopics, link, data = [] }) => {
     setGalleryOpen(false);
   };
 
-  // const openGallery = (index) => {
-  //   setActiveIndex(index);
-  //   setGalleryOpen(true);
-
-  //   setBackgroundFullScreen(AllMainTopics[index].sliders[index].imagesVideos.split(',')[0])
-  //   setImagesGallery(AllMainTopics[index].sliders[index].imagesVideos.split(','))
-
-  // };
-
-
-
-  // const openGallery = (topicIndex, sliderIndex) => {
-  //   setActiveIndex(sliderIndex);
-  //   setGalleryOpen(true);
-
-  //   // Access the right topic and slider using the provided indices
-  //   const selectedTopic = AllMainTopics[topicIndex];
-  //   const selectedSlider = selectedTopic.sliders[sliderIndex];
-
-  //   setBackgroundFullScreen(selectedSlider.imagesVideos.split(',')[0]);
-  //   setImagesGallery(selectedSlider.imagesVideos.split(','));
-  // };
-
-
   const openGallery = (topicIndex, sliderIndex) => {
     setActiveIndex(sliderIndex);
     setGalleryOpen(true);
 
-    // Access the right topic and slider using the provided indices
     const selectedTopic = AllMainTopics[topicIndex];
     const selectedSlider = selectedTopic.sliders[sliderIndex];
 
@@ -67,18 +42,7 @@ const PageSection = ({ title, AllMainTopics, link, data = [] }) => {
 
 
 
-  // const openGallery = (topicIndex, sliderIndex) => {
-  //   setActiveIndex(sliderIndex);
-  //   setGalleryOpen(true);
 
-  //   const selectedTopic = AllMainTopics[topicIndex];
-  //   const selectedSlider = selectedTopic?.sliders[sliderIndex];
-
-  //   setBackgroundFullScreen(selectedSlider.imagesVideos.split(',')[0]);
-  //   setImagesGallery(selectedSlider.imagesVideos.split(','));
-  // };
-
-  console.log(AllMainTopics, "AllMainTopics")
 
 
   const handleImageLoad = cityId => {
@@ -192,18 +156,16 @@ const PageSection = ({ title, AllMainTopics, link, data = [] }) => {
                     </div>
                     <div className={styles.img_container} onClick={() => openGallery(topicIndex, sliderIndex)}>
                       {parseMedia(item?.imagesVideos)?.map((media, mediaIndex) => (
-                        <div key={mediaIndex} className={media.isVideo ? styles.video_container : styles.img_container}>
+                        <div key={mediaIndex}
+                          className={media.isVideo ? styles.video_container : styles.img_container}
+                          onClick={() => openGallery(topicIndex, sliderIndex, mediaIndex)}>
                           {media.isVideo ? (
-                            <>
-                              < video src={media.url} controls></video>
-                            </>
+                            <video src={media.url} controls></video>
                           ) : (
                             <img src={media.url} alt={item.name} />
                           )}
                         </div>
                       ))}
-
-
                     </div>
 
                     <div className={styles.title}>
