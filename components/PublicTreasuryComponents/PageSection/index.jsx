@@ -13,7 +13,6 @@ import 'swiper/css/pagination';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { IoClose } from "react-icons/io5";
-import { RotatingLines } from 'react-loader-spinner';
 
 
 const PageSection = ({ title, AllMainTopics, link, data = [] }) => {
@@ -30,13 +29,56 @@ const PageSection = ({ title, AllMainTopics, link, data = [] }) => {
     setGalleryOpen(false);
   };
 
-  const openGallery = (index) => {
-    setActiveIndex(index);
+  // const openGallery = (index) => {
+  //   setActiveIndex(index);
+  //   setGalleryOpen(true);
+
+  //   setBackgroundFullScreen(AllMainTopics[index].sliders[index].imagesVideos.split(',')[0])
+  //   setImagesGallery(AllMainTopics[index].sliders[index].imagesVideos.split(','))
+
+  // };
+
+
+
+  // const openGallery = (topicIndex, sliderIndex) => {
+  //   setActiveIndex(sliderIndex);
+  //   setGalleryOpen(true);
+
+  //   // Access the right topic and slider using the provided indices
+  //   const selectedTopic = AllMainTopics[topicIndex];
+  //   const selectedSlider = selectedTopic.sliders[sliderIndex];
+
+  //   setBackgroundFullScreen(selectedSlider.imagesVideos.split(',')[0]);
+  //   setImagesGallery(selectedSlider.imagesVideos.split(','));
+  // };
+
+
+  const openGallery = (topicIndex, sliderIndex) => {
+    setActiveIndex(sliderIndex);
     setGalleryOpen(true);
 
-    setBackgroundFullScreen(AllMainTopics[0].sliders[index].imagesVideos.split(',')[0])
-    setImagesGallery(AllMainTopics[0].sliders[index].imagesVideos.split(','))
+    // Access the right topic and slider using the provided indices
+    const selectedTopic = AllMainTopics[topicIndex];
+    const selectedSlider = selectedTopic.sliders[sliderIndex];
+
+    setBackgroundFullScreen(selectedSlider.imagesVideos.split(',')[0]);
+    setImagesGallery(selectedSlider.imagesVideos.split(','));
   };
+
+
+
+  // const openGallery = (topicIndex, sliderIndex) => {
+  //   setActiveIndex(sliderIndex);
+  //   setGalleryOpen(true);
+
+  //   const selectedTopic = AllMainTopics[topicIndex];
+  //   const selectedSlider = selectedTopic?.sliders[sliderIndex];
+
+  //   setBackgroundFullScreen(selectedSlider.imagesVideos.split(',')[0]);
+  //   setImagesGallery(selectedSlider.imagesVideos.split(','));
+  // };
+
+  console.log(AllMainTopics, "AllMainTopics")
 
 
   const handleImageLoad = cityId => {
@@ -85,8 +127,8 @@ const PageSection = ({ title, AllMainTopics, link, data = [] }) => {
 
   return (
     <>
-      {AllMainTopics.map((topic, index) =>
-        <section id={title} className={styles.section} key={index}>
+      {AllMainTopics.map((topic, topicIndex) =>
+        <section id={title} className={styles.section} key={topicIndex}>
           <div className={styles.sec_title}>
             <Typography variant="h3" >
               {topic.name}
@@ -142,13 +184,13 @@ const PageSection = ({ title, AllMainTopics, link, data = [] }) => {
               }}
             >
 
-              {topic?.sliders?.map((item, index) => (
-                <SwiperSlide key={index} >
+              {topic?.sliders?.map((item, sliderIndex) => (
+                <SwiperSlide key={sliderIndex} >
                   <div className={styles.box_sec}>
                     <div className={styles.rotated_img}>
                       <img src={getFirstMediaUrl(item?.imagesVideos)} alt={item?.name} />
                     </div>
-                    <div className={styles.img_container} onClick={() => openGallery(index)}>
+                    <div className={styles.img_container} onClick={() => openGallery(topicIndex, sliderIndex)}>
                       {parseMedia(item?.imagesVideos)?.map((media, mediaIndex) => (
                         <div key={mediaIndex} className={media.isVideo ? styles.video_container : styles.img_container}>
                           {media.isVideo ? (

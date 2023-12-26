@@ -40,6 +40,7 @@ const VisualDocs = ({ sectionData }) => {
     setImagesGallery(sectionPageData?.sliders[index]?.imagesVideos?.split(','))
   };
 
+  console.log(sectionPageData, "sectionPageData")
   const handleImageLoad = cityId => {
     setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
   };

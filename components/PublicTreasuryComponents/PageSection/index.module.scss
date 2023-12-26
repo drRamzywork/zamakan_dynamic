@@ -111,7 +111,7 @@ section.section {
           }
           video,
           img {
-            object-fit: fill;
+            object-fit: contain;
             transform: scale(1) !important;
             border-radius: 20px;
             margin-top: 5px;
@@ -119,6 +119,7 @@ section.section {
             @media screen and (max-width: 450px) {
               height: 100%;
               border-radius: 10px;
+              object-fit: fill;
             }
           }
 
