@@ -58,7 +58,7 @@ const SearchPage = () => {
                 <div className={styles.icon_container}>
                   <Search />
                 </div>
-                <input type="text" placeholder='ابحث عن شعراء,اماكن' value={query}
+                <input type="text" placeholder='ابحث عن شعراء,أماكن' value={query}
                   onChange={handleSearch}
                 />
 
@@ -96,7 +96,7 @@ const SearchPage = () => {
             {placesData && filteredPlaces?.length !== 0 &&
               <>
                 <div className={styles.sec_title}>
-                  <Typography variant='h3'>الاماكن</Typography>
+                  <Typography variant='h3'>الأماكن</Typography>
                 </div>
 
                 <div className={styles.places_container}>

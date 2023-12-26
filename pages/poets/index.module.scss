@@ -133,5 +133,21 @@ section {
         }
       }
     }
+
+    .text_container {
+      @media screen and (max-width: 450px) {
+        margin-top: 16px;
+      }
+      p {
+        font-family: var(--effra-font);
+        font-size: 16px;
+        color: var(--main-blue-color);
+        @media screen and (max-width: 450px) {
+          font-size: 12px;
+          font-weight: bold;
+          text-align: center;
+        }
+      }
+    }
   }
 }
