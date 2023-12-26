@@ -108,9 +108,15 @@ section.landingPage {
       justify-content: flex-end;
       max-width: 600px;
 
+      @media screen and (min-width: 1400px) {
+        max-width: 800px;
+        bottom: -65px;
+      }
+
       @media screen and (max-width: 992px) {
         display: none;
       }
+
       img {
         width: 100%;
         object-fit: contain;
