@@ -5,7 +5,7 @@
   justify-content: space-between;
   padding-top: 14px;
   padding-bottom: 14px;
-
+  user-select: none;
   .burger_icon {
     cursor: pointer;
     border: 0.8px solid #11292f;
@@ -41,7 +41,7 @@
     position: absolute;
     top: 120px;
     right: 0%;
-    width: 100vw;
+    width: 50vw;
     height: 100vh;
     z-index: -122;
     display: flex;
@@ -58,8 +58,8 @@
       // height: 100vh;
     }
     .links {
+      width: 100%;
       .link {
-        min-width: 394px;
         padding-bottom: 34px;
         padding-top: 34px;
         text-align: center;

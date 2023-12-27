@@ -257,7 +257,6 @@ section.landingPage {
     }
 
     @media screen and (max-width: 450px) {
-      // width: 264px;
       padding: 10px;
       align-items: flex-start;
     }
@@ -282,12 +281,11 @@ section.landingPage {
       svg {
         width: 40px !important;
         height: 40px !important;
+        color: #713540;
         @media screen and (max-width: 450px) {
           width: 38px !important;
         }
-        path {
-          fill: #713540;
-        }
+
         @media screen and (max-width: 450px) {
           width: 33px;
           // height: 33px;

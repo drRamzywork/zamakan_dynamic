@@ -5,10 +5,9 @@ import imgs from '../../assets/constants/imgs'
 import { LeftArrow, PalmSvg, } from '@/assets/svgsComponents';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import SmallSaudiMap from '@/assets/svgsComponents/SmallSaudiMap';
 import { motion } from 'framer-motion';
 import { FaCalendarAlt } from "react-icons/fa";
-
+import { MdLocationPin } from "react-icons/md";
 
 
 
@@ -89,14 +88,15 @@ const LandingPage = () => {
 
               <Link href='/places' className={styles.box}>
                 <div className={styles.icon_container}>
-                  <SmallSaudiMap />
-
+                  <MdLocationPin />
                 </div>
+
                 <div className={styles.title}>
                   <Typography variant='h4'>
                     مكان الشعر
                   </Typography>
                 </div>
+
                 <div className={styles.arrow}>
                   <LeftArrow />
                 </div>
