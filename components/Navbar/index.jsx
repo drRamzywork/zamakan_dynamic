@@ -9,6 +9,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import { FaCalendarAlt } from "react-icons/fa";
+import { MdLocationPin } from "react-icons/md";
 
 
 function HideOnScroll(props) {
@@ -36,7 +38,9 @@ const Navbar = (props) => {
   }, []);
 
   const [navMenu, setNavMenu] = useState(false);
-  const { Logo } = imgs;
+  const { Logo, poetsIcon,
+    potriesIcon,
+  } = imgs;
 
 
 
@@ -124,17 +128,41 @@ const Navbar = (props) => {
                     <div className={styles.links} onClick={() => setNavMenu(false)}>
 
                       <div className={`${styles.link} `}>
-                        <a href='/literary-eras' className={router.pathname.includes('/literary-eras') && styles.active}>زمان الشعر</a>
+                        <a href='/literary-eras' className={router.pathname.includes('/literary-eras') && styles.active}>زمان الشعر
+                          <div className={styles.icon_container}>
+                            <FaCalendarAlt />
+                          </div>
+                        </a>
+
+
                       </div>
                       <div className={`${styles.link}`}>
-                        <a href='/places' className={router.pathname.includes('/places') && styles.active}>مكان الشعر</a>
+                        <a href='/places' className={router.pathname.includes('/places') && styles.active}>مكان الشعر
+                          <div className={styles.icon_container}>
+
+                            <MdLocationPin />
+                          </div>
+
+                        </a>
                       </div>
 
                       <div className={`${styles.link}`}>
-                        <a href='/public-treasury' className={router.pathname.includes('/public-treasury') && styles.active}>خزانة الشعر </a>
+                        <a href='/public-treasury' className={router.pathname.includes('/public-treasury') && styles.active}>خزانة الشعر   <div className={styles.icon_container}>
+                          <img src={potriesIcon.src} alt="" />
+                        </div></a>
+
+
                       </div>
                       <div className={`${styles.link} `}>
-                        <a href='/poets' className={router.pathname.includes('/poets') && styles.active}>الشعراء </a>
+                        <a href='/poets' className={router.pathname.includes('/poets') && styles.active}>الشعراء
+                          <div className={styles.icon_container}>
+                            <img src={poetsIcon.src} alt="" />
+                          </div>
+                        </a>
+
+
+
+
                       </div>
 
                     </div>
