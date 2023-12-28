@@ -78,8 +78,6 @@ export async function getStaticProps({ params }) {
   };
 }
 
-
-
 export async function getStaticPaths() {
   const resAllErasIds = await fetch('https://api4z.suwa.io/api/Zaman/GetAllErasIds');
   const allErasIds = await resAllErasIds.json();

@@ -28,7 +28,7 @@ import mapPiece3 from "../mapPiece3.png";
 import mapPiece4 from "../mapPiece4.png";
 import mapPiece5 from "../mapPiece5.png";
 import mapPiece6 from "../mapPiece6.png";
-import poetsIcon from "../poetsIcon.png";
+import poetsIcon from "../poetsIcon.jpg";
 import potriesIcon from "../potriesIcon.png";
 import Central from "../Central.jpg";
 import Eastern from "../Eastern.jpg";

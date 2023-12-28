@@ -46,8 +46,8 @@ const Navbar = (props) => {
 
 
   const variants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: "100%" },
+    open: { opacity: 1, y: 0 },
+    closed: { opacity: 0, y: "-100%" },
   };
 
 
@@ -126,44 +126,48 @@ const Navbar = (props) => {
                     className={styles.nav_menu_container}
                   >
                     <div className={styles.links} onClick={() => setNavMenu(false)}>
+                      <a href='/literary-eras' className={`${styles.link} ${router.pathname.includes('/literary-eras') && styles.active}`}>
+                        <p >
+                          زمان الشعر
+                        </p>
 
-                      <div className={`${styles.link} `}>
-                        <a href='/literary-eras' className={router.pathname.includes('/literary-eras') && styles.active}>زمان الشعر
-                          <div className={styles.icon_container}>
-                            <FaCalendarAlt />
-                          </div>
-                        </a>
+                        <div className={styles.icon_container}>
+                          <FaCalendarAlt />
+                        </div>
+                      </a>
 
 
-                      </div>
-                      <div className={`${styles.link}`}>
-                        <a href='/places' className={router.pathname.includes('/places') && styles.active}>مكان الشعر
-                          <div className={styles.icon_container}>
+                      <a href='/places' className={`${styles.link} ${router.pathname.includes('/places') && styles.active}`}>
+                        <p >
+                          مكان الشعر
+                        </p>
 
-                            <MdLocationPin />
-                          </div>
+                        <div className={styles.icon_container}>
+                          <MdLocationPin />
+                        </div>
+                      </a>
 
-                        </a>
-                      </div>
+                      <a href='/public-treasury' className={`${styles.link} ${router.pathname.includes('/public-treasury') && styles.active}`}>
+                        <p >
+                          خزانة الشعر
+                        </p>
 
-                      <div className={`${styles.link}`}>
-                        <a href='/public-treasury' className={router.pathname.includes('/public-treasury') && styles.active}>خزانة الشعر   <div className={styles.icon_container}>
+                        <div className={styles.icon_container}>
                           <img src={potriesIcon.src} alt="" />
-                        </div></a>
-
-
-                      </div>
-                      <div className={`${styles.link} `}>
-                        <a href='/poets' className={router.pathname.includes('/poets') && styles.active}>الشعراء
-                          <div className={styles.icon_container}>
-                            <img src={poetsIcon.src} alt="" />
-                          </div>
-                        </a>
+                        </div>
+                      </a>
 
 
 
+                      <a href='/poets' className={`${styles.link} ${router.pathname.includes('/poets') && styles.active}`}>
+                        <p >
+                          خزانة الشعر
+                        </p>
 
-                      </div>
+                        <div className={styles.icon_container}>
+                          <img src={poetsIcon.src} alt="" />
+                        </div>
+                      </a>
 
                     </div>
 
