@@ -161,7 +161,7 @@ const Navbar = (props) => {
 
                       <a href='/poets' className={`${styles.link} ${router.pathname.includes('/poets') && styles.active}`}>
                         <p >
-                          خزانة الشعر
+                          الشعراء
                         </p>
 
                         <div className={styles.icon_container}>

@@ -53,9 +53,7 @@
     border-radius: 16px;
 
     @media screen and (max-width: 450px) {
-      // border-radius: 0;
       top: 80px;
-      // height: 100vh;
     }
 
     @media screen and (min-width: 992px) {
@@ -90,7 +88,9 @@
 
         @media screen and (min-width: 992px) {
           &:hover {
-            color: var(--main-white-color);
+            p {
+              color: var(--main-white-color);
+            }
             background-color: #daceaf;
           }
         }

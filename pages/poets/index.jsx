@@ -251,7 +251,8 @@ const Poets = ({ erasAllEras, dataDefault }) => {
               </div>
 
 
-              <div className={styles.text_container}><p>نُفِذت رسومات تخيلية لهيئة الشعراء تقريباً لأوصافهم المذكورة في المراجع
+              <div className={styles.text_container}><p>نُفِّذت
+                رسومات تخيلية لهيئة الشعراء تقريباً لأوصافهم المذكورة في المراجع
               </p></div>
 
             </section>
