@@ -167,13 +167,11 @@ const Navbar = (props) => {
                         <div className={styles.icon_container}>
                           <img src={poetsIcon.src} alt="" />
                         </div>
+
                       </a>
-
                     </div>
-
                   </motion.div>
                 </>
-
               }
 
 
