@@ -4,13 +4,13 @@ import { useScrollTrigger, Slide, AppBar, Toolbar, Container, } from '@mui/mater
 import { Search, } from '../../assets/svgsComponents';
 
 import { motion } from 'framer-motion';
-import { imgs } from '@/assets/constants';
 import CssBaseline from '@mui/material/CssBaseline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import { FaCalendarAlt } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
+import Image from 'next/image';
 
 
 function HideOnScroll(props) {
@@ -38,9 +38,7 @@ const Navbar = (props) => {
   }, []);
 
   const [navMenu, setNavMenu] = useState(false);
-  const { Logo, poetsIcon,
-    potriesIcon,
-  } = imgs;
+
 
 
 
@@ -153,7 +151,7 @@ const Navbar = (props) => {
                         </p>
 
                         <div className={styles.icon_container}>
-                          <img src={potriesIcon.src} alt="" />
+                          <img src={"/assets/imgs/potriesIcon.png"} alt="" />
                         </div>
                       </a>
 
@@ -165,7 +163,7 @@ const Navbar = (props) => {
                         </p>
 
                         <div className={styles.icon_container}>
-                          <img src={poetsIcon.src} alt="" />
+                          <img src={"/assets/imgs/potriesIcon.png"} alt="" />
                         </div>
 
                       </a>
@@ -210,7 +208,7 @@ const Navbar = (props) => {
 
 
               <a className={styles.logo} href={'/'}>
-                <img src={Logo.src} alt="" />
+                <Image width={250} priority height={85} src={"/assets/imgs/logo.png"} alt="" />
               </a>
 
 

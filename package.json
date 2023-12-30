@@ -6,10 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test:chrome": "npx playwright test --headed --browser=chromium",
-    "test:firefox": "npx playwright test --headed --browser=firefox",
-    "test:safari": "npx playwright test --headed --browser=webkit"
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -38,8 +35,5 @@
     "sharp": "^0.33.1",
     "styled-components": "^6.1.1",
     "swiper": "^11.0.5"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.40.0"
   }
 }

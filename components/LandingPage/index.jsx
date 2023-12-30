@@ -1,23 +1,20 @@
 import { Container, Typography, } from '@mui/material'
 import React from 'react'
 import styles from './index.module.scss'
-import imgs from '../../assets/constants/imgs'
 import { LeftArrow, PalmSvg, } from '@/assets/svgsComponents';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { FaCalendarAlt } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
+import Image from 'next/image';
 
 
 
 
 const LandingPage = () => {
   const router = useRouter();
-  const {
-    Palm,
-    docs_3
-  } = imgs
+
 
 
 
@@ -49,7 +46,7 @@ const LandingPage = () => {
             </div>
 
             <div className={styles.palm_left}>
-              <img src={Palm.src} alt="" />
+              <Image width={119} height={331} priority src={"/assets/imgs/Palm.png"} alt="" />
 
 
 
@@ -57,7 +54,7 @@ const LandingPage = () => {
             </div>
 
             <div className={styles.docs}>
-              <img src={docs_3.src} alt="" />
+              <Image width={800} height={620} priority src={"/assets/imgs/docs_3.png"} alt="" />
             </div>
 
           </motion.div>

@@ -1,13 +1,9 @@
 import React from 'react';
 import { Box, Container, Grid, Typography, } from '@mui/material';
 import styles from './index.module.scss';
-
-import imgs from '../../assets/constants/imgs'
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 const Footer = () => {
-  const { Ministry_of_Culture,
-    logo_mobile_footer,
-    Literature, } = imgs;
   const router = useRouter()
 
   return (
@@ -25,12 +21,12 @@ const Footer = () => {
           <Box className={styles.box_container}>
             <div className={styles.images_box}>
               <div className={styles.image_container}>
-                <img src={Literature.src} alt="" />
+                <Image priority width={220} height={70} src={"/assets/imgs/Literature.png"} alt="" />
 
               </div>
               <hr />
               <div className={styles.image_container}>
-                <img src={Ministry_of_Culture.src} alt="" />
+                <Image priority width={220} height={70} src={"/assets/imgs/Ministry_of_Culture.png"} alt="" />
               </div>
             </div>
 
@@ -44,7 +40,7 @@ const Footer = () => {
           </Box>
           <Box className={styles.logo_mobile_footer_container}>
             <div className={styles.logo_mobile_footer}>
-              <img src={logo_mobile_footer.src} alt="" />
+              <Image priority width={263} height={245} src={"/assets/imgs/logo_mobile_footer.png"} alt="" />
             </div>
 
 

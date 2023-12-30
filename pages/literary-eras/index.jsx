@@ -1,7 +1,6 @@
 import { Container, Typography, } from '@mui/material'
 import React from 'react'
 import styles from './index.module.scss'
-import imgs from '../../assets/constants/imgs'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Mountains } from '@/assets/svgsComponents';
@@ -12,15 +11,6 @@ import { motion } from 'framer-motion'
 
 
 const LiteraryEras = ({ erasAllEras }) => {
-  const {
-    left_branch,
-    right_branch,
-    horse,
-  } = imgs
-
-
-
-
 
 
   return (
@@ -57,15 +47,15 @@ const LiteraryEras = ({ erasAllEras }) => {
 
             <div className={styles.imags_container}>
               <div className={styles.right_branch}>
-                <img src={right_branch.src} objectFit='contain' alt='' />
+                <img src={"/assets/imgs/right_branch.png"} objectFit='contain' alt='' />
 
               </div>
               <div className={styles.left_branch}>
-                <img src={left_branch.src} objectFit='contain' alt='' />
+                <img src={"/assets/imgs/left_branch.png"} objectFit='contain' alt='' />
 
               </div>
               <div className={styles.horse}>
-                <img src={horse.src} objectFit='contain' alt='' />
+                <img src={"/assets/imgs/horse.png"} objectFit='contain' alt='' />
 
               </div>
               <div className={styles.mountains}>

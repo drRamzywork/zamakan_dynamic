@@ -3,12 +3,11 @@ import { Container, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import styles from './index.module.scss'
 import Link from 'next/link'
-import { imgs } from '@/assets/constants'
 import { motion } from 'framer-motion'
 import { RotatingLines } from 'react-loader-spinner';
+import Image from 'next/image'
 
 const SearchPage = () => {
-  const { Logo } = imgs
   const [query, setQuery] = useState('');
   const [poetsData, setPoetsData] = useState(null);
   const [placesData, setPlacesData] = useState(null);
@@ -30,13 +29,10 @@ const SearchPage = () => {
         setPoetsData(data.poets.data);
       } catch (error) {
         console.error("Failed to fetch data:", error);
-        // Optionally, you can set state for the error to display it in the UI
       } finally {
         setIsdataLoading(false);
       }
     } else {
-      // Optionally, handle the scenario when the query is empty
-      // For example, clear the data or set some default state
       setIsdataLoading(false);
     }
   };
@@ -51,7 +47,7 @@ const SearchPage = () => {
           <Container maxWidth={false}>
             <div className={styles.nav_container}>
               <Link className={styles.logo} href={'/'}>
-                <img src={Logo.src} alt="" />
+                <Image width={185} priority height={85} src={"/assets/imgs/logo.png"} alt="" />
               </Link>
 
               <div className={styles.input_container}>

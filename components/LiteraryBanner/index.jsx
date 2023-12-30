@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import styles from './index.module.scss'
 import { Container, Typography } from '@mui/material'
 import { Mountains } from '@/assets/svgsComponents'
-import imgs from '../../assets/constants/imgs'
 import { useRouter } from 'next/router'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -12,16 +11,7 @@ import Image from 'next/image'
 
 const LiteraryBanner = (props) => {
   const { query } = useRouter();
-
-  const {
-    left_branch,
-    right_branch,
-    horse,
-  } = imgs
-
-
   const eraIndex = query.index ? Number(query.index) : 0;
-
 
   return (
 
@@ -38,14 +28,14 @@ const LiteraryBanner = (props) => {
           </Container>
           <div className={styles.imags_container}>
             <div className={styles.right_branch}>
-              <img src={right_branch.src} alt="" />
+              <img src={"/assets/imgs/right_branch.png"} alt="" />
             </div>
             <div className={styles.left_branch}>
-              <img src={left_branch.src} alt="" />
+              <img src={"/assets/imgs/left_branch.png"} alt="" />
 
             </div>
             <div className={styles.horse}>
-              <img src={horse.src} alt="" />
+              <img src={"/assets/imgs/horse.png"} alt="" />
 
             </div>
             <div className={styles.mountains}>

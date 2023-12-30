@@ -2,7 +2,6 @@ import { Button, Container, Typography } from '@mui/material'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 // import styles from '../index.module.scss'
-import { imgs } from '@/assets/constants'
 import { motion, useAnimation, useInView } from 'framer-motion';
 import stylesMain from '../index.module.scss'
 import styles from '../../../components/PublicTreasuryComponents/PageSection/index.module.scss';
@@ -21,11 +20,7 @@ import { useRouter } from 'next/router';
 
 
 const VisualDocs = ({ sectionData }) => {
-  const { star, redBird, docs_1,
-    docs_2,
-    docs_3,
-    redPlants,
-  } = imgs;
+
   const router = useRouter();
   const [imageLoadingStates, setImageLoadingStates] = useState({});
   const sectionPageData = sectionData[0];
@@ -142,7 +137,7 @@ const VisualDocs = ({ sectionData }) => {
       <header id={stylesMain.header}>
         <div className={stylesMain.sec_title}>
           <div className={stylesMain.img_container}>
-            <Image width={100} height={100} src={star.src} alt="star" />
+            <Image width={100} height={100} src={"/assets/imgs/star.png"} alt="star" />
           </div>
 
           <Typography variant='h1'>
@@ -150,12 +145,12 @@ const VisualDocs = ({ sectionData }) => {
           </Typography>
 
           <div className={stylesMain.img_container}>
-            <Image width={100} height={100} src={star.src} alt="star" />
+            <Image width={100} height={100} src={"/assets/imgs/star.png"} alt="star" />
           </div>
         </div>
 
         <div className={stylesMain.red_bird}>
-          <Image width={100} height={100} src={redBird.src} alt="red bird" />
+          <Image width={100} height={100} src={"/assets/imgs/redBird.png"} alt="red bird" />
         </div>
       </header>
       <Container maxWidth={false} >
@@ -304,13 +299,13 @@ const VisualDocs = ({ sectionData }) => {
             <motion.div
               animate={animation} className={stylesPage.middle} >
               {router.query.id === '1' &&
-                <img src={docs_1.src} alt="" />
+                <img src={"/assets/imgs/docs_1.png"} alt="" />
               }
               {router.query.id === '2' &&
-                <img src={docs_2.src} alt="" />
+                <img src={"/assets/imgs/docs_2.png"} alt="" />
               }
               {router.query.id === '3' &&
-                <img src={docs_3.src} alt="" />
+                <img src={"/assets/imgs/docs_3.png"} alt="" />
               }
             </motion.div>
 

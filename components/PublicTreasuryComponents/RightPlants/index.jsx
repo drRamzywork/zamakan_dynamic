@@ -38,7 +38,7 @@ const RightPlants = React.forwardRef(({ redPlants }, forwardedRef) => {
     <div ref={ref} className={styles.rightPlants_container}>
       <motion.div animate={animation}>
         <div className={styles.rightPlants}>
-          <Image width={592} height={408} src={redPlants.src} alt="" />
+          <Image width={592} height={408} src={"/assets/imgs/redPlants.png"} alt="" />
         </div>
       </motion.div>
     </div>

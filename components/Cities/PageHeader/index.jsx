@@ -1,7 +1,6 @@
 import { Container, Typography } from '@mui/material'
 import React from 'react'
 import styles from './index.module.scss'
-import imgs from '../../../assets/constants/imgs'
 import Image from 'next/image'
 const PageHeader = ({ dataCityData }) => {
 
@@ -11,21 +10,9 @@ const PageHeader = ({ dataCityData }) => {
       <Container maxWidth={false}>
         <div className={styles.sec_container}>
           <div className={styles.img_container}>
-            {/* <div className={styles.text_container}>
-              <ul>
-                <li>
-                  <a href="/">الرئيسية</a>
-                </li>
-                <li>
-                  <a href="/">الرئيسية</a>
-                </li>
-                <li>
-                  <a href="/">الرئيسية</a>
-                </li>
-              </ul>
-            </div> */}
+
             <div className={styles.img_box}>
-              <img src={dataCityData.icon} alt={dataCityData.name} />
+              <Image priority src={dataCityData.icon} alt={dataCityData.name} width={599} height={421} />
             </div>
 
           </div>

@@ -1,13 +1,10 @@
 import React from 'react'
 import styles from './index.module.scss'
 import { Container, Typography } from '@mui/material'
-import { imgs } from '@/assets/constants'
 import Image from 'next/image'
 
 const PageHeader = ({ dataAllCitiesMap }) => {
-  const {
-    KSA,
-  } = imgs
+
 
 
   return (
@@ -23,8 +20,8 @@ const PageHeader = ({ dataAllCitiesMap }) => {
         {dataAllCitiesMap === undefined &&
           <Image
             quality={100}
-
-            width={500} height={500} src={KSA.src} alt=" مناطق المملة العربية السعودية" />
+            priority
+            width={500} height={500} src={"/assets/imgs/KSA.jpg"} alt=" مناطق المملة العربية السعودية" />
         }
 
       </div>
