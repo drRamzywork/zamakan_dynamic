@@ -1,11 +1,8 @@
 import { Container, Typography } from '@mui/material'
-import React, { useRef } from 'react'
+import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { HiArrowLeft } from "react-icons/hi2";
-import { HiArrowRight } from "react-icons/hi2";
 import styles from './index.module.scss'
-import imgs from '@/assets/constants/imgs';
 import Link from 'next/link';
 
 

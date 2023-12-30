@@ -1,13 +1,8 @@
 import React, { useState } from "react";
-import { imgs } from "@/assets/constants";
 
-const GElements = ({ dataAllCitiesMap, dataAllPlacesMap }) => {
-  const { smallCity } = imgs
+const GElements = ({ dataAllCitiesMap }) => {
   const [activeCity, setActiveCity] = useState(null);
 
-  const handleCityClick = cityName => {
-    setActiveCity(activeCity === cityName ? null : cityName);
-  };
 
   const convertSVGPathsToJSX = (svgString) => {
     const paths = svgString.split("</path>");
