@@ -7,22 +7,22 @@ import { useRouter } from "next/router";
 const Effra = localFont({
   src: [
     {
-      path: '../../fonts/Effra_Md.ttf',
+      path: '../../public/fonts/Effra_Md.ttf',
       weight: '500',
       style: 'normal',
     },
     {
-      path: '../../fonts/Effra_Heavy.ttf',
+      path: '../../public/fonts/Effra_Heavy.ttf',
       weight: '700',
       style: 'normal',
     },
     {
-      path: '../../fonts/Effra_Rg.ttf',
+      path: '../../public/fonts/Effra_Rg.ttf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../../fonts/Effra-Bold.ttf',
+      path: '../../public/fonts/Effra-Bold.ttf',
       weight: '700',
       style: 'normal',
     },
@@ -32,7 +32,7 @@ const Effra = localFont({
 const Custom = localFont({
   src: [
     {
-      path: '../../fonts/custom.otf',
+      path: '../../public/fonts/custom.otf',
       weight: '500',
       style: 'normal',
     },
