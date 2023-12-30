@@ -267,6 +267,7 @@ export async function getStaticProps(context) {
       dataAllEras,
       dataPlaces
     },
+    revalidate: 10,
   };
 }
 

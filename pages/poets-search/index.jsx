@@ -292,7 +292,9 @@ export async function getStaticProps() {
       props: {
         erasAllEras,
         dataDefault
-      }
+      },
+      revalidate: 10,
+
     };
   } catch (error) {
     console.error(error);

@@ -350,6 +350,6 @@ export async function getStaticProps({ params }) {
     props: {
       sectionData,
     },
-
+    revalidate: 10,
   };
 }

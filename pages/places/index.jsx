@@ -497,7 +497,7 @@ export async function getStaticProps() {
         dataAllCitiesMap: [],
         error: error.message
       },
-
+      revalidate: 10,
     };
   }
 
@@ -508,6 +508,6 @@ export async function getStaticProps() {
       dataAllPoetries,
       dataAllCitiesMap
     },
-
+    revalidate: 10,
   };
 }

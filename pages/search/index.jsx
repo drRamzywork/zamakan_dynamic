@@ -84,9 +84,6 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
         </header>
       </nav>
       {isDataLoading === true ?
-
-
-
         <motion.div
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}
@@ -215,6 +212,7 @@ export async function getStaticProps() {
       initialPlacesData: placesData,
       initialPoetsData: poetsData,
     },
+    revalidate: 10,
   };
 
 }

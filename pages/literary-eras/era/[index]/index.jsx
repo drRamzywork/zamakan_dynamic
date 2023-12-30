@@ -100,7 +100,7 @@ export async function getStaticProps({ params }) {
       dataAllPoetries,
       poetsData
     },
-
+    revalidate: 10,
   };
 }
 
