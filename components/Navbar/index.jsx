@@ -151,7 +151,7 @@ const Navbar = (props) => {
                         </p>
 
                         <div className={styles.icon_container}>
-                          <img src={"/assets/imgs/potriesIcon.png"} alt="" />
+                          <img src={"/assets/imgs/PoetsTreasury.png"} alt="" />
                         </div>
                       </Link>
 
