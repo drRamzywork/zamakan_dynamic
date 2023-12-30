@@ -7,34 +7,50 @@ import { motion } from 'framer-motion'
 import { RotatingLines } from 'react-loader-spinner';
 import Image from 'next/image'
 
-const SearchPage = () => {
+const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
   const [query, setQuery] = useState('');
-  const [poetsData, setPoetsData] = useState(null);
-  const [placesData, setPlacesData] = useState(null);
+  const [poetsData, setPoetsData] = useState([]);
+  const [placesData, setPlacesData] = useState([]);
   const [isDataLoading, setIsdataLoading] = useState(false)
 
-  const handleSearch = async (e) => {
-    const query = e.target.value;
-    setQuery(query);
+
+  // Utility function to remove diacritics
+  const removeDiacritics = (text) => {
+    const diacritics = "ًٌٍَُِّْ";
+    for (let i = 0; i < diacritics.length; i++) {
+      text = text.replace(new RegExp(diacritics[i], 'g'), "");
+    }
+    return text;
+  };
+
+
+  const handleSearch = (e) => {
     setIsdataLoading(true);
 
-    if (query.length > 0) {
-      try {
-        const res = await fetch(`/api/search?query=${query}`);
-        if (!res.ok) {
-          throw new Error(`Error: ${res.status}`);
-        }
-        const data = await res.json();
-        setPlacesData(data.places.data);
-        setPoetsData(data.poets.data);
-      } catch (error) {
-        console.error("Failed to fetch data:", error);
-      } finally {
-        setIsdataLoading(false);
-      }
-    } else {
+    const searchText = e.target.value;
+    setQuery(searchText);
+
+    if (searchText.length > 0) {
+      const normalizedSearchText = removeDiacritics(searchText.toLowerCase());
+
+      const filteredPlaces = initialPlacesData?.filter(place =>
+        removeDiacritics(place?.name?.toLowerCase()).includes(normalizedSearchText)
+      );
+      setPlacesData(filteredPlaces);
+
+      const filteredPoets = initialPoetsData?.filter(poet =>
+        removeDiacritics(poet?.name?.toLowerCase()).includes(normalizedSearchText)
+      );
+      setPoetsData(filteredPoets);
       setIsdataLoading(false);
+
+    } else {
+      setPlacesData([]);
+      setPoetsData([]);
+      setIsdataLoading(false);
+
     }
+
   };
 
   const filteredPlaces = placesData?.filter(place => place.icon !== null && place.icon !== '');
@@ -98,6 +114,7 @@ const SearchPage = () => {
                 <div className={styles.places_container}>
                   {filteredPlaces.map((place) =>
                     <Link href={`/city/${place.id}`} key={place.id} >
+
                       <motion.div
                         animate={{ opacity: 1 }}
                         initial={{ opacity: 0 }}
@@ -135,7 +152,7 @@ const SearchPage = () => {
                     initial={{ opacity: 0 }}
                     transition={{ duration: 1, }}
                     className={styles.box} key={poet.id}>
-                    <a href={`/poet/${poet.id}`} >
+                    <Link href={`/poet/${poet.id}`} >
                       <div className={styles.poet_info}>
                         <div className={styles.img_container}>
                           <img src={poet.icon} alt={poet.name} />
@@ -161,7 +178,7 @@ const SearchPage = () => {
                         </Typography>
                       </div>
 
-                    </a>
+                    </Link>
 
                   </motion.div>
 
@@ -186,4 +203,19 @@ const SearchPage = () => {
 
 export default SearchPage
 
+export async function getStaticProps() {
+  const resPlaces = await fetch('https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&lang=2&pagenum=1&pagesize=50');
+  const placesData = await resPlaces.json();
+
+  const resPoets = await fetch('https://api4z.suwa.io/api/Poets/GetAllPoets?lang=2&pagenum=1&pagesize=50');
+  const poetsData = await resPoets.json();
+
+  return {
+    props: {
+      initialPlacesData: placesData,
+      initialPoetsData: poetsData,
+    },
+  };
+
+}
 

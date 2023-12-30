@@ -124,7 +124,7 @@ const Navbar = (props) => {
                     className={styles.nav_menu_container}
                   >
                     <div className={styles.links} onClick={() => setNavMenu(false)}>
-                      <a href='/literary-eras' className={`${styles.link} ${router.pathname.includes('/literary-eras') && styles.active}`}>
+                      <Link href='/literary-eras' className={`${styles.link} ${router.pathname.includes('/literary-eras') && styles.active}`}>
                         <p >
                           زمان الشعر
                         </p>
@@ -132,10 +132,10 @@ const Navbar = (props) => {
                         <div className={styles.icon_container}>
                           <FaCalendarAlt />
                         </div>
-                      </a>
+                      </Link>
 
 
-                      <a href='/places' className={`${styles.link} ${router.pathname.includes('/places') && styles.active}`}>
+                      <Link href='/places' className={`${styles.link} ${router.pathname.includes('/places') && styles.active}`}>
                         <p >
                           مكان الشعر
                         </p>
@@ -143,9 +143,9 @@ const Navbar = (props) => {
                         <div className={styles.icon_container}>
                           <MdLocationPin />
                         </div>
-                      </a>
+                      </Link>
 
-                      <a href='/public-treasury' className={`${styles.link} ${router.pathname.includes('/public-treasury') && styles.active}`}>
+                      <Link href='/public-treasury' className={`${styles.link} ${router.pathname.includes('/public-treasury') && styles.active}`}>
                         <p >
                           خزانة الشعر
                         </p>
@@ -153,11 +153,11 @@ const Navbar = (props) => {
                         <div className={styles.icon_container}>
                           <img src={"/assets/imgs/potriesIcon.png"} alt="" />
                         </div>
-                      </a>
+                      </Link>
 
 
 
-                      <a href='/poets' className={`${styles.link} ${router.pathname.includes('/poets') && styles.active}`}>
+                      <Link href='/poets-search' className={`${styles.link} ${router.pathname.includes('/poets-search') && styles.active}`}>
                         <p >
                           الشعراء
                         </p>
@@ -166,7 +166,7 @@ const Navbar = (props) => {
                           <img src={"/assets/imgs/potriesIcon.png"} alt="" />
                         </div>
 
-                      </a>
+                      </Link>
                     </div>
                   </motion.div>
                 </>
@@ -207,15 +207,15 @@ const Navbar = (props) => {
 
 
 
-              <a className={styles.logo} href={'/'}>
+              <Link className={styles.logo} href={'/'}>
                 <Image width={250} priority height={85} src={"/assets/imgs/logo.png"} alt="" />
-              </a>
+              </Link>
 
 
               <div className={styles.discover}>
-                <a href='/search' className={styles.search_icon}>
+                <Link href='/search' className={styles.search_icon}>
                   <Search />
-                </a>
+                </Link>
               </div>
 
             </div>

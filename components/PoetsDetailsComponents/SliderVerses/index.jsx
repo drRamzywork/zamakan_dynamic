@@ -19,7 +19,6 @@ export default function SliderVerses({ results }) {
   const contentRefs = useRef([]);
 
 
-  const filteredPlaces = results.filter(place => place.svgX !== null && place.svgY !== null);
 
 
   useEffect(() => {

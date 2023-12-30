@@ -154,7 +154,7 @@ export async function getStaticProps() {
       props: {
         erasAllEras,
       },
-      revalidate: 10,
+
     };
   } catch (error) {
     console.error('Failed to fetch API:', error);
@@ -164,7 +164,7 @@ export async function getStaticProps() {
         erasAllEras: [],
         error: 'API fetch failed',
       },
-      revalidate: 10,
+
     };
   }
 }

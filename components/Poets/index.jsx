@@ -13,8 +13,8 @@ import { RotatingLines } from 'react-loader-spinner';
 import { FaCheck } from "react-icons/fa6";
 
 
-const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
-  , setIsLayerActive }) => {
+const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetries
+  , setIsLayerActive, poetsData }) => {
   const [activePoet, setActivePoet] = useState(null);
   const [activeCity, setActiveCity] = useState(null);
   const [landElments, setLandElemnts] = useState([])
@@ -26,7 +26,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
   const [showMore, setShowMore] = useState(false);
   const [filteredPoets, setFilteredPoets] = useState([]);
   const [isFilterActive, setIsFilterActive] = useState(false);
-
 
   useEffect(() => {
     if (dataPoetsByEra && dataPoetsByEra?.length > 0) {
@@ -106,50 +105,30 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, isLayerActive
   const [cityData, setCityData] = useState(null)
   const [poetriesData, setPoetriesData] = useState(null)
   const [poetID, setPoetID] = useState(0);
+
   const handlePlaceWindow = async (placeId) => {
     setActiveCity(placeId);
-    try {
-      const response = await fetch(`/api/fetchCityData?placeId=${placeId}`);
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-      const { cityData, poetryData } = await response.json();
+    const filtredPlaces = dataAllPlaces.find((place) => place.id === placeId)
+    const filteredPoetries = dataAllPoetries?.filter((poetry) => poetry.placeId === placeId);
 
-      setCityData(cityData);
-      setIsLayerActive(true)
-      setPoetriesData(poetryData);
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-    }
+    setCityData(filtredPlaces);
+    setIsLayerActive(true)
+    setPoetriesData(filteredPoetries);
+
   };
 
   const handlePlaceActive = async (placeId) => {
     setActiveCity(placeId);
   };
 
-  const handlePoetData = async (poetID) => {
-    setIsMapLoading(true);
-    setPoetID(poetID)
-    try {
-      const resPoetPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?poet=${poetID}&lang=2&pagenum=1&pagesize=50`);
 
-      if (resPoetPlaces.status === 200) {
-        const dataPoetPlaces = await resPoetPlaces.json();
-        setPlaces(dataPoetPlaces);
-      } else {
-        // Handle non-200 responses here
-        console.error('Failed to fetch. Status:', resPoetPlaces.status);
-        setPlaces(null);
-      }
-    } catch (error) {
-      // Handle errors in fetching or JSON parsing
-      console.error('Error fetching data or parsing JSON:', error);
-      setPlaces(null);
-    } finally {
-      setIsMapLoading(false);
-    }
+
+  const handlePoetData = (poetID) => {
+    setIsMapLoading
+    const poetPlaces = poetsData[poetID];
+    setPlaces(poetPlaces);
+    setIsMapLoading(false);
   };
-
   const popUpRef = useRef(null);
   useEffect(() => {
     function handleClickOutside(event) {

@@ -40,11 +40,12 @@ const Custom = localFont({
   ],
 })
 export default function Layout({ children }) {
+  const router = useRouter();
   const combinedStyles = {
     ...Effra.style,
     ...Custom.style,
   };
-  const router = useRouter();
+
 
   return (
     <>

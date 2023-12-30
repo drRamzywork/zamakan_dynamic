@@ -4,7 +4,7 @@ import Poets from '@/components/Poets'
 import Head from 'next/head';
 import { motion } from 'framer-motion';
 import styles from '../../index.module.scss'
-const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAllCitiesMap }) => {
+const Era = ({ dataAllEras, eraDetails, poetsData, dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetries }) => {
   const [isLayerActive, setIsLayerActive] = useState(false);
   return (
     <>
@@ -31,7 +31,8 @@ const Era = ({ dataAllEras, eraDetails, dataPoetsByEra, dataAllPlacesMap, dataAl
 
         <LiteraryBanner eraDetails={eraDetails} dataAllEras={dataAllEras} />
         <Poets isLayerActive={isLayerActive}
-          setIsLayerActive={setIsLayerActive} dataPoetsByEra={dataPoetsByEra} dataAllCitiesMap={dataAllCitiesMap} dataAllPlacesMap={dataAllPlacesMap} />
+          dataAllPlaces={dataAllPlaces} dataAllPoetries={dataAllPoetries}
+          setIsLayerActive={setIsLayerActive} dataPoetsByEra={dataPoetsByEra} dataAllCitiesMap={dataAllCitiesMap} poetsData={poetsData} />
       </motion.div>
 
     </>
@@ -43,6 +44,8 @@ export default Era
 export async function getStaticProps({ params }) {
   const { index } = params;
   let eraDetails = null;
+
+
 
   try {
     const res = await fetch(`https://api4z.suwa.io/api/Zaman/GetEra?id=${index}&lang=2`);
@@ -62,8 +65,29 @@ export async function getStaticProps({ params }) {
   const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50`);
   const dataAllCitiesMap = await resAllCitiesMap.json();
 
-  const resAllPlacesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&lang=2&pagenum=1&pagesize=50`);
-  const dataAllPlacesMap = await resAllPlacesMap.json();
+
+
+  const resAllPlaces = await fetch('https://api4z.suwa.io/api/Makan/GetMakanFullData?lang=2');
+  const dataAllPlaces = await resAllPlaces.json();
+
+  const resAllPoetries = await fetch('https://api4z.suwa.io/api/Poetries/GetAllPoetries?lang=2&pagenum=1&pagesize=50');
+  const dataAllPoetries = await resAllPoetries.json();
+
+
+  let poetsData = {};
+
+  try {
+
+
+    for (const poet of dataPoetsByEra) {
+      const resPoetPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?poet=${poet.id}&lang=2&pagenum=1&pagesize=50`);
+      if (resPoetPlaces.ok) {
+        poetsData[poet.id] = await resPoetPlaces.json();
+      }
+    }
+  } catch (error) {
+    console.error('Error fetching poets data:', error);
+  }
 
 
   return {
@@ -71,10 +95,12 @@ export async function getStaticProps({ params }) {
       dataAllEras: dataAllEras,
       eraDetails,
       dataPoetsByEra,
-      dataAllCitiesMap: dataAllCitiesMap,
-      dataAllPlacesMap: dataAllPlacesMap,
+      dataAllCitiesMap,
+      dataAllPlaces,
+      dataAllPoetries,
+      poetsData
     },
-    revalidate: 10
+
   };
 }
 

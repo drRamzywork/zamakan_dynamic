@@ -18,83 +18,11 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
   const [age, setAge] = useState(0);
   const [results, setResults] = useState(dataPoetry);
 
-  const handleChange = async (event) => {
-    const selectedValue = event.target.value;
-    const res = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${router.query.id}&${selectedValue !== 0 ? `place=${selectedValue}` : ''}&lang=2&pagenum=1&pagesize=50 `);
-    const filteredData = await res.json();
-
-    setAge(selectedValue);
-    setResults(filteredData)
-    router.push(`/poet/${router.query.id}?verse=${selectedValue}`, undefined, { shallow: true });
-  };
 
 
-  const selectBoxStyles = {
-    m: 1,
-    minWidth: 120,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
-    padding: '10px 16px',
-    width: '199px',
-    height: '47px',
-    borderRadius: '30px',
-    marginRight: '0 !important',
-    '@media (max-width: 600px)': {
-      width: '140px',
-      marginTop: '0',
-      padding: '10px',
-      paddingRight: '26px',
-    },
-
-    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#E5E6F2',
-    },
-    '&:hover .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#E5E6F2',
-    },
-
-    '&:hover .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#E5E6F2',
-    },
 
 
-    '.MuiSelect-select': {
-      display: 'flex',
-      flexDirection: 'row-reverse',
-      outline: 'none !important',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      justifyContent: 'flex-end',
-      padding: '0px',
-      width: '167px',
-      height: '27px',
-      paddingRight: '0px !important',
 
-
-    },
-    '#demo-select-small': {
-      color: 'var(--main-blue-color)',
-      fontFamily: 'var(--effra-font)',
-      fontStyle: 'normal',
-      fontWeight: 400,
-      fontSize: '14px',
-      display: 'flex',
-      alignItems: 'center',
-      textAlign: 'right',
-    },
-
-
-  }
-
-  const CustomArrowIcon = styled(MdOutlineKeyboardArrowDown)({
-    width: '25px',
-    height: '25px',
-    right: '82% !important',
-    top: '19% !important',
-    color: ' #11292F',
-  });
 
 
   useEffect(() => {
@@ -297,40 +225,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                 >
                   <section className={styles.timelineSection}>
                     <div className={styles.slider_container}>
-                      {/* <div className={styles.filter_sec}>
-                        <div className={styles.shows}>
-                          <Typography dir='ltr'>
-                            <span>{results.length}</span> يتم عرض <span>{dataPoetry.length}</span> من
-                          </Typography>
-                        </div>
-                        <div className={styles.filter_methods}>
-                          <div className={styles.box}>
 
-                          </div>
-                          <div className={styles.box}>
-                            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                              <Select
-                                labelId="demo-select-small-label"
-                                id="demo-select-small"
-                                value={age}
-                                sx={selectBoxStyles}
-                                onChange={handleChange}
-                                IconComponent={CustomArrowIcon}
-
-                              >
-                                <MenuItem value={0} sx={menuItemStyle}>الجميع</MenuItem>
-                                {dataPlaces?.map((place, index) => (
-                                  <MenuItem key={place.id} value={place.id} sx={menuItemStyle}>
-                                    {place.name}
-                                  </MenuItem>
-                                ))}
-
-                              </Select>
-                            </FormControl>
-                          </div>
-                        </div>
-
-                      </div> */}
                       <div className="slider">
                         <SliderVerses results={results} />
                       </div>
@@ -372,7 +267,6 @@ export async function getStaticProps(context) {
       dataAllEras,
       dataPlaces
     },
-    revalidate: 10
   };
 }
 

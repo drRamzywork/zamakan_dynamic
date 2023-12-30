@@ -1,21 +1,14 @@
-
-import React, { useEffect, useRef, useState } from 'react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import 'swiper/css/grid';
-import { HiArrowLeft } from "react-icons/hi2";
-import { HiArrowRight } from "react-icons/hi2";
-
-import styles from './index.module.scss'; // Make sure this path is correct
+import React, { useEffect, useRef } from 'react';
+import { HiArrowLeft, HiArrowRight } from "react-icons/hi2";
+import styles from './index.module.scss';
 import { Typography } from '@mui/material';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const ITEMS_PER_PAGE = 10;
-import { motion } from 'framer-motion'
-export default function SliderVerses({ filtredPoets, onPoetsDataChange, currentPage, setCurrentPage }) {
-
-  // 
+const SliderVersesSearch = ({ filtredPoets, onPoetsDataChange, currentPage, setCurrentPage }) => {
   const totalPages = Math.ceil(filtredPoets?.length / ITEMS_PER_PAGE);
+
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -27,27 +20,28 @@ export default function SliderVerses({ filtredPoets, onPoetsDataChange, currentP
     (currentPage + 1) * ITEMS_PER_PAGE
   );
 
+  const previousPoetsToShow = useRef();
 
   useEffect(() => {
-    // Call the callback function whenever poetsToShow changes
-    onPoetsDataChange(poetsToShow);
-  }, [poetsToShow, onPoetsDataChange]);
-
-
+    if (JSON.stringify(poetsToShow) !== JSON.stringify(previousPoetsToShow.current)) {
+      onPoetsDataChange(poetsToShow);
+      previousPoetsToShow.current = poetsToShow;
+    }
+  }, [poetsToShow]);
 
 
   return (
     <>
-
-
       <div className={styles.sliderContainer}>
-        {poetsToShow.map((poet) => (
+        {poetsToShow?.map((poet) => (
           <motion.div
+            key={poet.id}
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
             transition={{ duration: 1, }}
             className={styles.box}>
-            <a href={`/poet/${poet.id}`}>
+            <Link href={`/poet/${poet.id}`}>
+
               <div className={styles.poet_info}>
                 <div className={styles.img_container}>
                   <img src={poet.icon} alt={poet.name} />
@@ -73,13 +67,13 @@ export default function SliderVerses({ filtredPoets, onPoetsDataChange, currentP
                 </Typography>
               </div>
 
-            </a>
+            </Link>
 
           </motion.div>
         ))}
       </div>
 
-      {filtredPoets.length > 1
+      {filtredPoets?.length > 1
         &&
         <div className={styles.paginationBox}>
           <div className={styles.paginationContainer}>
@@ -116,3 +110,6 @@ export default function SliderVerses({ filtredPoets, onPoetsDataChange, currentP
     </>
   );
 }
+
+
+export default SliderVersesSearch

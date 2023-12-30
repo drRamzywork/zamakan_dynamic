@@ -99,6 +99,6 @@ export async function getStaticProps() {
     props: {
       AllMainTopics,
     },
-    revalidate: 10,
+
   };
 }

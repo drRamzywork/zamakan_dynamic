@@ -17,7 +17,8 @@ import { RotatingLines } from 'react-loader-spinner';
 
 
 
-const Places = ({ dataAllCitiesMap }) => {
+const Places = ({ dataAllCitiesMap, dataAllPlaces,
+  dataAllPoetries }) => {
   const [isImageLoading, setIsImageLoading] = useState(true);
   const [landElments, setLandElemnts] = useState([])
   const [activeIndex, setActiveIndex] = useState(null);
@@ -108,19 +109,12 @@ const Places = ({ dataAllCitiesMap }) => {
 
   const handlePlaceWindow = async (placeId) => {
     setActiveCity(placeId);
+    const filtredPlaces = dataAllPlaces.find((place) => place.id === placeId)
+    const filteredPoetries = dataAllPoetries.filter((poetry) => poetry.placeId === placeId);
 
-    try {
-      const response = await fetch(`/api/fetchCityData?placeId=${placeId}`);
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-      const { cityData, poetryData } = await response.json();
+    setCityData(filtredPlaces);
+    setPoetriesData(filteredPoetries);
 
-      setPoetriesData(poetryData);
-      setCityData(cityData);
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-    }
   };
 
 
@@ -441,6 +435,7 @@ const Places = ({ dataAllCitiesMap }) => {
                     <ErasPlacesSlider places={places}
                       setActiveCity={setActiveCity}
                       activeCity={activeCity} onPlaceClick={handlePlaceWindow} />
+
                   </motion.div>
                 </AnimatePresence>
               }
@@ -465,29 +460,54 @@ export default Places
 
 
 export async function getStaticProps() {
+  let dataAllPlaces = [];
+  let dataAllPoetries = [];
+  let dataAllCitiesMap = [];
+
   try {
-    const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50`);
-    if (!resAllCitiesMap.ok) {
-      throw new Error(`HTTP error! Status: ${resAllCitiesMap.status}`);
+    // Fetch data for all places
+    const resAllPlaces = await fetch('https://api4z.suwa.io/api/Makan/GetMakanFullData?lang=2');
+    if (!resAllPlaces.ok) {
+      throw new Error(`Failed to fetch places: ${resAllPlaces.status}`);
     }
-    const dataAllCitiesMap = await resAllCitiesMap.json();
+    dataAllPlaces = await resAllPlaces.json();
 
+    // Fetch all poetries
+    const resAllPoetries = await fetch('https://api4z.suwa.io/api/Poetries/GetAllPoetries?lang=2&pagenum=1&pagesize=50');
+    if (!resAllPoetries.ok) {
+      throw new Error(`Failed to fetch poetries: ${resAllPoetries.status}`);
+    }
+    dataAllPoetries = await resAllPoetries.json();
 
-    return {
-      props: {
-        dataAllCitiesMap,
-      },
-      revalidate: 10,
-    };
+    // Fetch all cities map
+    const resAllCitiesMap = await fetch('https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50');
+    if (!resAllCitiesMap.ok) {
+      throw new Error(`Failed to fetch cities map: ${resAllCitiesMap.status}`);
+    }
+    dataAllCitiesMap = await resAllCitiesMap.json();
+
   } catch (error) {
-    console.error('Failed to fetch API:', error);
+    console.error('API fetch error:', error);
 
+    // Returning empty arrays in case of error to ensure the props structure is maintained
     return {
       props: {
+        dataAllPlaces: [],
+        dataAllPoetries: [],
         dataAllCitiesMap: [],
-        error: 'API fetch failed',
+        error: error.message
       },
-      revalidate: 10,
+
     };
   }
+
+  // Return the fetched data as props
+  return {
+    props: {
+      dataAllPlaces,
+      dataAllPoetries,
+      dataAllCitiesMap
+    },
+
+  };
 }

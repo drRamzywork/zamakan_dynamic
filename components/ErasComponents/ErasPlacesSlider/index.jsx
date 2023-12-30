@@ -4,7 +4,6 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import styles from './index.module.scss'
 import { Typography } from '@mui/material';
-import Image from 'next/image';
 import { RotatingLines } from 'react-loader-spinner';
 
 import { Pagination, } from 'swiper/modules';

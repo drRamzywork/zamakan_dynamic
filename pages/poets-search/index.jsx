@@ -3,15 +3,12 @@ import React, { useCallback, useEffect, useState } from 'react'
 import styles from './index.module.scss'
 import { styled } from '@mui/system';
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import SliderVerses from '../../components/PoetDetails/SliderVerses'
 import { Search } from '@/assets/svgsComponents';
-import { useRouter } from 'next/router';
-import axios from 'axios';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import Head from 'next/head';
+import SliderVersesSearch from '@/components/PoetDetails/SliderVersesSearch';
 
-const Poets = ({ erasAllEras, dataDefault }) => {
-  const router = useRouter();
+const poetsSearch = ({ erasAllEras, dataDefault }) => {
   const [age, setAge] = useState(0);
   const [filtredPoets, setFiltredPoets] = useState(dataDefault);
   const [poetsData, setPoetsData] = useState([]);
@@ -20,49 +17,55 @@ const Poets = ({ erasAllEras, dataDefault }) => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
 
-
-  const handleChange = async (event) => {
+  const handleChange = (event) => {
     const selectedValue = event.target.value;
-    let url = `https://api4z.suwa.io/api/Poets/GetAllPoets?lang=2&pagenum=1&pagesize=50`;
+    setAge(selectedValue);
 
-    if (selectedValue === true) {
-      url += '&bornInSaudi=true';
+    let filteredData = [];
+
+    if (selectedValue) {
+      // Filter for poets born in Saudi
+      filteredData = dataDefault.filter(poet => poet.bornInSaudi === true);
+
     } else if (selectedValue !== 0) {
-
-      url += `&era=${selectedValue}`;
+      // Filter for poets belonging to a specific era
+      filteredData = dataDefault.filter(poet => poet.zamanId === selectedValue);
+    } else {
+      // If no specific filter is selected, show all poets
+      filteredData = dataDefault;
     }
 
-    const res = await fetch(url);
-    const filteredData = await res.json();
-
-    setAge(selectedValue);
     setFiltredPoets(filteredData);
-    router.push(`/poets?place=${selectedValue}`, undefined, { shallow: true });
   };
 
-  const handleSearch = useCallback(async () => {
+
+  const handleSearch = useCallback(() => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const response = await axios.get(
-        `https://api4z.suwa.io/api/Poets/GetAllPoets`,
-        {
-          params: {
-            searchString: searchString,
-            pagenum: 1,
-            pagesize: 50
-          }
-        }
+      const normalizedSearchString = removeDiacritics(searchString.toLowerCase());
+      const filteredData = dataDefault.filter(poet =>
+        removeDiacritics(poet.name.toLowerCase()).includes(normalizedSearchString)
       );
-      setFiltredPoets(response.data);
+
+      setFiltredPoets(filteredData);
       setIsLoading(false);
-      setCurrentPage(0); // Resetting the currentPage to 0 when a new search is performed
+      setCurrentPage(0);
     } catch (error) {
-      setError(error);
+      setError('Error occurred while filtering');
       setIsLoading(false);
     }
-  }, [searchString]);
+  }, [searchString, dataDefault]);
+
+
+  const removeDiacritics = (text) => {
+    const diacritics = "ًٌٍَُِّْ";
+    for (let i = 0; i < diacritics.length; i++) {
+      text = text.replace(new RegExp(diacritics[i], 'g'), "");
+    }
+    return text;
+  };
 
 
   const selectBoxStyles = {
@@ -170,7 +173,7 @@ const Poets = ({ erasAllEras, dataDefault }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <section id='poets' className='poets'>
+      <section id='poets' className='poets' >
         <Container maxWidth={false}>
 
           <div className={styles.tabContent_container} dir='rtl'>
@@ -182,7 +185,7 @@ const Poets = ({ erasAllEras, dataDefault }) => {
                 <div className={styles.filter_sec}>
                   <div className={styles.shows}>
                     <Typography dir='ltr'>
-                      <span>{filtredPoets?.length}</span> يتم عرض <span>{poetsData.length}</span> من
+                      <span>{filtredPoets?.length}</span> يتم عرض <span>{poetsData?.length}</span> من
                     </Typography>
                   </div>
                   <div className={styles.filter_methods}>
@@ -226,7 +229,7 @@ const Poets = ({ erasAllEras, dataDefault }) => {
                         >
                           <MenuItem value={0} sx={menuItemStyle}>جميع العصور</MenuItem>
                           <MenuItem value={true} sx={menuItemStyle}>شعراء عاشوا في المملكة</MenuItem>
-                          {erasAllEras.map((era, index) => (
+                          {erasAllEras?.map((era) => (
                             <MenuItem key={era.id} value={era.id} sx={menuItemStyle}>
                               {era.name}
                             </MenuItem>
@@ -240,7 +243,7 @@ const Poets = ({ erasAllEras, dataDefault }) => {
 
                 </div>
                 <div className="slider">
-                  <SliderVerses filtredPoets={filtredPoets} onPoetsDataChange={handlePoetsData} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                  <SliderVersesSearch filtredPoets={filtredPoets} onPoetsDataChange={handlePoetsData} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                 </div>
 
                 {filtredPoets?.length === 0 &&
@@ -269,9 +272,9 @@ const Poets = ({ erasAllEras, dataDefault }) => {
   )
 }
 
-export default Poets
+export default poetsSearch
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
     const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
     if (!resAllEras.ok) {
