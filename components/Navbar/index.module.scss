@@ -273,6 +273,10 @@
   .lang_menu_container {
     left: unset !important;
     right: 0px !important;
+
+    .link {
+      padding: 0 !important;
+    }
   }
   .nav_menu_container {
     left: 0%;
