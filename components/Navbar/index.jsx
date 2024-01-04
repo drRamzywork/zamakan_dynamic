@@ -12,11 +12,14 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
 import Image from 'next/image';
 
+import languagesData from '../../public/locales/allLanguagesData.json'
+
+import { useTranslation } from 'next-i18next';
+
 
 function HideOnScroll(props) {
   const { children } = props;
   const trigger = useScrollTrigger();
-
   return (
     <Slide appear={false} direction="down" in={!trigger}>
       {children}
@@ -29,15 +32,18 @@ function HideOnScroll(props) {
 
 
 const Navbar = (props) => {
-  const router = useRouter()
+  const { t } = useTranslation("common");
 
+  const router = useRouter()
   const [window, setWindow] = useState(undefined);
 
   useEffect(() => {
     setWindow(window);
   }, []);
 
+
   const [navMenu, setNavMenu] = useState(false);
+  const [langMenu, setLangMenu] = useState(false);
 
 
 
@@ -86,6 +92,7 @@ const Navbar = (props) => {
     },
   };
   const navMenuRef = useRef(null);
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (navMenuRef.current && !navMenuRef.current.contains(event.target)) {
@@ -101,6 +108,7 @@ const Navbar = (props) => {
   }, [navMenuRef]);
 
 
+
   return (
     <>
       <CssBaseline />
@@ -110,9 +118,10 @@ const Navbar = (props) => {
           background: `#062a30`,
         }} elevation={0} >
 
-          <Container maxWidth={false} dir='rtl' className={styles.navbar}>
+          <Container maxWidth={false} className={styles.navbar}>
             <div className={styles.sec_container}
-              ref={navMenuRef}>
+              ref={navMenuRef}
+              dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
               {navMenu &&
                 <>
 
@@ -126,7 +135,7 @@ const Navbar = (props) => {
                     <div className={styles.links} onClick={() => setNavMenu(false)}>
                       <Link href='/literary-eras' className={`${styles.link} ${router.pathname.includes('/literary-eras') && styles.active}`}>
                         <p >
-                          زمان الشعر
+                          {t("age")}
                         </p>
 
                         <div className={styles.icon_container}>
@@ -137,7 +146,7 @@ const Navbar = (props) => {
 
                       <Link href='/places' className={`${styles.link} ${router.pathname.includes('/places') && styles.active}`}>
                         <p >
-                          مكان الشعر
+                          {t("place")}
                         </p>
 
                         <div className={styles.icon_container}>
@@ -147,11 +156,20 @@ const Navbar = (props) => {
 
                       <Link href='/public-treasury' className={`${styles.link} ${router.pathname.includes('/public-treasury') && styles.active}`}>
                         <p >
-                          خزانة الشعر
+                          {t("poetryarchive")}
                         </p>
 
                         <div className={styles.icon_container}>
                           <img src={"/assets/imgs/PoetsTreasury.png"} alt="" />
+                        </div>
+                      </Link>
+                      <Link href='/search' className={`${styles.link} ${router.pathname.includes('/search') && styles.active}`}>
+                        <p >
+                          {t("search")}
+                        </p>
+
+                        <div className={styles.icon_container}>
+                          <Search />
                         </div>
                       </Link>
 
@@ -159,7 +177,7 @@ const Navbar = (props) => {
 
                       <Link href='/poets-search' className={`${styles.link} ${router.pathname.includes('/poets-search') && styles.active}`}>
                         <p >
-                          الشعراء
+                          {t("poets")}
                         </p>
 
                         <div className={styles.icon_container}>
@@ -172,6 +190,45 @@ const Navbar = (props) => {
                 </>
               }
 
+
+              <motion.div
+                initial="closed"
+                animate={langMenu ? "open" : "closed"}
+                variants={variants}
+                transition={{ duration: 0.5, type: "tween" }}
+                className={styles.lang_menu_container}
+              >
+                <div className={styles.links} >
+                  {languagesData.map((language) => {
+                    if (router.locale !== language.shortCut) {
+                      return (
+                        <a href={`/${language.shortCut}${router.asPath}`} key={language.id} className={`${styles.link}`}>
+
+
+                          <p >
+                            {language.shortCut.toUpperCase()}
+                          </p>
+
+                          <div className={styles.icon_container}>
+                            {language.image && (
+                              <Image
+                                src={language.image}
+                                alt={`Flag of ${language.name}`}
+                                width={20.7}
+                                height={12.88}
+                              />
+                            )}
+                          </div>
+                        </a>
+                      );
+                    }
+                  })}
+
+
+
+
+                </div>
+              </motion.div>
 
               <div className={styles.burger_icon} onClick={() => setNavMenu(!navMenu)}>
                 <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -206,16 +263,14 @@ const Navbar = (props) => {
               </div>
 
 
-
               <Link className={styles.logo} href={'/'}>
                 <Image width={250} priority height={85} src={"/assets/imgs/logo.png"} alt="" />
               </Link>
 
-
-              <div className={styles.discover}>
-                <Link href='/search' className={styles.search_icon}>
-                  <Search />
-                </Link>
+              <div className={styles.lang} onClick={() => setLangMenu(!langMenu)}>
+                <p>
+                  {router.locale.toUpperCase()}
+                </p>
               </div>
 
             </div>

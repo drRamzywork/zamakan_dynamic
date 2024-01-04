@@ -3,8 +3,12 @@ import { Box, Container, Grid, Typography, } from '@mui/material';
 import styles from './index.module.scss';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { useTranslation } from 'next-i18next';
+
+
 const Footer = () => {
   const router = useRouter()
+  const { t } = useTranslation("common");
 
   return (
     <footer className={
@@ -51,7 +55,7 @@ const Footer = () => {
         </Box>
 
         <Typography >
-          جميع الحقوق محفوظة © 2023
+          {t("allrightsreserved")} © 2023
         </Typography>
 
       </Container>

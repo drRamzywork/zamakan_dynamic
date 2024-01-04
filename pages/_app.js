@@ -1,8 +1,9 @@
 import Layout from "@/components/Layout";
 import "@/styles/globals.scss";
-
-import App from "next/app";
 import Head from "next/head";
+import DataContext from "@/context/DataContext";
+import { useEffect, useState } from "react";
+import { appWithTranslation } from "next-i18next";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -38,19 +39,11 @@ function MyApp({ Component, pageProps }) {
           content="https://zamakanweb1.suwa.io/logo_mobile_footer.png"
         />
       </Head>
-
-      <Component {...pageProps} />
+      <DataContext.Provider>
+        <Component {...pageProps} />
+      </DataContext.Provider>
     </Layout>
   );
 }
 
-MyApp.getInitialProps = async (appContext) => {
-  // Call the page's `getInitialProps` and fill `pageProps`
-  const pageProps = await App.getInitialProps(appContext);
-
-  // Perform additional operations if needed
-
-  return { pageProps };
-};
-
-export default MyApp;
+export default appWithTranslation(MyApp);

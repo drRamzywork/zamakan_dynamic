@@ -36,11 +36,23 @@
       }
     }
   }
+  .lang_menu_container {
+    left: 0%;
 
+    .link {
+      padding-right: 0 !important;
+      justify-content: center !important;
+      p {
+      }
+    }
+  }
+  .nav_menu_container {
+    right: 0%;
+  }
+  .lang_menu_container,
   .nav_menu_container {
     position: absolute;
     top: 120px;
-    right: 0%;
     width: 80vw;
     height: 100vh;
     z-index: -122;
@@ -111,9 +123,16 @@
           }
 
           svg {
-            width: 30px;
-            height: 30px;
+            width: 26px;
+            height: 26px;
             color: #713540;
+            path {
+              stroke: #713540;
+            }
+
+            line {
+              stroke: #713540;
+            }
           }
         }
         &:not(:last-child) {
@@ -162,94 +181,197 @@
     }
   }
 
-  .discover {
+  .lang {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: row;
+    border: 0.8px solid #11292f;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    border-radius: 50%;
+    min-width: inherit !important;
 
-    .search_icon {
+    @media screen and (max-width: 992px) {
+      width: 40px;
+      height: 40px;
+    }
+    &:hover {
+      background-color: #ffffff !important;
+      p {
+        color: var(--main-blue-color);
+      }
+    }
+    p {
       cursor: pointer;
 
-      svg {
-        path,
-        line {
-          stroke: var(--main-white-color);
-        }
-      }
-
-      color: var(--main-white-color);
-      &:hover {
-        background-color: var(--main-white-color);
-        svg {
-          path,
-          line {
-            stroke: rgba(17, 41, 47, 1) !important;
-          }
-        }
-      }
-    }
-
-    button.lang {
-      margin-right: 24px;
-      margin-left: 24px;
-
-      @media screen and (max-width: 992px) {
-        margin-right: 10px;
-        margin-left: 10px;
-      }
-      padding-bottom: 0;
-      padding-top: 6px;
-      font-size: 18px;
-      font-weight: 400;
-      font-family: var(--effra-font);
-      color: var(--main-white-color);
+      margin: auto;
       transition: all 0.3s ease-in-out;
-      @media screen and (max-width: 992px) {
-        font-size: 11.25px;
-        padding-top: 0px;
-      }
-
-      &:hover {
-        background-color: var(--main-white-color);
-        color: rgba(17, 41, 47, 1) !important;
-      }
-    }
-
-    .btn_container {
-      button {
-        width: 154px;
-        height: 48px;
-        color: var(--main-white-color);
-        font-size: 18px;
-        font-weight: 700;
-        font-family: var(--effra-font);
-        border-radius: 33px;
-        border: 1px solid var(--primary-dark-green, #11292f);
-        line-height: 0;
-        transition: all 0.3s ease-in-out;
-
-        @media screen and (max-width: 992px) {
-          width: fit-content;
-          height: 60px;
-          font-size: 16px;
-        }
-        &:hover {
-          @media screen and (min-width: 992px) {
-            color: #11292f;
-            background-color: var(--main-white-color);
-          }
-        }
-
-        cursor: pointer;
-      }
+      color: #ffffff;
     }
   }
 
   // Groups
   .burger_icon,
-  .search_icon,
   .lang {
+    transition: all 0.3s ease-in-out;
+
+    cursor: pointer;
+    background-color: transparent;
+
+    border: 0.8px solid #11292f;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    border-radius: 50%;
+    min-width: inherit !important;
+
+    @media screen and (max-width: 992px) {
+      width: 40px;
+      height: 40px;
+    }
+
+    img,
+    svg {
+      margin: auto;
+    }
+  }
+}
+
+// En
+.sec_container[dir="ltr"] {
+  .burger_icon {
+    cursor: pointer;
+    border: 0.8px solid #11292f;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    border-radius: 50%;
+    // transition: all 0.3s ease-in-out ;
+    min-width: inherit !important;
+    img {
+      margin: auto;
+    }
+
+    svg {
+      path {
+        stroke: var(--main-white-color);
+      }
+    }
+
+    &:hover {
+      background-color: var(--main-white-color);
+
+      svg {
+        path,
+        line {
+          stroke: rgba(17, 41, 47, 1) !important;
+        }
+      }
+    }
+  }
+  .lang_menu_container {
+    left: unset !important;
+    right: 0px !important;
+  }
+  .nav_menu_container {
+    left: 0%;
+  }
+  .lang_menu_container,
+  .nav_menu_container {
+    position: absolute;
+    top: 120px;
+    width: 80vw;
+    height: 100vh;
+    z-index: -122;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: fit-content;
+    background-color: #e6ddc6;
+    // border-radius: 16px;
+    overflow: hidden;
+    @media screen and (max-width: 450px) {
+      top: 80px;
+    }
+
+    @media screen and (min-width: 992px) {
+      width: 21vw;
+    }
+    .links {
+      width: 100%;
+      .link {
+        padding-left: 56px;
+        p {
+          color: var(--main-blue-color);
+          font-family: var(--effra-font);
+          font-size: 24px;
+          font-weight: 400;
+          letter-spacing: 0em;
+          text-align: center;
+          transition: all 0.3s ease-in-out;
+          display: block;
+        }
+        // border-radius: 30px;
+
+        @media screen and (min-width: 992px) {
+          &:hover {
+            p {
+              color: var(--main-white-color);
+            }
+            background-color: #daceaf;
+          }
+        }
+
+        &.active {
+          p {
+            color: var(--main-white-color);
+          }
+          background-color: #daceaf;
+        }
+
+        .icon_container {
+          margin-right: 16px;
+        }
+      }
+    }
+  }
+
+  .lang {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.8px solid #11292f;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    border-radius: 50%;
+    min-width: inherit !important;
+
+    @media screen and (max-width: 992px) {
+      width: 40px;
+      height: 40px;
+    }
+    &:hover {
+      background-color: #ffffff !important;
+      p {
+        color: var(--main-blue-color);
+      }
+    }
+    p {
+      cursor: pointer;
+
+      margin: auto;
+      transition: all 0.3s ease-in-out;
+      color: #ffffff;
+    }
+  }
+
+  .burger_icon,
+  .lang {
+    transition: all 0.3s ease-in-out;
+
     cursor: pointer;
     background-color: transparent;
 
