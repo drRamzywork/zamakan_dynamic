@@ -14,8 +14,6 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
   const [placesData, setPlacesData] = useState([]);
   const [isDataLoading, setIsdataLoading] = useState(false)
 
-
-  // Utility function to remove diacritics
   const removeDiacritics = (text) => {
     const diacritics = "ًٌٍَُِّْ";
     for (let i = 0; i < diacritics.length; i++) {
@@ -56,7 +54,6 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
 
   const filteredPlaces = placesData?.filter(place => place.icon !== null && place.icon !== '');
 
-
   return (
     <>
       <nav id='search' className={styles.search} dir='rtl'>
@@ -84,6 +81,7 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
           </Container>
         </header>
       </nav>
+
       {isDataLoading === true ?
         <motion.div
           animate={{ opacity: 1 }}
@@ -99,8 +97,6 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
           />
         </motion.div>
         :
-
-
         <section id='results' className={styles.results} dir='rtl'>
           <Container maxWidth={false}>
             {placesData && filteredPlaces?.length !== 0 &&
@@ -179,8 +175,6 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
                     </Link>
 
                   </motion.div>
-
-
                 )
               }
             </div>
@@ -215,10 +209,9 @@ export async function getStaticProps({ locale }) {
     props: {
       initialPlacesData: placesData,
       initialPoetsData: poetsData,
+      ...(await serverSideTranslations(locale, ["common"])),
     },
     revalidate: 10,
-    ...(await serverSideTranslations(locale, ["common"])),
-
   };
 
 }
