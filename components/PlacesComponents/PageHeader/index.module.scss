@@ -56,3 +56,24 @@
     }
   }
 }
+
+.page_header[dir="ltr"] {
+  .img_container {
+    transform: scaleX(-1);
+  }
+
+  h3 {
+    margin: 0 !important;
+    font-family: var(--req3a-font);
+    font-size: 110px;
+    line-height: 80px;
+    letter-spacing: 1px;
+    text-align: left;
+    color: rgba(238, 228, 184, 1);
+
+    @media screen and (max-width: 450px) {
+      font-size: 55px;
+      line-height: 40px;
+    }
+  }
+}

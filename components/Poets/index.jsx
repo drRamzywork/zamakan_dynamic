@@ -1,4 +1,4 @@
-import { Container, Typography, Button } from '@mui/material'
+import { Container, Typography, } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './index.module.scss'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -11,6 +11,8 @@ import { MdLocationPin } from "react-icons/md";
 import { CloseIcon, LeftArrow } from '@/assets/svgsComponents';
 import { RotatingLines } from 'react-loader-spinner';
 import { FaCheck } from "react-icons/fa6";
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 
 const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetries
@@ -26,7 +28,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
   const [showMore, setShowMore] = useState(false);
   const [filteredPoets, setFilteredPoets] = useState([]);
   const [isFilterActive, setIsFilterActive] = useState(false);
-
+  const router = useRouter();
   useEffect(() => {
     if (dataPoetsByEra && dataPoetsByEra?.length > 0) {
       if (isFilterActive) {
@@ -37,7 +39,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
       }
     }
   }, [isFilterActive, dataPoetsByEra]);
-
+  const { t } = useTranslation('common');
 
   const toggleFilter = () => {
     setIsFilterActive(prev => !prev);
@@ -150,7 +152,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
 
   return (
     <>
-      <section id='Poets' className={styles.Poets} dir='rtl'>
+      <section id='Poets' className={styles.Poets} dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
         <Container maxWidth={false} >
           <motion.div
             animate={{ opacity: 1 }}
@@ -169,7 +171,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
 
               </motion.div>
               <p className={isFilterActive && styles.active}>
-                شعراء عاشوا في المملكة
+                {t("poetswholivedintheKingdomofSaudiArabia")}
               </p>
             </div>
 
@@ -201,7 +203,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
                     spaceBetween: 10,
                   },
                 }}
-                dir={'rtl'}
+                dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}
                 className={styles.swiper_container}
               >
                 {
@@ -233,7 +235,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
                     {dataPoetsByEra[activePoet]?.descShort}
                     <Link href={`/poet/${dataPoetsByEra[activePoet]?.id}`} className={styles.more}>
                       <Typography>
-                        البطاقة التعريفية بالشاعر
+                        {t("poetProfile")}
                         <div className={styles.icon_container}>
                           <LeftArrow />
                         </div>

@@ -38,6 +38,8 @@
   }
   .lang_menu_container {
     left: 0%;
+    border-radius: 10px;
+    width: 200px !important;
 
     .link {
       padding-right: 0 !important;
@@ -306,7 +308,8 @@
     .links {
       width: 100%;
       .link {
-        padding-left: 56px;
+        padding-left: 46px;
+        padding-right: 0 !important;
         p {
           color: var(--main-blue-color);
           font-family: var(--effra-font);
@@ -319,6 +322,9 @@
         }
         // border-radius: 30px;
 
+        @media screen and (max-width: 992px) {
+          padding-left: 5px;
+        }
         @media screen and (min-width: 992px) {
           &:hover {
             p {

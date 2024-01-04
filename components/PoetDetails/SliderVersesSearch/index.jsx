@@ -4,11 +4,12 @@ import styles from './index.module.scss';
 import { Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const ITEMS_PER_PAGE = 10;
 const SliderVersesSearch = ({ filtredPoets, onPoetsDataChange, currentPage, setCurrentPage }) => {
   const totalPages = Math.ceil(filtredPoets?.length / ITEMS_PER_PAGE);
-
+  const router = useRouter();
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -32,7 +33,7 @@ const SliderVersesSearch = ({ filtredPoets, onPoetsDataChange, currentPage, setC
 
   return (
     <>
-      <div className={styles.sliderContainer}>
+      <div className={styles.sliderContainer} dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
         {poetsToShow?.map((poet) => (
           <motion.div
             key={poet.id}

@@ -7,22 +7,25 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Link from 'next/link'
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next';
+
 
 
 const LiteraryBanner = (props) => {
+  const { t } = useTranslation("common");
   const { query } = useRouter();
   const eraIndex = query.index ? Number(query.index) : 0;
-
+  const router = useRouter();
   return (
 
     <>
-      <section id='LiteraryBanner' className={styles.LiteraryBanner} >
+      <section id='LiteraryBanner' className={styles.LiteraryBanner} dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
         <div className={styles.sec_container}>
 
           <Container maxWidth={false} className={styles.leftSide}>
             <div className={styles.sec_title}>
               <Typography variant='h1'>
-                شعراء العصر
+                {t("poetsOfTheEra")}
               </Typography>
             </div>
           </Container>
@@ -46,9 +49,9 @@ const LiteraryBanner = (props) => {
 
       </section >
       <Container maxWidth={false} className={styles.leftSide}>
-        <div className={styles.swiper_container}>
+        <div className={styles.swiper_container} dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
           <Swiper
-            dir="rtl"
+            dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}
             breakpoints={{
               300: {
                 slidesPerView: 1.8,

@@ -2,13 +2,22 @@ import React from 'react'
 import styles from './index.module.scss'
 import { Container, Typography } from '@mui/material'
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 
 const PageHeader = ({ dataAllCitiesMap }) => {
+  const { t } = useTranslation("common");
+  const fullText = t("exploreplacesbyregion");
+  const router = useRouter();
+  // Split the text into words
+  const words = fullText.split(" ");
 
-
+  // Group the words into two parts
+  const firstPart = words.slice(0, 2).join(" ");
+  const secondPart = words.slice(1).join(" ");
 
   return (
-    <div id='page-header' className={styles.page_header}>
+    <div id='page-header' className={styles.page_header} dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
       <div className={styles.img_container}>
         {dataAllCitiesMap &&
           <Image
@@ -28,9 +37,9 @@ const PageHeader = ({ dataAllCitiesMap }) => {
       <Container maxWidth={false}>
         <div className={styles.sec_title}>
           <Typography variant='h3'>
-            استكشف الأماكن
+            {firstPart}
             < br />
-            عبر المناطق
+            {secondPart}
           </Typography>
         </div>
       </Container>

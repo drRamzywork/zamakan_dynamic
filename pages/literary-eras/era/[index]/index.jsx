@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import LiteraryBanner from '@/components/LiteraryBanner'
-import Poets from '@/components/Poets'
+import React, { useState } from 'react';
+import LiteraryBanner from '@/components/LiteraryBanner';
+import Poets from '@/components/Poets';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
-import styles from '../../index.module.scss'
+import styles from '../../index.module.scss';
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 const Era = ({ dataAllEras, eraDetails, poetsData, dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetries }) => {
   const [isLayerActive, setIsLayerActive] = useState(false);
   return (
@@ -41,14 +42,17 @@ const Era = ({ dataAllEras, eraDetails, poetsData, dataPoetsByEra, dataAllCities
 
 export default Era
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
   const { index } = params;
   let eraDetails = null;
 
 
+  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langId = process.env[langIdEnvKey];
+
 
   try {
-    const res = await fetch(`https://api4z.suwa.io/api/Zaman/GetEra?id=${index}&lang=2`);
+    const res = await fetch(`https://api4z.suwa.io/api/Zaman/GetEra?id=${index}&lang=${langId}`);
     if (res.ok) {
       eraDetails = await res.json();
     }
@@ -56,21 +60,21 @@ export async function getStaticProps({ params }) {
     console.error('Failed to fetch era details:', error);
   }
 
-  const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
+  const resAllEras = await fetch(`https://api4z.suwa.io/api/Zaman/GetAllEras?lang=${langId}&pagenum=1&pagesize=50`);
   const dataAllEras = await resAllEras.json();
 
-  const resPoetsByEra = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?era=${index}&lang=2&pagenum=1&pagesize=50`);
+  const resPoetsByEra = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?era=${index}&lang=${langId}&pagenum=1&pagesize=50`);
   const dataPoetsByEra = await resPoetsByEra.json();
 
-  const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50`);
+  const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=${langId}&withPlaces=true&pagenum=1&pagesize=50`);
   const dataAllCitiesMap = await resAllCitiesMap.json();
 
 
 
-  const resAllPlaces = await fetch('https://api4z.suwa.io/api/Makan/GetMakanFullData?lang=2');
+  const resAllPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?lang=${langId}`);
   const dataAllPlaces = await resAllPlaces.json();
 
-  const resAllPoetries = await fetch('https://api4z.suwa.io/api/Poetries/GetAllPoetries?lang=2&pagenum=1&pagesize=50');
+  const resAllPoetries = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?lang=${langId}&pagenum=1&pagesize=50`);
   const dataAllPoetries = await resAllPoetries.json();
 
 
@@ -80,7 +84,7 @@ export async function getStaticProps({ params }) {
 
 
     for (const poet of dataPoetsByEra) {
-      const resPoetPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?poet=${poet.id}&lang=2&pagenum=1&pagesize=50`);
+      const resPoetPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?poet=${poet.id}&lang=${langId}&pagenum=1&pagesize=50`);
       if (resPoetPlaces.ok) {
         poetsData[poet.id] = await resPoetPlaces.json();
       }
@@ -98,7 +102,9 @@ export async function getStaticProps({ params }) {
       dataAllCitiesMap,
       dataAllPlaces,
       dataAllPoetries,
-      poetsData
+      poetsData,
+      ...(await serverSideTranslations(locale, ["common"])),
+
     },
     revalidate: 10,
   };

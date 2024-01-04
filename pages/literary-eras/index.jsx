@@ -8,15 +8,28 @@ import Link from 'next/link';
 import Image from 'next/image'
 import Head from 'next/head'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from 'next/router';
 
 
 const LiteraryEras = ({ erasAllEras }) => {
+  const { t } = useTranslation("common");
+  const router = useRouter();
+  const fullText = t("explorepoetsthroughtheages");
+
+  // Split the text into words
+  const words = fullText.split(" ");
+
+  // Group the words into two parts
+  const firstPart = words.slice(0, 2).join(" ");
+  const secondPart = words.slice(2).join(" ");
 
 
   return (
     <>
       <Head>
-        <title>العصور الأدبية التاريخية</title>
+        <title>{t("historicalLiteraryEras")}</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -28,7 +41,7 @@ const LiteraryEras = ({ erasAllEras }) => {
       </Head>
 
 
-      < section id='LiteraryEras' className={styles.LiteraryEras} >
+      < section id='LiteraryEras' className={styles.LiteraryEras} dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
         <Container maxWidth={false} >
           <motion.div
             animate={{ opacity: 1 }}
@@ -36,12 +49,13 @@ const LiteraryEras = ({ erasAllEras }) => {
             transition={{ duration: 1, }}
             className={styles.sec_container}>
             <div className={styles.sec_title}>
+
               <Typography variant='h1'>
-                استكشف الشعراء
+
+                {firstPart}
                 <br />
-                <span>
-                  عبر العصور
-                </span>
+                <span>{secondPart}</span>
+
               </Typography>
             </div>
 
@@ -69,13 +83,14 @@ const LiteraryEras = ({ erasAllEras }) => {
 
 
       <motion.div
+        dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
         transition={{ duration: 1, }}
         className={styles.swiper_container}>
         <Container maxWidth={false} className={styles.leftSide}>
           <Swiper
-            dir="rtl"
+            dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}
             breakpoints={{
               300: {
                 slidesPerView: 1.2,
@@ -140,9 +155,14 @@ const LiteraryEras = ({ erasAllEras }) => {
 export default LiteraryEras
 
 
-export async function getStaticProps() {
+
+
+export async function getStaticProps({ locale }) {
+  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langId = process.env[langIdEnvKey];
+
   try {
-    const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
+    const resAllEras = await fetch(`https://api4z.suwa.io/api/Zaman/GetAllEras?lang=${langId}&pagenum=1&pagesize=50`);
 
     if (!resAllEras.ok) {
       throw new Error(`HTTP error! Status: ${resAllEras.status}`);
@@ -153,6 +173,8 @@ export async function getStaticProps() {
     return {
       props: {
         erasAllEras,
+        ...(await serverSideTranslations(locale, ["common"])),
+
       },
       revalidate: 10,
     };
@@ -165,6 +187,8 @@ export async function getStaticProps() {
         error: 'API fetch failed',
       },
       revalidate: 10,
+      ...(await serverSideTranslations(locale, ["common"])),
+
     };
   }
 }

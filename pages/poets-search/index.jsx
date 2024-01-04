@@ -7,6 +7,9 @@ import { Search } from '@/assets/svgsComponents';
 import { MagnifyingGlass } from 'react-loader-spinner';
 import Head from 'next/head';
 import SliderVersesSearch from '@/components/PoetDetails/SliderVersesSearch';
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 const poetsSearch = ({ erasAllEras, dataDefault }) => {
   const [age, setAge] = useState(0);
@@ -16,7 +19,8 @@ const poetsSearch = ({ erasAllEras, dataDefault }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
-
+  const router = useRouter();
+  const { t } = useTranslation('common');
   const handleChange = (event) => {
     const selectedValue = event.target.value;
     setAge(selectedValue);
@@ -137,6 +141,7 @@ const poetsSearch = ({ erasAllEras, dataDefault }) => {
       display: 'flex',
       alignItems: 'center',
       textAlign: 'right',
+      justifyContent: router.locale === 'ar' ? 'flex-end' : 'flex-start'
     },
 
 
@@ -145,7 +150,7 @@ const poetsSearch = ({ erasAllEras, dataDefault }) => {
   const CustomArrowIcon = styled(MdOutlineKeyboardArrowDown)({
     width: '25px',
     height: '25px',
-    right: '82% !important',
+    right: router.locale === 'ar' ? '82% !important' : '4px',
     top: '19% !important',
     color: ' #11292F',
   });
@@ -153,16 +158,17 @@ const poetsSearch = ({ erasAllEras, dataDefault }) => {
   const handlePoetsData = (data) => {
     setPoetsData(data);
   };
+
   const menuItemStyle = {
     fontFamily: 'var(--effra-font)',
-    direction: 'rtl',
+    direction: router.locale === 'ar' ? 'rtl' : 'ltr',
     textAlign: 'right',
     fontSize: '16px'
   };
   return (
     <>
       <Head>
-        <title>استكشف الشعراء</title>
+        <title>{t("explorePoets")}</title>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -173,19 +179,25 @@ const poetsSearch = ({ erasAllEras, dataDefault }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <section id='poets' className='poets' >
+      <section id='poets' className={styles.poets} dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
         <Container maxWidth={false}>
 
           <div className={styles.tabContent_container} dir='rtl'>
             <section className={styles.timelineSection}>
               <div className={styles.sec_title}>
-                <Typography variant='h3'>الشعراء</Typography>
+                <Typography variant='h3'>{t("poets")}</Typography>
               </div>
               <div className={styles.slider_container}>
                 <div className={styles.filter_sec}>
                   <div className={styles.shows}>
-                    <Typography dir='ltr'>
-                      <span>{filtredPoets?.length}</span> يتم عرض <span>{poetsData?.length}</span> من
+                    <Typography dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
+                      <span>{filtredPoets?.length}</span>
+                      {` `}
+                      {t("show")} {` `}
+                      <span>{poetsData?.length}</span>
+                      {` `}
+                      {t("of")}
+                      {` `}
                     </Typography>
                   </div>
                   <div className={styles.filter_methods}>
@@ -193,7 +205,7 @@ const poetsSearch = ({ erasAllEras, dataDefault }) => {
                       <div className={styles.form_container}>
                         <input
                           type="text"
-                          placeholder='ابحث بإسم الشاعر..'
+                          placeholder={t("searchbypoet")}
                           value={searchString}
                           onChange={(e) => setSearchString(e.target.value)}
                           onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
@@ -227,8 +239,8 @@ const poetsSearch = ({ erasAllEras, dataDefault }) => {
                           onChange={handleChange}
                           IconComponent={CustomArrowIcon}
                         >
-                          <MenuItem value={0} sx={menuItemStyle}>جميع العصور</MenuItem>
-                          <MenuItem value={true} sx={menuItemStyle}>شعراء عاشوا في المملكة</MenuItem>
+                          <MenuItem value={0} sx={menuItemStyle}>{t("allages")}</MenuItem>
+                          <MenuItem value={true} sx={menuItemStyle}>{t("poetswholivedintheKingdomofSaudiArabia")}</MenuItem>
                           {erasAllEras?.map((era) => (
                             <MenuItem key={era.id} value={era.id} sx={menuItemStyle}>
                               {era.name}
@@ -248,14 +260,14 @@ const poetsSearch = ({ erasAllEras, dataDefault }) => {
 
                 {filtredPoets?.length === 0 &&
                   <Box sx={{ textAlign: 'center' }}>
-                    <h1>لا توجد نتيجة عن {searchString}</h1>
+                    <h1>{t("noResults")} {searchString}</h1>
                   </Box>
                 }
               </div>
 
 
-              <div className={styles.text_container}><p>نُفِّذت
-                رسومات تخيلية لهيئة الشعراء تقريباً لأوصافهم المذكورة في المراجع
+              <div className={styles.text_container}><p>
+                {t("drawDesc")}
               </p></div>
 
             </section>
@@ -274,15 +286,18 @@ const poetsSearch = ({ erasAllEras, dataDefault }) => {
 
 export default poetsSearch
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
+
+  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langId = process.env[langIdEnvKey];
   try {
-    const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
+    const resAllEras = await fetch(`https://api4z.suwa.io/api/Zaman/GetAllEras?lang=${langId}&pagenum=1&pagesize=50`);
     if (!resAllEras.ok) {
       throw new Error(`Error fetching eras data: ${resAllEras.status}`);
     }
     const erasAllEras = await resAllEras.json();
 
-    const resDefault = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?lang=2&pagenum=1&pagesize=50`);
+    const resDefault = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?lang=${langId}&pagenum=1&pagesize=50`);
     if (!resDefault.ok) {
       throw new Error(`Error fetching poets data: ${resDefault.status}`);
     }
@@ -291,9 +306,12 @@ export async function getStaticProps() {
     return {
       props: {
         erasAllEras,
-        dataDefault
+        dataDefault,
+        ...(await serverSideTranslations(locale, ["common"])),
+
       },
       revalidate: 10,
+
 
     };
   } catch (error) {

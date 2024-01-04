@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { RotatingLines } from 'react-loader-spinner';
 import Image from 'next/image'
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
   const [query, setQuery] = useState('');
@@ -200,11 +201,14 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
 
 export default SearchPage
 
-export async function getStaticProps() {
-  const resPlaces = await fetch('https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&lang=2&pagenum=1&pagesize=50');
+export async function getStaticProps({ locale }) {
+  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langId = process.env[langIdEnvKey];
+
+  const resPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&lang=${langId}&pagenum=1&pagesize=50`);
   const placesData = await resPlaces.json();
 
-  const resPoets = await fetch('https://api4z.suwa.io/api/Poets/GetAllPoets?lang=2&pagenum=1&pagesize=50');
+  const resPoets = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?lang=${langId}&pagenum=1&pagesize=50`);
   const poetsData = await resPoets.json();
 
   return {
@@ -213,6 +217,8 @@ export async function getStaticProps() {
       initialPoetsData: poetsData,
     },
     revalidate: 10,
+    ...(await serverSideTranslations(locale, ["common"])),
+
   };
 
 }

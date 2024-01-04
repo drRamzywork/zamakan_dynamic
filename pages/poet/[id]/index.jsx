@@ -1,10 +1,7 @@
-import { Box, Container, Grid, Typography, Avatar, Tab, Tabs, Paper, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Box, Container, Grid, Typography, } from '@mui/material';
 import { useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import Feather from '../../../assets/svgsComponents/Feather'
-import Profile from '../../../assets/svgsComponents/Profile'
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { styled } from '@mui/system';
 import { motion } from 'framer-motion'
 import SliderVerses from '@/components/PoetsDetailsComponents/SliderVerses';
 import { useRouter } from 'next/router';
@@ -17,13 +14,6 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
 
   const [age, setAge] = useState(0);
   const [results, setResults] = useState(dataPoetry);
-
-
-
-
-
-
-
 
   useEffect(() => {
     const list = document.querySelectorAll("#list");
@@ -245,19 +235,20 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
 }
 
 
-export async function getStaticProps(context) {
-  const { id } = context.params;
+export async function getStaticProps({ id, locale }) {
+  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langId = process.env[langIdEnvKey];
 
-  const resPoet = await fetch(`https://api4z.suwa.io/api/Poets/GetPoetFullData?id=${id}&lang=2`);
+  const resPoet = await fetch(`https://api4z.suwa.io/api/Poets/GetPoetFullData?id=${id}&lang=${langId}`);
   const dataPoet = await resPoet.json();
 
-  const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${id}&lang=2&pagenum=1&pagesize=50`);
+  const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${id}&lang=${langId}&pagenum=1&pagesize=50`);
   const dataPoetry = await resPoetry.json();
 
-  const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=2&pagenum=1&pagesize=50');
+  const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=${langId}&pagenum=1&pagesize=50');
   const dataAllEras = await resAllEras.json();
 
-  const resPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&poet=${id}&lang=2&pagenum=1&pagesize=50`);
+  const resPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&poet=${id}&lang=${langId}&pagenum=1&pagesize=50`);
   const dataPlaces = await resPlaces.json();
 
   return {

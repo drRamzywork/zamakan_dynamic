@@ -14,6 +14,8 @@ import { ErasPlacesSlider } from '@/components/ErasComponents';
 import { MdLocationPin } from 'react-icons/md';
 import Image from 'next/image';
 import { RotatingLines } from 'react-loader-spinner';
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from 'next/router';
 
 
 
@@ -26,7 +28,7 @@ const Places = ({ dataAllCitiesMap, dataAllPlaces,
   const [places, setPlaces] = useState(null);
   const [isPointsActive, seIsPointsActive] = useState(false);
   const [cityNames, setCityNames] = useState([]);
-
+  const router = useRouter();
   useEffect(() => {
     if (activeIndex !== null) {
       setPlaces(dataAllCitiesMap[activeIndex]?.places)
@@ -176,9 +178,8 @@ const Places = ({ dataAllCitiesMap, dataAllPlaces,
       </Head>
 
       <PageHeader dataAllCitiesMap={dataAllCitiesMap[activeIndex]} />
-      <section id='Places' className={styles.Places} dir='rtl'>
+      <section id='Places' className={styles.Places} dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
         {cityData && (
-
           <div className={styles.layer} />
         )}
         <Container maxWidth={false} >
@@ -188,7 +189,9 @@ const Places = ({ dataAllCitiesMap, dataAllPlaces,
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
             transition={{ duration: 1, }}
-            className={styles.sec_container}>
+            className={styles.sec_container}
+            dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}
+          >
 
             <div className={styles.slider_container}>
               <Swiper
@@ -225,8 +228,7 @@ const Places = ({ dataAllCitiesMap, dataAllPlaces,
                 }}
                 spaceBetween={24}
                 slidesPerView={8.5}
-                dir={'rtl'}
-
+                dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}
                 pagination={true} className="mySwiper">
 
                 {dataAllCitiesMap?.map((city, index) =>
@@ -459,28 +461,31 @@ const Places = ({ dataAllCitiesMap, dataAllPlaces,
 export default Places
 
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   let dataAllPlaces = [];
   let dataAllPoetries = [];
   let dataAllCitiesMap = [];
 
+  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langId = process.env[langIdEnvKey];
+
   try {
     // Fetch data for all places
-    const resAllPlaces = await fetch('https://api4z.suwa.io/api/Makan/GetMakanFullData?lang=2');
+    const resAllPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?lang=${langId}`);
     if (!resAllPlaces.ok) {
       throw new Error(`Failed to fetch places: ${resAllPlaces.status}`);
     }
     dataAllPlaces = await resAllPlaces.json();
 
     // Fetch all poetries
-    const resAllPoetries = await fetch('https://api4z.suwa.io/api/Poetries/GetAllPoetries?lang=2&pagenum=1&pagesize=50');
+    const resAllPoetries = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?lang=${langId}&pagenum=1&pagesize=50`);
     if (!resAllPoetries.ok) {
       throw new Error(`Failed to fetch poetries: ${resAllPoetries.status}`);
     }
     dataAllPoetries = await resAllPoetries.json();
 
     // Fetch all cities map
-    const resAllCitiesMap = await fetch('https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=2&withPlaces=true&pagenum=1&pagesize=50');
+    const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=${langId}&withPlaces=true&pagenum=1&pagesize=50`);
     if (!resAllCitiesMap.ok) {
       throw new Error(`Failed to fetch cities map: ${resAllCitiesMap.status}`);
     }
@@ -489,12 +494,14 @@ export async function getStaticProps() {
   } catch (error) {
     console.error('API fetch error:', error);
 
-    // Returning empty arrays in case of error to ensure the props structure is maintained
+
     return {
       props: {
         dataAllPlaces: [],
         dataAllPoetries: [],
         dataAllCitiesMap: [],
+        ...(await serverSideTranslations(locale, ["common"])),
+
         error: error.message
       },
       revalidate: 10,
@@ -506,7 +513,8 @@ export async function getStaticProps() {
     props: {
       dataAllPlaces,
       dataAllPoetries,
-      dataAllCitiesMap
+      dataAllCitiesMap,
+      ...(await serverSideTranslations(locale, ["common"])),
     },
     revalidate: 10,
   };
