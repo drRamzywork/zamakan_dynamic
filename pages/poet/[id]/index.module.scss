@@ -618,7 +618,6 @@
       text-align: left;
 
       .iconWrapper {
-        margin-left: 0 !important;
         margin-right: 10px;
       }
     }
@@ -760,6 +759,7 @@
             border-radius: 50%;
             display: flex;
             margin-right: 15px;
+            margin-left: 0px !important;
 
             @media screen and (max-width: 992px) {
               margin-left: 18px;
@@ -848,7 +848,7 @@
       }
 
       @media screen and (max-width: 450px) {
-        transform: translateX(-210px);
+        transform: translateX(-195px);
       }
       @media screen and (max-width: 400px) {
         transform: translateX(-196px);
@@ -867,13 +867,13 @@
         transform: translateX(0px);
       }
       @media screen and (max-width: 450px) {
-        transform: translateX(-346.6px);
+        transform: translateX(-331.6px);
       }
       @media screen and (max-width: 400px) {
         transform: translateX(-306px);
       }
       @media screen and (max-width: 380px) {
-        transform: translateX(-193px);
+        transform: translateX(-290px);
       }
     }
   }
