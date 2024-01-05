@@ -123,7 +123,7 @@ const LiteraryEras = ({ erasAllEras }) => {
               <SwiperSlide key={era.id} className={styles.swiper_slide_box}>
                 <Link href={`/literary-eras/era/${era.id}`} className={styles.box}>
                   <div className={styles.img_container}>
-                    <Image width={277} height={326} src={era.icon} alt={era.name} />
+                    <Image width={277} height={326} src={era.icon} alt={era.name} onLoad={() => console.log('Image Loaded')} />
                   </div>
 
 

@@ -236,7 +236,7 @@ const Places = ({ dataAllCitiesMap, dataAllPlaces,
                     <div className={`${styles.slider} ${index === activeIndex ? styles.active : ''}`} key={index} onClick={() => handleZoomToLand(index)}>
                       <div className={styles.img_container}>
                         <Image width={200} height={200} src={city.icon} alt={city.name}
-                          onLoadingComplete={() => setIsImageLoading(false)}
+                          onLoad={() => setIsImageLoading(false)}
                         />
                         {isImageLoading === true ? < RotatingLines
                           strokeColor="grey"

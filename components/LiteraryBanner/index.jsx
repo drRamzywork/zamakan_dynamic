@@ -94,7 +94,7 @@ const LiteraryBanner = (props) => {
                   scroll={false}
                   href={`/literary-eras/era/${era.id}`} className={`${styles.box} ${eraIndex === era.id ? styles.active : ''}`}>
                   <div className={styles.img_container}>
-                    <Image width={277} height={115} quality={100} src={era.icon} alt={era.name} />
+                    <Image onLoad={() => console.log('Image Loaded')} width={277} height={115} quality={100} src={era.icon} alt={era.name} />
                   </div>
 
 

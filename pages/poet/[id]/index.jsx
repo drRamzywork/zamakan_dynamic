@@ -235,10 +235,10 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
 }
 
 
-export async function getStaticProps({ id, locale }) {
+export async function getStaticProps({ params, locale }) {
   const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
-
+  const { id } = params;
   const resPoet = await fetch(`https://api4z.suwa.io/api/Poets/GetPoetFullData?id=${id}&lang=${langId}`);
   const dataPoet = await resPoet.json();
 
@@ -251,6 +251,7 @@ export async function getStaticProps({ id, locale }) {
   const resPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&poet=${id}&lang=${langId}&pagenum=1&pagesize=50`);
   const dataPlaces = await resPlaces.json();
 
+  console.log(id, "idididid")
   return {
     props: {
       dataPoet,

@@ -15,7 +15,7 @@ import { motion } from 'framer-motion';
 import { IoClose } from "react-icons/io5";
 
 
-const PageSection = ({ title, AllMainTopics, link, data = [] }) => {
+const PageSection = ({ title, AllMainTopics, data = [] }) => {
   // Thumbs logic
   const [imageLoadingStates, setImageLoadingStates] = useState({});
   const [galleryOpen, setGalleryOpen] = useState(false);
