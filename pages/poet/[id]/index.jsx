@@ -251,7 +251,6 @@ export async function getStaticProps({ params, locale }) {
   const resPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&poet=${id}&lang=${langId}&pagenum=1&pagesize=50`);
   const dataPlaces = await resPlaces.json();
 
-  console.log(id, "idididid")
   return {
     props: {
       dataPoet,

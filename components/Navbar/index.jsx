@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './index.module.scss'
-import { useScrollTrigger, Slide, AppBar, Toolbar, Container, } from '@mui/material';
+import { useScrollTrigger, Slide, AppBar, Toolbar, Container, Typography, } from '@mui/material';
 import { Search, } from '../../assets/svgsComponents';
 
 import { motion } from 'framer-motion';
@@ -111,7 +111,6 @@ const Navbar = (props) => {
 
   return (
     <>
-      <CssBaseline />
       <HideOnScroll {...props}>
 
         <AppBar className={styles.navbarHeader} style={{
@@ -267,10 +266,10 @@ const Navbar = (props) => {
                 <Image width={250} priority height={85} src={"/assets/imgs/logo.png"} alt="" />
               </Link>
 
-              <div className={styles.lang} onClick={() => setLangMenu(!langMenu)}>
-                <p>
+              <div className={`${styles.lang} ${langMenu ? styles.active : ''}`} onClick={() => setLangMenu(!langMenu)}>
+                <Typography >
                   {router.locale.toUpperCase()}
-                </p>
+                </Typography >
               </div>
 
             </div>

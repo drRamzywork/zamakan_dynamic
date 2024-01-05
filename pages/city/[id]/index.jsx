@@ -50,7 +50,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params, locale }) {
   const { id } = params;
-  console.log(locale, "localelocale")
 
   const resCityData = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${id}&lang=2`);
   const dataCityData = await resCityData.json();
