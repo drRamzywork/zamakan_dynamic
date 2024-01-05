@@ -247,9 +247,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
                 </div>
                 <div className={styles.show_more} onClick={toggleShowMore}>
                   <Typography>
-                    عرض
-                    {` `}
-                    {showMore ? "أقل" : "المزيد"}
+                    {showMore ? t("readLess") : t("readMore")}
 
                   </Typography>
                 </div>

@@ -222,6 +222,7 @@
   // Groups
   .burger_icon,
   .lang {
+    cursor: pointer;
     @media screen and (max-width: 992px) {
       width: 40px;
       height: 40px;
@@ -249,34 +250,12 @@
   }
   .lang_menu_container,
   .nav_menu_container {
-    position: absolute;
-    top: 120px;
-    width: 80vw;
-    height: 100vh;
-    z-index: -122;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    height: fit-content;
-    background-color: #e6ddc6;
-    // border-radius: 16px;
-    overflow: hidden;
-    @media screen and (max-width: 450px) {
-      top: 80px;
-    }
-
-    @media screen and (min-width: 992px) {
-      width: 21vw;
-    }
     .links {
       width: 100%;
       .link {
         padding-left: 46px;
         padding-right: 0 !important;
         p {
-          color: var(--main-blue-color);
-          font-family: var(--effra-font);
           font-size: 24px;
           font-weight: 400;
           letter-spacing: 0em;

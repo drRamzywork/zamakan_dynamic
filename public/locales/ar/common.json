@@ -22,5 +22,15 @@
   "show": "يتم عرض",
   "noResults": "لا توجد نتيجة عن",
   "explorePoets": "استكشف الشعراء",
-  "of": "من"
+  "of": "من",
+  "readMore": "عرض المزيد",
+  "readLess": "عرض اقل",
+  "personalInformation": "معلوماته الشخصية",
+  "name": "الاسم",
+  "title": "اللقب",
+  " reasonForTheTitle": "سبب اللقب",
+  "distinguishesThePoet": "مما تميز به الشاعر",
+  "thePoetIsFamousFor": "مما اُشتهر به الشاعر",
+  "aboutPoet": "عن الشاعر",
+  "versesInKSA": "أبيات ذُكرت فيها أماكن في المملكة"
 }

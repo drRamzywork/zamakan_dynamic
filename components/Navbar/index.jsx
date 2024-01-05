@@ -121,73 +121,71 @@ const Navbar = (props) => {
             <div className={styles.sec_container}
               ref={navMenuRef}
               dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
-              {navMenu &&
-                <>
+              <>
 
-                  <motion.div
-                    initial="closed"
-                    animate={navMenu ? "open" : "closed"}
-                    variants={variants}
-                    transition={{ duration: 0.5, type: "tween" }}
-                    className={styles.nav_menu_container}
-                  >
-                    <div className={styles.links} onClick={() => setNavMenu(false)}>
-                      <Link href='/literary-eras' className={`${styles.link} ${router.pathname.includes('/literary-eras') && styles.active}`}>
-                        <p >
-                          {t("age")}
-                        </p>
+                <motion.div
+                  initial="closed"
+                  animate={navMenu ? "open" : "closed"}
+                  variants={variants}
+                  transition={{ duration: 0.5, type: "tween" }}
+                  className={styles.nav_menu_container}
+                >
+                  <div className={styles.links} onClick={() => setNavMenu(false)}>
+                    <Link href='/literary-eras' className={`${styles.link} ${router.pathname.includes('/literary-eras') && styles.active}`}>
+                      <p >
+                        {t("age")}
+                      </p>
 
-                        <div className={styles.icon_container}>
-                          <FaCalendarAlt />
-                        </div>
-                      </Link>
-
-
-                      <Link href='/places' className={`${styles.link} ${router.pathname.includes('/places') && styles.active}`}>
-                        <p >
-                          {t("place")}
-                        </p>
-
-                        <div className={styles.icon_container}>
-                          <MdLocationPin />
-                        </div>
-                      </Link>
-
-                      <Link href='/public-treasury' className={`${styles.link} ${router.pathname.includes('/public-treasury') && styles.active}`}>
-                        <p >
-                          {t("poetryarchive")}
-                        </p>
-
-                        <div className={styles.icon_container}>
-                          <img src={"/assets/imgs/PoetsTreasury.png"} alt="" />
-                        </div>
-                      </Link>
-                      <Link href='/search' className={`${styles.link} ${router.pathname.includes('/search') && styles.active}`}>
-                        <p >
-                          {t("search")}
-                        </p>
-
-                        <div className={styles.icon_container}>
-                          <Search />
-                        </div>
-                      </Link>
+                      <div className={styles.icon_container}>
+                        <FaCalendarAlt />
+                      </div>
+                    </Link>
 
 
+                    <Link href='/places' className={`${styles.link} ${router.pathname.includes('/places') && styles.active}`}>
+                      <p >
+                        {t("place")}
+                      </p>
 
-                      <Link href='/poets-search' className={`${styles.link} ${router.pathname.includes('/poets-search') && styles.active}`}>
-                        <p >
-                          {t("poets")}
-                        </p>
+                      <div className={styles.icon_container}>
+                        <MdLocationPin />
+                      </div>
+                    </Link>
 
-                        <div className={styles.icon_container}>
-                          <img src={"/assets/imgs/potriesIcon.png"} alt="" />
-                        </div>
+                    <Link href='/public-treasury' className={`${styles.link} ${router.pathname.includes('/public-treasury') && styles.active}`}>
+                      <p >
+                        {t("poetryarchive")}
+                      </p>
 
-                      </Link>
-                    </div>
-                  </motion.div>
-                </>
-              }
+                      <div className={styles.icon_container}>
+                        <img src={"/assets/imgs/PoetsTreasury.png"} alt="" />
+                      </div>
+                    </Link>
+                    <Link href='/search' className={`${styles.link} ${router.pathname.includes('/search') && styles.active}`}>
+                      <p >
+                        {t("search")}
+                      </p>
+
+                      <div className={styles.icon_container}>
+                        <Search />
+                      </div>
+                    </Link>
+
+
+
+                    <Link href='/poets-search' className={`${styles.link} ${router.pathname.includes('/poets-search') && styles.active}`}>
+                      <p >
+                        {t("poets")}
+                      </p>
+
+                      <div className={styles.icon_container}>
+                        <img src={"/assets/imgs/potriesIcon.png"} alt="" />
+                      </div>
+
+                    </Link>
+                  </div>
+                </motion.div>
+              </>
 
 
               <motion.div

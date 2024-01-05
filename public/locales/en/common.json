@@ -22,5 +22,15 @@
   "show": "Show",
   "noResults": "There is no result for",
   "explorePoets": "Explore poets",
-  "of": "Of"
+  "of": "Of",
+  "readMore": "Read more",
+  "readLess": "Read less",
+  "personalInformation": "Personal information",
+  "name": "Name",
+  "title": "Title",
+  " reasonForTheTitle": "The reason for the title",
+  "distinguishesThePoet": "What distinguished the poet",
+  "thePoetIsFamousFor": "What the poet is famous for",
+  "aboutPoet": "About poet",
+  "versesInKSA": "Verses in KSA"
 }

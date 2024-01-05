@@ -7,12 +7,14 @@ import SliderVerses from '@/components/PoetsDetailsComponents/SliderVerses';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { FaUserLarge } from "react-icons/fa6";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next';
 
-export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
+
+export default function Poet({ dataPoet, dataPoetry }) {
   const [activeIndex, setActiveIndex] = useState(1);
   const router = useRouter();
-
-  const [age, setAge] = useState(0);
+  const { t } = useTranslation();
   const [results, setResults] = useState(dataPoetry);
 
   useEffect(() => {
@@ -25,17 +27,10 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
 
     list.forEach((item) => item.addEventListener("click", activelink));
 
-    return () => {
-      // Cleanup logic if needed
-    };
+
   }, []);
 
-  const menuItemStyle = {
-    fontFamily: 'var(--effra-font)',
-    direction: 'rtl',
-    textAlign: 'right',
-    fontSize: '16px'
-  };
+
 
 
   return (
@@ -56,7 +51,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}>
-        <Container dir="rtl" maxWidth={false} className={styles.poetDetails}>
+        <Container dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`} maxWidth={false} className={styles.poetDetails}>
           <Box className={styles.headerImage} >
           </Box>
           <Grid container className={styles.profileSection}>
@@ -96,14 +91,14 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
 
 
 
-          <div className={styles.navigation}>
+          <div className={styles.navigation} >
             <ul>
               <li className={`${styles.list} ${1 === activeIndex ? styles.active : ''}`} onClick={() => setActiveIndex(1)}>
                 <button >
                   <span className={styles.iconWrapper}>
                     <FaUserLarge />
                   </span>
-                  <p>عن الشاعر</p>
+                  <p>{t("aboutPoet")}</p>
                 </button>
               </li>
 
@@ -114,16 +109,16 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                     <Feather />
                   </span>
                   <p>
-                    أبيات ذُكرت فيها أماكن في المملكة
+                    {t("versesInKSA")}
                   </p>
                 </button>
               </li>
               <div className={`${styles.indicator} ${styles[`indicator-${activeIndex}`]}`}><span></span></div>
             </ul>
           </div>
-          <div className={styles.tabsSection}>
+          <div className={styles.tabsSection} >
             {activeIndex === 1 && (
-              <div className={styles.tabContent_container} dir='rtl'>
+              <div className={styles.tabContent_container} >
                 <motion.div
                   animate={{ opacity: 1 }}
                   initial={{ opacity: 0 }}
@@ -131,7 +126,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                 >
                   <section className={styles.timelineSection}>
                     <div className={styles.sec_title}>
-                      <Typography variant='h3'>معلوماته الشخصية</Typography>
+                      <Typography variant='h3'>{t("personalInformation")}</Typography>
                     </div>
 
                     <div className={styles.info_sec}>
@@ -140,7 +135,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
 
                         <div className={styles.box}>
                           <div className={styles.title}>
-                            <Typography >الاسم </Typography>
+                            <Typography >{t("name")} </Typography>
                           </div>
                           <div className={styles.name}>
                             <Typography>
@@ -150,7 +145,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                         </div>
                         <div className={styles.box}>
                           <div className={styles.title}>
-                            <Typography>اللقب</Typography>
+                            <Typography>{t("title")}</Typography>
                           </div>
                           <div className={styles.name}>
                             <Typography>
@@ -160,7 +155,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
                         </div>
                         <div className={styles.box}>
                           <div className={styles.title}>
-                            <Typography>سبب اللقب</Typography>
+                            <Typography>{t("reasonForTheTitle")}</Typography>
                           </div>
                           <div className={styles.name}>
                             <Typography>{dataPoet.nicknameReason}</Typography>
@@ -174,7 +169,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
 
                   <section className={styles.timelineSection}>
                     <div className={styles.sec_title}>
-                      <Typography variant='h3'>مما تميز به الشاعر:</Typography>
+                      <Typography variant='h3'>{t("reasonForTheTitle")}:</Typography>
                     </div>
 
                     <div className={styles.sec_container}>
@@ -188,7 +183,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
 
                   <section className={styles.timelineSection}>
                     <div className={styles.sec_title}>
-                      <Typography variant='h3'>مما اُشتهر به الشاعر:
+                      <Typography variant='h3'>{t("thePoetIsFamousFor")}:
                       </Typography>
                     </div>
 
@@ -207,7 +202,7 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
             )}
             {activeIndex === 0 && (
               <div
-                className={styles.tabContent_container} dir='rtl'>
+                className={styles.tabContent_container} >
                 <motion.div
                   animate={{ opacity: 1 }}
                   initial={{ opacity: 0 }}
@@ -234,7 +229,6 @@ export default function Poet({ dataPoet, dataPoetry, dataPlaces }) {
   );
 }
 
-
 export async function getStaticProps({ params, locale }) {
   const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
@@ -248,15 +242,15 @@ export async function getStaticProps({ params, locale }) {
   const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=${langId}&pagenum=1&pagesize=50');
   const dataAllEras = await resAllEras.json();
 
-  const resPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&poet=${id}&lang=${langId}&pagenum=1&pagesize=50`);
-  const dataPlaces = await resPlaces.json();
+
 
   return {
     props: {
       dataPoet,
       dataPoetry,
       dataAllEras,
-      dataPlaces
+      ...(await serverSideTranslations(locale, ["common"])),
+
     },
     revalidate: 10,
   };

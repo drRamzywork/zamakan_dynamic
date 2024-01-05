@@ -190,13 +190,13 @@ const poetsSearch = ({ erasAllEras, dataDefault }) => {
               <div className={styles.slider_container}>
                 <div className={styles.filter_sec}>
                   <div className={styles.shows}>
-                    <Typography dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
-                      <span>{filtredPoets?.length}</span>
+                    <Typography >
                       {` `}
                       {t("show")} {` `}
                       <span>{poetsData?.length}</span>
                       {` `}
                       {t("of")}
+                      <span>{filtredPoets?.length}</span>
                       {` `}
                     </Typography>
                   </div>
