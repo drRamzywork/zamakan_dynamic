@@ -853,7 +853,7 @@
         transform: translateX(-210px);
       }
       @media screen and (max-width: 400px) {
-        transform: translateX(-179px);
+        transform: translateX(-196px);
       }
       @media screen and (max-width: 350px) {
         transform: translateX(-164px);
@@ -872,6 +872,9 @@
         transform: translateX(-346.6px);
       }
       @media screen and (max-width: 400px) {
+        transform: translateX(-306px);
+      }
+      @media screen and (max-width: 380px) {
         transform: translateX(-292px);
       }
     }
