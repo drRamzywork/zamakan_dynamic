@@ -853,10 +853,14 @@
         transform: translateX(-210px);
       }
       @media screen and (max-width: 400px) {
-        transform: translateX(-197px);
+        transform: translateX(-179px);
       }
-      @media screen and (max-width: 385px) {
-        transform: translateX(-189px) !important;
+      @media screen and (max-width: 350px) {
+        transform: translateX(-164px);
+      }
+
+      @media screen and (max-width: 390px) {
+        transform: translateX(-178px);
       }
     }
     .indicator-1 {
@@ -868,11 +872,11 @@
         transform: translateX(-346.6px);
       }
       @media screen and (max-width: 400px) {
-        transform: translateX(-308px);
+        transform: translateX(-292px);
       }
 
-      @media screen and (max-width: 385px) {
-        transform: translateX(-302px);
+      @media screen and (max-width: 390px) {
+        transform: translateX(-288px);
       }
     }
   }
