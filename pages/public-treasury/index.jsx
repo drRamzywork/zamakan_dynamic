@@ -1,6 +1,6 @@
 import { LeftPlants, PageSection, RightPlants } from '@/components/PublicTreasuryComponents';
 import { Container, Typography } from '@mui/material';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from './index.module.scss'
 import Image from 'next/image';
 import { motion, useAnimation, useInView } from 'framer-motion';
