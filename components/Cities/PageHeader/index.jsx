@@ -2,11 +2,16 @@ import { Container, Typography } from '@mui/material'
 import React from 'react'
 import styles from './index.module.scss'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+
+
 const PageHeader = ({ dataCityData }) => {
+  const router = useRouter();
+
 
 
   return (
-    <header id={styles.cities} dir='rtl'>
+    <header id={styles.cities} dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
       <Container maxWidth={false}>
         <div className={styles.sec_container}>
           <div className={styles.img_container}>

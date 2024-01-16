@@ -14,10 +14,9 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/pagination'
-import Link from 'next/link';
 import { IoClose } from "react-icons/io5";
 import { useRouter } from 'next/router';
-
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const VisualDocs = ({ sectionData }) => {
 
@@ -321,6 +320,8 @@ const VisualDocs = ({ sectionData }) => {
 export default VisualDocs
 
 export async function getStaticPaths() {
+
+
   const response = await fetch('https://api4z.suwa.io/api/Media/GetAllMainTopics?lang=2&withPlaces=true&pagenum=1&pagesize=50');
 
   if (!response.ok) {
@@ -337,10 +338,18 @@ export async function getStaticPaths() {
   return { paths, fallback: 'blocking' };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
   const { id } = params;
 
-  const resPageData = await fetch(`https://api4z.suwa.io/api/Media/GetAllMainTopics?lang=2&withPlaces=true&pagenum=1&pagesize=50`);
+
+
+  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langId = process.env[langIdEnvKey];
+
+
+
+
+  const resPageData = await fetch(`https://api4z.suwa.io/api/Media/GetAllMainTopics?lang=${langId}&withPlaces=true&pagenum=1&pagesize=50`);
   const dataPageData = await resPageData.json();
 
   const numericId = parseInt(id, 10);
@@ -349,6 +358,8 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       sectionData,
+      ...(await serverSideTranslations(locale, ["common"])),
+
     },
     revalidate: 10,
   };

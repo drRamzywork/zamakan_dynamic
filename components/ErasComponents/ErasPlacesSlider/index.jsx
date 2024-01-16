@@ -94,7 +94,6 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
           dir={'rtl'}
           className="places-swiper" >
 
-
           {filteredPlaces?.map((city, index) =>
             <SwiperSlide className={styles.places_container} key={city.id} >
               <div className={`${styles.places} ${city.id === activeCity ? styles.active : ''}`} >

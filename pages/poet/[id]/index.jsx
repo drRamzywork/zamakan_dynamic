@@ -15,7 +15,6 @@ export default function Poet({ dataPoet, dataPoetry }) {
   const [activeIndex, setActiveIndex] = useState(1);
   const router = useRouter();
   const { t } = useTranslation();
-  const [results, setResults] = useState(dataPoetry);
 
   useEffect(() => {
     const list = document.querySelectorAll("#list");
@@ -212,7 +211,7 @@ export default function Poet({ dataPoet, dataPoetry }) {
                     <div className={styles.slider_container}>
 
                       <div className="slider">
-                        <SliderVerses results={results} />
+                        <SliderVerses dataPoetry={dataPoetry} />
                       </div>
                     </div>
                   </section>
@@ -239,8 +238,6 @@ export async function getStaticProps({ params, locale }) {
   const resPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?poet=${id}&lang=${langId}&pagenum=1&pagesize=50`);
   const dataPoetry = await resPoetry.json();
 
-  const resAllEras = await fetch('https://api4z.suwa.io/api/Zaman/GetAllEras?lang=${langId}&pagenum=1&pagesize=50');
-  const dataAllEras = await resAllEras.json();
 
 
 
@@ -248,9 +245,7 @@ export async function getStaticProps({ params, locale }) {
     props: {
       dataPoet,
       dataPoetry,
-      dataAllEras,
       ...(await serverSideTranslations(locale, ["common"])),
-
     },
     revalidate: 10,
   };

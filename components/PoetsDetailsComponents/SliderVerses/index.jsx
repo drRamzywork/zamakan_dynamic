@@ -10,16 +10,18 @@ import styles from './index.module.scss';
 import { Typography } from '@mui/material';
 import Link from 'next/link'
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 
-export default function SliderVerses({ results }) {
+export default function SliderVerses({ dataPoetry }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const [expandedStates, setExpandedStates] = useState({});
   const [overflowStates, setOverflowStates] = useState({});
   const contentRefs = useRef([]);
+  const { t } = useTranslation();
 
-
-
+  const router = useRouter()
 
   useEffect(() => {
     const newOverflowStates = {};
@@ -29,7 +31,7 @@ export default function SliderVerses({ results }) {
       }
     });
     setOverflowStates(newOverflowStates);
-  }, [results]);
+  }, [dataPoetry]);
 
   const toggleExpanded = (index) => {
     setExpandedStates(prev => ({
@@ -80,10 +82,10 @@ export default function SliderVerses({ results }) {
 
         className={styles.swiper_container}
         id='swiperContainer'
-        dir='rtl'
+        dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}
       >
 
-        {results.map((poetry, index) => {
+        {dataPoetry?.map((poetry, index) => {
           const [beforeDots, afterDots] = poetry.poetryParts.split('...');
           return (
             <SwiperSlide key={index}>
@@ -115,7 +117,7 @@ export default function SliderVerses({ results }) {
                   </motion.div>
                   {overflowStates[index] && (
                     <div className={styles.more_btn} onClick={() => toggleExpanded(index)}>
-                      <Typography>{expandedStates[index] ? 'أقل' : 'المزيد'}</Typography>
+                      <Typography>{expandedStates[index] ? t('readLess') : t('readMore')}</Typography>
 
                     </div>
 

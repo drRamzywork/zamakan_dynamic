@@ -13,6 +13,7 @@ import 'swiper/css/pagination';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { IoClose } from "react-icons/io5";
+import { useTranslation } from 'next-i18next';
 
 
 const PageSection = ({ title, AllMainTopics, data = [] }) => {
@@ -24,6 +25,8 @@ const PageSection = ({ title, AllMainTopics, data = [] }) => {
   const [backgroundImageUrl, setBackgroundImageUrl] = useState("");
   const [backgroundFullScreen, setBackgroundFullScreen] = useState("");
   const [ImagesGallery, setImagesGallery] = useState("");
+
+  const { t } = useTranslation('common');
 
   const closeGallery = () => {
     setGalleryOpen(false);
@@ -262,7 +265,7 @@ const PageSection = ({ title, AllMainTopics, data = [] }) => {
 
 
             <div className={styles.more_btn}>
-              <Link href={`/public-treasury/${topic.id}`} >المزيد</Link>
+              <Link href={`/public-treasury/${topic.id}`} >{t('readMore')}</Link>
             </div>
 
           </motion.div>

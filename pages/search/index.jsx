@@ -7,12 +7,15 @@ import { motion } from 'framer-motion'
 import { RotatingLines } from 'react-loader-spinner';
 import Image from 'next/image'
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next'
 
 const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
   const [query, setQuery] = useState('');
   const [poetsData, setPoetsData] = useState([]);
   const [placesData, setPlacesData] = useState([]);
   const [isDataLoading, setIsdataLoading] = useState(false)
+
+  const { t } = useTranslation('common')
 
   const removeDiacritics = (text) => {
     const diacritics = "ًٌٍَُِّْ";
@@ -68,7 +71,7 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
                 <div className={styles.icon_container}>
                   <Search />
                 </div>
-                <input type="text" placeholder='ابحث عن شعراء,أماكن' value={query}
+                <input type="text" placeholder={t("searchforPoetsPlaces")} value={query}
                   onChange={handleSearch}
                 />
 
@@ -102,7 +105,7 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
             {placesData && filteredPlaces?.length !== 0 &&
               <>
                 <div className={styles.sec_title}>
-                  <Typography variant='h3'>الأماكن</Typography>
+                  <Typography variant='h3'>{t('places')}</Typography>
                 </div>
 
                 <div className={styles.places_container}>
@@ -134,7 +137,7 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
             {poetsData &&
               poetsData?.length !== 0 &&
               <div className={styles.sec_title}>
-                <Typography variant='h3'>الشعراء</Typography>
+                <Typography variant='h3'>{t('poets')}</Typography>
               </div>
             }
             <div className={styles.poets_container}>
@@ -182,7 +185,7 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
               poetsData?.length === 0 &&
               query !== '' &&
               <div className={styles.notfound}>
-                <Typography variant='h4'>لا توجد نتيجة عن :<span>{query}</span></Typography>
+                <Typography variant='h4'>{t("thereNoResultFor")}:<span>{query}</span></Typography>
               </div>
             }
 

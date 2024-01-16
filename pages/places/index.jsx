@@ -109,16 +109,35 @@ const Places = ({ dataAllCitiesMap, dataAllPlaces,
     ));
   };
 
+  // const handlePlaceWindow = async (placeId) => {
+  //   setActiveCity(placeId);
+  //   const filtredPlaces = dataAllPlaces?.find((place) => place.id === placeId)
+
+  //   const filteredPoetries = dataAllPoetries.filter((poetry) => poetry.placeId === placeId);
+
+  //   setCityData(filtredPlaces);
+  //   setPoetriesData(filteredPoetries);
+  // };
+
   const handlePlaceWindow = async (placeId) => {
     setActiveCity(placeId);
-    const filtredPlaces = dataAllPlaces.find((place) => place.id === placeId)
-    const filteredPoetries = dataAllPoetries.filter((poetry) => poetry.placeId === placeId);
 
-    setCityData(filtredPlaces);
-    setPoetriesData(filteredPoetries);
+    // Check if dataAllPlaces is an array before using the find method
+    const filtredPlaces = Array.isArray(dataAllPlaces)
+      ? dataAllPlaces.find((place) => place.id === placeId)
+      : null;
 
+    // Proceed only if filtredPlaces is not null
+    if (filtredPlaces) {
+      const filteredPoetries = dataAllPoetries.filter((poetry) => poetry.placeId === placeId);
+
+      setCityData(filtredPlaces);
+      setPoetriesData(filteredPoetries);
+    } else {
+      // Handle the case where filtredPlaces is null
+      // e.g., set some default data, show a message, etc.
+    }
   };
-
 
 
 

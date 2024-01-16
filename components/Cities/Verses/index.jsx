@@ -6,9 +6,13 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+
 const Verses = ({ dataCityPoetry, dataCityData }) => {
   const [expandedStates, setExpandedStates] = useState({});
-
+  const { t } = useTranslation("common");
+  const router = useRouter();
   const toggleExpanded = (index) => {
     setExpandedStates(prev => ({
       ...prev,
@@ -16,22 +20,23 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
     }));
   };
 
+
   return (
     <>
-      <section id='Verses' className={styles.Verses} dir='rtl' >
+      <section id='Verses' className={styles.Verses} dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`} >
         <div className={styles.sec_container}>
           <Container maxWidth={false} >
 
             <div className={styles.info_sec}>
               <div className={styles.sec_title}>
-                <Typography variant='h3'>عن {dataCityData?.name}</Typography>
+                <Typography variant='h3'>{t("about")} {dataCityData?.name}</Typography>
               </div>
               <div className={styles.boxes_container}>
 
 
                 <div className={styles.box}>
                   <div className={styles.title}>
-                    <Typography>الاسم الحالي</Typography>
+                    <Typography>{t("currentName")}</Typography>
                   </div>
                   <div className={styles.name}>
                     <Typography>
@@ -43,7 +48,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                 </div>
                 <div className={styles.box}>
                   <div className={styles.title}>
-                    <Typography>أسماء أخرى</Typography>
+                    <Typography>{t("othersNames")}</Typography>
                   </div>
                   <div className={styles.name}>
                     <Typography>
@@ -55,7 +60,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                 </div>
                 <div className={styles.box}>
                   <div className={styles.title}>
-                    <Typography>المنطقة الإدراية</Typography>
+                    <Typography>{t("administrativeRegion")}</Typography>
                   </div>
                   <div className={styles.name}>
                     <Typography>
@@ -68,7 +73,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                 </div>
                 <div className={styles.box}>
                   <div className={styles.title}>
-                    <Typography>قيمة المكان</Typography>
+                    <Typography>{t("placeValue")}</Typography>
                   </div>
                   <div className={styles.name}>
                     <Typography>
@@ -82,7 +87,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
 
                 <div className={styles.box}>
                   <div className={styles.title}>
-                    <Typography>وصف المكان قديمًا</Typography>
+                    <Typography>{t("descriptionPlaceInPast")}</Typography>
                   </div>
                   <div className={styles.name}>
                     <Typography>
@@ -97,7 +102,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
 
                 <div className={styles.box}>
                   <div className={styles.title}>
-                    <Typography>وصف المكان حديثًا</Typography>
+                    <Typography>{t("recentDescriptionOfPlace")}</Typography>
                   </div>
                   <div className={styles.name}>
                     <Typography>
@@ -110,7 +115,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                 </div>
                 <div className={styles.box}>
                   <div className={styles.title}>
-                    <Typography>الموقع</Typography>
+                    <Typography>{t("location")}</Typography>
                   </div>
                   <div className={styles.name}>
                     <Typography>
@@ -129,11 +134,9 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
 
           <Container maxWidth={false} className='disable_container_mobile'>
 
-            <Container maxWidth={false} >
-              <div className={styles.sec_title}>
-                <Typography variant='h3'>أبيات قيلت في {dataCityData.name}</Typography>
-              </div>
-            </Container>
+            <div className={styles.sec_title}>
+              <Typography variant='h3'>{t("versesSaidIn")} {dataCityData.name}</Typography>
+            </div>
             <Container maxWidth={false} className={styles.slider_container}>
               <div className={styles.slider_sec}>
                 <Swiper
@@ -165,6 +168,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                   slidesPerView={3}
                   pagination={{ clickable: true }}
                   className={styles.swiper}
+                  dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}
                 >
                   {Array.isArray(dataCityPoetry) ? dataCityPoetry.map((poet, index) => {
                     const [beforeDots, afterDots] = poet.poetryParts.split('...');
@@ -197,7 +201,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
                               <Typography >{poet.entrance}</Typography>
                             </motion.div>
                             <div className={styles.more_btn} onClick={() => toggleExpanded(index)}>
-                              <Typography>{expandedStates[index] ? 'أقل' : 'المزيد'}</Typography>
+                              <Typography>{expandedStates[index] ? t('readLess') : t('readMore')}</Typography>
                             </div>
 
 

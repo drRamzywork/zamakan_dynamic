@@ -2,9 +2,13 @@ import React from 'react'
 import PageHeader from '@/components/Cities/PageHeader'
 import Verses from '@/components/Cities/Verses'
 import Head from 'next/head'
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 
 const Cities = ({ dataCityData, dataCityPoetry }) => {
+
+
+
   return (
     <>
       <Head>
@@ -49,18 +53,26 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, locale }) {
+  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langId = process.env[langIdEnvKey];
   const { id } = params;
 
-  const resCityData = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${id}&lang=2`);
+
+
+
+
+
+  const resCityData = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${id}&lang=${langId}`);
   const dataCityData = await resCityData.json();
 
-  const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${id}&lang=2&pagenum=1&pagesize=50`);
+  const resCityPoetry = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${id}&lang=${langId}&pagenum=1&pagesize=50`);
   const dataCityPoetry = await resCityPoetry.json();
 
   return {
     props: {
       dataCityData,
-      dataCityPoetry
+      dataCityPoetry,
+      ...(await serverSideTranslations(locale, ["common"])),
     },
 
     revalidate: 10,

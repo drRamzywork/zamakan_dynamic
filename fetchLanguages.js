@@ -1,4 +1,5 @@
 const fetch = require("node-fetch").default;
+const { Console } = require("console");
 const fs = require("fs");
 const path = require("path");
 

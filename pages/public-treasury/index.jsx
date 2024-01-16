@@ -4,8 +4,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import styles from './index.module.scss'
 import Image from 'next/image';
 import { motion, useAnimation, useInView } from 'framer-motion';
-const PublicTreasury = ({ AllMainTopics }) => {
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next';
 
+
+const PublicTreasury = ({ AllMainTopics }) => {
+  const { t } = useTranslation('common')
   const animation = useAnimation();
 
   const ref = useRef(null)
@@ -51,7 +55,7 @@ const PublicTreasury = ({ AllMainTopics }) => {
               </div>
 
               <Typography variant='h1'>
-                خزانة الشعر
+                {t('poetryarchive')}
               </Typography>
 
               <div className={styles.img_container}>
@@ -90,14 +94,20 @@ const PublicTreasury = ({ AllMainTopics }) => {
 export default PublicTreasury
 
 
-export async function getStaticProps() {
-  const resAllMainTopics = await fetch(`https://api4z.suwa.io/api/Media/GetAllMainTopics?lang=2&withPlaces=true&pagenum=1&pagesize=50`);
+export async function getStaticProps({ locale }) {
+  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langId = process.env[langIdEnvKey];
+
+  const resAllMainTopics = await fetch(`https://api4z.suwa.io/api/Media/GetAllMainTopics?lang=${langId}&withPlaces=true&pagenum=1&pagesize=50`);
   const AllMainTopics = await resAllMainTopics.json();
+
+
 
 
   return {
     props: {
       AllMainTopics,
+      ...(await serverSideTranslations(locale, ["common"])),
     },
     revalidate: 10,
   };

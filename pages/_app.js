@@ -2,14 +2,15 @@ import Layout from "@/components/Layout";
 import "@/styles/globals.scss";
 import Head from "next/head";
 import DataContext from "@/context/DataContext";
-import { useEffect, useState } from "react";
-import { appWithTranslation } from "next-i18next";
+import { appWithTranslation, useTranslation } from "next-i18next";
 
 function MyApp({ Component, pageProps }) {
+  const { t } = useTranslation("common");
+
   return (
     <Layout>
       <Head>
-        <title>عام الشعر العربي </title>
+        <title>{t("yearOfArabicPoetry")} </title>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="عام الشعر العربي 2023" />

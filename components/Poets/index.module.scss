@@ -550,7 +550,9 @@ section.Poets[dir="ltr"] {
       margin-left: 16px;
 
       .icon_container {
-        width: 32px;
+        @media screen and (max-width: 450px) {
+          width: 32px;
+        }
       }
       p {
         margin-right: 0px;
