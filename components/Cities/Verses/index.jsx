@@ -25,8 +25,7 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
     <>
       <section id='Verses' className={styles.Verses} dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`} >
         <div className={styles.sec_container}>
-          <Container maxWidth={false} >
-
+          <Container maxWidth={false}>
             <div className={styles.info_sec}>
               <div className={styles.sec_title}>
                 <Typography variant='h3'>{t("about")} {dataCityData?.name}</Typography>
@@ -130,17 +129,12 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
             </div>
           </Container>
 
-
-
           <Container maxWidth={false} className='disable_container_mobile'>
-
-
             <Container maxWidth={false} >
               <div className={styles.sec_title}>
                 <Typography variant='h3'>{t("versesSaidIn")} {dataCityData.name}</Typography>
               </div>
             </Container>
-
             <Container maxWidth={false} className={styles.slider_container}>
               <div className={styles.slider_sec}>
                 <Swiper
@@ -233,12 +227,9 @@ const Verses = ({ dataCityPoetry, dataCityData }) => {
               </div>
 
             </Container>
-
           </Container>
-
         </div >
       </section >
-
     </>
   )
 }

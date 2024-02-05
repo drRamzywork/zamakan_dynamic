@@ -1,23 +1,22 @@
-import { Container, Typography } from '@mui/material'
-import React, { useRef } from 'react'
+import React from 'react'
+import { Typography } from '@mui/material'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { HiArrowLeft } from "react-icons/hi2";
-import { HiArrowRight } from "react-icons/hi2";
 import styles from './index.module.scss'
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 
 
 
 const PoetsSlider = ({ poetriesData, poetID }) => {
-
+  const router = useRouter()
   const filteredPoetriesData = poetriesData.filter(poetry => poetry.poetId === poetID);
 
 
   return (
     <>
-      <div id='simlar_poets' className={styles.simlar_poets}>
+      <div id='simlar_poets' className={styles.simlar_poets} dir={router.locale === 'ar' ? 'rtl' : 'ltr'}>
 
 
         <div className={styles.slider_container}>
@@ -48,7 +47,7 @@ const PoetsSlider = ({ poetriesData, poetID }) => {
 
                 },
               }}
-              dir='rtl'
+              dir={router.locale === 'ar' ? 'rtl' : 'ltr'}
               className={styles.swiper_container} >
               {
                 filteredPoetriesData?.map((poetry) => {

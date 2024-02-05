@@ -16,11 +16,15 @@ import Image from 'next/image';
 import { RotatingLines } from 'react-loader-spinner';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
+
 
 
 
 const Places = ({ dataAllCitiesMap, dataAllPlaces,
   dataAllPoetries }) => {
+  const { t } = useTranslation("common");
+
   const [isImageLoading, setIsImageLoading] = useState(true);
   const [landElments, setLandElemnts] = useState([])
   const [activeIndex, setActiveIndex] = useState(null);
@@ -109,15 +113,6 @@ const Places = ({ dataAllCitiesMap, dataAllPlaces,
     ));
   };
 
-  // const handlePlaceWindow = async (placeId) => {
-  //   setActiveCity(placeId);
-  //   const filtredPlaces = dataAllPlaces?.find((place) => place.id === placeId)
-
-  //   const filteredPoetries = dataAllPoetries.filter((poetry) => poetry.placeId === placeId);
-
-  //   setCityData(filtredPlaces);
-  //   setPoetriesData(filteredPoetries);
-  // };
 
   const handlePlaceWindow = async (placeId) => {
     setActiveCity(placeId);
@@ -408,7 +403,7 @@ const Places = ({ dataAllCitiesMap, dataAllPlaces,
                       exit={{ opacity: 0, y: -50 }}
                       transition={{ duration: 0.5 }}
                       className={styles.custom_box}
-                      dir='rtl'
+                      dir={router.locale === 'ar' ? 'rtl' : 'ltr'}
                       ref={popUpRef}
                     >
 
@@ -424,7 +419,7 @@ const Places = ({ dataAllCitiesMap, dataAllPlaces,
                               <p>
                                 {cityData?.descriptionShort}
                                 <Link href={`/city/${cityData?.id}`} className={styles.more}>
-                                  <span>المزيد عن {cityData?.name}</span>
+                                  <span>{t("moreAbout")} {cityData?.name}</span>
                                   <LeftArrow />
                                 </Link>
                               </p>
