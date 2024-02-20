@@ -240,8 +240,6 @@ const Places = ({ dataAllCitiesMap, dataAllPlaces,
 
                   },
                 }}
-                spaceBetween={24}
-                slidesPerView={8.5}
                 dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}
                 pagination={true} className="mySwiper">
 
