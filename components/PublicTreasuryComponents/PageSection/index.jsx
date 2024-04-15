@@ -43,11 +43,6 @@ const PageSection = ({ title, AllMainTopics, data = [] }) => {
     setImagesGallery(selectedSlider.imagesVideos.split(','));
   };
 
-
-
-
-
-
   const handleImageLoad = cityId => {
     setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
   };
@@ -75,8 +70,6 @@ const PageSection = ({ title, AllMainTopics, data = [] }) => {
     };
   }, [imgRef]);
 
-
-
   const parseMedia = (mediaString) => {
     return mediaString?.split(',')?.map(mediaUrl => {
       const isVideo = mediaUrl.endsWith('.mp4');
@@ -86,11 +79,11 @@ const PageSection = ({ title, AllMainTopics, data = [] }) => {
 
 
   };
+
   const getFirstMediaUrl = (mediaString) => {
 
     return mediaString?.split(',')[0];
   };
-
 
   return (
     <>
@@ -101,6 +94,7 @@ const PageSection = ({ title, AllMainTopics, data = [] }) => {
               {topic.name}
             </Typography>
           </div>
+
           <motion.div
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
