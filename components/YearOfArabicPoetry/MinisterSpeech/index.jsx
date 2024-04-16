@@ -207,7 +207,7 @@ const MinisterSpeech = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, type: "tween" }} className={styles.btns_container}>
             <div className={styles.btn}>
-              <Link href='/api/download' >
+              <Link href='/assets/imgs/logos.zip' >
                 تحميل الشعار
               </Link>
             </div>
