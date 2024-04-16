@@ -5,7 +5,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media screen and (max-width: 992px) {
+      justify-content: center;
+    }
+
     .links_container {
+      @media screen and (max-width: 992px) {
+        display: none;
+      }
       a {
         padding: 0 16px;
         font-family: var(--effra-font);

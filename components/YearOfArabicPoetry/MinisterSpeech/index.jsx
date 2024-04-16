@@ -7,6 +7,8 @@ import Link from 'next/link';
 import Marquee from "react-fast-marquee";
 
 const MinisterSpeech = () => {
+
+  // logos.zip
   return (
 
     <section id='ministerSpeech' className={styles.ministerSpeech}>
@@ -201,19 +203,17 @@ const MinisterSpeech = () => {
           </div>
 
           <motion.div
-
             initial={{ opacity: 0, y: 150 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, type: "tween" }} className={styles.btns_container}>
             <div className={styles.btn}>
-              <Button>
+              <Link href='/api/download' >
                 تحميل الشعار
-              </Button>
+              </Link>
             </div>
             <div className={styles.btn}>
               <Link href={'https://axc1qs8rzqmq.compat.objectstorage.me-jeddah-1.oraclecloud.com/moc-applications/engage/custom_uploads/The%20Year%20of%20Arabic%20Poetry%20Guidelines%203.pdf'} target='__blank'>
                 دليل الهوية
-
               </Link>
             </div>
           </motion.div>

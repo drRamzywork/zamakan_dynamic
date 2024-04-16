@@ -8,11 +8,21 @@ section.ministerSpeech {
     justify-content: center;
     gap: 24px;
     flex-direction: row-reverse;
+
+    @media screen and (max-width: 992px) {
+      gap: 16px;
+    }
+
     div {
       img {
         width: 180px;
         height: 180px;
         object-fit: contain;
+
+        @media screen and (max-width: 992px) {
+          width: 100px;
+          height: 80px;
+        }
       }
     }
   }
@@ -21,6 +31,14 @@ section.ministerSpeech {
     padding: 124px;
 
     position: relative;
+
+    @media screen and (max-width: 992px) {
+      padding: 0;
+      padding-top: 48px;
+      padding-bottom: 48px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
 
     &::before,
     &::after {
@@ -31,6 +49,9 @@ section.ministerSpeech {
       height: 341px;
       background-size: cover;
       background-repeat: no-repeat;
+      @media screen and (max-width: 992px) {
+        display: none;
+      }
     }
 
     &::before {
@@ -52,6 +73,11 @@ section.ministerSpeech {
         // line-height: 0px;
         color: #062a30;
         transform: translateY(-60px);
+
+        @media screen and (max-width: 992px) {
+          font-size: 80px;
+          letter-spacing: 0;
+        }
       }
 
       h2 {
@@ -74,6 +100,10 @@ section.ministerSpeech {
         letter-spacing: 0;
         line-height: 1.6em;
         color: #062a30;
+
+        @media screen and (max-width: 992px) {
+          font-size: 20px;
+        }
       }
     }
   }
@@ -84,6 +114,11 @@ section.ministerSpeech {
       padding: 124px;
       padding-top: 48px;
       padding-bottom: 48px;
+      @media screen and (max-width: 992px) {
+        padding: 0;
+        border: 0;
+        padding-top: 48px;
+      }
 
       .title_container {
         display: flex;
@@ -91,6 +126,12 @@ section.ministerSpeech {
         align-items: center;
         justify-content: center;
         gap: 60px;
+
+        @media screen and (max-width: 992px) {
+          gap: auto;
+          justify-content: space-between;
+        }
+
         .red_bird,
         .blue_bird {
           max-width: 200px;
@@ -99,15 +140,23 @@ section.ministerSpeech {
             height: auto;
             display: block;
             vertical-align: middle;
+            @media screen and (max-width: 992px) {
+              width: 80px;
+            }
           }
         }
         .title {
           transform: translateY(-49px);
-
+          @media screen and (max-width: 992px) {
+            transform: translateY(-30px);
+          }
           h4 {
             font-family: var(--req3a-font);
             font-size: 133px;
             font-weight: 500;
+            @media screen and (max-width: 992px) {
+              font-size: 80px;
+            }
           }
         }
       }
@@ -117,6 +166,9 @@ section.ministerSpeech {
         align-items: center;
         justify-content: space-around;
         margin-top: 48px;
+        @media screen and (max-width: 992px) {
+          flex-direction: column;
+        }
 
         .box {
           text-align: center;
@@ -127,6 +179,10 @@ section.ministerSpeech {
           flex-direction: column;
           justify-content: center;
           max-width: 320px;
+          @media screen and (max-width: 992px) {
+            margin-bottom: 24px;
+            padding: 24px 20px;
+          }
 
           .img_container {
             img {
@@ -150,6 +206,10 @@ section.ministerSpeech {
     margin-top: 48px;
     max-width: fit-content;
     margin: 48px auto;
+    @media screen and (max-width: 992px) {
+      max-width: unset;
+      width: 100%;
+    }
 
     .header {
       display: flex;
@@ -158,6 +218,10 @@ section.ministerSpeech {
 
       .img_container {
         border-top: 1px solid #1a3b46;
+
+        @media screen and (max-width: 992px) {
+          display: none;
+        }
         &:first-child {
           border-left: 1px solid #1a3b46;
         }
@@ -178,6 +242,12 @@ section.ministerSpeech {
         border-bottom: 0;
         padding: 11.2px;
 
+        @media screen and (max-width: 992px) {
+          padding: 0;
+          width: 100%;
+          text-align: center;
+        }
+
         h4 {
           font-size: 133px;
           font-weight: 500;
@@ -185,6 +255,10 @@ section.ministerSpeech {
           font-family: var(--req3a-font) !important;
           color: #062a30;
           transform: translateY(-40px);
+
+          @media screen and (max-width: 992px) {
+            font-size: 80px !important;
+          }
         }
       }
     }
@@ -221,6 +295,11 @@ section.ministerSpeech {
 
         a {
           padding-bottom: 15.5px;
+          @media screen and (max-width: 992px) {
+            // padding-bottom: 0 !important;
+            padding-top: 10px;
+            padding-bottom: 5px;
+          }
         }
       }
     }
@@ -232,16 +311,27 @@ section.ministerSpeech {
     justify-content: center;
     img {
       max-width: 100%;
+      @media screen and (max-width: 992px) {
+        width: 100%;
+        height: 212px;
+        object-fit: contain;
+      }
     }
   }
 
   .title {
+    @media screen and (max-width: 992px) {
+      margin-top: 24px;
+    }
     h1 {
       font-size: 133px;
       text-align: center;
       font-weight: 500;
       // line-height: 0px;
       color: #062a30;
+      @media screen and (max-width: 992px) {
+        font-size: 80px;
+      }
     }
   }
 

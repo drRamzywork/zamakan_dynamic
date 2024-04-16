@@ -11,15 +11,23 @@ header.year_of_arabic_poetry {
         display: block;
         max-width: 972px;
         margin: 0 auto;
+
+        @media screen and (max-width: 992px) {
+          width: 100%;
+        }
       }
     }
 
     .docs {
       width: 100%;
       display: flex;
+
       img {
         margin: auto;
         width: 850px;
+        @media screen and (max-width: 992px) {
+          width: 100%;
+        }
         object-fit: cover;
         height: auto;
       }

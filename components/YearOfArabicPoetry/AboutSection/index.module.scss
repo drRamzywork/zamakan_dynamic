@@ -1,8 +1,11 @@
 section.about {
   padding: 124px;
   background-color: #f6efd8;
-
   position: relative;
+
+  @media screen and (max-width: 992px) {
+    padding: 0;
+  }
 
   &::before,
   &::after {
@@ -13,6 +16,10 @@ section.about {
     height: 341px;
     background-size: cover;
     background-repeat: no-repeat;
+
+    @media screen and (max-width: 992px) {
+      display: none;
+    }
   }
 
   &::before {
@@ -31,11 +38,19 @@ section.about {
     justify-content: center;
     gap: 24px;
     flex-direction: row-reverse;
+    @media screen and (max-width: 992px) {
+      gap: 16px;
+    }
+
     div {
       img {
         width: 180px;
         height: 180px;
         object-fit: contain;
+        @media screen and (max-width: 992px) {
+          width: 100px;
+          height: 80px;
+        }
       }
     }
   }
@@ -49,12 +64,20 @@ section.about {
         // line-height: 0px;
         color: #062a30;
         transform: translateY(-60px);
+        @media screen and (max-width: 992px) {
+          font-size: 80px;
+          transform: translateY(-20px);
+          letter-spacing: 0;
+        }
       }
     }
 
     .desc {
       margin-top: 24px;
       margin-bottom: 80px;
+      @media screen and (max-width: 992px) {
+        margin-bottom: 0;
+      }
       p {
         text-align: center;
         direction: rtl;
@@ -64,6 +87,10 @@ section.about {
         letter-spacing: 0;
         line-height: 1.6em;
         color: #062a30;
+
+        @media screen and (max-width: 992px) {
+          font-size: 20px;
+        }
       }
     }
   }
