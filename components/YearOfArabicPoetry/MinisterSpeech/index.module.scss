@@ -166,6 +166,8 @@ section.ministerSpeech {
         align-items: center;
         justify-content: space-around;
         margin-top: 48px;
+        direction: rtl;
+
         @media screen and (max-width: 992px) {
           flex-direction: column;
         }
