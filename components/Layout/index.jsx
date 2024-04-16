@@ -49,7 +49,7 @@ export default function Layout({ children }) {
 
   return (
     <>
-      {router.pathname !== '/search' &&
+      {router.pathname.includes('year-of-arabic-poetry') || router.pathname !== '/search' &&
         <Navbar />
       }
       <main style={combinedStyles}>

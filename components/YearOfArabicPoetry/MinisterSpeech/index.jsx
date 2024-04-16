@@ -8,6 +8,7 @@ import Marquee from "react-fast-marquee";
 
 const MinisterSpeech = () => {
   return (
+
     <section id='ministerSpeech' className={styles.ministerSpeech}>
 
       <div className={styles.content_container}>
@@ -158,6 +159,7 @@ const MinisterSpeech = () => {
               </motion.div >
 
               <motion.div
+                id='guidance_guides'
                 initial={{ opacity: 0, y: 200 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.4, type: "tween" }} className={styles.box}>
@@ -199,6 +201,7 @@ const MinisterSpeech = () => {
           </div>
 
           <motion.div
+
             initial={{ opacity: 0, y: 150 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, type: "tween" }} className={styles.btns_container}>
@@ -230,6 +233,14 @@ const MinisterSpeech = () => {
 
       </Container>
 
+      <motion.div
+        initial={{ opacity: 0, y: 150 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, type: "tween" }}
+
+        id='title' className={styles.title} >
+        <h1>الشركاء</h1>
+      </motion.div>
       <Marquee speed={200} pauseOnHover={true} gradient={true} gradientColor={'#f9f4e0'} gradientWidth={100} pauseOnClick={true} className={styles.marquee_container}>
         <Image src='/assets/imgs/Amana.png' width={237} height={237} />
         <Image src='/assets/imgs/ethar.png' width={237} height={237} />

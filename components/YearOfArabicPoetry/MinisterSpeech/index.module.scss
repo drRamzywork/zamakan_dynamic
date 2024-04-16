@@ -235,6 +235,16 @@ section.ministerSpeech {
     }
   }
 
+  .title {
+    h1 {
+      font-size: 133px;
+      text-align: center;
+      font-weight: 500;
+      // line-height: 0px;
+      color: #062a30;
+    }
+  }
+
   .marquee_container {
     img {
       object-fit: contain;

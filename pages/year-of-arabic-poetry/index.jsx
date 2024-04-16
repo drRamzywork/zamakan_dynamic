@@ -8,6 +8,7 @@ import AboutSection from '@/components/YearOfArabicPoetry/AboutSection/index.jsx
 import MinisterSpeech from '@/components/YearOfArabicPoetry/MinisterSpeech';
 import Head from "next/head";
 import { useRouter } from 'next/router';
+import Navbar from '@/components/YearOfArabicPoetry/Navbar';
 
 const desc = `نؤمن في منظومة الثقافة بالمكانة الحضارية المهمة للجزيرة العربية، ودورها المؤثر في نشأة الشعر العربي ونهضته الكبرى التي جعلت من هذا الفن البديع ديواناً للعرب، ومجنى لثمر العقول، ببحوره وفنونه وأساليبه وقصائده، التي وثقت المعاني الجليلة، ونقلت مآثر العرب، وصاغت مشاعرهم وأفكارهم وتطلعاتهم نحو الخير والحياة والجمال.
 
@@ -25,9 +26,6 @@ const YearOfArabicPoetry = () => {
 
   return (
     <>
-
-
-
       <Head>
         <title>عام الشعر العربي</title>
         <meta charSet="UTF-8" />
@@ -62,7 +60,7 @@ const YearOfArabicPoetry = () => {
         <link rel="alternate" href={`https://islam-web.vercel.app/${router.locale}/${router.query.topic}`} hreflang={router.locale} />
 
       </Head>
-
+      <Navbar />
       <header id='year-of-arabic-poetry' className={styles.year_of_arabic_poetry}>
         <Container maxWidth={false}>
           <div className={styles.sec_container}>
