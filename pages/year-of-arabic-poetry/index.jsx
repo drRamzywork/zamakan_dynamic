@@ -39,7 +39,7 @@ const YearOfArabicPoetry = () => {
         <meta property="og:title" content={'عام العشر العربي'}
         />
         <meta property="og:description" content={desc} />
-        <meta property="og:url" content="https://thisislam.net/" />
+        <meta property="og:url" content="https://zamakanwebnew.suwa.io/" />
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
