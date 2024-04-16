@@ -3,12 +3,12 @@ import { useInView } from "react-intersection-observer";
 export const useAnimateOnInView = (variant = "default") => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    threshold: 0,
+    threshold: variant.startsWith("star") ? 0.1 : 0.5,
   });
 
   const defaultDuration = 1.4;
 
-  console.log(variant, "inView");
+  console.log(ref, "inView");
   // console.log(ref, "inView");
 
   const variants = {
