@@ -7,11 +7,9 @@ import { useInView } from 'react-intersection-observer';
 const RightPlants = React.forwardRef(({ redPlants }, forwardedRef) => {
   const animation = useAnimation();
 
-  // Internal ref to use if no ref is forwarded
   const internalRef = useRef(null);
   const ref = forwardedRef || internalRef;
 
-  // Use useInView hook
   const { ref: inViewRef, inView } = useInView({
     threshold: 0.2
   });

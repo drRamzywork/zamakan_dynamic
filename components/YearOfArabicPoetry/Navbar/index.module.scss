@@ -27,21 +27,21 @@
         &::after {
           content: "";
           position: absolute;
-          left: 0; // Start from the left edge of the link
-          right: 0; // End at the right edge of the link
-          bottom: 0; // Position it at the bottom of the link
-          height: 2px; // Thickness of the underline
-          background-color: white; // Color of the underline
-          transition: transform 1.5s ease, opacity 1.5s ease; // Smooth transitions for transform and opacity
-          transform: scaleX(0); // Start scaled to 0
-          opacity: 0; // Start with an invisible underline
-          transform-origin: center; // Scale from the center
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 2px;
+          background-color: white;
+          transition: transform 1.5s ease, opacity 1.5s ease;
+          transform: scaleX(0);
+          opacity: 0;
+          transform-origin: center;
         }
 
         &:hover::after,
         &:focus::after {
-          transform: scaleX(0.5); // Scale to full width
-          opacity: 1; // Make it visible on hover/focus
+          transform: scaleX(0.5);
+          opacity: 1;
         }
       }
     }

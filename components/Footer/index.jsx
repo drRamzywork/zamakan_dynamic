@@ -17,8 +17,6 @@ const Footer = () => {
     } dir='ltr' >
       <Container maxWidth={false}>
         <Grid container justifyContent="center" alignItems="center">
-
-
         </Grid>
         <Box paddingBottom={'4px'} className={styles.footerBottom}>
 
@@ -37,23 +35,16 @@ const Footer = () => {
 
 
           </Box>
-
-
           <Box>
-
           </Box>
+
           <Box className={styles.logo_mobile_footer_container}>
             <div className={styles.logo_mobile_footer}>
               <Image priority width={263} height={245} src={"/assets/imgs/logo_mobile_footer.png"} alt="" />
             </div>
-
-
           </Box>
 
-
-
         </Box>
-
         <Typography >
           {t("allrightsreserved")} © 2023
         </Typography>

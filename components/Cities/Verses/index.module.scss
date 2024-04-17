@@ -170,19 +170,6 @@ section.Verses {
                 overflow: hidden;
                 border: 3px solid var(--main-beige-color);
 
-                // &::after {
-                //   box-shadow: 0px 7.232143878936768px 5.303572177886963px 0px
-                //     rgba(0, 0, 0, 0.05);
-                //   content: "";
-                //   position: absolute;
-                //   top: -8px;
-                //   left: -8px;
-                //   width: calc(100% + 16px);
-                //   height: calc(100% + 16px);
-                //   border: 8px solid #ffffff;
-                //   border-radius: 50%;
-                //   box-sizing: border-box;
-                // }
                 img {
                   margin: auto;
                   width: 100%;
@@ -192,7 +179,6 @@ section.Verses {
               }
 
               .text_container {
-                // margin-bottom: 16px;
                 .name {
                   margin-bottom: 4px;
 

@@ -5,9 +5,3 @@
   height: 78vh;
   overflow: hidden;
 }
-
-@media screen and (max-width: 992px) {
-  .main {
-    /* height: 100vh; */
-  }
-}

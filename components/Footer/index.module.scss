@@ -14,13 +14,11 @@
   }
 
   .logo {
-    // Add styles for your logo here
     img {
       width: 100px;
     }
   }
   .socialLinks {
-    // Center the icons if needed
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,7 +29,6 @@
     }
     .MuiIconButton-root {
       margin: 0 5px;
-      // Add color if needed:
     }
     .links_container {
       button {
@@ -152,13 +149,10 @@
         .image_container {
           overflow: hidden;
 
-          // width: 66.58px;
-          // height: 66px;
           &:first-child {
             margin-right: 16px;
           }
           &:last-child {
-            // margin-left: 16px;
             width: 150px;
           }
           img {
