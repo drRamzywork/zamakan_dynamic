@@ -61,6 +61,7 @@ const YearOfArabicPoetry = () => {
 
       </Head>
       <Navbar />
+
       <header id='year-of-arabic-poetry' className={styles.year_of_arabic_poetry}>
         <Container maxWidth={false}>
           <div className={styles.sec_container}>

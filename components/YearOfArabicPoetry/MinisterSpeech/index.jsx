@@ -8,7 +8,6 @@ import Marquee from "react-fast-marquee";
 
 const MinisterSpeech = () => {
 
-  // logos.zip
   return (
 
     <section id='ministerSpeech' className={styles.ministerSpeech}>
@@ -71,7 +70,8 @@ const MinisterSpeech = () => {
 
       <Container maxWidth={false}>
         <div className={styles.stars_container}>
-          <motion.div initial={{ opacity: 0, y: -150 }}
+          <motion.div
+            initial={{ opacity: 0, y: -150 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, type: "tween" }}
           >
