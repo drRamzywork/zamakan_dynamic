@@ -158,7 +158,7 @@ export default LiteraryEras
 
 
 export async function getStaticProps({ locale }) {
-  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
 
   try {

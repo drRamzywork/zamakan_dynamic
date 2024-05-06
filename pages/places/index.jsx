@@ -478,7 +478,7 @@ export async function getStaticProps({ locale }) {
   let dataAllPoetries = [];
   let dataAllCitiesMap = [];
 
-  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
 
   try {

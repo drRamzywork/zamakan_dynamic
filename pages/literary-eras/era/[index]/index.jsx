@@ -47,7 +47,7 @@ export async function getStaticProps({ params, locale }) {
   let eraDetails = null;
 
 
-  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
 
 

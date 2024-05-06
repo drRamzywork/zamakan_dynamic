@@ -229,7 +229,7 @@ export default function Poet({ dataPoet, dataPoetry }) {
 }
 
 export async function getStaticProps({ params, locale }) {
-  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
   const { id } = params;
   const resPoet = await fetch(`https://api4z.suwa.io/api/Poets/GetPoetFullData?id=${id}&lang=${langId}`);

@@ -23,7 +23,6 @@ const YearOfArabicPoetry = () => {
   const router = useRouter();
 
 
-
   return (
     <>
       <Head>
@@ -84,14 +83,8 @@ const YearOfArabicPoetry = () => {
         </Container>
       </header>
 
-
-
-
-
       <AboutSection />
       <MinisterSpeech />
-
-
     </>
   );
 }
@@ -99,7 +92,7 @@ const YearOfArabicPoetry = () => {
 export default YearOfArabicPoetry;
 
 export async function getStaticProps({ locale }) {
-  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
 
   return {

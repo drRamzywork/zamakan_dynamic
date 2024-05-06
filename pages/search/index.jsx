@@ -199,7 +199,7 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
 export default SearchPage
 
 export async function getStaticProps({ locale }) {
-  const langIdEnvKey = `LANG_ID_${locale.toUpperCase()}`;
+  const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
 
   const resPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&lang=${langId}&pagenum=1&pagesize=50`);

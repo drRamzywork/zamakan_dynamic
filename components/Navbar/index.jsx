@@ -203,7 +203,7 @@ const Navbar = (props) => {
 
 
                           <p >
-                            {language.shortCut.toUpperCase()}
+                            {language?.shortCut?.toUpperCase()}
                           </p>
 
                           <div className={styles.icon_container}>
@@ -266,7 +266,7 @@ const Navbar = (props) => {
 
               <div className={`${styles.lang} ${langMenu ? styles.active : ''}`} onClick={() => setLangMenu(!langMenu)}>
                 <Typography >
-                  {router.locale.toUpperCase()}
+                  {router?.locale?.toUpperCase()}
                 </Typography >
               </div>
 

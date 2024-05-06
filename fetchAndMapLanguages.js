@@ -10,7 +10,7 @@ async function fetchAndMapLanguages() {
     const languages = await response.json();
 
     const localeToLangIdMap = languages.reduce((acc, lang) => {
-      acc += `LANG_ID_${lang.shortCut.toUpperCase()}=${lang.id}\n`;
+      acc += `LANG_ID_${lang?.shortCut?.toUpperCase()}=${lang?.id}\n`;
       return acc;
     }, "");
 
