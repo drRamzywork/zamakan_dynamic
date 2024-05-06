@@ -25,12 +25,12 @@ function MyApp({ Component, pageProps }) {
           property="og:description"
           content="استكشف الشعراء عبر العصور التاريخية الأدبية"
         />
-
+        <link rel="icon" href="/favicon.ico" />
         <meta
           property="og:image"
           content="https://zamakanwebnew.suwa.io/logo_mobile_footer.png"
         />
-        <meta property="og:url" content="https://zamakanweb1.suwa.io" />
+        <meta property="og:url" content="https://zamakanwebnew.suwa.io/" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:card" content="summary_large_image" />
