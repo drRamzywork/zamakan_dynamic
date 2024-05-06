@@ -13,7 +13,10 @@ function MyApp({ Component, pageProps }) {
         <title>{t("yearOfArabicPoetry")} </title>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="عام الشعر العربي" />
+        <meta
+          name="description"
+          content="استكشف الشعراء عبر العصور التاريخية الأدبية"
+        />
         <link rel="icon" href="/favicon.ico" />
 
         {/* Open Graph Meta Tags */}
