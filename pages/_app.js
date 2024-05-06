@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
 
         <meta
           property="og:image"
-          content="https://zamakanweb1.suwa.io/logo_mobile_footer.png"
+          content="https://zamakanwebnew.suwa.io/logo_mobile_footer.png"
         />
         <meta property="og:url" content="https://zamakanweb1.suwa.io" />
         <meta property="og:type" content="website" />
@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }) {
         />
         <meta
           name="twitter:image"
-          content="https://zamakanweb1.suwa.io/logo_mobile_footer.png"
+          content="https://zamakanwebnew.suwa.io/logo_mobile_footer.png"
         />
       </Head>
       <DataContext.Provider>
