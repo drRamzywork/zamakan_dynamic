@@ -227,47 +227,63 @@ const Navbar = (props) => {
                 </div>
               </motion.div>
 
-              <div className={styles.burger_icon} onClick={() => setNavMenu(!navMenu)}>
-                <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Top line */}
-                  <motion.path
-                    d="M1.39014 1H17.3901"
-                    stroke="#11292F"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    variants={lineVariants}
-                    animate={navMenu ? "cross" : "burger"}
-                  />
-                  {/* Middle line */}
-                  <motion.path
-                    d="M1.39014 7H17.3901"
-                    stroke="#11292F"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    variants={middleLineVariants}
-                    animate={navMenu ? "cross" : "burger"}
-                  />
-                  {/* Bottom line */}
-                  <motion.path
-                    d="M1.39014 13H17.3901"
-                    stroke="#11292F"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    variants={bottomLineVariants}
-                    animate={navMenu ? "cross" : "burger"}
-                  />
-                </svg>
+
+
+              <div className={styles.logos_container}>
+                <Link className={styles.logo} href={'/'}>
+                  <Image width={250} priority height={85} src={"/assets/imgs/logo.png"} alt="" />
+                </Link>
+
+
+                <div className={styles.burger_icon} onClick={() => setNavMenu(!navMenu)}>
+                  <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* Top line */}
+                    <motion.path
+                      d="M1.39014 1H17.3901"
+                      stroke="#11292F"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      variants={lineVariants}
+                      animate={navMenu ? "cross" : "burger"}
+                    />
+                    {/* Middle line */}
+                    <motion.path
+                      d="M1.39014 7H17.3901"
+                      stroke="#11292F"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      variants={middleLineVariants}
+                      animate={navMenu ? "cross" : "burger"}
+                    />
+                    {/* Bottom line */}
+                    <motion.path
+                      d="M1.39014 13H17.3901"
+                      stroke="#11292F"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      variants={bottomLineVariants}
+                      animate={navMenu ? "cross" : "burger"}
+                    />
+                  </svg>
+                </div>
               </div>
 
 
-              <Link className={styles.logo} href={'/'}>
-                <Image width={250} priority height={85} src={"/assets/imgs/logo.png"} alt="" />
-              </Link>
 
-              <div className={`${styles.lang} ${langMenu ? styles.active : ''}`} onClick={() => setLangMenu(!langMenu)}>
-                <Typography >
-                  {router?.locale?.toUpperCase()}
-                </Typography >
+              <div className={styles.logos_container}>
+
+
+                <div className={`${styles.lang} ${langMenu ? styles.active : ''}`} onClick={() => setLangMenu(!langMenu)}>
+                  <Typography >
+                    {router?.locale?.toUpperCase()}
+                  </Typography >
+
+                </div>
+
+
+                <Link className={styles.logo} href={'/'}>
+                  <Image width={250} priority height={85} src={"/assets/imgs/logo.png"} alt="" />
+                </Link>
               </div>
 
             </div>
