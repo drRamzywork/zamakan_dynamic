@@ -282,7 +282,7 @@ const Navbar = (props) => {
 
 
                 <Link className={styles.logo} href={'/'}>
-                  <Image width={250} priority height={85} src={"/assets/imgs/logo.png"} alt="" />
+                  <Image width={250} priority height={85} src={"/assets/imgs/مهد الشعر العربي.png"} alt="" />
                 </Link>
               </div>
 
