@@ -202,7 +202,6 @@ const VisualDocs = ({ sectionData }) => {
                     <img src={backgroundFullScreen} alt='' />
                   </div>
 
-
                   <Container
                     ref={imgRef}
 

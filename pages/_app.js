@@ -19,8 +19,6 @@ function MyApp({ Component, pageProps }) {
         />
         <link rel="icon" href="/favicon.ico" />
         {/* Open Graph Meta Tags */}
-        <meta property="og:image:width" content="512" />
-        <meta property="og:image:height" content="512" />
         <meta property="og:title" content="عام الشعر العربي" />
         <meta
           property="og:description"
