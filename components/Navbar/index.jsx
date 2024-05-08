@@ -277,22 +277,18 @@ const Navbar = (props) => {
                   <Typography >
                     {router?.locale?.toUpperCase()}
                   </Typography >
-
                 </div>
-
 
                 <Link className={styles.logo} href={'/'}>
                   <Image width={250} priority height={85} src={"/assets/imgs/مهد الشعر العربي.png"} alt="" />
                 </Link>
-              </div>
 
+              </div>
             </div>
           </Container>
-
         </AppBar>
       </HideOnScroll>
       <Toolbar />
-
     </>
   );
 };
