@@ -10,14 +10,9 @@ import { MdLocationPin } from "react-icons/md";
 import Image from 'next/image';
 import { useTranslation } from 'next-i18next';
 
-
-
-
-
 const LandingPage = () => {
   const router = useRouter();
   const { t } = useTranslation("common");
-
 
   return (
     <>
@@ -60,7 +55,8 @@ const LandingPage = () => {
             </div>
 
           </motion.div>
-          <Container maxWidth={false} >
+
+          <Container maxWidth={false}>
             <motion.div
               animate={{ opacity: 1 }}
               initial={{ opacity: 0 }}
@@ -108,9 +104,6 @@ const LandingPage = () => {
         </div>
 
       </section >
-
-
-
     </>
 
   )

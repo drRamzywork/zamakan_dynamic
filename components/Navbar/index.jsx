@@ -33,27 +33,20 @@ function HideOnScroll(props) {
 
 const Navbar = (props) => {
   const { t } = useTranslation("common");
-
   const router = useRouter()
   const [window, setWindow] = useState(undefined);
+  const [navMenu, setNavMenu] = useState(false);
+  const [langMenu, setLangMenu] = useState(false);
 
   useEffect(() => {
     setWindow(window);
   }, []);
 
 
-  const [navMenu, setNavMenu] = useState(false);
-  const [langMenu, setLangMenu] = useState(false);
-
-
-
-
-
   const variants = {
     open: { opacity: 1, y: 0 },
     closed: { opacity: 0, y: "-100%" },
   };
-
 
   const lineVariants = {
     burger: {
@@ -107,22 +100,23 @@ const Navbar = (props) => {
     };
   }, [navMenuRef]);
 
-
-
   return (
     <>
+
       <HideOnScroll {...props}>
 
-        <AppBar className={styles.navbarHeader} style={{
-          background: `#062a30`,
-        }} elevation={0} >
+        <AppBar className={styles.navbarHeader}
+          style={{
+            background: `#062a30`,
+          }}
+          elevation={0}>
 
           <Container maxWidth={false} className={styles.navbar}>
             <div className={styles.sec_container}
               ref={navMenuRef}
               dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
-              <>
 
+              <>
                 <motion.div
                   initial="closed"
                   animate={navMenu ? "open" : "closed"}
@@ -187,7 +181,6 @@ const Navbar = (props) => {
                 </motion.div>
               </>
 
-
               <motion.div
                 initial="closed"
                 animate={langMenu ? "open" : "closed"}
@@ -227,13 +220,11 @@ const Navbar = (props) => {
                 </div>
               </motion.div>
 
-
-
               <div className={styles.logos_container}>
+
                 <Link className={styles.logo} href={'/'}>
                   <Image width={250} priority height={85} src={"/assets/imgs/logo.png"} alt="" />
                 </Link>
-
 
                 <div className={styles.burger_icon} onClick={() => setNavMenu(!navMenu)}>
                   <svg width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -266,12 +257,10 @@ const Navbar = (props) => {
                     />
                   </svg>
                 </div>
+
               </div>
 
-
-
               <div className={styles.logos_container}>
-
 
                 <div className={`${styles.lang} ${langMenu ? styles.active : ''}`} onClick={() => setLangMenu(!langMenu)}>
                   <Typography >
@@ -286,9 +275,13 @@ const Navbar = (props) => {
               </div>
             </div>
           </Container>
+
         </AppBar>
+
       </HideOnScroll>
+
       <Toolbar />
+
     </>
   );
 };
