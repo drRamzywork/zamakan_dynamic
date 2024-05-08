@@ -18,8 +18,9 @@ function MyApp({ Component, pageProps }) {
           content="استكشف الشعراء عبر العصور التاريخية الأدبية"
         />
         <link rel="icon" href="/favicon.ico" />
-
         {/* Open Graph Meta Tags */}
+        <meta property="og:image:width" content="630" />
+        <meta property="og:image:height" content="630" />
         <meta property="og:title" content="عام الشعر العربي" />
         <meta
           property="og:description"
@@ -32,7 +33,6 @@ function MyApp({ Component, pageProps }) {
         />
         <meta property="og:url" content="https://zamakanwebnew.suwa.io/" />
         <meta property="og:type" content="website" />
-
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="عام الشعر العربي" />
         <meta
