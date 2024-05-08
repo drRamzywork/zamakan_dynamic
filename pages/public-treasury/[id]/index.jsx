@@ -115,9 +115,9 @@ const VisualDocs = ({ sectionData }) => {
         <meta property="og:description" content="عام الشعر العربي 2023" />
         <meta
           property="og:image"
-          content="https://zamakanweb1.suwa.io/logo_mobile_footer.png"
+          content="https://zamakanwebnew.suwa.io/logo_mobile_footer.png"
         />
-        <meta property="og:url" content="https://zamakanweb1.suwa.io" />
+        <meta property="og:url" content="https://zamakanwebnew.suwa.io" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:card" content="summary_large_image" />
