@@ -44,7 +44,7 @@ const PublicTreasury = ({ AllMainTopics }) => {
 
       </Container>
 
-      {/* <section id='footer' className={styles.footer} >
+      <section id='footer' className={styles.footer} >
         <div className={styles.imgs_container}>
 
           <div className={styles.leftPlants_container}>
@@ -82,7 +82,7 @@ const PublicTreasury = ({ AllMainTopics }) => {
 
         </div>
 
-      </section> */}
+      </section>
     </>
 
   )
