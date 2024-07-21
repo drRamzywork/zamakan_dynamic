@@ -144,8 +144,8 @@ const PageSection = ({ title, AllMainTopics, data = [] }) => {
                 },
               }}
             >
-
-              {topic?.sliders?.map((item, sliderIndex) => (
+              {console.log(topic?.sliders.slice(0, 3), "topic?.sliders")}
+              {topic?.sliders.slice(0, 3)?.map((item, sliderIndex) => (
                 <SwiperSlide key={sliderIndex} >
                   <div className={styles.box_sec}>
                     <div className={styles.rotated_img}>
@@ -263,7 +263,6 @@ const PageSection = ({ title, AllMainTopics, data = [] }) => {
             </div>
 
           </motion.div>
-
 
 
         </section >

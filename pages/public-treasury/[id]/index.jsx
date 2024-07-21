@@ -75,28 +75,9 @@ const VisualDocs = ({ sectionData }) => {
   }, [imgRef]);
 
 
-  const animation = useAnimation();
 
-  const ref = useRef(null)
-  const inView = useInView(ref)
 
-  useEffect(() => {
-    if (inView) {
-      animation.start({
-        y: 0,
-        transition: {
-          type: "spring",
-          duration: 2,
-          bounce: 0
-        }
-      })
-    }
 
-    if (!inView) {
-      animation.start({ y: '100vh' })
-    }
-
-  }, [inView]);
 
   return (
     <>
@@ -150,6 +131,7 @@ const VisualDocs = ({ sectionData }) => {
 
 
       </header>
+
       <Container maxWidth={false} >
         <section id={sectionPageData.name} className={styles.section} >
 
@@ -290,10 +272,12 @@ const VisualDocs = ({ sectionData }) => {
 
 
 
-        <section id='footer' className={stylesPage.footer} ref={ref}>
+        <section id='footer' className={stylesPage.footer} >
           <div className={stylesPage.imgs_container}>
             <motion.div
-              animate={animation} className={stylesPage.middle} >
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.4, type: "tween" }} className={stylesPage.middle} >
               {router.query.id === '1' &&
                 <img src={"/assets/imgs/docs_1.png"} alt="" />
               }
