@@ -49,7 +49,7 @@ const PageSection = ({ title, AllMainTopics, data = [] }) => {
 
   useEffect(() => {
     if (data[activeIndex] && data[activeIndex].gallery.length > 0) {
-      setBackgroundImageUrl(data[activeIndex].gallery[0].img); // Assuming the first image is the default
+      setBackgroundImageUrl(data[activeIndex].gallery[0].img);
     }
   }, [activeIndex, data]);
 
@@ -144,8 +144,7 @@ const PageSection = ({ title, AllMainTopics, data = [] }) => {
                 },
               }}
             >
-              {console.log(topic?.sliders.slice(0, 3), "topic?.sliders")}
-              {topic?.sliders.slice(0, 3)?.map((item, sliderIndex) => (
+              {topic?.sliders.slice(0, 1)?.map((item, sliderIndex) => (
                 <SwiperSlide key={sliderIndex} >
                   <div className={styles.box_sec}>
                     <div className={styles.rotated_img}>
