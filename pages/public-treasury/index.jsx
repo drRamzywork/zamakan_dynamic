@@ -50,7 +50,7 @@ const PublicTreasury = ({ AllMainTopics }) => {
       <section id='footer' className={styles.footer} >
         <div className={styles.imgs_container}>
           {/* <LeftPlants redPlants={"/assets/imgs/redPlants.png"} ref={leftPlantsRef} /> */}
-          {/* 
+
           <div className={styles.leftPlants_container}>
 
             <motion.div initial={{ opacity: 0, x: -50 }}
@@ -81,7 +81,7 @@ const PublicTreasury = ({ AllMainTopics }) => {
               className={styles.rightPlants}>
               <Image width={592} height={408} src={"/assets/imgs/redPlants.png"} alt="" />
             </motion.div>
-          </div> */}
+          </div>
 
 
           {/* <RightPlants redPlants={"/assets/imgs/redPlants.png"} /> */}

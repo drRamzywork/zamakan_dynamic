@@ -9,7 +9,6 @@ const PageHeader = ({ dataCityData }) => {
   const router = useRouter();
 
 
-  console.log(dataCityData, "dataCityData")
   return (
     <header id={styles.cities} dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
       <Container maxWidth={false}>
