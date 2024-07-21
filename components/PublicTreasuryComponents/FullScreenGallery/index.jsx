@@ -1,7 +1,7 @@
 // import React from 'react';
 // import Image from 'next/image';
 // import { Button } from '@mui/material';
-// import styles from '../../../pages/public-treasury/index.module.scss'; // Create a separate CSS module for this component
+// import styles from '../../../pages/treasury/index.module.scss'; // Create a separate CSS module for this component
 
 // const FullScreenGallery = ({ item, closeGallery }) => {
 //   return (

@@ -1,10 +1,9 @@
 import { Button, Container, Typography } from '@mui/material'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
-// import styles from '../index.module.scss'
 import { motion, } from 'framer-motion';
 import stylesMain from '../index.module.scss'
-import styles from '../../../components/PublicTreasuryComponents/PageSection/index.module.scss';
+// import styles from '../../../components/PublicTreasuryComponents/PageSection/index.module.scss';
 import stylesPage from './index.module.scss'
 import Head from 'next/head'
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -18,7 +17,7 @@ import { IoClose } from "react-icons/io5";
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-const VisualDocs = ({ sectionData }) => {
+const Treasury = ({ sectionData }) => {
   const router = useRouter();
   const sectionPageData = sectionData[0];
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -117,23 +116,23 @@ const VisualDocs = ({ sectionData }) => {
       </header>
 
       <Container maxWidth={false} >
-        <section id={sectionPageData.name} className={styles.section} >
+        <section id={sectionPageData.name} className={stylesMain.section} >
 
           <motion.div
             animate={{ opacity: 1 }}
             initial={{ opacity: 0 }}
-            transition={{ duration: 1, }} className={styles.boxes_container}>
+            transition={{ duration: 1, }} className={stylesMain.boxes_container}>
             {sectionPageData.sliders.map((item, index) =>
 
-              <div className={styles.box}>
-                <div className={styles.rotated_img}>
+              <div className={stylesMain.box}>
+                <div className={stylesMain.rotated_img}>
                   <img src={(item?.imagesVideos).split(',')[0]} alt={item?.name} />
                 </div>
 
-                <div className={styles.img_container} onClick={() => openGallery(index)}>
+                <div className={stylesMain.img_container} onClick={() => openGallery(index)}>
 
                   {parseMedia(item?.imagesVideos)?.map((media, mediaIndex) => (
-                    <div key={mediaIndex} className={`${styles.img_container} `} onClick={() => openGallery(index)}>
+                    <div key={mediaIndex} className={`${stylesMain.img_container} `} onClick={() => openGallery(index)}>
 
                       <img src={media.url} alt={item.name} />
                     </div>
@@ -142,7 +141,7 @@ const VisualDocs = ({ sectionData }) => {
 
                 </div>
 
-                <div className={styles.title}>
+                <div className={stylesMain.title}>
                   <Typography variant="h4">{item.name}</Typography>
                 </div>
 
@@ -155,16 +154,16 @@ const VisualDocs = ({ sectionData }) => {
                   animate={{ opacity: 1 }}
                   initial={{ opacity: 0 }}
                   transition={{ duration: 1 }}
-                  className={styles.fullscreengallery}
+                  className={stylesMain.fullscreengallery}
                 >
-                  <div className={styles.gallery_wrap}>
+                  <div className={stylesMain.gallery_wrap}>
                     <img src={backgroundFullScreen} alt='' />
                   </div>
 
                   <Container
-                    ref={imgRef} className={styles.gallery_container} sx={{ maxWidth: "1400px" }} maxWidth={false}>
+                    ref={imgRef} className={stylesMain.gallery_container} sx={{ maxWidth: "1400px" }} maxWidth={false}>
 
-                    <Button onClick={closeGallery} className={styles.close_btn}>
+                    <Button onClick={closeGallery} className={stylesMain.close_btn}>
                       <IoClose />
                     </Button>
 
@@ -181,8 +180,8 @@ const VisualDocs = ({ sectionData }) => {
 
                       {ImagesGallery?.map((item, index) => (
                         <SwiperSlide key={index}>
-                          <div className={styles.box}>
-                            <div className={styles.img_container}>
+                          <div className={stylesMain.box}>
+                            <div className={stylesMain.img_container}>
 
                               {item.endsWith('.mp4') ? (
                                 // Render a video tag for mp4 files
@@ -249,7 +248,7 @@ const VisualDocs = ({ sectionData }) => {
   )
 }
 
-export default VisualDocs
+export default Treasury
 
 export async function getStaticPaths() {
 

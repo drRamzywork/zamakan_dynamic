@@ -258,7 +258,7 @@
 
 
 //             <div className={styles.more_btn}>
-//               <Link href={`/public-treasury/${topic.id}`} >{t('readMore')}</Link>
+//               <Link href={`/treasury/${topic.id}`} >{t('readMore')}</Link>
 //             </div>
 
 //           </motion.div>
@@ -459,7 +459,7 @@ const PageSection = ({ title, AllMainTopics }) => {
             )}
 
             <div className={styles.more_btn}>
-              <Link href={`/public-treasury/${topic.id}`}>{t('readMore')}</Link>
+              <Link href={`/treasury/${topic.id}`}>{t('readMore')}</Link>
             </div>
           </motion.div>
         </section>

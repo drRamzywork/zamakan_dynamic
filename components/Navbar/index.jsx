@@ -146,7 +146,7 @@ const Navbar = (props) => {
                       </div>
                     </Link>
 
-                    <Link href='/public-treasury' className={`${styles.link} ${router.pathname.includes('/public-treasury') && styles.active}`}>
+                    <Link href='/treasury' className={`${styles.link} ${router.pathname.includes('/treasury') && styles.active}`}>
                       <p >
                         {t("poetryarchive")}
                       </p>

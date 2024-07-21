@@ -12,7 +12,7 @@ const Footer = () => {
 
   return (
     <footer className={
-      router.pathname === '/' || router.pathname.includes("/public-treasury") || router.pathname.includes("/year-of-arabic-poetry") ?
+      router.pathname === '/' || router.pathname.includes("/treasury") || router.pathname.includes("/year-of-arabic-poetry") ?
         styles.Landingfooter : styles.footer
     } dir='ltr' >
       <Container maxWidth={false}>
