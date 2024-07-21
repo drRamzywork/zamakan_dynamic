@@ -90,15 +90,15 @@ const YearOfArabicPoetry = () => {
 
 export default YearOfArabicPoetry;
 
-export async function getStaticProps({ locale }) {
-  const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
-  const langId = process.env[langIdEnvKey];
+// export async function getStaticProps({ locale }) {
+//   const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
+//   const langId = process.env[langIdEnvKey];
 
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ["common"])),
-      langId
-    },
-    revalidate: 10,
-  };
-}
+//   return {
+//     props: {
+//       ...(await serverSideTranslations(locale, ["common"])),
+//
+//     },
+//     revalidate: 10,
+//   };
+// }
