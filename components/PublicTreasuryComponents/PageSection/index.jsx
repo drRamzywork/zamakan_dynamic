@@ -274,11 +274,11 @@
 // export default PageSection
 
 
-import { Button, Container, Typography } from '@mui/material'
-import React, { useRef, useEffect, useState } from 'react'
+import { Button, Container, Typography } from '@mui/material';
+import React, { useRef, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Thumbs, FreeMode, Pagination } from 'swiper/modules';
-import styles from './index.module.scss'
+import styles from './index.module.scss';
 import Link from 'next/link';
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -290,7 +290,7 @@ import { IoClose } from "react-icons/io5";
 import { useTranslation } from 'next-i18next';
 import Image from 'next/image';
 
-const PageSection = ({ title, AllMainTopics, }) => {
+const PageSection = ({ title, AllMainTopics }) => {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const swiperRef = useRef(null);
   const [backgroundFullScreen, setBackgroundFullScreen] = useState("");
@@ -346,7 +346,7 @@ const PageSection = ({ title, AllMainTopics, }) => {
     1024: { slidesPerView: 3, spaceBetween: 16 },
     1400: { slidesPerView: 3, spaceBetween: 16 },
     1800: { slidesPerView: 3, spaceBetween: 16 },
-  }
+  };
 
   return (
     <>
@@ -375,7 +375,13 @@ const PageSection = ({ title, AllMainTopics, }) => {
                 <SwiperSlide key={sliderIndex}>
                   <div className={styles.box_sec}>
                     <div className={styles.rotated_img}>
-                      <Image width={100} height={100} src={getFirstMediaUrl(item?.imagesVideos)} alt={item?.name} />
+                      <Image
+                        width={100}
+                        height={100}
+                        src={getFirstMediaUrl(item?.imagesVideos)}
+                        alt={item?.name}
+                        loading="lazy"
+                      />
                     </div>
                     <div className={styles.img_container} onClick={() => openGallery(topicIndex, sliderIndex)}>
                       {parseMedia(item?.imagesVideos)?.map((media, mediaIndex) => (
@@ -385,9 +391,9 @@ const PageSection = ({ title, AllMainTopics, }) => {
                           onClick={() => openGallery(topicIndex, sliderIndex, mediaIndex)}
                         >
                           {media.isVideo ? (
-                            <video src={media.url} controls></video>
+                            <video src={media.url} controls loading="lazy"></video>
                           ) : (
-                            <Image width={100} height={100} src={media.url} alt={item.name} />
+                            <Image width={100} height={100} src={media.url} alt={item.name} loading="lazy" />
                           )}
                         </div>
                       ))}
@@ -408,7 +414,7 @@ const PageSection = ({ title, AllMainTopics, }) => {
                 className={styles.fullscreengallery}
               >
                 <div className={styles.gallery_wrap}>
-                  <Image width={100} height={100} src={backgroundFullScreen} alt="" />
+                  <Image width={100} height={100} src={backgroundFullScreen} alt="" loading="lazy" />
                 </div>
 
                 <Container ref={imgRef} className={styles.gallery_container} sx={{ maxWidth: "1400px" }} maxWidth={false}>
@@ -431,13 +437,16 @@ const PageSection = ({ title, AllMainTopics, }) => {
                         <div className={styles.box}>
                           <div className={styles.img_container}>
                             {item.endsWith('.mp4') ? (
-                              <video>
+                              <video controls loading="lazy">
                                 <source src={item} type="video/mp4" />
                               </video>
                             ) : (
-                              <Image width={100} height={100}
+                              <Image
+                                width={100}
+                                height={100}
                                 src={item}
                                 alt={`Gallery Image ${index + 1}`}
+                                loading="lazy"
                               />
                             )}
                           </div>
@@ -453,7 +462,6 @@ const PageSection = ({ title, AllMainTopics, }) => {
               <Link href={`/public-treasury/${topic.id}`}>{t('readMore')}</Link>
             </div>
           </motion.div>
-
         </section>
       ))}
     </>
