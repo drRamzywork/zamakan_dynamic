@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container } from '@mui/material';
 import Image from 'next/image';
 import styles from './index.module.scss';
@@ -68,7 +68,6 @@ const YearOfArabicPoetry = () => {
             <motion.div initial={{ opacity: 0, y: -50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.5, type: "tween" }}
-
               className={styles.logo}>
               <Image width={500} height={200} src="/assets/imgs/dark_logo.png" alt="Year of Arabic poetry" />
             </motion.div>
