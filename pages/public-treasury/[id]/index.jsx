@@ -2,7 +2,7 @@ import { Button, Container, Typography } from '@mui/material'
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 // import styles from '../index.module.scss'
-import { motion, useAnimation, useInView } from 'framer-motion';
+import { motion, } from 'framer-motion';
 import stylesMain from '../index.module.scss'
 import styles from '../../../components/PublicTreasuryComponents/PageSection/index.module.scss';
 import stylesPage from './index.module.scss'
@@ -19,9 +19,7 @@ import { useRouter } from 'next/router';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const VisualDocs = ({ sectionData }) => {
-
   const router = useRouter();
-  const [imageLoadingStates, setImageLoadingStates] = useState({});
   const sectionPageData = sectionData[0];
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [ImagesGallery, setImagesGallery] = useState("");
@@ -34,17 +32,8 @@ const VisualDocs = ({ sectionData }) => {
     setImagesGallery(sectionPageData?.sliders[index]?.imagesVideos?.split(','))
   };
 
-  const handleImageLoad = cityId => {
-    setImageLoadingStates(prev => ({ ...prev, [cityId]: false }));
-  };
-
   const closeGallery = () => {
     setGalleryOpen(false);
-  };
-
-  const getFirstMediaUrl = (mediaString) => {
-
-    return mediaString?.split(',')[0];
   };
 
   const parseMedia = (mediaString) => {
@@ -73,11 +62,6 @@ const VisualDocs = ({ sectionData }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [imgRef]);
-
-
-
-
-
 
   return (
     <>
@@ -117,7 +101,7 @@ const VisualDocs = ({ sectionData }) => {
       <header id={stylesMain.header}>
         <div className={stylesMain.sec_title}>
           <div className={stylesMain.img_container}>
-            <Image width={100} height={100} src={"/assets/imgs/star.png"} alt="star" />
+            <img src={"/assets/imgs/star.png"} alt="star" />
           </div>
 
           <Typography variant='h1'>
@@ -125,7 +109,7 @@ const VisualDocs = ({ sectionData }) => {
           </Typography>
 
           <div className={stylesMain.img_container}>
-            <Image width={100} height={100} src={"/assets/imgs/star.png"} alt="star" />
+            <img src={"/assets/imgs/star.png"} alt="star" />
           </div>
         </div>
 
@@ -143,19 +127,15 @@ const VisualDocs = ({ sectionData }) => {
 
               <div className={styles.box}>
                 <div className={styles.rotated_img}>
-                  <img src={getFirstMediaUrl(item?.imagesVideos)} alt={item?.name} />
+                  <img src={(item?.imagesVideos).split(',')[0]} alt={item?.name} />
                 </div>
+
                 <div className={styles.img_container} onClick={() => openGallery(index)}>
 
                   {parseMedia(item?.imagesVideos)?.map((media, mediaIndex) => (
-                    <div key={mediaIndex} className={`${styles.img_container} ${media.isVideo && styles.video_container}`} onClick={() => openGallery(index)}>
-                      {media.isVideo ? (
-                        <>
-                          < video src={media.url} controls></video>
-                        </>
-                      ) : (
-                        <img src={media.url} alt={item.name} />
-                      )}
+                    <div key={mediaIndex} className={`${styles.img_container} `} onClick={() => openGallery(index)}>
+
+                      <img src={media.url} alt={item.name} />
                     </div>
                   ))}
 
@@ -170,8 +150,7 @@ const VisualDocs = ({ sectionData }) => {
             )}
 
             {
-              galleryOpen &&
-              (
+              galleryOpen && (
                 <motion.div
                   animate={{ opacity: 1 }}
                   initial={{ opacity: 0 }}
@@ -183,13 +162,12 @@ const VisualDocs = ({ sectionData }) => {
                   </div>
 
                   <Container
-                    ref={imgRef}
+                    ref={imgRef} className={styles.gallery_container} sx={{ maxWidth: "1400px" }} maxWidth={false}>
 
-                    className={styles.gallery_container} sx={{ maxWidth: "1400px" }} maxWidth={false}>
                     <Button onClick={closeGallery} className={styles.close_btn}>
                       <IoClose />
-
                     </Button>
+
                     <Swiper
                       slidesPerView={1}
                       spaceBetween={16}
@@ -199,46 +177,27 @@ const VisualDocs = ({ sectionData }) => {
                       pagination={{ clickable: true }}
                       dir="rtl"
                       centeredSlides={true}
-
                     >
+
                       {ImagesGallery?.map((item, index) => (
                         <SwiperSlide key={index}>
                           <div className={styles.box}>
                             <div className={styles.img_container}>
-                              {imageLoadingStates[index] && (
-                                <RotatingLines
-                                  strokeColor="grey"
-                                  strokeWidth="5"
-                                  animationDuration="0.75"
-                                  width="96"
-                                  visible={true}
-                                />
-                              )}
 
                               {item.endsWith('.mp4') ? (
                                 // Render a video tag for mp4 files
                                 <video
-                                  style={{ display: imageLoadingStates[index] ? 'none' : 'block' }}
-                                  onLoadedData={() => handleImageLoad(index)}
-                                  onError={(e) => {
-                                    console.error(`Error loading video: ${item}`);
-                                    handleImageLoad(index); // Set the video as loaded to remove the loader
-                                  }}
+
                                   controls
                                 >
                                   <source src={item} type="video/mp4" />
                                 </video>
                               ) : (
                                 <Image
-                                  style={{ display: imageLoadingStates[index] ? 'none' : 'block' }}
-                                  onLoad={() => handleImageLoad(index)}
-                                  onError={(e) => {
-                                    console.error(`Error loading image: ${item}`);
-                                    handleImageLoad(index);
-                                  }}
+
                                   src={item}
                                   alt={`Gallery Image ${index + 1}`}
-                                  layout="fill" // or use specific width and height
+                                  layout="fill"
                                   objectFit="cover"
                                 />
                               )}
@@ -246,18 +205,10 @@ const VisualDocs = ({ sectionData }) => {
                             </div>
                           </div>
                         </SwiperSlide>
-
                       ))}
-
-
-
                     </Swiper>
                   </Container>
-
                 </motion.div>
-
-
-
               )}
 
 
@@ -305,9 +256,6 @@ export async function getStaticPaths() {
 
   const response = await fetch('https://api4z.suwa.io/api/Media/GetAllMainTopics?lang=2&withPlaces=true&pagenum=1&pagesize=50');
 
-  if (!response.ok) {
-    throw new Error(`API call failed: ${response.status}`);
-  }
 
   const data = await response.json();
   const ids = data.map((topic) => topic.id)
@@ -321,9 +269,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params, locale }) {
   const { id } = params;
-
-
-
   const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
 
