@@ -17,31 +17,26 @@ const PublicTreasury = ({ AllMainTopics }) => {
     <>
 
       <Container maxWidth={false} >
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          <header id={styles.header}>
-            <div className={styles.sec_title}>
-              {/* <div className={styles.img_container}>
+
+        <header id={styles.header}>
+          <div className={styles.sec_title}>
+            {/* <div className={styles.img_container}>
                 <Image width={100} height={100} src={"/assets/imgs/star.png"} alt="star" />
               </div> */}
 
-              <Typography variant='h1'>
-                {t('poetryarchive')} tatastatatatatsa astsatasat
-              </Typography>
+            <Typography variant='h1'>
+              {t('poetryarchive')} tatastatatatatsa astsatasat
+            </Typography>
 
-              {/* <div className={styles.img_container}>
+            {/* <div className={styles.img_container}>
                 <Image width={100} height={100} src={"/assets/imgs/star.png"} alt="star" />
               </div> */}
-            </div>
-            {/* 
+          </div>
+          {/* 
             <div className={styles.red_bird}>
               <Image width={100} height={100} src={"/assets/imgs/redBird.png"} alt="red bird" />
             </div> */}
-          </header>
-        </motion.div>
+        </header>
 
         <div id='PublicTreasury'>
           {/* <PageSection AllMainTopics={AllMainTopics} /> */}
