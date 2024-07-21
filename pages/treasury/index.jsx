@@ -24,17 +24,17 @@ const PublicTreasury = ({ AllMainTopics }) => {
         >
           <header id={styles.header}>
             <div className={styles.sec_title}>
-              <div className={styles.img_container}>
+              {/* <div className={styles.img_container}>
                 <Image width={100} height={100} src={"/assets/imgs/star.png"} alt="star" />
-              </div>
+              </div> */}
 
               <Typography variant='h1'>
-                {t('poetryarchive')}
+                {t('poetryarchive')} tatastatatatatsa astsatasat
               </Typography>
 
-              <div className={styles.img_container}>
+              {/* <div className={styles.img_container}>
                 <Image width={100} height={100} src={"/assets/imgs/star.png"} alt="star" />
-              </div>
+              </div> */}
             </div>
             {/* 
             <div className={styles.red_bird}>
