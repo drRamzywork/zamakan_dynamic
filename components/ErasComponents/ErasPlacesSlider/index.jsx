@@ -13,6 +13,8 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
   const swiperVerticalRef = useRef(null);
   const filteredPlaces = places.filter(place => place.svgX !== null && place.svgY !== null);
 
+  console.log(places, "places")
+
   const [imageLoadingStates, setImageLoadingStates] = useState(
     filteredPlaces.reduce((acc, city) => {
       acc[city.id] = city.icon ? true : false;

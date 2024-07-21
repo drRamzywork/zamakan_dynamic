@@ -29,6 +29,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
   const [filteredPoets, setFilteredPoets] = useState([]);
   const [isFilterActive, setIsFilterActive] = useState(false);
   const router = useRouter();
+
   useEffect(() => {
     if (dataPoetsByEra && dataPoetsByEra?.length > 0) {
       if (isFilterActive) {
@@ -44,8 +45,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
   const toggleFilter = () => {
     setIsFilterActive(prev => !prev);
   };
-
-
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
@@ -88,11 +87,8 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
-
     // Detect Safari browser
     setIsSafari(navigator.vendor.includes("Apple"));
-
-
   }, []);
 
 
@@ -369,7 +365,6 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
                   }
 
                 </svg>
-
               </div >
 
               {places !== null &&
@@ -377,13 +372,12 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
                   setActiveCity={setActiveCity}
                   activeCity={activeCity} onPlaceClick={handlePlaceWindow} />
               }
+
             </div>
           </motion.div>
         </Container>
       </section >
-
     </>
-
   )
 }
 

@@ -43,8 +43,8 @@ const Footer = () => {
               <Image priority width={263} height={245} src={"/logo_footer.png"} alt="" />
             </div>
           </Box>
-
         </Box>
+
         <Typography >
           {t("allrightsreserved")} © 2023
         </Typography>

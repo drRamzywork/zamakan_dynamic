@@ -34,10 +34,12 @@ const eftPlants = React.forwardRef(({ redPlants }, forwardedRef) => {
 
   return (
     <div ref={ref} className={styles.leftPlants_container}>
-      <motion.div animate={animation}>
-        <div className={styles.leftPlants}>
-          <Image width={592} height={408} src={"/assets/imgs/redPlants.png"} alt="" />
-        </div>
+      <motion.div initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.4, type: "tween" }}
+        className={styles.leftPlants}
+      >
+        <Image width={592} height={408} src={"/assets/imgs/redPlants.png"} alt="" />
       </motion.div>
     </div>
   );

@@ -102,7 +102,6 @@ const LandingPage = () => {
 
           </Container >
         </div>
-
       </section >
     </>
 

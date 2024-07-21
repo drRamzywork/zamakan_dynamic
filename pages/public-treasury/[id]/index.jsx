@@ -148,9 +148,7 @@ const VisualDocs = ({ sectionData }) => {
           </div>
         </div>
 
-        <div className={stylesMain.red_bird}>
-          <Image width={100} height={100} src={"/assets/imgs/redBird.png"} alt="red bird" />
-        </div>
+
       </header>
       <Container maxWidth={false} >
         <section id={sectionPageData.name} className={styles.section} >

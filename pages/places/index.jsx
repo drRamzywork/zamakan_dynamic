@@ -446,7 +446,8 @@ const Places = ({ dataAllCitiesMap, dataAllPlaces,
                     transition={{ duration: 0.5 }}
                     className={styles.slider_wrap}
                   >
-                    <ErasPlacesSlider places={places}
+                    <ErasPlacesSlider
+                      places={places}
                       setActiveCity={setActiveCity}
                       activeCity={activeCity} onPlaceClick={handlePlaceWindow} />
 

@@ -177,6 +177,7 @@ const poetsSearch = ({ erasAllEras, dataDefault }) => {
         <meta name="description" content="شُعراء العصور الأَدبيّة في مَناطِق المملكة العربيّة السُّعوديّة" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+
       </Head>
 
       <section id='poets' className={styles.poets} dir={`${router.locale === 'ar' ? 'rtl' : 'ltr'}`}>
@@ -308,10 +309,8 @@ export async function getStaticProps({ locale }) {
         erasAllEras,
         dataDefault,
         ...(await serverSideTranslations(locale, ["common"])),
-
       },
       revalidate: 10,
-
 
     };
   } catch (error) {

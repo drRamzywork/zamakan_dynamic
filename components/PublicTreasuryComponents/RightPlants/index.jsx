@@ -33,8 +33,10 @@ const RightPlants = React.forwardRef(({ redPlants }, forwardedRef) => {
   }, [inView, animation, inViewRef, ref]);
 
   return (
-    <div ref={ref} className={styles.rightPlants_container}>
-      <motion.div animate={animation}>
+    <div className={styles.rightPlants_container}>
+      <motion.div initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.4, type: "tween" }}>
         <div className={styles.rightPlants}>
           <Image width={592} height={408} src={"/assets/imgs/redPlants.png"} alt="" />
         </div>
