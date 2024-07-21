@@ -1,9 +1,8 @@
-import { LeftPlants, PageSection, RightPlants } from '@/components/PublicTreasuryComponents';
+import { PageSection } from '@/components/PublicTreasuryComponents';
 import { Container, Typography } from '@mui/material';
-import React, { useEffect, useRef } from 'react'
 import styles from './index.module.scss'
 import Image from 'next/image';
-import { motion, useAnimation, useInView } from 'framer-motion';
+import { motion, } from 'framer-motion';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from 'next-i18next';
 
