@@ -42,14 +42,13 @@ const PublicTreasury = ({ AllMainTopics }) => {
         </motion.div>
 
         <div id='PublicTreasury'>
-          <PageSection AllMainTopics={AllMainTopics} />
+          {/* <PageSection AllMainTopics={AllMainTopics} /> */}
         </div >
 
       </Container>
 
       <section id='footer' className={styles.footer} >
         <div className={styles.imgs_container}>
-          {/* <LeftPlants redPlants={"/assets/imgs/redPlants.png"} ref={leftPlantsRef} /> */}
 
           <div className={styles.leftPlants_container}>
 
@@ -84,7 +83,6 @@ const PublicTreasury = ({ AllMainTopics }) => {
           </div>
 
 
-          {/* <RightPlants redPlants={"/assets/imgs/redPlants.png"} /> */}
         </div>
 
       </section>

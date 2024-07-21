@@ -9,7 +9,6 @@ import Head from 'next/head'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Thumbs, FreeMode, Pagination } from 'swiper/modules';
 import 'swiper/css';
-import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/pagination'
