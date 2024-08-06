@@ -10,7 +10,6 @@ import { useTranslation } from 'next-i18next';
 const PublicTreasury = ({ AllMainTopics }) => {
   const { t } = useTranslation('common')
 
-  { console.log(AllMainTopics, "AllMainTopics") }
 
 
   return (

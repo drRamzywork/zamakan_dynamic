@@ -101,14 +101,14 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
         :
         <section id='results' className={styles.results} dir='rtl'>
           <Container maxWidth={false}>
-            {placesData && filteredPlaces?.length !== 0 &&
+            {placesData?.length !== 0 &&
               <>
                 <div className={styles.sec_title}>
                   <Typography variant='h3'>{t('places')}</Typography>
                 </div>
 
                 <div className={styles.places_container}>
-                  {filteredPlaces.map((place) =>
+                  {placesData?.map((place) =>
                     <Link href={`/city/${place.id}`} key={place.id} >
 
                       <motion.div
