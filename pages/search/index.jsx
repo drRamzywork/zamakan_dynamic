@@ -55,7 +55,6 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
 
   };
 
-  const filteredPlaces = placesData?.filter(place => place.icon !== null && place.icon !== '');
 
   return (
     <>
