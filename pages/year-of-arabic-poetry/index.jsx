@@ -21,6 +21,7 @@ const desc = `نؤمن في منظومة الثقافة بالمكانة الح�
 
 const YearOfArabicPoetry = () => {
   const router = useRouter();
+  const appDomain = process.env.NEXT_PUBLIC_APP_DOMAIN;
 
 
   return (
@@ -36,7 +37,7 @@ const YearOfArabicPoetry = () => {
         <meta property="og:title" content={'عام العشر العربي'}
         />
         <meta property="og:description" content={desc} />
-        <meta property="og:url" content="https://zamakanwebnew.suwa.io/" />
+        <meta property="og:url" content={`${appDomain}/`} />
         <meta property="og:type" content="website" />
         <meta
           property="og:image"

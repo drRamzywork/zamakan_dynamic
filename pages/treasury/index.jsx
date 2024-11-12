@@ -94,7 +94,9 @@ export async function getStaticProps({ locale }) {
   const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
 
-  const resAllMainTopics = await fetch(`https://api4z.suwa.io/api/Media/GetAllMainTopics?lang=${langId}&withPlaces=true&pagenum=1&pagesize=50`);
+  const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
+
+  const resAllMainTopics = await fetch(`${apiDomain}/api/Media/GetAllMainTopics?lang=${langId}&withPlaces=true&pagenum=1&pagesize=50`);
   const AllMainTopics = await resAllMainTopics.json();
 
 

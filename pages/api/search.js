@@ -1,10 +1,11 @@
 export default async function handler(req, res) {
   const { query } = req.query;
+  const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
 
   try {
     // Fetch data from the first API
     const responsePoets = await fetch(
-      `https://api4z.suwa.io/api/Poets/GetAllPoets?searchString=${encodeURIComponent(
+      `${apiDomain}/api/Poets/GetAllPoets?searchString=${encodeURIComponent(
         query
       )}&lang=2&pagenum=1&pagesize=50`
     );
@@ -12,7 +13,7 @@ export default async function handler(req, res) {
 
     // Fetch data from the second API
     const responsePlaces = await fetch(
-      `https://api4z.suwa.io/api/Makan/GetAllPlaces?searchString=${encodeURIComponent(
+      `${apiDomain}/api/Makan/GetAllPlaces?searchString=${encodeURIComponent(
         query
       )}&lang=2&pagenum=1&pagesize=50`
     );

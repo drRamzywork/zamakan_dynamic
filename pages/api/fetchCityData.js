@@ -1,14 +1,15 @@
 export default async function handler(req, res) {
   const { placeId } = req.query;
+  const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
 
   try {
     const resCityData = await fetch(
-      `https://api4z.suwa.io/api/Makan/GetMakanFullData?makan=${placeId}&lang=2`
+      `${apiDomain}/api/Makan/GetMakanFullData?makan=${placeId}&lang=2`
     );
     const dataCityData = await resCityData.json();
 
     const resCityPoetry = await fetch(
-      `https://api4z.suwa.io/api/Poetries/GetAllPoetries?place=${placeId}&type=6&lang=2&pagenum=1&pagesize=50`
+      `${apiDomain}/api/Poetries/GetAllPoetries?place=${placeId}&type=6&lang=2&pagenum=1&pagesize=50`
     );
     const dataCityPoetry = await resCityPoetry.json();
 

@@ -43,6 +43,8 @@ const Era = ({ dataAllEras, eraDetails, poetsData, dataPoetsByEra, dataAllCities
 export default Era
 
 export async function getStaticProps({ params, locale }) {
+  const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
+
   const { index } = params;
   const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
@@ -50,7 +52,7 @@ export async function getStaticProps({ params, locale }) {
   let eraDetails = null;
 
   try {
-    const res = await fetch(`https://api4z.suwa.io/api/Zaman/GetEra?id=${index}&lang=${langId}`);
+    const res = await fetch(`${apiDomain}/api/Zaman/GetEra?id=${index}&lang=${langId}`);
     if (res.ok) {
       eraDetails = await res.json();
     }
@@ -58,26 +60,26 @@ export async function getStaticProps({ params, locale }) {
     console.error('Failed to fetch era details:', error);
   }
 
-  const resAllEras = await fetch(`https://api4z.suwa.io/api/Zaman/GetAllEras?lang=${langId}&pagenum=1&pagesize=50`);
+  const resAllEras = await fetch(`${apiDomain}/api/Zaman/GetAllEras?lang=${langId}&pagenum=1&pagesize=50`);
   const dataAllEras = await resAllEras.json();
 
-  const resPoetsByEra = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?era=${index}&lang=${langId}&pagenum=1&pagesize=50`);
+  const resPoetsByEra = await fetch(`${apiDomain}/api/Poets/GetAllPoets?era=${index}&lang=${langId}&pagenum=1&pagesize=50`);
   const dataPoetsByEra = await resPoetsByEra.json();
 
-  const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=${langId}&withPlaces=true&pagenum=1&pagesize=50`);
+  const resAllCitiesMap = await fetch(`${apiDomain}/api/Makan/GetAllCities?type=6&lang=${langId}&withPlaces=true&pagenum=1&pagesize=50`);
   const dataAllCitiesMap = await resAllCitiesMap.json();
 
-  const resAllPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?lang=${langId}`);
+  const resAllPlaces = await fetch(`${apiDomain}/api/Makan/GetMakanFullData?lang=${langId}`);
   const dataAllPlaces = await resAllPlaces.json();
 
-  const resAllPoetries = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?lang=${langId}&pagenum=1&pagesize=50`);
+  const resAllPoetries = await fetch(`${apiDomain}/api/Poetries/GetAllPoetries?lang=${langId}&pagenum=1&pagesize=50`);
   const dataAllPoetries = await resAllPoetries.json();
 
   let poetsData = {};
 
   try {
     for (const poet of dataPoetsByEra) {
-      const resPoetPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?poet=${poet.id}&lang=${langId}&pagenum=1&pagesize=50`);
+      const resPoetPlaces = await fetch(`${apiDomain}/api/Makan/GetAllPlaces?poet=${poet.id}&lang=${langId}&pagenum=1&pagesize=50`);
       if (resPoetPlaces.ok) {
         poetsData[poet.id] = await resPoetPlaces.json();
       }
@@ -105,7 +107,9 @@ export async function getStaticProps({ params, locale }) {
 
 
 export async function getStaticPaths() {
-  const resAllErasIds = await fetch('https://api4z.suwa.io/api/Zaman/GetAllErasIds');
+  const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
+
+  const resAllErasIds = await fetch(`${apiDomain}/api/Zaman/GetAllErasIds`);
   const allErasIds = await resAllErasIds.json();
 
   const paths = allErasIds.map((id) => ({

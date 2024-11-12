@@ -39,6 +39,7 @@ const Custom = localFont({
 
   ],
 })
+
 export default function Layout({ children }) {
   const router = useRouter();
   const combinedStyles = {
@@ -46,7 +47,7 @@ export default function Layout({ children }) {
     ...Custom.style,
   };
 
-
+  console.log()
   return (
     <>
       {router.pathname.includes('year-of-arabic-poetry') || router.pathname !== '/search' &&
@@ -58,7 +59,6 @@ export default function Layout({ children }) {
       {router.pathname !== '/search' &&
         <Footer />
       }
-
     </>
   )
 }

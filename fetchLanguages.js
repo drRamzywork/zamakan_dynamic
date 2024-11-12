@@ -6,9 +6,11 @@ const path = require("path");
 const LOCALES_DIR = path.join("public", "locales");
 
 async function fetchAndCreateTranslations(langId, shortCut) {
+  const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
+
   try {
     const response = await fetch(
-      `https://api4z.suwa.io/api/Settings/GetStaticWords?lang=${langId}`
+      `${apiDomain}/api/Settings/GetStaticWords?lang=${langId}`
     );
     if (!response.ok)
       throw new Error(
@@ -35,7 +37,7 @@ async function fetchAndCreateTranslations(langId, shortCut) {
 async function fetchLanguages() {
   try {
     const response = await fetch(
-      "https://api4z.suwa.io/api/Settings/GetAllLanguages?pagenum=1&pagesize=50"
+      "${apiDomain}/api/Settings/GetAllLanguages?pagenum=1&pagesize=50"
     );
     if (!response.ok) throw new Error(`API call failed: ${response.status}`);
     const languages = await response.json();

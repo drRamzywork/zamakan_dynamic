@@ -288,17 +288,18 @@ const poetsSearch = ({ erasAllEras, dataDefault }) => {
 export default poetsSearch
 
 export async function getStaticProps({ locale }) {
+  const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
 
   const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
   try {
-    const resAllEras = await fetch(`https://api4z.suwa.io/api/Zaman/GetAllEras?lang=${langId}&pagenum=1&pagesize=50`);
+    const resAllEras = await fetch(`${apiDomain}/api/Zaman/GetAllEras?lang=${langId}&pagenum=1&pagesize=50`);
     if (!resAllEras.ok) {
       throw new Error(`Error fetching eras data: ${resAllEras.status}`);
     }
     const erasAllEras = await resAllEras.json();
 
-    const resDefault = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?lang=${langId}&pagenum=1&pagesize=50`);
+    const resDefault = await fetch(`${apiDomain}/api/Poets/GetAllPoets?lang=${langId}&pagenum=1&pagesize=50`);
     if (!resDefault.ok) {
       throw new Error(`Error fetching poets data: ${resDefault.status}`);
     }

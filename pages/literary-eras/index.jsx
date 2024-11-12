@@ -157,12 +157,52 @@ export default LiteraryEras
 
 
 
+// export async function getStaticProps({ locale }) {
+//   const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
+//   const langId = process.env[langIdEnvKey];
+//   const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
+
+//   try {
+//     const resAllEras = await fetch(`${apiDomain}/api/Zaman/GetAllEras?lang=${langId}&pagenum=1&pagesize=50`);
+
+//     if (!resAllEras.ok) {
+//       throw new Error(`HTTP error! Status: ${resAllEras.status}`);
+//     }
+
+//     const erasAllEras = await resAllEras.json();
+
+//     return {
+//       props: {
+//         erasAllEras,
+//         ...(await serverSideTranslations(locale, ["common"])),
+
+//       },
+//       revalidate: 10,
+//     };
+//   } catch (error) {
+//     console.error('Failed to fetch API:', error);
+
+//     return {
+//       props: {
+//         erasAllEras: [],
+//         error: 'API fetch failed',
+//       },
+//       revalidate: 10,
+//       ...(await serverSideTranslations(locale, ["common"])),
+
+//     };
+//   }
+// }
+
+
+
 export async function getStaticProps({ locale }) {
   const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
+  const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
 
   try {
-    const resAllEras = await fetch(`https://api4z.suwa.io/api/Zaman/GetAllEras?lang=${langId}&pagenum=1&pagesize=50`);
+    const resAllEras = await fetch(`${apiDomain}/api/Zaman/GetAllEras?lang=${langId}&pagenum=1&pagesize=50`);
 
     if (!resAllEras.ok) {
       throw new Error(`HTTP error! Status: ${resAllEras.status}`);
@@ -173,8 +213,7 @@ export async function getStaticProps({ locale }) {
     return {
       props: {
         erasAllEras,
-        ...(await serverSideTranslations(locale, ["common"])),
-
+        ...(await serverSideTranslations(locale, ["common"])), // Correct placement
       },
       revalidate: 10,
     };
@@ -185,11 +224,9 @@ export async function getStaticProps({ locale }) {
       props: {
         erasAllEras: [],
         error: 'API fetch failed',
+        ...(await serverSideTranslations(locale, ["common"])), // Correct placement
       },
       revalidate: 10,
-      ...(await serverSideTranslations(locale, ["common"])),
-
     };
   }
 }
-

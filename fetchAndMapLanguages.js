@@ -3,9 +3,11 @@ const fs = require("fs");
 const path = require("path");
 
 async function fetchAndMapLanguages() {
+  const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
+
   try {
     const response = await fetch(
-      "https://api4z.suwa.io/api/Settings/GetAllLanguages?pagenum=1&pagesize=50"
+      `${apiDomain}/api/Settings/GetAllLanguages?pagenum=1&pagesize=50`
     );
     const languages = await response.json();
 

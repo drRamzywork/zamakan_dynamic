@@ -198,13 +198,15 @@ const SearchPage = ({ initialPlacesData, initialPoetsData }) => {
 export default SearchPage
 
 export async function getStaticProps({ locale }) {
+  const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
+
   const langIdEnvKey = `LANG_ID_${locale?.toUpperCase()}`;
   const langId = process.env[langIdEnvKey];
 
-  const resPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetAllPlaces?type=6&lang=${langId}&pagenum=1&pagesize=50`);
+  const resPlaces = await fetch(`${apiDomain}/api/Makan/GetAllPlaces?type=6&lang=${langId}&pagenum=1&pagesize=50`);
   const placesData = await resPlaces.json();
 
-  const resPoets = await fetch(`https://api4z.suwa.io/api/Poets/GetAllPoets?lang=${langId}&pagenum=1&pagesize=50`);
+  const resPoets = await fetch(`${apiDomain}/api/Poets/GetAllPoets?lang=${langId}&pagenum=1&pagesize=50`);
   const poetsData = await resPoets.json();
 
   return {

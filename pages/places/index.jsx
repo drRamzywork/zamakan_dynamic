@@ -475,6 +475,8 @@ export default Places
 
 
 export async function getStaticProps({ locale }) {
+  const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
+
   let dataAllPlaces = [];
   let dataAllPoetries = [];
   let dataAllCitiesMap = [];
@@ -484,21 +486,21 @@ export async function getStaticProps({ locale }) {
 
   try {
     // Fetch data for all places
-    const resAllPlaces = await fetch(`https://api4z.suwa.io/api/Makan/GetMakanFullData?lang=${langId}`);
+    const resAllPlaces = await fetch(`${apiDomain}/api/Makan/GetMakanFullData?lang=${langId}`);
     if (!resAllPlaces.ok) {
       throw new Error(`Failed to fetch places: ${resAllPlaces.status}`);
     }
     dataAllPlaces = await resAllPlaces.json();
 
     // Fetch all poetries
-    const resAllPoetries = await fetch(`https://api4z.suwa.io/api/Poetries/GetAllPoetries?lang=${langId}&pagenum=1&pagesize=50`);
+    const resAllPoetries = await fetch(`${apiDomain}/api/Poetries/GetAllPoetries?lang=${langId}&pagenum=1&pagesize=50`);
     if (!resAllPoetries.ok) {
       throw new Error(`Failed to fetch poetries: ${resAllPoetries.status}`);
     }
     dataAllPoetries = await resAllPoetries.json();
 
     // Fetch all cities map
-    const resAllCitiesMap = await fetch(`https://api4z.suwa.io/api/Makan/GetAllCities?type=6&lang=${langId}&withPlaces=true&pagenum=1&pagesize=50`);
+    const resAllCitiesMap = await fetch(`${apiDomain}/api/Makan/GetAllCities?type=6&lang=${langId}&withPlaces=true&pagenum=1&pagesize=50`);
     if (!resAllCitiesMap.ok) {
       throw new Error(`Failed to fetch cities map: ${resAllCitiesMap.status}`);
     }
