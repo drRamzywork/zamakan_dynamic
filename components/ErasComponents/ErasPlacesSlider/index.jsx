@@ -11,11 +11,11 @@ import { Pagination, } from 'swiper/modules';
 const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) => {
   const swiperRef = useRef(null);
   const swiperVerticalRef = useRef(null);
-  const filteredPlaces = places.filter(place => place.svgX !== null && place.svgY !== null);
+  const filteredPlaces = places?.filter(place => place.svgX !== null && place.svgY !== null);
 
 
   const [imageLoadingStates, setImageLoadingStates] = useState(
-    filteredPlaces.reduce((acc, city) => {
+    filteredPlaces?.reduce((acc, city) => {
       acc[city.id] = city.icon ? true : false;
       return acc;
     }, {})
@@ -23,7 +23,7 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
 
   useEffect(() => {
     if (activeCity != null && swiperRef.current) {
-      const index = filteredPlaces.findIndex(city => city.id === activeCity);
+      const index = filteredPlaces?.findIndex(city => city.id === activeCity);
 
       if (index !== -1) {
         swiperRef.current.swiper.slideTo(index);
@@ -31,7 +31,7 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
     }
 
     if (activeCity != null && swiperVerticalRef.current) {
-      const index = filteredPlaces.findIndex(city => city.id === activeCity);
+      const index = filteredPlaces?.findIndex(city => city.id === activeCity);
       if (index !== -1) {
         swiperVerticalRef.current.swiper.slideTo(index);
 

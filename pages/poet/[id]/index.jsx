@@ -10,7 +10,6 @@ import { FaUserLarge } from "react-icons/fa6";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from 'next-i18next';
 
-
 export default function Poet({ dataPoet, dataPoetry }) {
   const [activeIndex, setActiveIndex] = useState(1);
   const router = useRouter();
@@ -39,8 +38,6 @@ export default function Poet({ dataPoet, dataPoetry }) {
 
   return (
     <>
-
-
       <Head>
         <title>{dataPoet?.name}</title>
         <meta charSet="UTF-8" />
@@ -280,9 +277,7 @@ export default function Poet({ dataPoet, dataPoetry }) {
           </div>
         </Container >
       </motion.div>
-
     </>
-
   );
 }
 
@@ -310,7 +305,6 @@ export async function getStaticProps({ params, locale }) {
     revalidate: 10,
   };
 }
-
 
 export async function getStaticPaths() {
   const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN;
