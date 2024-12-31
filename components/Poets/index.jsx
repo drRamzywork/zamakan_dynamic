@@ -16,7 +16,7 @@ import { useTranslation } from 'next-i18next';
 
 
 const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetries
-  , setIsLayerActive, poetsData }) => {
+  , setIsLayerActive, poetsData, allStaticWords }) => {
   const [activePoet, setActivePoet] = useState(null);
   const [activeCity, setActiveCity] = useState(null);
   const [landElments, setLandElemnts] = useState([])
@@ -29,6 +29,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
   const [filteredPoets, setFilteredPoets] = useState([]);
   const [isFilterActive, setIsFilterActive] = useState(false);
   const router = useRouter();
+
 
   useEffect(() => {
     if (dataPoetsByEra && dataPoetsByEra?.length > 0) {
@@ -278,7 +279,7 @@ const Poets = ({ dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetrie
                               <p>
                                 {cityData?.descriptionShort}
                                 <Link href={`/city/${cityData?.id}`} className={styles.more}>
-                                  <span>المزيد عن {cityData?.name}</span>
+                                  <span>{allStaticWords?.moreAbout} {cityData?.name}</span>
                                   <LeftArrow />
                                 </Link>
                               </p>

@@ -99,7 +99,7 @@ const ErasPlacesSlider = ({ places, activeCity, onPlaceClick, setActiveCity }) =
             <SwiperSlide className={styles.places_container} key={city.id} >
               <div className={`${styles.places} ${city.id === activeCity ? styles.active : ''}`} >
                 <div className={styles.img_container} onClick={() => onPlaceClick(city.id)}>
-                  {imageLoadingStates[city.id] && (
+                  {imageLoadingStates[city?.id] && (
                     <RotatingLines
                       strokeColor="grey"
                       strokeWidth="5"

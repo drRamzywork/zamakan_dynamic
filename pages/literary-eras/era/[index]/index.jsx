@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { motion } from 'framer-motion';
 import styles from '../../index.module.scss';
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-const Era = ({ dataAllEras, eraDetails, poetsData, dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetries }) => {
+const Era = ({ dataAllEras, eraDetails, poetsData, dataPoetsByEra, dataAllCitiesMap, dataAllPlaces, dataAllPoetries, allStaticWords }) => {
   const [isLayerActive, setIsLayerActive] = useState(false);
   return (
     <>
@@ -32,6 +32,7 @@ const Era = ({ dataAllEras, eraDetails, poetsData, dataPoetsByEra, dataAllCities
 
         <LiteraryBanner eraDetails={eraDetails} dataAllEras={dataAllEras} />
         <Poets isLayerActive={isLayerActive}
+          allStaticWords={allStaticWords}
           dataAllPlaces={dataAllPlaces} dataAllPoetries={dataAllPoetries}
           setIsLayerActive={setIsLayerActive} dataPoetsByEra={dataPoetsByEra} dataAllCitiesMap={dataAllCitiesMap} poetsData={poetsData} />
       </motion.div>
@@ -50,6 +51,10 @@ export async function getStaticProps({ params, locale }) {
   const langId = process.env[langIdEnvKey];
 
   let eraDetails = null;
+
+
+
+
 
   try {
     const res = await fetch(`${apiDomain}/api/Zaman/GetEra?id=${index}&lang=${langId}`);
@@ -75,6 +80,11 @@ export async function getStaticProps({ params, locale }) {
   const resAllPoetries = await fetch(`${apiDomain}/api/Poetries/GetAllPoetries?lang=${langId}&pagenum=1&pagesize=50`);
   const dataAllPoetries = await resAllPoetries.json();
 
+
+  const resStaticWords = await fetch(`${apiDomain}/api/Settings/GetStaticWords?lang=${langId}`);
+  const allStaticWords = await resStaticWords.json();
+
+
   let poetsData = {};
 
   try {
@@ -97,6 +107,7 @@ export async function getStaticProps({ params, locale }) {
       dataAllPlaces,
       dataAllPoetries,
       poetsData,
+      allStaticWords,
       ...(await serverSideTranslations(locale, ['common'])),
     },
     revalidate: 10,
@@ -112,9 +123,14 @@ export async function getStaticPaths() {
   const resAllErasIds = await fetch(`${apiDomain}/api/Zaman/GetAllErasIds`);
   const allErasIds = await resAllErasIds.json();
 
+
+
   const paths = allErasIds.map((id) => ({
     params: { index: id.toString() },
   }));
+
+
+
 
   return {
     paths,
